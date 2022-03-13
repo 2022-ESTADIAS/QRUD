@@ -1,0 +1,38 @@
+<img class="wave" src="assets/img/wave2.png">
+    <div class="form-img">
+        <div class="content-form">
+            <img src="assets/img/logo.svg">
+            <h1>¡Bienvenido!</h1>
+            <form [formGroup]="form"  (ngSubmit)="login()" >
+
+                <div class="group">      
+                  <input type="text" formControlName="email" >
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Email</label>
+                </div>
+                  
+                <div class="group">      
+                  <input type="password"  formControlName="password" >
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Password</label>
+                </div>
+                <div class="wrapper">
+                    <button href="#0" class="btn10">
+                        <span>Send</span>
+                        <div class="transition"></div>
+                    </button>
+                </div>
+                <p>
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+                </p>
+                
+              </form>
+        </div>
+        <div class="login-imagen">
+            <img src="assets/img/undraw_mobile_interface_wakp.svg" alt="User">
+        </div>
+        
+      
+    </div>

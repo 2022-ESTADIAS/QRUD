@@ -1,14 +1,20 @@
+
+
+/* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
+i, i.material-icons-sharp,span.material-icons-sharp,label.material-icons-sharp { 
+    font-family: 'Material Icons';
+}
 
 
-*{
-    font-family: 'poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
+
+
+
+body{
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 400;
 }
 /*---------sidebar-menu-desplegable----------*/
 #sidebar-toggle{

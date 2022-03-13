@@ -18,7 +18,7 @@ import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

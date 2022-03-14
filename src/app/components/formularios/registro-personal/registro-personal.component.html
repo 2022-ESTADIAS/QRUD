@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="title">Formulario de Registro del Personal</div>
+    <form action="#" [formGroup]="form" (ngSubmit)="submit()"> 
+        <div class="user-details">
+
+              <div class="group">      
+                <input type="text" formControlName="nombre" >
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Nombre</label>
+              </div>
+
+       
+
+              <div class="group">      
+                <input type="tel" formControlName="telefono" >
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Telefono</label>
+              </div>
+
+              <div class="group">      
+                <input type="email" formControlName="email" >
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Email</label>
+              </div>
+
+              <div class="group">      
+                <input type="password" formControlName="password" >
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Contraseña</label>
+              </div>
+
+              <div class="group">      
+                  <select name="" id="" formControlName="rol">
+                    <option value="" disabled selected >koso</option>
+                    <option value="1">keso</option>
+                  </select>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Seleccione Rol</label>
+              </div>
+            
+        </div>
+        <div class="wrapper">
+            <button href="#0" class="btn10">
+                <span>Send</span>
+                <div class="transition"></div>
+            </button>
+        </div>
+       <!--
+        <div class="button">
+            <input type="submit" value="registro">
+        </div>-->
+    </form>
+</div>

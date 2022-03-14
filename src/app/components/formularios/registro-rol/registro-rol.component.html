@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="title">Formulario de Registro Rol</div>
+    <form action="#"  [formGroup]="form" (ngSubmit)="submit()"> 
+        <div class="user-details">
+
+              <div class="group">      
+                <input type="text"  formControlName="rol">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Rol</label>
+              </div>
+
+              <div class="group">      
+                <!-- <input type="text" formControlName="description"> -->
+                <textarea  formControlName="description"> </textarea>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>RFC</label>
+              </div>
+
+        </div>
+        <div class="wrapper">
+            <button href="#0" class="btn10">
+                <span>Send</span>
+                <div class="transition"></div>
+            </button>
+        </div>
+       <!--
+        <div class="button">
+            <input type="submit" value="registro">
+        </div>-->
+    </form>
+</div>

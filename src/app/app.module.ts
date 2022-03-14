@@ -7,12 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
+import { RegistroUsuarioComponent } from './components/formularios/registro-usuario/registro-usuario.component';
+import { RegistroPersonalComponent } from './components/formularios/registro-personal/registro-personal.component';
+import { RegistroRolComponent } from './components/formularios/registro-rol/registro-rol.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PanelAdminComponent
+    PanelAdminComponent,
+    RegistroUsuarioComponent,
+    RegistroPersonalComponent,
+    RegistroRolComponent
   ],
   imports: [
     BrowserModule,

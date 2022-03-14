@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
+  msgErrores:string ="";
+  existeError:boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -24,7 +26,12 @@ export class LoginComponent implements OnInit {
 
   formularioLogin(){
     this.form = this.fb.group({
-      email:["shadow@shadow.com", [Validators.required,Validators.email]],
+      //admin
+      // email:["shadow@shadow.com", [Validators.required,Validators.email]],
+      // password:["123456",[Validators.required]]
+
+      //master
+      email:["koso@koso.com", [Validators.required,Validators.email]],
       password:["123456",[Validators.required]]
     })
   }
@@ -39,13 +46,23 @@ export class LoginComponent implements OnInit {
 
     this.AuthService.login(personal).then((data) => {
       console.log(data)
+      this.existeError = false;
       this.router.navigateByUrl("/");
+    }).catch(err =>{
+      console.log(err.error.msg)
+      this.existeError = true;
+      this.msgErrores= err.error.msg
     })
-    
-
-
-
   }
+
+  campoValido(campo:string){
+    return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
+  }
+
+  removerAlertas(){
+    this.existeError = false;
+  }
+
 
 
 

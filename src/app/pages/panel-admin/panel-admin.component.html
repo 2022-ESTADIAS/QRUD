@@ -1,3 +1,4 @@
+
 <input type="checkbox"  id="sidebar-toggle">
 <div class="sidebar">
     <div class="sidebar-header">
@@ -48,8 +49,8 @@
                     <a href="#"><i class="material-icons-sharp"></i><span>Ver QR</span></a>
                 </div>
             </li>
-            <li class="item">
-                <a href="#" class="menu-btn">
+            <li class="item" (click)="logout()" > 
+                <a  class="menu-btn">
                     <i class="material-icons-sharp">logout</i><span>Logout</span>
                 </a>
             </li>
@@ -185,6 +186,7 @@
             </div>
             
         </section> -->
+        
         <router-outlet></router-outlet>
     </main>
 </div>

@@ -1,38 +1,55 @@
+<ng-container *ngIf="existeError" >
+  <div class="mensajes-container"  >
+    
+      <!-- <app-errores-backend [mensaje]="error.msg" *ngFor="let error of errores;let i = index" 
+      [style.top] ="arregloPosicionesCSS[i]" style="position: absolute;"  ></app-errores-backend> -->
+    <app-errores-frontend [mensaje]="error.msg" *ngFor="let error of errores" ></app-errores-frontend>
+  </div>
+  
+
+</ng-container>
+
+
 <div class="container">
     <div class="title">Formulario de Registro de Usuarios</div>
     <form action="#" [formGroup]="form" (ngSubmit)="submit()" > 
         <div class="user-details">
 
               <div class="group">      
-                <input type="text" formControlName="nombre" >
+                <!-- <input type="text" formControlName="nombre" > -->
+                <input type="text"  >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Nombre</label>
               </div>
 
               <div class="group">      
-                <input type="text" formControlName="rfc" >
+                <!-- <input type="text" formControlName="rfc" > -->
+                <input type="text"  >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>RFC</label>
               </div>
 
               <div class="group">      
-                <input type="text" formControlName="direccion" >
+                <!-- <input type="text" formControlName="direccion" > -->
+                <input type="text" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Direccion</label>
               </div>
 
               <div class="group">      
-                <input type="tel" formControlName="telefono">
+                <!-- <input type="tel" formControlName="telefono"> -->
+                <input type="tel" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Telefono</label>
               </div>
 
               <div class="group">      
-                <input type="email" formControlName="email">
+                <!-- <input type="email" formControlName="email"> -->
+                <input type="email" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Email</label>
@@ -51,3 +68,5 @@
         </div>-->
     </form>
 </div>
+
+

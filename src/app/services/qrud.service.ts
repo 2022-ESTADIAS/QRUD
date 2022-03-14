@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { RegistroPersonal } from '../interfaces/personal.interface';
-import { RegistroRol } from '../interfaces/rol.interface';
+import { RegistroRol, RolesResponse } from '../interfaces/rol.interface';
 import { RegistroUsuario } from '../interfaces/usuario.interface';
 import { StorageService } from './storage.service';
 
@@ -33,12 +33,12 @@ export class QRUDService {
       
     }
     
-    ObtenerRegistros(ruta: "user" | "personal" | "rol",){
+    ObtenerRegistros(ruta: "user" | "personal" | "rol"){
       const token = this.StorageService.desencriptar(llaveToken)
       
       console.log(token)
-      return new Promise((resolve,reject)=>{
-        this.http.get(`${url}/${ruta}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+      return new Promise<RolesResponse>((resolve,reject)=>{
+        this.http.get<RolesResponse>(`${url}/${ruta}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
           resolve(data)
         },err=>{
           reject(err)

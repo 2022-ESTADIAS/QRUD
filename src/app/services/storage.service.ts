@@ -35,6 +35,10 @@ export class StorageService {
    const valor = sessionStorage.getItem(key) || '';
    return valor;
   }
+  
+  guardarSesionStorage(llave:string,valor:any){
+    sessionStorage.setItem(llave,valor);
+  }
 
 
 }

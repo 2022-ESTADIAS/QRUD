@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistroPersonal } from 'src/app/interfaces/personal.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
 
+import { DetallePorRol } from 'src/app/interfaces/rol.interface';
 @Component({
   selector: 'app-registro-personal',
   templateUrl: './registro-personal.component.html',
@@ -11,13 +12,17 @@ import { QRUDService } from 'src/app/services/qrud.service';
 export class RegistroPersonalComponent implements OnInit {
 
   form!: FormGroup;
+  roles:DetallePorRol[] = [];
+
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService
   ) { }
 
   ngOnInit(): void {
+    this.obtenerRoles();
     this.FormularioPersonal();
+    
   }
 
   FormularioPersonal() {
@@ -37,6 +42,11 @@ export class RegistroPersonalComponent implements OnInit {
     const personal:RegistroPersonal = this.form.value;
 
 
+  }
+  obtenerRoles(){
+    this.QRUDService.ObtenerRegistros('rol').then((data) => {
+      this.roles = data.personal
+    })
   }
 
   campoValido(campo:string){

@@ -35,8 +35,8 @@
 
               <div class="group">      
                   <select name="" id="" formControlName="rol">
-                    <option value="" disabled selected >koso</option>
-                    <option value="1">keso</option>
+                    <option value="1" disabled selected>--Seleccione Rol--</option> 
+                    <option value="{{rol._id}}" *ngFor="let rol of roles" >{{rol.rol}}</option>
                   </select>
                 <span class="highlight"></span>
                 <span class="bar"></span>
@@ -46,7 +46,7 @@
         </div>
         <div class="wrapper">
             <button href="#0" class="btn10">
-                <span>Send</span>
+                <span>Send</span> 
                 <div class="transition"></div>
             </button>
         </div>

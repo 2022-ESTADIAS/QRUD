@@ -13,7 +13,8 @@ export class RegistroUsuarioComponent implements OnInit {
   form!: FormGroup;
   errores!:[{msg:string}]
   existeError:boolean = false;
-  arregloPosicionesCSS = ["0px","200px","450px","630px"]
+  msgExito:string = "";
+  existeMsgExito:boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -30,35 +31,36 @@ export class RegistroUsuarioComponent implements OnInit {
 
   FormularioUsuario(){
 
-    // this.form =   this.fb.group({
-    //   nombre:["koso", Validators.required],
-    //   rfc:["koso961023f12", [Validators.required,Validators.pattern(/^[ña-z]{3,4}[0-9]{6}[0-9a-z]{3}$/i)]],
-    //   telefono:["1234567891",  [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)]  ],
-    //   direccion:["koso #23", Validators.required],
-    //   email:["koso60@koso.com",[Validators.required,Validators.email]],
-    // })
-
     this.form =   this.fb.group({
-      nombre:["", Validators.required],
-      rfc:["", [Validators.required,Validators.pattern(/^[ña-z]{3,4}[0-9]{6}[0-9a-z]{3}$/i)]],
-      telefono:["",  [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)]  ],
-      direccion:["", Validators.required],
-      email:["",[Validators.required,Validators.email]],
+      nombre:["koso", Validators.required], 
+      rfc:["koso961023f12", [Validators.required,Validators.pattern(/^[ña-z]{3,4}[0-9]{6}[0-9a-z]{3}$/i)]],
+      telefono:["1234567891",  [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)]  ],
+      direccion:["koso #23", Validators.required],
+      email:["koso60@koso.com",[Validators.required,Validators.email]],
     })
 
   }
 
   submit(){
 
-    // if(this.form.invalid){
-    //   this.form.markAllAsTouched();
-    //   return;
-    // }
+    if(this.form.invalid){
+      this.form.markAllAsTouched();
+      return;
+    }
 
     const usuario:RegistroUsuario = this.form.value;
 
-    this.QRUDService.crearRegistro("user",usuario).then((data) => {
+    this.QRUDService.crearRegistro("user",usuario).then((data:any) => {
       console.log(data);
+      this.msgExito = data.msg;
+      this.existeMsgExito = true;
+      this.form.reset();
+
+      setTimeout(() =>{
+        this.existeMsgExito = false;
+      },2000);
+
+
     }).catch(err => {
       console.log(err)
       this.existeError = true
@@ -71,5 +73,8 @@ export class RegistroUsuarioComponent implements OnInit {
     return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
   }
 
+  removerAlertas(){
+    this.existeError = false;
+  }
 
 }

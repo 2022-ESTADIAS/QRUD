@@ -229,17 +229,18 @@
 .mensajes-container{
 
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 180px;
-  position: absolute;
-  top: 30px;
-  right: 60px;
+  flex-wrap: wrap;
+}
+.mensajes-container > app-errores-backend > div.contenido > div.validacion {
 
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 50px !important;
 }
 
 
 
+/* 
 .mensajes-container:nth-child(n){
   margin: 20px;
-}
+} */

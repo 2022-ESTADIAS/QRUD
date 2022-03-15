@@ -222,3 +222,8 @@
 	opacity:1;
 	width: 120%;
 }
+.mensajes-container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}

@@ -1,46 +1,64 @@
+<ng-container *ngIf="existeError" >
+  <div class="mensajes-container"  >
+    
+      <app-errores-backend [mensaje]="error.msg" *ngFor="let error of errores" 
+      ></app-errores-backend>
+  </div>
+  
+
+</ng-container>
+
+<app-exito [mensaje]="msgExito" *ngIf="existeMsgExito" ></app-exito>
+
+
 <div class="container">
     <div class="title">Formulario de Registro del Personal</div>
     <form action="#" [formGroup]="form" (ngSubmit)="submit()"> 
         <div class="user-details">
 
               <div class="group">      
-                <input type="text" formControlName="nombre" >
+                <input type="text" formControlName="nombre"  (keyup)="removerAlertas()" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Nombre</label>
+                <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('nombre')"    ></app-errores-frontend>
               </div>
-
-       
-
+              
+              
+              
               <div class="group">      
-                <input type="tel" formControlName="telefono" >
+                <input type="tel" formControlName="telefono" (keyup)="removerAlertas()" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Telefono</label>
+                <app-errores-frontend mensaje="Tiene que ser un numero valido" *ngIf="campoValido('telefono')"     ></app-errores-frontend>
               </div>
-
+              
               <div class="group">      
-                <input type="email" formControlName="email" >
+                <input type="email" formControlName="email" (keyup)="removerAlertas()" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Email</label>
+                <app-errores-frontend mensaje="Tiene que ser un correo valido" *ngIf="campoValido('email')"   ></app-errores-frontend>
               </div>
-
+              
               <div class="group">      
-                <input type="password" formControlName="password" >
+                <input type="password" formControlName="password" (keyup)="removerAlertas()" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Contraseña</label>
+                <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('password')"  ></app-errores-frontend>
               </div>
-
+              
               <div class="group">      
-                  <select name="" id="" formControlName="rol">
-                    <option value="1" disabled selected>--Seleccione Rol--</option> 
+                  <select name="" id="" formControlName="rol" (keyup)="removerAlertas()" >
+                    <option value="" disabled selected>--Seleccione Rol--</option> 
                     <option value="{{rol._id}}" *ngFor="let rol of roles" >{{rol.rol}}</option>
                   </select>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Seleccione Rol</label>
+                <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('rol')"  ></app-errores-frontend>
               </div>
             
         </div>

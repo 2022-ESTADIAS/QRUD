@@ -1,21 +1,37 @@
+
+<ng-container *ngIf="existeError" >
+    <div class="mensajes-container"  >
+      
+        <app-errores-backend [mensaje]="error.msg" *ngFor="let error of errores" 
+        ></app-errores-backend>
+    </div>
+    
+  
+  </ng-container>
+  
+    
+  <app-exito [mensaje]="msgExito" *ngIf="existeMsgExito" ></app-exito>
+  
+
 <div class="container">
     <div class="title">Formulario de Registro Rol</div>
     <form action="#"  [formGroup]="form" (ngSubmit)="submit()"> 
         <div class="user-details">
 
               <div class="group">      
-                <input type="text"  formControlName="rol">
+                <input type="text"  formControlName="rol" (keyup)="removerAlertas()" >
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Rol</label>
-              </div>
-
-              <div class="group">      
-                <!-- <input type="text" formControlName="description"> -->
-                <textarea  formControlName="description"> </textarea>
+                <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('rol')" ></app-errores-frontend>
+            </div>
+            
+            <div class="group">      
+                <textarea  formControlName="description" (keyup)="removerAlertas()" > </textarea>
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>RFC</label>
+                <label>Descripcion</label>
+                <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('description')" ></app-errores-frontend>
               </div>
 
         </div>
@@ -25,9 +41,6 @@
                 <div class="transition"></div>
             </button>
         </div>
-       <!--
-        <div class="button">
-            <input type="submit" value="registro">
-        </div>-->
+
     </form>
 </div>

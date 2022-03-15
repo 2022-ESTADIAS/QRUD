@@ -1,0 +1,36 @@
+<div class="table-responsive">
+    <table>
+        <thead >
+            <tr>
+                <th>Nombre</th>
+                <th>RFC</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+                <td data-title="Nombre">{{usuario.nombre}}</td>
+                <td data-title="RFC">{{usuario.rfc}}</td>
+                <td data-title="Direccion">{{usuario.direccion}}</td>
+                <td data-title="Telefono">{{usuario.telefono}}</td>
+                <td data-title="Email">{{usuario.email}}</td>
+                <td data-title="Acciones">
+                    <div class="btn-group">
+                        <a id="myBtn"><button class="btn" ><i class="fa-solid fa-square-pen fa-xl"></i></button></a>
+                        <a id="BtnDlet"><button class="btn" ><i class="fa-solid fa-user-xmark fa-lg"></i></button></a>
+                    </div>
+
+                </td>
+            </tr>
+
+       
+
+    
+
+        </tbody>
+
+    </table>
+</div>

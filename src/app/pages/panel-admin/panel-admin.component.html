@@ -16,7 +16,7 @@
                     <i class="material-icons-sharp">expand_more</i><span>Usuarios<i class="material-icons-sharp"></i></span>
                 </a>
                 <div class="sub-menu">
-                    <a href="#"><i class="material-icons-sharp"></i><span>Ver usuario</span></a>
+                    <a routerLink="/ver-usuarios"><i class="material-icons-sharp"></i><span>Ver usuario</span></a>
                     <a routerLink="/"><i class="material-icons-sharp"></i><span>Crear usuario</span></a>
                     <a href="#"><i class="material-icons-sharp"></i><span>Usuarios Eliminados</span></a>
                 </div>
@@ -26,7 +26,7 @@
                     <i class="material-icons-sharp">expand_more</i><span>Personal<i class="material-icons-sharp"></i></span>
                 </a>
                 <div class="sub-menu">
-                    <a href="#"><i class=""></i><span>Ver personal</span></a>
+                    <a routerLink="/ver-personal"><i class=""></i><span>Ver personal</span></a>
                     <a routerLink="/registro-personal"><i class=""></i><span>Crear personal</span></a>
                     <a href="#"><i class=""></i><span>Personal Eliminado</span></a>
                 </div>
@@ -36,7 +36,7 @@
                     <i class="material-icons-sharp">expand_more</i><span>Rol <i class="material-icons-sharp"></i></span>
                 </a>
                 <div class="sub-menu">
-                    <a href="#"><i class="material-icons-sharp"></i><span>Ver Rol</span></a>
+                    <a routerLink="/ver-rol"><i class="material-icons-sharp"></i><span>Ver Rol</span></a>
                     <a routerLink="/registro-rol" ><i class="material-icons-sharp"></i><span>Crear Rol</span></a>
                 </div>
             </li>
@@ -68,125 +68,7 @@
     </header>
 <!--------------MAIN---------------->
     <main>
-        <!--<h2 class="dash-title">Q R U D</h2>-->
-        <!-------------buscador------------->
-        <!-- <div class="search-wrapper">
-            <div class="buscador">
-            <input type="text" placeholder="Búsqueda por nombre" required>
-            <div class="btn">
-                <i class="fas fa-search icon"></i>
-            </div>
-        </div> 
-        </div> -->
-        <!----------section-------------------->
-       <!-- <section class="recent">
-            <div class="activity-grid">
-                <div class="activity-card">
-                    <h3>Lista de Usuarios Inactivos</h3> 
-                    <div class="table-responsive">
-                        <table>
-                            <thead >
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>RFC</th>
-                                    <th>Direccion</th>
-                                    <th>Telefono</th>
-                                    <th>Email</th>
-                                    <th>Activar</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td data-title="Nombre">Alejandra Antúnez Rodríguez</td>
-                                    <td data-title="RFC">7541236545</td>
-                                    <td data-title="Direccion">Calle 3 #1 A Col. Icacos</td>
-                                    <td data-title="Telefono">7441254868</td>
-                                    <td data-title="Email">Alejinki@hotmail.com</td>
-                                    <td data-title="Acciones">
-                                        <label class="switchBtn">
-                                            <input type="checkbox">
-                                            <div class="slide round"></div>
-                                             </label>
-            
-                                    </td>
-                                </tr>
-            
-                                <tr>
-                                    <td data-title="Nombre">Alejandra Antúnez Rodríguez</td>
-                                    <td data-title="RFC">7541236545</td>
-                                    <td data-title="Direccion">Calle 3 #1 A Col. Icacos</td>
-                                    <td data-title="Telefono">7441254868</td>
-                                    <td data-title="Email">Alejinki@hotmail.com</td>
-                                    <td data-title="Acciones">
-                                        <label class="switchBtn">
-                                            <input type="checkbox">
-                                            <div class="slide round"></div>
-                                             </label>
-                                    </td>
-                                </tr>
-            
-                                <tr>
-                                    <td data-title="Nombre">Alejandra Antúnez Rodríguez</td>
-                                    <td data-title="RFC">7541236545</td>
-                                    <td data-title="Direccion">Calle 3 #1 A Col. Icacos</td>
-                                    <td data-title="Telefono">7441254868</td>
-                                    <td data-title="Email">Alejinki@hotmail.com</td>
-                                    <td data-title="Acciones">
-                                        <label class="switchBtn">
-                                            <input type="checkbox">
-                                            <div class="slide round"></div>
-                                             </label>
-                                    </td>
-                                </tr>
-            
-                                <tr>
-                                    <td data-title="Nombre">Alejandra Antúnez Rodríguez</td>
-                                    <td data-title="RFC">7541236545</td>
-                                    <td data-title="Direccion">Calle 3 #1 A Col. Icacos</td>
-                                    <td data-title="Telefono">7441254868</td>
-                                    <td data-title="Email">Alejinki@hotmail.com</td>
-                                    <td data-title="Acciones">
-                                        <label class="switchBtn">
-                                        <input type="checkbox">
-                                        <div class="slide round"></div>
-                                         </label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td data-title="Nombre">Alejandra Antúnez Rodríguez</td>
-                                    <td data-title="RFC">7541236545</td>
-                                    <td data-title="Direccion">Calle 3 #1 A Col. Icacos</td>
-                                    <td data-title="Telefono">7441254868</td>
-                                    <td data-title="Email">Alejinki@hotmail.com</td>
-                                    <td data-title="Acciones">
-                                        <label class="switchBtn">
-                                        <input type="checkbox">
-                                        <div class="slide round"></div>
-                                         </label>
-                                    </td>
-                                </tr>
-                            </tbody>
-            
-                        </table>
-                    </div>
-                    <ul class="pagination">
-                        <li><a href="#">«</a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a class="active" href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">6</a></li>
-                        <li><a href="#">7</a></li>
-                        <li><a href="#">»</a></li>
-                      </ul>
-                </div>
-                
-                
-            </div>
-            
-        </section> -->
-        
+
         <router-outlet></router-outlet>
     </main>
 </div>

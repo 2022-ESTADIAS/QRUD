@@ -15,3 +15,10 @@ export interface DetallePorRol {
     description?: string;
     __v?:         number;
 }
+
+
+export interface RolResponse {
+    total?:    number;
+    personal?: DetallePorRol[];
+}
+

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { RegistroPersonal } from '../interfaces/personal.interface';
 import { RegistroRol, RolesResponse } from '../interfaces/rol.interface';
-import { RegistroUsuario } from '../interfaces/usuario.interface';
+import { RegistroUsuario, UsuariosResponse } from '../interfaces/usuario.interface';
 import { StorageService } from './storage.service';
 
 const {url,llaveToken} = environment 

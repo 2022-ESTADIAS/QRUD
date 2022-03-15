@@ -14,6 +14,9 @@ import { ErroresBackendComponent } from './components/alertas/errores-backend/er
 import { ExitoComponent } from './components/alertas/exito/exito.component';
 import { ErroresFrontendComponent } from './components/alertas/errores-frontend/errores-frontend.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { VerUsuariosComponent } from './components/tablas/ver-usuarios/ver-usuarios.component';
+import { VerPersonalComponent } from './components/tablas/ver-personal/ver-personal.component';
+import { VerRolComponent } from './components/tablas/ver-rol/ver-rol.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ErroresBackendComponent,
     ExitoComponent,
     ErroresFrontendComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    VerUsuariosComponent,
+    VerPersonalComponent,
+    VerRolComponent
   ],
   imports: [
     BrowserModule,

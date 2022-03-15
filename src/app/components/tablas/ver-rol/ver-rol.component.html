@@ -1,0 +1,30 @@
+<div class="table-responsive">
+    <table>
+        <thead >
+            <tr>
+                <th>Rol</th>
+                <th>Descripcion</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rol of roles">
+                <td data-title="Nombre">{{rol.rol}}</td>
+                <td data-title="RFC">{{rol.description}}</td>
+                <td data-title="Acciones">
+                    <div class="btn-group">
+                        <a id="myBtn"><button class="btn" ><i class="fa-solid fa-square-pen fa-xl"></i></button></a>
+                        <a id="BtnDlet"><button class="btn" ><i class="fa-solid fa-user-xmark fa-lg"></i></button></a>
+                    </div>
+
+                </td>
+            </tr>
+
+        
+
+    
+
+        </tbody>
+
+    </table>
+</div>

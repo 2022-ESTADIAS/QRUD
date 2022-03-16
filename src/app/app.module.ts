@@ -17,6 +17,9 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { VerUsuariosComponent } from './components/tablas/ver-usuarios/ver-usuarios.component';
 import { VerPersonalComponent } from './components/tablas/ver-personal/ver-personal.component';
 import { VerRolComponent } from './components/tablas/ver-rol/ver-rol.component';
+import { ActualizarUsuarioComponent } from './components/formularios/emergentes/actualizar-usuario/actualizar-usuario.component';
+import { ActualizarPersonalComponent } from './components/formularios/emergentes/actualizar-personal/actualizar-personal.component';
+import { ActualizarRolComponent } from './components/formularios/emergentes/actualizar-rol/actualizar-rol.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { VerRolComponent } from './components/tablas/ver-rol/ver-rol.component';
     SpinnerComponent,
     VerUsuariosComponent,
     VerPersonalComponent,
-    VerRolComponent
+    VerRolComponent,
+    ActualizarUsuarioComponent,
+    ActualizarPersonalComponent,
+    ActualizarRolComponent
   ],
   imports: [
     BrowserModule,

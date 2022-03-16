@@ -37,8 +37,8 @@ export class QRUDService {
       const token = this.StorageService.desencriptar(llaveToken)
       
       console.log(token)
-      return new Promise<RolesResponse>((resolve,reject)=>{
-        this.http.get<RolesResponse>(`${url}/${ruta}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+      return new Promise((resolve,reject)=>{
+        this.http.get(`${url}/${ruta}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
           resolve(data)
         },err=>{
           reject(err)
@@ -46,6 +46,32 @@ export class QRUDService {
       })
     }
 
+    EliminarRegistros(ruta:"user" | "personal",id:string){
+      const token = this.StorageService.desencriptar(llaveToken);
+      return new Promise((resolve,reject)=>{
+        
+        this.http.delete(`${url}/${ruta}/${id}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+          resolve(data)
+        },err=>{
+          reject(err)
+        })
+        
+      })
+    }
+
+  ActualizarRegistros(ruta:"user" | "personal" | "rol",id:string,data:any){
+    const token = this.StorageService.desencriptar(llaveToken);
+    return new Promise((resolve,reject)=>{
+      
+      this.http.put(`${url}/${ruta}/${id}`,data,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+        resolve(data)
+      },err=>{
+        reject(err)
+      })
+
+    })
+    
+  }
 
 
 }

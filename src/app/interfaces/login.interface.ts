@@ -12,9 +12,9 @@ export interface LoginResponse {
 }
 
 export interface Personal {
-    nombre?:   string;
-    telefono?: string;
-    email?:    string;
+    nombre:   string;
+    telefono: string;
+    email:    string;
     rol:      Rol;
     isActivo?: boolean;
     qr?:       boolean;

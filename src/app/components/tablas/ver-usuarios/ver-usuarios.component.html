@@ -1,3 +1,10 @@
+
+<app-exito mensaje="Usuario Eliminado con Exito" *ngIf="existeMsgExito" ></app-exito>
+<app-exito mensaje="Usuario Actualizado con Exito" *ngIf="existeMsgActualizarExito" ></app-exito>
+
+
+
+
 <div class="table-responsive">
     <table>
         <thead >
@@ -19,8 +26,8 @@
                 <td data-title="Email">{{usuario.email}}</td>
                 <td data-title="Acciones">
                     <div class="btn-group">
-                        <a id="myBtn"><button class="btn" ><i class="fa-solid fa-square-pen fa-xl"></i></button></a>
-                        <a id="BtnDlet"><button class="btn" ><i class="fa-solid fa-user-xmark fa-lg"></i></button></a>
+                        <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" ><i class="fa-solid fa-square-pen fa-xl"></i></button>
+                        <button class="btn" (click)="eliminarUsuario(usuario.uid)" ><i class="fa-solid fa-user-xmark fa-lg"></i></button>
                     </div>
 
                 </td>
@@ -34,3 +41,11 @@
 
     </table>
 </div>
+
+
+<app-actualizar-usuario *ngIf="mostrarFormularioEmergente" 
+[idUsuario]="idusuarioActualizar" 
+[usuario]="usuarioparaActualizar"
+(ocultar)="mostrarFormularioEmergente = $event"
+(usuarioActualizado)="actualizandoArregloUsuario($event)"
+> </app-actualizar-usuario>

@@ -72,8 +72,8 @@ export class RegistroPersonalComponent implements OnInit {
 
   }
   obtenerRoles(){
-    this.QRUDService.ObtenerRegistros('rol').then((data) => {
-      this.roles = data.personal
+    this.QRUDService.ObtenerRegistros('rol').then((data:any) => {
+      this.roles = data.roles
     }).catch(err =>{
       if(err.error.msgtk){
         this.router.navigateByUrl("/login");

@@ -25,7 +25,7 @@ export class VerRolComponent implements OnInit {
 
     this.QRUDService.ObtenerRegistros("rol").then((data:any) => {
       console.log(data)
-      this.roles = data.personal;
+      this.roles = data.roles;
     })
 
   }

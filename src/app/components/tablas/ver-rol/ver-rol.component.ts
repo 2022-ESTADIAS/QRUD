@@ -11,17 +11,24 @@ export class VerRolComponent implements OnInit {
 
   roles:DetallePorRol[] = [];
 
+  existeMsgExito:boolean = false;
+
+  existeMsgActualizarExito:boolean = false;
+  mostrarFormularioEmergente:boolean = false;
+  rolparaActualizar:any = {};
+  idrolActualizar:any = "";
+
   constructor(
     private QRUDService: QRUDService
   ) { }
 
   ngOnInit(): void {
-    this.obtenerPersonal();
+    this.obtenerRoles();
   }
 
 
 
-  obtenerPersonal() {
+  obtenerRoles() {
 
     this.QRUDService.ObtenerRegistros("rol").then((data:any) => {
       console.log(data)
@@ -29,5 +36,29 @@ export class VerRolComponent implements OnInit {
     })
 
   }
+
+
+  actualizarRoles(id:any,rol:any){
+    this.mostrarFormularioEmergente = true;
+    this.idrolActualizar = id; 
+    this.rolparaActualizar = rol;
+ 
+  }
+  actualizandoArregloRoles(data:any){
+    this.roles= this.roles.map(rol => {
+      if(rol._id == data._id){
+          rol = data
+          return rol
+      }else return rol;
+    })
+    this.existeMsgActualizarExito = true;
+
+    setTimeout(() =>{
+      this.existeMsgActualizarExito = false;
+    },2000);
+
+  }
+
+
 
 }

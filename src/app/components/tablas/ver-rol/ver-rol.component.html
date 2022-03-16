@@ -1,3 +1,5 @@
+<app-exito mensaje="Usuario Actualizado con Exito" *ngIf="existeMsgActualizarExito" ></app-exito>
+
 <div class="table-responsive">
     <table>
         <thead >
@@ -13,8 +15,8 @@
                 <td data-title="RFC">{{rol.description}}</td>
                 <td data-title="Acciones">
                     <div class="btn-group">
-                        <a id="myBtn"><button class="btn" ><i class="fa-solid fa-square-pen fa-xl"></i></button></a>
-                        <a id="BtnDlet"><button class="btn" ><i class="fa-solid fa-user-xmark fa-lg"></i></button></a>
+                        <button class="btn"  (click)="actualizarRoles(rol._id,rol)" ><i class="fa-solid fa-square-pen fa-xl"></i></button>
+                        
                     </div>
 
                 </td>
@@ -28,3 +30,11 @@
 
     </table>
 </div>
+ 
+
+<app-actualizar-rol *ngIf="mostrarFormularioEmergente" 
+[idRol]="idrolActualizar" 
+[rol]="rolparaActualizar"
+(ocultar)="mostrarFormularioEmergente = $event"
+(rolActualizado)="actualizandoArregloRoles($event)"
+> </app-actualizar-rol>

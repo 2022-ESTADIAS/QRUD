@@ -86,9 +86,34 @@ export class QRUDService {
 
   GenerarQRUSuario(id:any){
     const token = this.StorageService.desencriptar(llaveToken);
-
+    
     return new Promise((resolve,reject)=>{
       this.http.get(`${url}/user/qr/${id}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+        resolve(data)
+      },err=>{
+        reject(err)
+      })
+      
+    })
+  }
+  
+  VerUsuariosEliminados(ruta:"user" | "personal"){
+    const token = this.StorageService.desencriptar(llaveToken);
+
+    return new Promise((resolve,reject)=>{
+      this.http.get(`${url}/${ruta}/eliminados`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+        resolve(data)
+      },err=>{
+        reject(err)
+      })
+    })
+  }
+
+  activarUsuarios(ruta:"user" | "personal",id:any){
+    const token = this.StorageService.desencriptar(llaveToken);
+
+    return new Promise((resolve,reject)=>{
+      this.http.get(`${url}/${ruta}/active/${id}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{ 
         resolve(data)
       },err=>{
         reject(err)

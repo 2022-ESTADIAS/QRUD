@@ -23,6 +23,8 @@ import { ActualizarRolComponent } from './components/formularios/emergentes/actu
 import { EscannerQRComponent } from './components/escanner-qr/escanner-qr.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { UsuariosEliminadosComponent } from './components/tablas/usuarios-eliminados/usuarios-eliminados.component';
+import { PersonalEliminadoComponent } from './components/tablas/personal-eliminado/personal-eliminado.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     ActualizarUsuarioComponent,
     ActualizarPersonalComponent,
     ActualizarRolComponent,
-    EscannerQRComponent
+    EscannerQRComponent,
+    UsuariosEliminadosComponent,
+    PersonalEliminadoComponent
   ],
   imports: [
     BrowserModule,

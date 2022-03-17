@@ -27,8 +27,8 @@ export class RegistroRolComponent implements OnInit {
   FormularioRol(){
 
     this.form =   this.fb.group({
-      rol:["koso", Validators.required],
-      description:["rol creado desde el frontend perro", Validators.required],
+      rol:["", Validators.required],
+      description:["rol", Validators.required],
   
     })
 

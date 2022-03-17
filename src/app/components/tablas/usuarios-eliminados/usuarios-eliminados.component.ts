@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
 
@@ -12,7 +13,10 @@ export class UsuariosEliminadosComponent implements OnInit {
   existeMsgExito:boolean = false;
   usuarioActual:any= {};
 
-  constructor(private QRUDService:QRUDService) { }
+  constructor(
+    private QRUDService:QRUDService,
+    private router:Router
+    ) { }
 
   ngOnInit(): void {
     this.obtenerUsuariosEliminados();
@@ -22,6 +26,10 @@ export class UsuariosEliminadosComponent implements OnInit {
     this.QRUDService.VerUsuariosEliminados("user").then((data:any)=>{
       console.log(data);
       this.usuarios = data.usuarios;
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
   }
 
@@ -34,6 +42,10 @@ export class UsuariosEliminadosComponent implements OnInit {
       setTimeout(() => {
         this.existeMsgExito = false;
         }, 1500);
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
   } 
 
@@ -51,6 +63,10 @@ export class UsuariosEliminadosComponent implements OnInit {
         this.existeMsgExito = false;
         }, 1500);
         
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
   }
 

@@ -87,6 +87,10 @@ export class ActualizarPersonalComponent implements OnInit {
       console.log(err)
       this.existeError = true
       this.errores = err.error.errors
+
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
       
     })
   }

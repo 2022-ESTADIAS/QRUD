@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegistroUsuario } from 'src/app/interfaces/usuario.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
 
@@ -18,15 +19,13 @@ export class RegistroUsuarioComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private QRUDService: QRUDService
+    private QRUDService: QRUDService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
     this.FormularioUsuario();
     
-    this.QRUDService.ObtenerRegistros("user").then((data) => {
-      console.log(data)
-    })
   }
 
   FormularioUsuario(){
@@ -65,6 +64,10 @@ export class RegistroUsuarioComponent implements OnInit {
       console.log(err)
       this.existeError = true
       this.errores = err.error.errors
+
+        if(err.error.msgtk){
+          this.router.navigateByUrl("/login");
+        }
       
     })
   }

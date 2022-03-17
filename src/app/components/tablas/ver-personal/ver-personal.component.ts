@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Personal } from 'src/app/interfaces/personal.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-ver-personal',
@@ -17,9 +19,12 @@ export class VerPersonalComponent implements OnInit {
   personalparaActualizar:any = {};
   idpersonalActualizar:any = "";
 
+  accesoDenegado:boolean = false;
 
   constructor(
-    private QRUDService: QRUDService
+    private QRUDService: QRUDService,
+    private StorageService: StorageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +38,10 @@ export class VerPersonalComponent implements OnInit {
     this.QRUDService.ObtenerRegistros("personal").then((data:any) => {
       console.log(data)
       this.personas = data.personal;
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
 
   }
@@ -47,6 +56,10 @@ export class VerPersonalComponent implements OnInit {
         this.existeMsgExito = false;
         }, 1500);
         
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
   }
 
@@ -72,4 +85,13 @@ export class VerPersonalComponent implements OnInit {
 
   }
 
-}
+  restriccionPorRol(){
+    const rol = this.StorageService.desencriptar("rol");
+
+    if(rol == "ADMIN_ROLE" || rol == "AUX_ROLE"){
+      this.accesoDenegado = false;
+    }
+
+  }
+
+} 

@@ -3,6 +3,7 @@ import { Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DetallePorRol, RegistroRol } from 'src/app/interfaces/rol.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
 
@@ -28,7 +29,8 @@ export class ActualizarRolComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private QRUDService: QRUDService
+    private QRUDService: QRUDService,
+    private router: Router
   ) { }
   ngOnInit(): void {
     this.FormularioRol();
@@ -70,7 +72,10 @@ export class ActualizarRolComponent implements OnInit {
       console.log(err)
       this.existeError = true
       this.errores = err.error.errors
-      
+
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
 
     

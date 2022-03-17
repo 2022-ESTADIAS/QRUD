@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Personal } from 'src/app/interfaces/login.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
 
@@ -12,9 +13,12 @@ export class PersonalEliminadoComponent implements OnInit {
   existeMsgExito:boolean = false;
   personalActual:any= {};
 
-  constructor(private QRUDService:QRUDService) { }
+  constructor(
+    private QRUDService:QRUDService,
+    private router:Router
+    ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.obtenerPersonalEliminado();
   }
 
@@ -22,6 +26,10 @@ export class PersonalEliminadoComponent implements OnInit {
     this.QRUDService.VerUsuariosEliminados("personal").then((data:any)=>{
       console.log(data);
       this.personas = data.personals;
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
   }
 
@@ -34,6 +42,10 @@ export class PersonalEliminadoComponent implements OnInit {
       setTimeout(() => {
         this.existeMsgExito = false;
         }, 1500);
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
   } 
 
@@ -51,6 +63,10 @@ export class PersonalEliminadoComponent implements OnInit {
         this.existeMsgExito = false;
         }, 1500);
         
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
   }
 

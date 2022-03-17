@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DetallePorRol } from 'src/app/interfaces/rol.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
 
@@ -19,7 +20,8 @@ export class VerRolComponent implements OnInit {
   idrolActualizar:any = "";
 
   constructor(
-    private QRUDService: QRUDService
+    private QRUDService: QRUDService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,10 @@ export class VerRolComponent implements OnInit {
     this.QRUDService.ObtenerRegistros("rol").then((data:any) => {
       console.log(data)
       this.roles = data.roles;
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
 
   }

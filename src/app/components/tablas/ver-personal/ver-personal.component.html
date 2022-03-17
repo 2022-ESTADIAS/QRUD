@@ -10,7 +10,7 @@
                 <th>Rol</th>
                 <th>Telefono</th>
                 <th>Email</th>
-                <th>Acciones</th>
+                <th *ngIf="accesoDenegado" >Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +19,7 @@
                 <td data-title="RFC">{{personal.rol.rol}}</td>
                 <td data-title="Telefono">{{personal.telefono}}</td>
                 <td data-title="Email">{{personal.email}}</td>
-                <td data-title="Acciones">
+                <td data-title="Acciones" *ngIf="accesoDenegado" >
                     <div class="btn-group">
                         <button class="btn" (click)="actualizarPersonal(personal.uid,personal)" ><i class="fa-solid fa-square-pen fa-xl"></i></button>
                         <button class="btn" (click)="eliminarPersonal(personal.uid)" ><i class="fa-solid fa-user-xmark fa-lg"></i></button>

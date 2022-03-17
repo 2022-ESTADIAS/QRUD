@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RegistroUsuario, Usuario, UsuariosResponse } from 'src/app/interfaces/usuario.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-ver-usuarios',
@@ -13,6 +15,7 @@ export class VerUsuariosComponent implements OnInit {
   existeMsgExito:boolean = false;
   existeMsgActualizarExito:boolean = false;
   existeMsgQRExito:boolean = false;
+  accesoDenegado:boolean = true;
 
   msgQR:string = "";
 
@@ -22,10 +25,13 @@ export class VerUsuariosComponent implements OnInit {
 
 
   constructor(
-    private QRUDService: QRUDService
+    private QRUDService: QRUDService,
+    private StorageService: StorageService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
+    this.restriccionPorRol();
     this.obtenerUsuarios();
   }
 
@@ -36,6 +42,10 @@ export class VerUsuariosComponent implements OnInit {
     this.QRUDService.ObtenerRegistros("user").then((data:any) => {
       console.log(data)
       this.usuarios = data.usuarios;
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
  
   }
@@ -50,6 +60,10 @@ export class VerUsuariosComponent implements OnInit {
         this.existeMsgExito = false;
         }, 1500);
         
+    }).catch(err =>{
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
   }
   actualizarUsuario(id:any,usuario:any){
@@ -87,7 +101,19 @@ export class VerUsuariosComponent implements OnInit {
 
     }).catch(err => {
       console.log(err);
+        if(err.error.msgtk){
+          this.router.navigateByUrl("/login");
+        }
     })
+
+  }
+
+ restriccionPorRol(){
+    const rol = this.StorageService.desencriptar("rol");
+
+    if(rol == "AUX_ROLE"){
+      this.accesoDenegado = false;
+    }
 
   }
 }

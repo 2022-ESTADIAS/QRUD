@@ -27,8 +27,8 @@
                 <td data-title="Email">{{usuario.email}}</td>
                 <td data-title="Acciones">
                     <div class="btn-group">
-                        <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" ><i class="fa-solid fa-square-pen fa-xl"></i></button>
-                        <button class="btn" (click)="eliminarUsuario(usuario.uid)" ><i class="fa-solid fa-user-xmark fa-lg"></i></button>
+                        <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button>
+                        <button class="btn" (click)="eliminarUsuario(usuario.uid)"*ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></button>
                         <button class="btn" (click)="enviarQR(usuario.uid)" ><i class="fa-solid fa-qrcode"></i></button>
                     </div>
 

@@ -3,6 +3,7 @@ import { Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegistroUsuario, Usuario } from 'src/app/interfaces/usuario.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
 
@@ -27,7 +28,8 @@ export class ActualizarUsuarioComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private QRUDService: QRUDService
+    private QRUDService: QRUDService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -77,6 +79,9 @@ export class ActualizarUsuarioComponent implements OnInit {
       this.existeError = true
       this.errores = err.error.errors
       
+      if(err.error.msgtk){
+        this.router.navigateByUrl("/login");
+      }
     })
   }
 

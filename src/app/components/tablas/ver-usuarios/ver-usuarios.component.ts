@@ -9,8 +9,12 @@ import { QRUDService } from 'src/app/services/qrud.service';
 })
 export class VerUsuariosComponent implements OnInit {
   usuarios:Usuario[] = [];
+
   existeMsgExito:boolean = false;
   existeMsgActualizarExito:boolean = false;
+  existeMsgQRExito:boolean = false;
+
+  msgQR:string = "";
 
   mostrarFormularioEmergente:boolean = false;
   usuarioparaActualizar:any = {};
@@ -69,4 +73,21 @@ export class VerUsuariosComponent implements OnInit {
 
   }
 
+  enviarQR(id:any){
+    this.QRUDService.GenerarQRUSuario(id).then((data:any) =>{
+      console.log(data);
+
+      this.existeMsgQRExito = true;
+      this.msgQR = data.msg;
+
+      setTimeout(() =>{
+        this.existeMsgQRExito = false;
+      },2000);
+  
+
+    }).catch(err => {
+      console.log(err);
+    })
+
+  }
 }

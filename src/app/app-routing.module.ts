@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EscannerQRComponent } from './components/escanner-qr/escanner-qr.component';
 import { RegistroPersonalComponent } from './components/formularios/registro-personal/registro-personal.component';
 import { RegistroRolComponent } from './components/formularios/registro-rol/registro-rol.component';
 import { RegistroUsuarioComponent } from './components/formularios/registro-usuario/registro-usuario.component';
@@ -19,12 +20,13 @@ const routes: Routes = [
     {path:"ver-usuarios", component:VerUsuariosComponent },
     {path:"ver-personal", component:VerPersonalComponent },
     {path:"ver-rol", component:VerRolComponent},
+    {path:"qr", component:EscannerQRComponent},
   ]},
   {path:"**", redirectTo: ""},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

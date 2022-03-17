@@ -22,7 +22,6 @@ export class QRUDService {
       const token = this.StorageService.desencriptar(llaveToken)
       
       return new Promise((resolve, reject) => {
-        
         this.http.post(`${url}/${ruta}`,data,{headers:{"Authorization":`Bearer ${token}`}}).subscribe((data)=>{
           resolve(data)
         },error =>{
@@ -36,7 +35,6 @@ export class QRUDService {
     ObtenerRegistros(ruta: "user" | "personal" | "rol"){
       const token = this.StorageService.desencriptar(llaveToken)
       
-      console.log(token)
       return new Promise((resolve,reject)=>{
         this.http.get(`${url}/${ruta}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
           resolve(data)
@@ -46,11 +44,25 @@ export class QRUDService {
       })
     }
 
+    ActualizarRegistros(ruta:"user" | "personal" | "rol",id:string,data:any){
+      const token = this.StorageService.desencriptar(llaveToken);
+  
+      return new Promise((resolve,reject)=>{
+        this.http.put(`${url}/${ruta}/${id}`,data,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+          resolve(data)
+        },err=>{
+          reject(err)
+        })
+        
+      })
+      
+    }
+
     EliminarRegistros(ruta:"user" | "personal",id:string){
       const token = this.StorageService.desencriptar(llaveToken);
+ 
       return new Promise((resolve,reject)=>{
-        
-        this.http.delete(`${url}/${ruta}/${id}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+        this.http.delete(`${url}/${ruta}/dlt/${id}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
           resolve(data)
         },err=>{
           reject(err)
@@ -59,19 +71,30 @@ export class QRUDService {
       })
     }
 
-  ActualizarRegistros(ruta:"user" | "personal" | "rol",id:string,data:any){
+    EliminarRegistrosPermanentemente(ruta:"user" | "personal",id:string){
+      const token = this.StorageService.desencriptar(llaveToken);
+
+      return new Promise((resolve,reject)=>{
+        this.http.delete(`${url}/${ruta}/def/${id}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+          resolve(data)
+        },err=>{
+          reject(err)
+        })
+        
+      })
+    }
+
+  GenerarQRUSuario(id:any){
     const token = this.StorageService.desencriptar(llaveToken);
+
     return new Promise((resolve,reject)=>{
-      
-      this.http.put(`${url}/${ruta}/${id}`,data,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+      this.http.get(`${url}/user/qr/${id}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
         resolve(data)
       },err=>{
         reject(err)
       })
-
+      
     })
-    
   }
-
 
 }

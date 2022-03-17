@@ -20,6 +20,9 @@ import { VerRolComponent } from './components/tablas/ver-rol/ver-rol.component';
 import { ActualizarUsuarioComponent } from './components/formularios/emergentes/actualizar-usuario/actualizar-usuario.component';
 import { ActualizarPersonalComponent } from './components/formularios/emergentes/actualizar-personal/actualizar-personal.component';
 import { ActualizarRolComponent } from './components/formularios/emergentes/actualizar-rol/actualizar-rol.component';
+import { EscannerQRComponent } from './components/escanner-qr/escanner-qr.component';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -38,15 +41,18 @@ import { ActualizarRolComponent } from './components/formularios/emergentes/actu
     VerRolComponent,
     ActualizarUsuarioComponent,
     ActualizarPersonalComponent,
-    ActualizarRolComponent
+    ActualizarRolComponent,
+    EscannerQRComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ZXingScannerModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

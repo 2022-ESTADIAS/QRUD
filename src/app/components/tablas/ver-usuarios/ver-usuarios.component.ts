@@ -23,6 +23,10 @@ export class VerUsuariosComponent implements OnInit {
   usuarioparaActualizar:any = {};
   idusuarioActualizar:any = "";
 
+  //paginacion
+  page:number = 0;
+  busqueda:string = "";
+
 
   constructor(
     private QRUDService: QRUDService,

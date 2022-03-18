@@ -25,6 +25,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { UsuariosEliminadosComponent } from './components/tablas/usuarios-eliminados/usuarios-eliminados.component';
 import { PersonalEliminadoComponent } from './components/tablas/personal-eliminado/personal-eliminado.component';
+import { PaginacionComponent } from './components/paginacion/paginacion.component';
+import { BuscadorComponent } from './components/buscador/buscador.component';
+import { BusquedaPipe } from './pipes/busqueda.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +49,10 @@ import { PersonalEliminadoComponent } from './components/tablas/personal-elimina
     ActualizarRolComponent,
     EscannerQRComponent,
     UsuariosEliminadosComponent,
-    PersonalEliminadoComponent
+    PersonalEliminadoComponent,
+    PaginacionComponent,
+    BuscadorComponent,
+    BusquedaPipe
   ],
   imports: [
     BrowserModule,

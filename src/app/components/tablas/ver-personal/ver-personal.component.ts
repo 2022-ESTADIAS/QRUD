@@ -19,7 +19,7 @@ export class VerPersonalComponent implements OnInit {
   personalparaActualizar:any = {};
   idpersonalActualizar:any = "";
 
-  accesoDenegado:boolean = false;
+  accesoDenegado:boolean = true;
 
   constructor(
     private QRUDService: QRUDService,
@@ -29,6 +29,7 @@ export class VerPersonalComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerPersonal();
+    this.restriccionPorRol();
   }
 
 

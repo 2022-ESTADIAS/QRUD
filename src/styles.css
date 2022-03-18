@@ -3,6 +3,23 @@
     --main-color: #7380ec;
     --color-dark: #00adf1;
     --text-grey: #7a7575;
+
+    --nav-width: 92px;
+
+    /*===== Colores =====*/
+    --first-color: #838af3;
+    --bg-color: #edeaea;
+    --sub-color: #ffffff;
+    --white-color: #3E3798;
+    
+    /*===== Fuente y tipografia =====*/
+    --body-font: 'Poppins', sans-serif;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    
+    /*===== z index =====*/
+    --z-fixed: 100;
+
 }
 
 body{ 

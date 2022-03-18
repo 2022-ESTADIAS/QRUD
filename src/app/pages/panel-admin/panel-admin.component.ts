@@ -15,6 +15,7 @@ export class PanelAdminComponent implements OnInit {
   mostrarOpcionesMenuPersonal:boolean = false; 
   mostrarOpcionesMenuRol:boolean = false; 
   mostrarOpcionesMenuQR:boolean = false; 
+  expandirMenu:boolean = false;
 
   //controla las rutas del personal logueado
   esAdmin:boolean = false;
@@ -25,14 +26,14 @@ export class PanelAdminComponent implements OnInit {
   rutas:any[] = [];
 
   rutasMaster:any[] = [
-    [{ruta:'',nombre:'Crear Usuario'},
-    {ruta:'/ver-usuarios',nombre:'Ver Usuarios'},
-     {ruta:'/usuarios-eliminados',nombre:'Ver Usuarios Eliminados'}], //fin rutas usuario
-     [{ruta:'/registro-personal',nombre:'Registrar nuevo Personal'},
-     {ruta:'/ver-personal',nombre:'Ver Personal'},
-     {ruta:'/personal-eliminado',nombre:'Ver Personal Eliminado'}], //fin rutas personal
-     [{ruta:'/registro-rol',nombre:'Crear Rol'},  
-     {ruta:'/ver-rol',nombre:'Ver Rol'},], //fin rutas rol
+    [{ruta:'',nombre:'Crear '},
+    {ruta:'/ver-usuarios',nombre:'Ver'},
+     {ruta:'/usuarios-eliminados',nombre:'Eliminados'}], //fin rutas usuario
+     [{ruta:'/registro-personal',nombre:'Registrar '},
+     {ruta:'/ver-personal',nombre:'Ver'},
+     {ruta:'/personal-eliminado',nombre:'Eliminados'}], //fin rutas personal
+     [{ruta:'/registro-rol',nombre:'Crear'},  
+     {ruta:'/ver-rol',nombre:'Ver'},], //fin rutas rol
     ];
     
     rutasAdmin:any[] = [
@@ -73,6 +74,10 @@ export class PanelAdminComponent implements OnInit {
   mostrarOpcionesQR(){
     this.mostrarOpcionesMenuQR = !this.mostrarOpcionesMenuQR;
   } 
+
+  mostrarMenu(){
+    this.expandirMenu = !this.expandirMenu;
+  }
 
   verRol(){
     const rol = this.StorageService.desencriptar("rol");

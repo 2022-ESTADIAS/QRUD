@@ -1,0 +1,12 @@
+
+<ul class="pagination">
+    <li><a  *ngIf="pagina <= 0 ? false:true" (click)="paginaAnterior()" >«</a></li>
+    <li>
+        <a [ngClass]="{'active': i == contadorPaginacion }" *ngFor="let i of arregloPaginacion" (click)="saltoEntrePaginas(i)">
+            {{i+ 1}}
+        </a>
+    </li>
+
+
+    <li><a *ngIf="pagina < longitud -10 ? true:false"  (click)="paginaSiguiente()"  >»</a></li>
+  </ul>

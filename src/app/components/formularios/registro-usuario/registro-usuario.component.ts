@@ -31,11 +31,11 @@ export class RegistroUsuarioComponent implements OnInit {
   FormularioUsuario(){
 
     this.form =   this.fb.group({
-      nombre:["koso", Validators.required], 
-      rfc:["koso961023f12", [Validators.required,Validators.pattern(/^[ña-z]{3,4}[0-9]{6}[0-9a-z]{3}$/i)]],
-      telefono:["1234567891",  [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)]  ],
-      direccion:["koso #23", Validators.required],
-      email:["koso60@koso.com",[Validators.required,Validators.email]],
+      nombre:["", Validators.required], 
+      rfc:["", [Validators.required,Validators.pattern(/^[ña-z]{3,4}[0-9]{6}[0-9a-z]{3}$/i)]],
+      telefono:["",  [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)]  ],
+      direccion:["", Validators.required],
+      email:["",[Validators.required,Validators.email]],
     })
 
   }

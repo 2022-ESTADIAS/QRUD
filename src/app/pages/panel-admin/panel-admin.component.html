@@ -7,11 +7,11 @@
     </div>
   </div>
 <!-----------------------------------------menu----------------------->
-<div class="l-navbar expander" id="navbar">
+<div class="l-navbar " id="navbar"  [ngClass]="{'expander':expandirMenu}" >
     <nav class="nav">
         <div>
             <div class="nav__brand">
-                <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle"></ion-icon>
+                <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle" (click)="mostrarMenu()" ></ion-icon>
                 
             </div>
             <div class="nav__list">

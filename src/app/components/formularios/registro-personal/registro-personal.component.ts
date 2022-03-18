@@ -34,10 +34,10 @@ export class RegistroPersonalComponent implements OnInit {
   FormularioPersonal() {
 
     this.form =   this.fb.group({
-      nombre:["shadow", Validators.required],
-      telefono:["12", [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)] ],
-      password:["123456", Validators.required],
-      email:["shadow@shadow.com",[Validators.required,Validators.email]  ],
+      nombre:["", Validators.required],
+      telefono:["", [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)] ],
+      password:["", Validators.required],
+      email:["",[Validators.required,Validators.email]  ],
       rol:["", Validators.required],
     })
 

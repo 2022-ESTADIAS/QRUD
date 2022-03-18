@@ -4,7 +4,7 @@
 <app-exito [mensaje]="msgQR" *ngIf="existeMsgQRExito" ></app-exito>
 
 
-
+<app-buscador (busqueda)="busqueda = $event"></app-buscador>
 
 <div class="table-responsive">
     <table>
@@ -19,7 +19,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let usuario of usuarios">
+            <tr *ngFor="let usuario of usuarios|busqueda:page:busqueda">
+
+                <h1 *ngIf="usuarios.length == 0 ">No hay registros</h1>
+                
                 <td data-title="Nombre">{{usuario.nombre}}</td>
                 <td data-title="RFC">{{usuario.rfc}}</td>
                 <td data-title="Direccion">{{usuario.direccion}}</td>
@@ -34,14 +37,17 @@
 
                 </td>
             </tr>
-
-       
-
-    
-
+            
+            
+            
+            
+            
+            <app-paginacion [longitud]="usuarios.length" (paginaActual)="page = $event" *ngIf="usuarios.length > 0"> </app-paginacion>
         </tbody>
-
+        
     </table>
+
+
 </div>
 
 

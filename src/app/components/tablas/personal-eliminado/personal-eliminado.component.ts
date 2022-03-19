@@ -54,7 +54,7 @@ export class PersonalEliminadoComponent implements OnInit {
   }
 
   eliminarUsuarioPermanentemente(id:any){
-    this.QRUDService.EliminarRegistrosPermanentemente('user',id).then((data) => {
+    this.QRUDService.EliminarRegistrosPermanentemente('personal',id).then((data) => {
       this.personas = this.personas.filter(personal => personal.uid !==id );
       console.log(data);
       this.existeMsgExito = true;

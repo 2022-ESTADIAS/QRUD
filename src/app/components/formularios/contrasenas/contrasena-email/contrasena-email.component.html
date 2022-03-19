@@ -1,0 +1,26 @@
+<app-exito [mensaje]="msgExito"  *ngIf="existeMsgExito" > </app-exito>
+
+<img class="wave" src="assets/img/wave2.png"> 
+<section class="email">
+    <img src="assets/img/logo.svg">
+    <p>Ingrese la dirección de correo electrónico verificada de su cuenta de usuario y le enviaremos un enlace para restablecer la contraseña.</p>
+    <form [formGroup]="form" (ngSubmit)="submit()"  >
+        <div class="group">      
+          <input type="email"  formControlName="email"  >
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Email</label>
+          <app-errores-frontend mensaje="Debe de ser un correo valido" *ngIf="campoValido('email')" ></app-errores-frontend>
+
+        </div>
+       
+        <div class="wrapper">
+            <button type="submit"  class="btn10">
+                <span>Send</span>
+                <div class="transition"></div>
+            </button>
+        </div>
+
+      </form>
+    
+</section>

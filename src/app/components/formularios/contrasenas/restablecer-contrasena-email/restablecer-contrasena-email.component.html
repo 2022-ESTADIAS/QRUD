@@ -1,0 +1,34 @@
+<app-exito [mensaje]="msgExito" *ngIf="existemsgExito" ></app-exito>
+
+<section class="email">
+    <img src="assets/img/logo.svg">
+    <p>Cambiar la contraseña de</p>
+    <p>@Koso</p> 
+    <form [formGroup]="form" (ngSubmit)="submit()" >
+    
+        <div class="group">      
+            <input type="password" formControlName="newpwd">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Nueva Contraseña</label>
+            <app-errores-frontend *ngIf="campoValido('newpwd')" mensaje="campo obligatorio" ></app-errores-frontend>
+        </div>
+        <div class="group">      
+            <input type="password" formControlName="again">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Confirma Nueva Contraseña </label>
+            <app-errores-frontend *ngIf="campoValido('again')" mensaje="Las  nuevas contraseñas no coinciden" ></app-errores-frontend>
+            
+        </div>
+    
+        <div class="wrapper">
+            <button href="#0" class="btn10">
+                <span>Send</span>
+                <div class="transition"></div>
+            </button>
+        </div>
+
+    </form>
+    
+</section>

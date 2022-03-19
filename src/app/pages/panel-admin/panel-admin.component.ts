@@ -15,6 +15,7 @@ export class PanelAdminComponent implements OnInit {
   mostrarOpcionesMenuPersonal:boolean = false; 
   mostrarOpcionesMenuRol:boolean = false; 
   mostrarOpcionesMenuQR:boolean = false; 
+  mostrarOpcionesMenuContrasena:boolean = false; 
   expandirMenu:boolean = false;
 
   //controla las rutas del personal logueado
@@ -73,6 +74,9 @@ export class PanelAdminComponent implements OnInit {
   } 
   mostrarOpcionesQR(){
     this.mostrarOpcionesMenuQR = !this.mostrarOpcionesMenuQR;
+  } 
+  mostrarOpcionesContrasena(){
+    this.mostrarOpcionesMenuContrasena = !this.mostrarOpcionesMenuContrasena;
   } 
 
   mostrarMenu(){

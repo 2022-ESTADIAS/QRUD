@@ -28,6 +28,9 @@ import { PersonalEliminadoComponent } from './components/tablas/personal-elimina
 import { PaginacionComponent } from './components/paginacion/paginacion.component';
 import { BuscadorComponent } from './components/buscador/buscador.component';
 import { BusquedaPipe } from './pipes/busqueda.pipe';
+import { CambioContrasenaComponent } from './components/formularios/cambio-contrasena/cambio-contrasena.component';
+import { ContrasenaEmailComponent } from './components/formularios/contrasenas/contrasena-email/contrasena-email.component';
+import { RestablecerContrasenaEmailComponent } from './components/formularios/contrasenas/restablecer-contrasena-email/restablecer-contrasena-email.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { BusquedaPipe } from './pipes/busqueda.pipe';
     PersonalEliminadoComponent,
     PaginacionComponent,
     BuscadorComponent,
-    BusquedaPipe
+    BusquedaPipe,
+    CambioContrasenaComponent,
+    ContrasenaEmailComponent,
+    RestablecerContrasenaEmailComponent
   ],
   imports: [
     BrowserModule,

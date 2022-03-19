@@ -81,6 +81,17 @@
                         <a routerLink="/qr" class="collapse__sublink">Escanear QR</a>
                     </ul>
                 </div>
+
+                <div class="nav__link collapse" (click)="mostrarOpcionesContrasena()"  *ngIf="esAdmin || esMaster || esAux " >
+                    <i class="fa-solid fa-qrcode"></i>
+                    <span class="nav__name">Contraseña</span>
+
+                    <ion-icon name="chevron-down-outline" class="collapse__link" [ngClass]="{'rotate':mostrarOpcionesMenuContrasena}" ></ion-icon>
+
+                    <ul class="collapse__menu" [ngClass]="{'showCollapse':mostrarOpcionesMenuContrasena}" >
+                        <a routerLink="/contrasena" class="collapse__sublink">Cambiar Contraseña</a> 
+                    </ul>
+                </div>
                 
             </div>
         </div>

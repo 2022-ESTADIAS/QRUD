@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EscannerQRComponent } from './components/escanner-qr/escanner-qr.component';
+import { CambioContrasenaComponent } from './components/formularios/cambio-contrasena/cambio-contrasena.component';
+import { ContrasenaEmailComponent } from './components/formularios/contrasenas/contrasena-email/contrasena-email.component';
+import { RestablecerContrasenaEmailComponent } from './components/formularios/contrasenas/restablecer-contrasena-email/restablecer-contrasena-email.component';
 import { RegistroPersonalComponent } from './components/formularios/registro-personal/registro-personal.component';
 import { RegistroRolComponent } from './components/formularios/registro-rol/registro-rol.component';
 import { RegistroUsuarioComponent } from './components/formularios/registro-usuario/registro-usuario.component';
@@ -15,6 +18,8 @@ import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 
 const routes: Routes = [
   {path:"login", component: LoginComponent},
+  {path:"forget-password", component: ContrasenaEmailComponent},
+  {path:"personal/email-pwd", component: RestablecerContrasenaEmailComponent},
   {path:"", component: PanelAdminComponent,canActivate:[LoginGuard],children:[
     {path:"", component:RegistroUsuarioComponent },
     {path:"registro-personal", component:RegistroPersonalComponent },
@@ -25,6 +30,7 @@ const routes: Routes = [
     {path:"usuarios-eliminados", component:UsuariosEliminadosComponent },
     {path:"personal-eliminado", component:PersonalEliminadoComponent },
     {path:"qr", component:EscannerQRComponent},
+    {path:"contrasena", component:CambioContrasenaComponent},
   ]},
   {path:"**", redirectTo: ""},
 ];

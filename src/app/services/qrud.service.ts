@@ -111,7 +111,7 @@ export class QRUDService {
 
   activarUsuarios(ruta:"user" | "personal",id:any){
     const token = this.StorageService.desencriptar(llaveToken);
-
+    
     return new Promise((resolve,reject)=>{
       this.http.get(`${url}/${ruta}/active/${id}`,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{ 
         resolve(data)
@@ -121,5 +121,40 @@ export class QRUDService {
       
     })
   }
+  
+  cambiarContrasena(data:any){
+    const token = this.StorageService.desencriptar(llaveToken);
+
+    return new Promise((resolve,reject)=>{
+      this.http.put(`${url}/personal/changepwd`,data,{headers:{"Authorization":`Bearer ${token}`}}).subscribe(data =>{
+        resolve(data)
+      },err=>{
+        reject(err)
+      })
+    }) 
+  }
+
+  olvideContrasena(data:any){
+
+    return new Promise((resolve,reject)=>{
+      this.http.post(`${url}/personal/forgot-pwd`,data).subscribe(data =>{
+        resolve(data)
+      },err=>{
+        reject(err)
+      })
+    }) 
+  }
+
+  restablecerContrasenaCorreo(data:any,id:any,token:any){
+
+    return new Promise((resolve,reject)=>{
+      this.http.put(`${url}/personal/email-pwd?token=${token}&id=${id}`,data).subscribe(data =>{
+        resolve(data)
+      },err=>{
+        reject(err)
+      })
+    }) 
+  }
+
 
 }

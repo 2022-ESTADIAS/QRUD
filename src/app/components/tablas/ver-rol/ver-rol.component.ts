@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DetallePorRol } from 'src/app/interfaces/rol.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class VerRolComponent implements OnInit {
 
   constructor(
     private QRUDService: QRUDService,
-    private router: Router
+    private router: Router,
+    private AuthService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +39,7 @@ export class VerRolComponent implements OnInit {
       this.roles = data.roles;
     }).catch(err =>{
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+       this.AuthService.logout();
       }
     })
 

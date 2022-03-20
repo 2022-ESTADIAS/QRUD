@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { RegistroUsuario, Usuario, UsuariosResponse } from 'src/app/interfaces/usuario.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -12,14 +12,23 @@ import { StorageService } from 'src/app/services/storage.service';
 export class VerUsuariosComponent implements OnInit {
   usuarios:Usuario[] = [];
 
+  //banderas para mostrar los errores de acuerdo a una accion exitosa
   existeMsgExito:boolean = false;
   existeMsgActualizarExito:boolean = false;
   existeMsgQRExito:boolean = false;
+
+  //error cuando qr ya fue generado
+  existeQRregistrado:boolean = false;
+
+  //por rol
   accesoDenegado:boolean = true;
 
   msgQR:string = "";
 
+    //mostrar el formulario emergente cuando le den click al icono de editar
   mostrarFormularioEmergente:boolean = false;
+
+  //valores pasados por referencia
   usuarioparaActualizar:any = {};
   idusuarioActualizar:any = "";
 
@@ -31,7 +40,7 @@ export class VerUsuariosComponent implements OnInit {
   constructor(
     private QRUDService: QRUDService,
     private StorageService: StorageService,
-    private router:Router
+    private AuthService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +57,7 @@ export class VerUsuariosComponent implements OnInit {
       this.usuarios = data.usuarios;
     }).catch(err =>{
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+        this.AuthService.logout()
       }
     })
  
@@ -66,7 +75,7 @@ export class VerUsuariosComponent implements OnInit {
         
     }).catch(err =>{
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+        this.AuthService.logout()
       }
     })
   }
@@ -105,9 +114,17 @@ export class VerUsuariosComponent implements OnInit {
 
     }).catch(err => {
       console.log(err);
+      this.msgQR = err.error.msg;
+      this.existeQRregistrado = true;
+
+      setTimeout(() =>{
+        this.existeQRregistrado = false;
+      },2000)
+
         if(err.error.msgtk){
-          this.router.navigateByUrl("/login");
+          this.AuthService.logout()
         }
+
     })
 
   }

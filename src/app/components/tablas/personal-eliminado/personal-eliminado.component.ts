@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Personal } from 'src/app/interfaces/login.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class PersonalEliminadoComponent implements OnInit {
 
   constructor(
     private QRUDService:QRUDService,
-    private router:Router
+    private router:Router,
+    private AuthService: AuthService,
     ) { }
 
   ngOnInit(): void { 
@@ -25,10 +27,10 @@ export class PersonalEliminadoComponent implements OnInit {
   obtenerPersonalEliminado(){
     this.QRUDService.VerUsuariosEliminados("personal").then((data:any)=>{
       console.log(data);
-      this.personas = data.personals;
+      this.personas = data.eliminados;
     }).catch(err =>{
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+        this.AuthService.logout();
       }
     })
   }
@@ -44,7 +46,7 @@ export class PersonalEliminadoComponent implements OnInit {
         }, 1500);
     }).catch(err =>{
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+        this.AuthService.logout();
       }
     })
   } 
@@ -65,7 +67,7 @@ export class PersonalEliminadoComponent implements OnInit {
         
     }).catch(err =>{
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+        this.AuthService.logout();
       }
     })
   }

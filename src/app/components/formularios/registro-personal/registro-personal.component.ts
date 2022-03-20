@@ -5,6 +5,7 @@ import { QRUDService } from 'src/app/services/qrud.service';
 
 import { DetallePorRol } from 'src/app/interfaces/rol.interface';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-registro-personal',
   templateUrl: './registro-personal.component.html',
@@ -22,7 +23,7 @@ export class RegistroPersonalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
-    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -70,7 +71,7 @@ export class RegistroPersonalComponent implements OnInit {
       this.errores = err.error.errors
 
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+        this.authService.logout();
       }
     })
 
@@ -80,7 +81,7 @@ export class RegistroPersonalComponent implements OnInit {
       this.roles = data.roles
     }).catch(err =>{
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+        this.authService.logout();
       }
     })
   }

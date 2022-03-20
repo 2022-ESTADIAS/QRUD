@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Personal } from 'src/app/interfaces/login.interface';
 import { RegistroPersonal } from 'src/app/interfaces/personal.interface';
 import { DetallePorRol } from 'src/app/interfaces/rol.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -31,13 +32,12 @@ export class ActualizarPersonalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
-    private router: Router
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.FormularioPersonal();
       this.obtenerRoles();
-      console.log(this.personal.rol)
   }
 
   FormularioPersonal(){
@@ -45,7 +45,7 @@ export class ActualizarPersonalComponent implements OnInit {
     this.form =   this.fb.group({
       nombre:[this.personal.nombre , Validators.required],
       telefono:[this.personal.telefono, [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)] ],
-      email:[this.personal.email,[Validators.required,Validators.email]  ],
+      // email:[this.personal.email,[Validators.required,Validators.email]  ], 
       rol:[this.personal.rol._id, Validators.required],
     })
   }
@@ -55,7 +55,7 @@ export class ActualizarPersonalComponent implements OnInit {
       console.log(this.roles)
     }).catch(err =>{
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+       this.authService.logout();
       }
     })
   }
@@ -89,7 +89,7 @@ export class ActualizarPersonalComponent implements OnInit {
       this.errores = err.error.errors
 
       if(err.error.msgtk){
-        this.router.navigateByUrl("/login");
+        this.authService.logout();
       }
       
     })

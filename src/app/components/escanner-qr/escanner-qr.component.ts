@@ -36,7 +36,8 @@ export class EscannerQRComponent implements OnInit {
 
   escanearQR(event:any){
     const user = JSON.parse(event);
-    this.usuarioQR = user.usuario;
+    console.log(user)
+    this.usuarioQR = user;
     if(user){
       this.ocultarFormulario = true;
     }

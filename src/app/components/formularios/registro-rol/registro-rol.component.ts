@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistroRol } from 'src/app/interfaces/rol.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class RegistroRolComponent implements OnInit {
   existeMsgExito:boolean = false;
   constructor(
     private fb: FormBuilder,
-    private QRUDService: QRUDService
+    private QRUDService: QRUDService,
+    private AuthService: AuthService
   ) { }
   ngOnInit(): void {
     this.FormularioRol();
@@ -59,6 +61,10 @@ export class RegistroRolComponent implements OnInit {
       console.log(err)
       this.existeError = true
       this.errores = err.error.errors
+
+      if(err.error.msgtk){
+        this.AuthService.logout();
+    }
       
     })
 

@@ -36,7 +36,7 @@ export class ContrasenaEmailComponent implements OnInit {
     }
 
     const email = this.form.value;
-    console.log(email)
+    
     this.QRUDService.olvideContrasena(email).then((data:any) => {
       console.log(data);
       this.msgExito = data.msg;

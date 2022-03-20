@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegistroUsuario } from 'src/app/interfaces/usuario.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -12,15 +13,21 @@ import { QRUDService } from 'src/app/services/qrud.service';
 export class RegistroUsuarioComponent implements OnInit {
 
   form!: FormGroup;
+  //arreglode errores provenientes del backend
   errores!:[{msg:string}]
   existeError:boolean = false;
+
+  errorServidor:string ='';
+
+  //se creo el usuario con exito
   msgExito:string = "";
   existeMsgExito:boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
-    private router: Router
+    private router: Router,
+    private AuthService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +54,17 @@ export class RegistroUsuarioComponent implements OnInit {
       return;
     }
 
-    const usuario:RegistroUsuario = this.form.value;
+    const {email,direccion,nombre,rfc,telefono }:RegistroUsuario = this.form.value;
+    
+    const usuario:RegistroUsuario = {
+      email: email.trim(),
+      direccion: direccion.trim(),
+      nombre: nombre.trim(),
+      rfc: rfc.trim(),
+      telefono,
+    };
+    
+    
 
     this.QRUDService.crearRegistro("user",usuario).then((data:any) => {
       console.log(data);
@@ -62,11 +79,17 @@ export class RegistroUsuarioComponent implements OnInit {
 
     }).catch(err => {
       console.log(err)
+     
       this.existeError = true
       this.errores = err.error.errors
 
+      if(err.error.err){
+        this.errorServidor = err.error?.err
+
+      }
+
         if(err.error.msgtk){
-          this.router.navigateByUrl("/login");
+            this.AuthService.logout();
         }
       
     })

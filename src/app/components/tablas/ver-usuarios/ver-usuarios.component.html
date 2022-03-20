@@ -3,6 +3,7 @@
 <app-exito mensaje="Usuario Actualizado con Exito" *ngIf="existeMsgActualizarExito" ></app-exito>
 <app-exito [mensaje]="msgQR" *ngIf="existeMsgQRExito" ></app-exito>
 
+<app-errores-backend [mensaje]="msgQR"  *ngIf="existeQRregistrado" ></app-errores-backend>
 
 <app-buscador (busqueda)="busqueda = $event"></app-buscador>
 

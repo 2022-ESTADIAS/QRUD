@@ -17,8 +17,8 @@
         </thead>
         <tbody>
             <tr *ngFor="let rol of roles">
-                <td data-title="Nombre">{{rol.rol}}</td>
-                <td data-title="RFC">{{rol.description}}</td>
+                <td data-title="Nombre">{{rol.rol |uppercase}}</td>
+                <td data-title="RFC">{{rol.description |uppercase }}</td>
                 <td data-title="Acciones">
                     <div class="btn-group">
                         <button class="btn"  (click)="actualizarRoles(rol._id,rol)" ><i class="fa-solid fa-square-pen fa-xl"></i></button>

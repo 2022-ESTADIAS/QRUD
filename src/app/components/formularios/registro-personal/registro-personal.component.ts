@@ -20,6 +20,7 @@ export class RegistroPersonalComponent implements OnInit {
   msgExito:string = "";
   existeMsgExito:boolean = false;
 
+
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,

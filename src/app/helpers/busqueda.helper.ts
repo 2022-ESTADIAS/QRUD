@@ -3,11 +3,11 @@ export const busqueda = (value:any[],search:string,page:number,isPersonal:boolea
     if(isPersonal == false){
         if(search.trim() !== ''){
             const searchArr = value.filter((usuario:any) =>
-            usuario.direccion.includes(search)   ||
-            usuario.nombre.includes(search)  || 
-            usuario.rfc.includes(search)   ||
-            usuario.telefono.includes(search)   ||
-            usuario.email.includes(search)  
+            usuario.nombre.includes(search.toLowerCase())  || 
+            usuario.direccion.includes(search.toLowerCase())   ||
+            usuario.rfc.includes(search.toLowerCase())   ||
+            usuario.telefono.includes(search.toLowerCase())   ||
+            usuario.email.includes(search.toLowerCase())  
             );
             console.log(searchArr)
             console.log(search.length)
@@ -23,9 +23,9 @@ export const busqueda = (value:any[],search:string,page:number,isPersonal:boolea
     }else{
         if(search.trim() !== ''){
             const searchArr = value.filter((personal:any) =>
-            personal.nombre.includes(search)  || 
-            personal.telefono.includes(search)   ||
-            personal.email.includes(search)  
+            personal.nombre.includes(search.toLowerCase())  || 
+            personal.telefono.includes(search.toLowerCase())   ||
+            personal.email.includes(search.toLowerCase())  
             );
             console.log(searchArr)
             console.log(search.length)

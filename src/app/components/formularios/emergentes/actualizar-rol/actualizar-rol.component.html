@@ -19,10 +19,9 @@
         
 
             <div class="group-edit">      
-                <textarea formControlName="description"  ></textarea>
+                <textarea formControlName="description" placeholder="Descripción..."></textarea>
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Descripcion</label>
                 <app-errores-frontend *ngIf="campoValido('description')" mensaje="Tiene que ser un rol  valido" ></app-errores-frontend>
               </div>
 

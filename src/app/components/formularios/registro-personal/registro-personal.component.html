@@ -51,13 +51,12 @@
               </div>
               
               <div class="group">      
-                  <select name="" id="" formControlName="rol" (keyup)="removerAlertas()" >
+                  <select class="controls" name="" id="" formControlName="rol" (keyup)="removerAlertas()" >
                     <option value="" disabled selected>--Seleccione Rol--</option> 
                     <option value="{{rol._id}}" *ngFor="let rol of roles" >{{rol.rol}}</option>
                   </select>
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Seleccione Rol</label>
                 <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('rol')"  ></app-errores-frontend>
               </div>
             

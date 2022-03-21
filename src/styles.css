@@ -25,3 +25,43 @@
 body{ 
     font-family: 'Poppins', sans-serif;
 }
+/*-------select-*/
+.controls {
+    width: 100%;
+    background: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid #efe9fb;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: #746f7e;
+  }
+  /*-----------text tarea---*/
+textarea{
+    min-width: 300px;
+    min-height: 74px;
+    background-color: #e3dcfa;
+    color: #666666;
+    padding: 1em;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    outline: none;
+    font-family: "Heebo", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.4;
+   resize: none;
+    transition: all 0.2s;
+  }
+  .textarea:hover {
+    cursor: pointer;
+    background-color: #eeeeee;
+  }
+  
+  .textarea:focus {
+    cursor: text;
+    color: #333333;
+    background-color: white;
+    border-color: #333333;
+  }

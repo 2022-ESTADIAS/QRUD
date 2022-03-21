@@ -27,10 +27,9 @@
             </div>
             
             <div class="group">      
-                <textarea  formControlName="description" (keyup)="removerAlertas()" > </textarea>
+                <textarea  formControlName="description" (keyup)="removerAlertas()" placeholder="Descripción..."> </textarea>
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Descripcion</label>
                 <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('description')" ></app-errores-frontend>
               </div>
 

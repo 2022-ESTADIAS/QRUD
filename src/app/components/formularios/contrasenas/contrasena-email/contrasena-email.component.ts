@@ -12,6 +12,8 @@ export class ContrasenaEmailComponent implements OnInit {
 
   form!: FormGroup;
   msgExito:string = "";
+  msgError:string = "";
+  existeError:boolean = false;
   existeMsgExito:boolean = false;
   constructor(
     private fb: FormBuilder,
@@ -48,6 +50,15 @@ export class ContrasenaEmailComponent implements OnInit {
   this.router.navigateByUrl("/login");
     },1500)
 
+    }).catch((err) => {
+      console.log(err);
+      this.existeError = true;
+      this.msgError = err.error.msg;
+      
+      setTimeout(() => {
+        this.existeError = false; 
+
+      },1500)
     })
     
     

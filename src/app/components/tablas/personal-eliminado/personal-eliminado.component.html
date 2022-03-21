@@ -1,6 +1,11 @@
 <app-exito mensaje="Personal Activado con Exito" *ngIf="existeMsgExito" ></app-exito>
 <app-exito mensaje="Personal eliminado con Exito" *ngIf="existeMsgExito" ></app-exito>
 
+<div class="spinner-container" *ngIf="personas.length == 0" >
+    <app-spinner></app-spinner>
+</div>
+
+
 <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 <section class="recent">
     <div class="activity-grid">

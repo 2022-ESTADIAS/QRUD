@@ -52,13 +52,16 @@ export class PanelAdminComponent implements OnInit {
     {ruta:'/ver-usuarios',nombre:'Ver Usuario'},
   ];
 
-  
+  nombrePersonal:string = '';
+  inicial:string ='';
+
   constructor(
     private AuthService: AuthService,
     private StorageService: StorageService,
   ) { }
 
   ngOnInit(): void {
+    this.obtenerNombre();
     this.verRol();
   }
 
@@ -111,6 +114,12 @@ export class PanelAdminComponent implements OnInit {
   logout(){
     this.AuthService.logout();
 
+  }
+  obtenerNombre(){
+   this.nombrePersonal = this.StorageService.desencriptar("nombre");
+
+   this.inicial = this.nombrePersonal.split("")[0].toUpperCase();
+   console.log(this.inicial);
   }
 
 

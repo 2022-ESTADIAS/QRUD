@@ -5,6 +5,11 @@
 
 <app-errores-backend [mensaje]="msgQR"  *ngIf="existeQRregistrado" ></app-errores-backend>
 
+<div class="spinner-container" *ngIf="usuarios.length == 0" >
+    <app-spinner></app-spinner>
+</div>
+
+
 <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 
 <div class="table-responsive">

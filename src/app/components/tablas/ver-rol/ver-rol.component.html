@@ -1,5 +1,11 @@
 <app-exito mensaje="Usuario Actualizado con Exito" *ngIf="existeMsgActualizarExito" ></app-exito>
 
+
+<div class="spinner-container" *ngIf="roles.length == 0" > 
+    <app-spinner></app-spinner>
+</div>
+
+
 <div class="table-responsive">
     <table>
         <thead >

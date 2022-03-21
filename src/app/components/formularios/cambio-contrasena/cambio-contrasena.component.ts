@@ -12,7 +12,7 @@ import { QRUDService } from 'src/app/services/qrud.service';
 export class CambioContrasenaComponent implements OnInit {
   form!: FormGroup;
   existeError: boolean = false;
-
+  error:string = "";
   //actualizando contrasena exitosamente
   msgExito:string = "";
   existemsgExito:boolean = false;
@@ -56,6 +56,15 @@ export class CambioContrasenaComponent implements OnInit {
       },1500)
 
     }).catch((err) => {
+
+      console.log(err);
+      this.error = err.error.msg;
+      this.existeError = true;
+
+      setTimeout(() => {
+        this.existeError = false; 
+      },1500)
+
       if(err.error.msgtk){
         this.authService.logout();
        }

@@ -12,6 +12,7 @@ export class EscannerQRComponent implements OnInit {
   allowedFormats = [ BarcodeFormat.QR_CODE, BarcodeFormat.EAN_13, BarcodeFormat.CODE_128, BarcodeFormat.DATA_MATRIX /*, ...*/ ];
   usuarioQR!:Usuario;
   ocultarFormulario: boolean = false;
+  camara:boolean = true;
 
   form!: FormGroup;
 
@@ -61,10 +62,14 @@ export class EscannerQRComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-
     const usuarioActualizado:RegistroUsuario = this.form.value;
-
-
   }
+
+  camaranoEncontrada(e:any){
+    console.log(e)
+    this.camara = false;
+ 
+  }
+
 
 }

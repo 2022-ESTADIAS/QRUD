@@ -1,8 +1,17 @@
-<div class="container">
-    <zxing-scanner  [formats]="allowedFormats" (scanSuccess)="escanearQR($event)"> </zxing-scanner >
+ <div class="container" *ngIf="camara" >
+    <zxing-scanner  
+    [formats]="allowedFormats" 
+    (scanSuccess)="escanearQR($event)" (camerasNotFound)="camaranoEncontrada($event)"    > </zxing-scanner >
 
 </div>
-    <!-- (camerasFound)="camaraEncontrada($event)" -->
+
+
+<div class="spinner-container" *ngIf="!camara" >
+  <app-spinner></app-spinner>
+</div>
+
+<h1 *ngIf="!camara">Para acceder a este componente, debe de tener una camara disponible </h1>
+ 
 
     <div *ngIf="ocultarFormulario" >
         <form class="form-edit" [formGroup]="form" (ngSubmit)="submit()" >

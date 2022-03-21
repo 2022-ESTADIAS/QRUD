@@ -58,7 +58,16 @@ export class ActualizarUsuarioComponent implements OnInit {
       return;
     }
 
-    const usuarioActualizado:RegistroUsuario = this.form.value;
+    const {email,direccion,nombre,rfc,telefono }:RegistroUsuario = this.form.value;
+    
+    const usuarioActualizado:RegistroUsuario = {
+      email: email.trim().toLowerCase(),
+      direccion: direccion.trim().toLowerCase(),
+      nombre: nombre.trim().toLowerCase(),
+      rfc: rfc.trim().toLowerCase(),
+      telefono,
+    };
+
     console.log(this.idUsuario)
     this.QRUDService.ActualizarRegistros("user",this.idUsuario,usuarioActualizado).then((data:any) => {
       console.log(data);

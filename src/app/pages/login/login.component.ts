@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PersonalLogin } from 'src/app/interfaces/login.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,13 @@ export class LoginComponent implements OnInit {
   msgErrores:string ="";
   existeError:boolean = false;
 
+  loginExistoso:boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private AuthService: AuthService,
-    private router: Router
+    private router: Router,
+    private StorageService: StorageService
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +48,13 @@ export class LoginComponent implements OnInit {
     this.AuthService.login(personal).then((data) => {
       console.log(data)
       this.existeError = false;
-      this.router.navigateByUrl("/");
+      this.StorageService.encryptar("nombre",data.personal.nombre);
+      this.loginExistoso = true;
+      setTimeout(() => {
+        this.loginExistoso = false;
+        this.router.navigateByUrl("/");
+
+      },1000)
     }).catch(err =>{
       console.log(err.error.msg)
       this.existeError = true;

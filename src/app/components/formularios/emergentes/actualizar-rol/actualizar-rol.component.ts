@@ -55,7 +55,13 @@ export class ActualizarRolComponent implements OnInit {
       return;
     }
 
-    const rol:RegistroRol = this.form.value;
+    const {description,rol:rolActual }:RegistroRol = this.form.value;
+    
+    const rol ={
+      rol:rolActual.toLowerCase().trim(),
+      description: description.trim().toLowerCase(),
+    }
+
 
     this.QRUDService.ActualizarRegistros("rol",this.idRol,rol).then((data:any) => {
       this.msgExito = "Rol Actualizado Con exito";

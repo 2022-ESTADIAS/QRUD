@@ -12,7 +12,7 @@ import { QRUDService } from 'src/app/services/qrud.service';
 export class CambioContrasenaComponent implements OnInit {
   form!: FormGroup;
   existeError: boolean = false;
-
+  error:string = "";
   //actualizando contrasena exitosamente
   msgExito:string = "";
   existemsgExito:boolean = false;
@@ -33,8 +33,8 @@ export class CambioContrasenaComponent implements OnInit {
 
   cambiarContrasena(){
     this.form = this.fb.group({
-      lastpwd:["123456",[Validators.required]],
-      newpwd:["",[Validators.required]],
+      lastpwd:["123456",[Validators.required,Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)]],
+      newpwd:["",[Validators.required,Validators.pattern(/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/g)]],
       newpwd2:["",[Validators.required]]
     },{validators:this.passwordsIguales("newpwd","newpwd2")})
   }
@@ -56,6 +56,15 @@ export class CambioContrasenaComponent implements OnInit {
       },1500)
 
     }).catch((err) => {
+
+      console.log(err);
+      this.error = err.error.msg;
+      this.existeError = true;
+
+      setTimeout(() => {
+        this.existeError = false; 
+      },1500)
+
       if(err.error.msgtk){
         this.authService.logout();
        }

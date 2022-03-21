@@ -2,52 +2,51 @@
 .recent{
     margin-top: 1rem;
     margin-bottom: 3rem;
-}
-
-/*-----------sub-contenedor-grid-----------*/
-.activity-grid{
+  }
+  
+  /*-----------sub-contenedor-grid-----------*/
+  .activity-grid{
     display: grid;
     grid-template-columns: 85% 13%;
     grid-column-gap: 1.5rem;
-}
-/*-------------Tabla----------------*/
-.activity-card {
+  }
+  /*-------------Tabla----------------*/
+  .activity-card {
     background: #fff;
     border-radius: 7px;
-}
-.activity-card h3{
+  }
+  .activity-card h3{
     color: var(--text-grey);
     margin: 1rem;
-}
-.activity-card table{
+  }
+  .activity-card table{
     width: 100%;
     border-collapse: collapse;
-}
-.activity-card thead{
+  }
+  .activity-card thead{
     background: #efefef;
     text-align: left;
-}
-
-th, td{
+  }
+  
+  th, td{
     font-size: .9rem;
     padding: 1rem .5rem;
-    color: #00adf1;
-}
-
-td{
+    color: #3E3798;
+  }
+  
+  td{
     font-size: .8rem;
-}
-
-tbody tr:nth-child(even){
+  }
+  
+  tbody tr:nth-child(even){
     background: #f9fafc;
-}
-
-/*---------------tabla responsive--------------------*/
-.table-responsive{
+  }
+  /*---------------tabla responsive--------------------*/
+  .table-responsive{
     overflow-x: auto;
-}
-
-@media only screen and (max-width: 1200px){
+  }
+  
+  @media only screen and (max-width: 1200px){
     .sidebar{
         width: 60px;  
         z-index: 150;  
@@ -67,22 +66,51 @@ tbody tr:nth-child(even){
     .main-content{
         margin-left: 60px;    
     }
-
+  
     .main-content header{
         left: 60px;
         width: calc(100% - 600px);
     }
-}
-
-.btn{
+  }
+  /*RESPONSIVE*/
+  @media only screen and (max-width: 860px){
+     
+    .activity-grid{
+        display: block;
+    }
+  }
+  
+  
+  @media only screen and (max-width: 450px){
+    main{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+  }
+  /*----------botones editar eliminar-----------------*/
+  .btn{
     background: none;
-    padding: 10px;
     border: none;
-    /* background-color: rgba(255, 255, 255, 0); */
-}
-
-.fa-square-pen,
-.fa-user-xmark,
-.fa-user-slash{
+  }
+  
+  .fa-square-pen,
+  .fa-user-xmark,
+  .fa-user-check,
+  .fa-user-slash{
     color: #6C63FF;
+  }
+  .btn-group{
+    text-align: center;
+  }
+  .btn-action{
+    background: none;
+    border: none;
+  }
+  
+
+
+.spinner-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }

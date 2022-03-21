@@ -1,5 +1,6 @@
 <app-exito [mensaje]="msgExito" *ngIf="existemsgExito" ></app-exito>
 
+<app-errores-backend [mensaje]="error" *ngIf="existeError" ></app-errores-backend>
 <section class="email">
     <img src="assets/img/logo.svg">
     <p>Cambiar la contraseña de</p>
@@ -10,14 +11,14 @@
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Contraseña Anterior</label>
-            <app-errores-frontend *ngIf="campoValido('lastpwd')" mensaje="campo obligatorio" ></app-errores-frontend>
+            <app-errores-frontend *ngIf="campoValido('lastpwd')" mensaje="La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula." ></app-errores-frontend>
         </div>
         <div class="group">      
             <input type="password" formControlName="newpwd">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Nueva Contraseña</label>
-            <app-errores-frontend *ngIf="campoValido('newpwd')" mensaje="campo obligatorio" ></app-errores-frontend>
+            <app-errores-frontend *ngIf="campoValido('newpwd')" mensaje="La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico" ></app-errores-frontend>
         </div>
         <div class="group">      
             <input type="password" formControlName="newpwd2">

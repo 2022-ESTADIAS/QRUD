@@ -44,7 +44,12 @@ export class RegistroRolComponent implements OnInit {
       return;
     }
 
-    const rol:RegistroRol = this.form.value;
+    const {description,rol:rolActual }:RegistroRol = this.form.value;
+    
+      const rol ={
+        rol:rolActual.toLowerCase().trim(),
+        description: description.trim().toLowerCase(),
+      }
 
     this.QRUDService.crearRegistro("rol",rol).then((data:any) => {
       console.log(data);

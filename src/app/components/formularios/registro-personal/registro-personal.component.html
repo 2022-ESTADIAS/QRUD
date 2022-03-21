@@ -47,7 +47,7 @@
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Contraseña</label>
-                <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('password')"  ></app-errores-frontend>
+                <app-errores-frontend mensaje="La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico" *ngIf="campoValido('password')"  ></app-errores-frontend>
               </div>
               
               <div class="group">      

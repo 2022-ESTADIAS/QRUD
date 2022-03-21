@@ -2,6 +2,11 @@
 <app-exito mensaje="Usuario eliminado con Exito" *ngIf="existeMsgExito" ></app-exito>
 
 
+<div class="spinner-container" *ngIf="usuarios.length == 0" >
+    <app-spinner></app-spinner>
+</div>
+
+
 <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 <section class="recent">
     <div class="activity-grid">
@@ -25,9 +30,9 @@
 
                             <h1 *ngIf="usuario.error">{{usuario.msg}}</h1>
 
-                            <td data-title="Nombre">{{usuario.nombre}}</td>
-                            <td data-title="RFC">{{usuario.rfc}}</td>
-                            <td data-title="Direccion">{{usuario.direccion}}</td>
+                            <td data-title="Nombre">{{usuario.nombre |uppercase }}</td>
+                            <td data-title="RFC">{{usuario.rfc |uppercase }}</td>
+                            <td data-title="Direccion">{{usuario.direccion |uppercase  }}</td>
                             <td data-title="Telefono">{{usuario.telefono}}</td>
                             <td data-title="Email">{{usuario.email}}</td>
                             <td data-title="Acciones" *ngIf="!usuario.error">

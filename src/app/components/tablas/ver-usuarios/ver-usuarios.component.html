@@ -5,6 +5,11 @@
 
 <app-errores-backend [mensaje]="msgQR"  *ngIf="existeQRregistrado" ></app-errores-backend>
 
+<div class="spinner-container" *ngIf="usuarios.length == 0" >
+    <app-spinner></app-spinner>
+</div>
+
+
 <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 
 <div class="table-responsive">
@@ -24,9 +29,9 @@
 
                 <h1 *ngIf="usuario.error">{{usuario.msg}}</h1>
                 
-                <td data-title="Nombre">{{usuario.nombre}}</td>
-                <td data-title="RFC">{{usuario.rfc}}</td>
-                <td data-title="Direccion">{{usuario.direccion}}</td>
+                <td data-title="Nombre">{{usuario.nombre | uppercase}}</td>
+                <td data-title="RFC">{{usuario.rfc | uppercase}}</td>
+                <td data-title="Direccion">{{usuario.direccion | uppercase}}</td>
                 <td data-title="Telefono">{{usuario.telefono}}</td>
                 <td data-title="Email">{{usuario.email}}</td>
                 <td data-title="Acciones" *ngIf="!usuario.error">

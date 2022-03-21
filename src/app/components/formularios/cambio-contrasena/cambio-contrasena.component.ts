@@ -33,8 +33,8 @@ export class CambioContrasenaComponent implements OnInit {
 
   cambiarContrasena(){
     this.form = this.fb.group({
-      lastpwd:["123456",[Validators.required]],
-      newpwd:["",[Validators.required]],
+      lastpwd:["123456",[Validators.required,Validators.pattern(/^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/)]],
+      newpwd:["",[Validators.required,Validators.pattern(/^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/)]],
       newpwd2:["",[Validators.required]]
     },{validators:this.passwordsIguales("newpwd","newpwd2")})
   }

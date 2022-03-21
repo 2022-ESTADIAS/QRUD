@@ -41,7 +41,7 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
 
   cambiarContrasena(){
     this.form = this.fb.group({
-      newpwd:["",[Validators.required]],
+      newpwd:["",[Validators.required, Validators.pattern(/^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/)]],
       again:["",[Validators.required]]
     },{validators:this.passwordsIguales("newpwd","again")})
   }

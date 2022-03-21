@@ -37,7 +37,7 @@ export class RegistroPersonalComponent implements OnInit {
     this.form =   this.fb.group({
       nombre:["", Validators.required],
       telefono:["", [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)] ],
-      password:["", Validators.required],
+      password:["", Validators.required,Validators.pattern(/^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/)],
       email:["",[Validators.required,Validators.email]  ],
       rol:["", Validators.required],
     })
@@ -53,7 +53,14 @@ export class RegistroPersonalComponent implements OnInit {
     }
 
     
-    const personal:RegistroPersonal = this.form.value;
+    const {email,nombre,password,rol,telefono}:RegistroPersonal = this.form.value;
+    const personal = {
+      email: email.trim().toLowerCase(),
+      nombre: nombre.trim().toLowerCase(),
+      password: password.trim(),
+      rol,
+      telefono
+    }
 
     this.QRUDService.crearRegistro("personal",personal).then((data:any) =>{
         console.log(data);

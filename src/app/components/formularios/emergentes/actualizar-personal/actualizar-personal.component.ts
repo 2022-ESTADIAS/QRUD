@@ -45,7 +45,6 @@ export class ActualizarPersonalComponent implements OnInit {
     this.form =   this.fb.group({
       nombre:[this.personal.nombre , Validators.required],
       telefono:[this.personal.telefono, [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)] ],
-      // email:[this.personal.email,[Validators.required,Validators.email]  ], 
       rol:[this.personal.rol._id, Validators.required],
     })
   }
@@ -67,7 +66,15 @@ export class ActualizarPersonalComponent implements OnInit {
       return;
     }
 
-    const personalActualizado:RegistroPersonal = this.form.value;
+    const {nombre,rol,telefono}:RegistroPersonal = this.form.value;
+    
+    const personalActualizado = {
+      nombre: nombre.trim().toLowerCase(),
+      rol,
+      telefono
+    }
+
+
     this.QRUDService.ActualizarRegistros("personal",this.idPersonal,personalActualizado).then((data:any) => {
       console.log(data);
       this.msgExito ="Personal Actualizado Exitosamente";

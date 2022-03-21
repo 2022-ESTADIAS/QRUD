@@ -57,10 +57,10 @@ export class RegistroUsuarioComponent implements OnInit {
     const {email,direccion,nombre,rfc,telefono }:RegistroUsuario = this.form.value;
     
     const usuario:RegistroUsuario = {
-      email: email.trim(),
-      direccion: direccion.trim(),
-      nombre: nombre.trim(),
-      rfc: rfc.trim(),
+      email: email.trim().toLowerCase(),
+      direccion: direccion.trim().toLowerCase(),
+      nombre: nombre.trim().toLowerCase(),
+      rfc: rfc.trim().toLowerCase(),
       telefono,
     };
     

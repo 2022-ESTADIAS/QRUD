@@ -5,7 +5,7 @@
 
 <app-errores-backend [mensaje]="msgQR"  *ngIf="existeQRregistrado" ></app-errores-backend>
 
-<app-buscador (busqueda)="busqueda = $event"></app-buscador>
+<app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 
 <div class="table-responsive">
     <table>
@@ -22,17 +22,17 @@
         <tbody>
             <tr *ngFor="let usuario of usuarios|busqueda:page:busqueda">
 
-                <h1 *ngIf="usuarios.length == 0 ">No hay registros</h1>
+                <h1 *ngIf="usuario.error">{{usuario.msg}}</h1>
                 
                 <td data-title="Nombre">{{usuario.nombre}}</td>
                 <td data-title="RFC">{{usuario.rfc}}</td>
                 <td data-title="Direccion">{{usuario.direccion}}</td>
                 <td data-title="Telefono">{{usuario.telefono}}</td>
                 <td data-title="Email">{{usuario.email}}</td>
-                <td data-title="Acciones">
+                <td data-title="Acciones" *ngIf="!usuario.error">
                     <div class="btn-group">
                         <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button>
-                        <button class="btn" (click)="eliminarUsuario(usuario.uid)"*ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></button>
+                        <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
                         <button class="btn" (click)="enviarQR(usuario.uid)" ><i class="fa-solid fa-qrcode"></i></button>
                     </div>
 
@@ -43,13 +43,20 @@
             
             
             
-            <app-paginacion [longitud]="usuarios.length" (paginaActual)="page = $event" *ngIf="usuarios.length > 0"> </app-paginacion>
+            <app-paginacion [longitud]="usuarios.length" (paginaActual)="page = $event" *ngIf="usuarios.length > 10 && ocultarPaginacion "> </app-paginacion>
         </tbody>
         
     </table>
 
 
 </div>
+
+<app-modal *ngIf="usuarioActual"
+    msg="¿Esta seguro que quiere eliminar al usuario {{usuarioActual.email}} ?"
+    titulo="Eliminar"
+    [funcion]="eliminarUsuario.bind(this,usuarioActual.uid)"
+    modal="btn-modal-delete"
+></app-modal>
 
 
 <app-actualizar-usuario *ngIf="mostrarFormularioEmergente" 
@@ -58,3 +65,4 @@
 (ocultar)="mostrarFormularioEmergente = $event"
 (usuarioActualizado)="actualizandoArregloUsuario($event)"
 > </app-actualizar-usuario>
+

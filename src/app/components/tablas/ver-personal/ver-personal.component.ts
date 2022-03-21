@@ -22,6 +22,13 @@ export class VerPersonalComponent implements OnInit {
 
   accesoDenegado:boolean = true;
 
+
+  page:number = 0;
+  busqueda:string = "";
+  ocultarPaginacion:boolean = true;
+
+  personalActual:any;
+
   constructor(
     private QRUDService: QRUDService,
     private StorageService: StorageService,
@@ -64,6 +71,11 @@ export class VerPersonalComponent implements OnInit {
       }
     })
   }
+  
+  referenciaPersonalActual(personal:any){
+    this.personalActual = personal;
+}
+
 
 
   actualizarPersonal(id:any,personal:any){

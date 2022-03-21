@@ -1,36 +1,23 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { busqueda } from '../helpers/busqueda.helper';
 
 @Pipe({
   name: 'busqueda'
 })
 export class BusquedaPipe implements PipeTransform {
 
-  transform(value: any[], page:number =0, search:string = ''): any[]{
+  transform(value: any[], page:number =0, search:string = '',isPersonal =false): any[]{
 
-    if(search.trim() !== ''){
-      const searchArr = value.filter((usuario:any) =>
-      usuario.direccion.includes(search)   ||
-      usuario.nombre.includes(search)  || 
-      usuario.rfc.includes(search)   ||
-      usuario.telefono.includes(search)   ||
-      usuario.email.includes(search)  
-      );
-      console.log(searchArr)
-      console.log(search.length)
+    if(isPersonal == false){
+      const busquedaRegistros =  busqueda(value,search,page,isPersonal);
+      return busquedaRegistros;
 
-       //cuando es un solo caracter retorna el arreglo inicial
-     if( search.length == 1 ){  
-      return value.slice(page,page +10);
+    }else{
+      const busquedaRegistros =  busqueda(value,search,page,isPersonal);
+      return busquedaRegistros;
 
     }
-
-      return searchArr;
-    } else{
-
-      return value.slice(page,page+ 10);
-    }
-
-      
+    
   }
-
+  
 }

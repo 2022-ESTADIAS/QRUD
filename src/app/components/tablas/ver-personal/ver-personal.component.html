@@ -2,6 +2,8 @@
 <app-exito mensaje="Usuario Eliminado con Exito" *ngIf="existeMsgExito" ></app-exito>
 <app-exito mensaje="Usuario Actualizado con Exito" *ngIf="existeMsgActualizarExito" ></app-exito>
 
+
+<app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 <div class="table-responsive">
     <table>
         <thead >
@@ -14,15 +16,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let personal of personas">
+            <tr *ngFor="let personal of personas|busqueda:page:busqueda:true">
+
+                <h1 *ngIf="personal.error">{{personal.msg}}</h1>
+
                 <td data-title="Nombre">{{personal.nombre}}</td>
-                <td data-title="RFC">{{personal.rol.rol}}</td>
+                <td data-title="Rol" *ngIf="!personal.error" >{{personal.rol.rol}}</td>
                 <td data-title="Telefono">{{personal.telefono}}</td>
-                <td data-title="Email">{{personal.email}}</td>
+                <td data-title="Email">{{personal.email}}</td> 
                 <td data-title="Acciones" *ngIf="accesoDenegado" >
-                    <div class="btn-group">
+                    <div class="btn-group" *ngIf="!personal.error">
                         <button class="btn" (click)="actualizarPersonal(personal.uid,personal)" ><i class="fa-solid fa-square-pen fa-xl"></i></button>
-                        <button class="btn" (click)="eliminarPersonal(personal.uid)" ><i class="fa-solid fa-user-xmark fa-lg"></i></button>
+                        <label class="btn" for="btn-modal-delete" (click)="referenciaPersonalActual(personal)" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
                     </div>
 
                 </td>
@@ -31,11 +36,18 @@
        
 
     
-
+            <app-paginacion [longitud]="personas.length" (paginaActual)="page = $event" *ngIf="personas.length > 10 && ocultarPaginacion "> </app-paginacion>
         </tbody>
 
     </table>
 </div>
+
+<app-modal *ngIf="personalActual"
+    msg="¿Esta seguro que quiere eliminar al usuario {{personalActual.email}} ?"
+    titulo="Eliminar"
+    [funcion]="eliminarPersonal.bind(this,personalActual.uid)"
+    modal="btn-modal-delete"
+></app-modal>
 
 <app-actualizar-personal *ngIf="mostrarFormularioEmergente" 
 [idPersonal]="idpersonalActualizar" 

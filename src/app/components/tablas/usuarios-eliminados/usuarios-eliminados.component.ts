@@ -14,6 +14,10 @@ export class UsuariosEliminadosComponent implements OnInit {
   existeMsgExito:boolean = false;
   usuarioActual:any= {};
 
+  page:number = 0;
+  busqueda:string = "";
+  ocultarPaginacion:boolean = true;
+
   constructor(
     private QRUDService:QRUDService,
     // private router:Router,

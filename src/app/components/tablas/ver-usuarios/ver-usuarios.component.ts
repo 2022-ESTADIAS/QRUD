@@ -35,6 +35,8 @@ export class VerUsuariosComponent implements OnInit {
   //paginacion
   page:number = 0;
   busqueda:string = "";
+  ocultarPaginacion:boolean = true;
+  usuarioActual: any;
 
 
   constructor(
@@ -45,7 +47,7 @@ export class VerUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.restriccionPorRol();
-    this.obtenerUsuarios();
+    this.obtenerUsuarios(); 
   }
 
 
@@ -62,6 +64,11 @@ export class VerUsuariosComponent implements OnInit {
     })
  
   }
+
+  referenciaUsuarioActual(usuario:any){
+    this.usuarioActual = usuario;
+}
+
 
   eliminarUsuario(id:any) {
     this.QRUDService.EliminarRegistros("user",id).then((data:any) =>{

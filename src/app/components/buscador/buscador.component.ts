@@ -1,3 +1,4 @@
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
@@ -14,7 +15,7 @@ export class BuscadorComponent implements OnInit {
   @Input() page:number = 0;
 
   @Output() busqueda:EventEmitter<string> = new EventEmitter<string>();
-  @Output() mostrarOcultarBotones:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output("ocultar") mostrarOcultarBotones:EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit(): void {
@@ -34,5 +35,23 @@ export class BuscadorComponent implements OnInit {
     this.busqueda.emit(this.search);
   }
   
+  busquedaRegistros(e:any,search:string){
+    console.log(e.key);
+    
+    if(e.key =="Backspace" && search.length == 0 ){
+      this.busqueda.emit("");
+    this.toggleButtons = true;
+      this.mostrarOcultarBotones.emit(this.toggleButtons);
+      return;
+    }
+    this.search = search;
+    this.toggleButtons  = false;
+    this.busqueda.emit(this.search);
+    this.mostrarOcultarBotones.emit(this.toggleButtons);
+
+    
+
+
+  }
 
 }

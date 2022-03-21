@@ -716,7 +716,7 @@ transition:0.2s ease all;
 /*:::Fin Boton-Modal:::*/
 
 /*:::Ventana Modal:::*/
-#btn-modal{
+/* #btn-modal{
   display: none;
 }
 .container-modal{
@@ -779,7 +779,7 @@ transition:0.2s ease all;
   .content-modal{
       width: 90%;
   }
-}
+} */
 /*:::Fin Ventana Modal:::*/
 
 /*:::Ventana Modal eliminaar:::*/

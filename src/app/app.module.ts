@@ -31,6 +31,7 @@ import { BusquedaPipe } from './pipes/busqueda.pipe';
 import { CambioContrasenaComponent } from './components/formularios/cambio-contrasena/cambio-contrasena.component';
 import { ContrasenaEmailComponent } from './components/formularios/contrasenas/contrasena-email/contrasena-email.component';
 import { RestablecerContrasenaEmailComponent } from './components/formularios/contrasenas/restablecer-contrasena-email/restablecer-contrasena-email.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { RestablecerContrasenaEmailComponent } from './components/formularios/co
     BusquedaPipe,
     CambioContrasenaComponent,
     ContrasenaEmailComponent,
-    RestablecerContrasenaEmailComponent
+    RestablecerContrasenaEmailComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

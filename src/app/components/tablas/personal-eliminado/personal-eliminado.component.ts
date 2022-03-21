@@ -14,6 +14,10 @@ export class PersonalEliminadoComponent implements OnInit {
   existeMsgExito:boolean = false;
   personalActual:any= {};
 
+  page:number = 0;
+  busqueda:string = "";
+  ocultarPaginacion:boolean = true; 
+
   constructor(
     private QRUDService:QRUDService,
     private router:Router,

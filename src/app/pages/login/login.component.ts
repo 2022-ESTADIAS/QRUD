@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
       //master
       email:["qrud.app@gmail.com", [Validators.required,Validators.email]],
-      password:["123456",[Validators.required]]
+      password:["T3stkoso!",[Validators.required]]
     })
   }
 

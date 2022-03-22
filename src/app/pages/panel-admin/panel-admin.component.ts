@@ -63,6 +63,7 @@ export class PanelAdminComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerNombre();
     this.verRol();
+ 
   }
 
   mostrarOpcionesUsuario(){
@@ -84,6 +85,8 @@ export class PanelAdminComponent implements OnInit {
 
   mostrarMenu(){
     this.expandirMenu = !this.expandirMenu;
+    const  bodyP = document.querySelector("body#body-pd");
+    bodyP?.classList.toggle("body-pd")
   }
 
   verRol(){

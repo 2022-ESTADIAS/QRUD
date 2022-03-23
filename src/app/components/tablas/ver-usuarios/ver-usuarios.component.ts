@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistroUsuario, Usuario, UsuariosResponse } from 'src/app/interfaces/usuario.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -42,7 +43,8 @@ export class VerUsuariosComponent implements OnInit {
   constructor(
     private QRUDService: QRUDService,
     private StorageService: StorageService,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private ErrorServidor:ErrorServidorService
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +66,8 @@ export class VerUsuariosComponent implements OnInit {
       if(err.error.msgtk){
         this.AuthService.logout()
       }
+      this.ErrorServidor.error();
+
     })
  
   }
@@ -90,6 +94,7 @@ export class VerUsuariosComponent implements OnInit {
       if(err.error.msgtk){
         this.AuthService.logout()
       }
+      this.ErrorServidor.error();
     })
   }
   actualizarUsuario(id:any,usuario:any){
@@ -127,17 +132,18 @@ export class VerUsuariosComponent implements OnInit {
 
     }).catch(err => {
       console.log(err);
-      this.msgQR = err.error.msg;
-      this.existeQRregistrado = true;
-
-      setTimeout(() =>{
-        this.existeQRregistrado = false;
-      },2000)
-
+      if(err.error.msg){
+        this.msgQR = err.error.msg;
+        this.existeQRregistrado = true;
+  
+        setTimeout(() =>{
+          this.existeQRregistrado = false;
+        },2000)
+      }
         if(err.error.msgtk){
           this.AuthService.logout()
         }
-
+        this.ErrorServidor.error();
     })
 
   }

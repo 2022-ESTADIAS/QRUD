@@ -33,6 +33,7 @@ import { ContrasenaEmailComponent } from './components/formularios/contrasenas/c
 import { RestablecerContrasenaEmailComponent } from './components/formularios/contrasenas/restablecer-contrasena-email/restablecer-contrasena-email.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { NoEncontradoComponent } from './components/no-encontrado/no-encontrado.component';
+import { ErrorServidorComponent } from './components/error-servidor/error-servidor.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { NoEncontradoComponent } from './components/no-encontrado/no-encontrado.
     RestablecerContrasenaEmailComponent,
     ModalComponent,
     NoEncontradoComponent,
+    ErrorServidorComponent,
   ],
   imports: [
     BrowserModule,

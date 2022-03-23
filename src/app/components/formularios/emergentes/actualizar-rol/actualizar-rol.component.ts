@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DetallePorRol, RegistroRol } from 'src/app/interfaces/rol.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -31,7 +32,8 @@ export class ActualizarRolComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
-    private authService: AuthService
+    private authService: AuthService,
+    private ErrorServidor:ErrorServidorService
   ) { }
   ngOnInit(): void {
     this.FormularioRol();
@@ -77,12 +79,17 @@ export class ActualizarRolComponent implements OnInit {
 
     }).catch(err => {
       console.log(err)
-      this.existeError = true
-      this.errores = err.error.errors
+      if(err.error.errors){
+        this.existeError = true;
+        this.errores = err.error.errors;
+        return;
+      }
 
       if(err.error.msgtk){
         this.authService.logout();
       }
+
+      this.ErrorServidor.error();
     })
 
     

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -22,8 +23,8 @@ export class UsuariosEliminadosComponent implements OnInit {
 
   constructor(
     private QRUDService:QRUDService,
-    // private router:Router,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private ErrorServidor:ErrorServidorService
     ) { }
 
   ngOnInit(): void {
@@ -43,6 +44,7 @@ export class UsuariosEliminadosComponent implements OnInit {
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
     })
   }
 
@@ -64,6 +66,8 @@ export class UsuariosEliminadosComponent implements OnInit {
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
+
     })
   } 
 
@@ -93,6 +97,8 @@ export class UsuariosEliminadosComponent implements OnInit {
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
+
     })
   }
 

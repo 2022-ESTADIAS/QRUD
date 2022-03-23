@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class ContrasenaEmailComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private QRUDService: QRUDService,
+    private ErrorServidor:ErrorServidorService
   ) { }
 
   ngOnInit(): void {
@@ -52,17 +54,20 @@ export class ContrasenaEmailComponent implements OnInit {
 
     }).catch((err) => {
       console.log(err);
-      this.existeError = true;
-      this.msgError = err.error.msg;
-      
-      setTimeout(() => {
-        this.existeError = false; 
+      if(err.error.msg){
+        this.existeError = true;
+        this.msgError = err.error.msg;
+        
+        setTimeout(() => {
+          this.existeError = false; 
+  
+        },1500)
+        return;
+      }
 
-      },1500)
+      this.ErrorServidor.error();
+
     })
-    
-    
-
   }
 
   campoValido(campo:string){

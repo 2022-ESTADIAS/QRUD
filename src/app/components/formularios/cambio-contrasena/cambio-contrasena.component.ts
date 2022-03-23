@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -20,8 +21,8 @@ export class CambioContrasenaComponent implements OnInit {
   constructor(
     private QRUDService: QRUDService,
     private fb: FormBuilder,
-    private authService: AuthService
-
+    private authService: AuthService,
+    private ErrorServidor:ErrorServidorService
   ) { }
 
   ngOnInit(): void {
@@ -58,16 +59,22 @@ export class CambioContrasenaComponent implements OnInit {
     }).catch((err) => {
 
       console.log(err);
-      this.error = err.error.msg;
-      this.existeError = true;
-
-      setTimeout(() => {
-        this.existeError = false; 
-      },1500)
+      if(err.error.msg){
+        this.error = err.error.msg;
+        this.existeError = true;
+  
+        setTimeout(() => {
+          this.existeError = false; 
+        },1500)
+        return;
+      }
 
       if(err.error.msgtk){
         this.authService.logout();
        }
+       
+       this.ErrorServidor.error();
+
     })
 
  

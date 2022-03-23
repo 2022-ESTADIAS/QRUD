@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegistroUsuario, Usuario } from 'src/app/interfaces/usuario.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -30,7 +31,8 @@ export class ActualizarUsuarioComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
-    private authService: AuthService
+    private authService: AuthService,
+    private ErrorServidor:ErrorServidorService
     ) { }
 
   ngOnInit(): void {
@@ -75,7 +77,6 @@ export class ActualizarUsuarioComponent implements OnInit {
       this.existeMsgExito = true;
       this.form.reset();
 
- 
         this.usuarioActualizado.emit(data);
         this.ocultar.emit(false);
 
@@ -86,12 +87,17 @@ export class ActualizarUsuarioComponent implements OnInit {
 
     }).catch(err => {
       console.log(err)
-      this.existeError = true
-      this.errores = err.error.errors
-      
+      if(err.error.errors){
+        this.existeError = true;
+        this.errores = err.error.errors;
+        return;
+      }
+
       if(err.error.msgtk){
         this.authService.logout();
       }
+
+      this.ErrorServidor.error();
     })
   }
 

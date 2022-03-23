@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Personal } from 'src/app/interfaces/personal.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -34,7 +35,8 @@ export class VerPersonalComponent implements OnInit {
   constructor(
     private QRUDService: QRUDService,
     private StorageService: StorageService,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private ErrorServidor:ErrorServidorService
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +60,8 @@ export class VerPersonalComponent implements OnInit {
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
+
     })
 
   }
@@ -80,6 +84,8 @@ export class VerPersonalComponent implements OnInit {
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
+
     })
   }
   

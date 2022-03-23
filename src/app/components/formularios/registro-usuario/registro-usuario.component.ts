@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegistroUsuario } from 'src/app/interfaces/usuario.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -27,7 +28,8 @@ export class RegistroUsuarioComponent implements OnInit {
     private fb: FormBuilder,
     private QRUDService: QRUDService,
     private router: Router,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private ErrorServidor:ErrorServidorService
   ) { }
 
   ngOnInit(): void {
@@ -79,19 +81,25 @@ export class RegistroUsuarioComponent implements OnInit {
 
     }).catch(err => {
       console.log(err)
-     
-      this.existeError = true
-      this.errores = err.error.errors
+      
+      if(err.error.errors){
+        this.existeError = true
+        this.errores = err.error.errors
+        return;
+      }
 
       if(err.error.err){
         this.errorServidor = err.error?.err
+        return;
 
       }
 
         if(err.error.msgtk){
             this.AuthService.logout();
+            return;
         }
-      
+
+      this.ErrorServidor.error();
     })
   }
 

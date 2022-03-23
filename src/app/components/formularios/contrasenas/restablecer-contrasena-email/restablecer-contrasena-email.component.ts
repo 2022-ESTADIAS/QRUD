@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private ErrorServidor:ErrorServidorService
 
   ) { }
 
@@ -66,15 +68,20 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
 
     }).catch(err => {
         console.log(err,"koso");
-        this.msgError = err.error.err; 
-        this.existeError = true;
-        setTimeout(() =>{
-          this.existeError = false;
-        },1500)
+       
+        if(err.error.err){
+          this.msgError = err.error.err; 
+          this.existeError = true;
+          setTimeout(() =>{
+            this.existeError = false;
+          },1500)
+          return;
+        }
+
+        this.ErrorServidor.error();
+
+
     })
-
- 
-
   }
 
   passwordsIguales(pass1:string,pass2:string){

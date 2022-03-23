@@ -2,13 +2,16 @@
 <app-exito mensaje="Usuario Eliminado con Exito" *ngIf="existeMsgExito" ></app-exito>
 <app-exito mensaje="Usuario Actualizado con Exito" *ngIf="existeMsgActualizarExito" ></app-exito>
 
-
-<div class="spinner-container" *ngIf="personas.length == 0" >
+<div class="spinner-container" *ngIf="personas.length == 0  && !noexistePersonal " >
     <app-spinner></app-spinner>
 </div>
 
+<div class="container" *ngIf="personas.length == 0 && noexistePersonal " >
+    <app-no-encontrado  mensaje="No se encontro personal disponible" ></app-no-encontrado> 
+</div> 
 
-<app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
+<ng-container *ngIf="personas.length > 0" >
+    <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 <div class="table-responsive">
     <table>
         <thead >
@@ -23,7 +26,9 @@
         <tbody>
             <tr *ngFor="let personal of personas|busqueda:page:busqueda:true">
 
-                <h1 *ngIf="personal.error">{{personal.msg}}</h1>
+                <div class="container" *ngIf="personal.error">
+                    <app-no-encontrado  mensaje="No se ha encontrado el personal" ></app-no-encontrado> 
+                </div>
 
                 <td data-title="Nombre">{{personal.nombre |uppercase  }}</td>
                 <td data-title="Rol" *ngIf="!personal.error" >{{personal.rol.rol |uppercase }}</td>
@@ -46,6 +51,9 @@
 
     </table>
 </div>
+</ng-container>
+
+
 
 <app-modal *ngIf="personalActual"
     msg="¿Esta seguro que quiere eliminar al usuario {{personalActual.email}} ?"

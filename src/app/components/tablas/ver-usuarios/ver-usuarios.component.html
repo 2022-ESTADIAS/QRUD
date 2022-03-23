@@ -5,56 +5,64 @@
 
 <app-errores-backend [mensaje]="msgQR"  *ngIf="existeQRregistrado" ></app-errores-backend>
 
-<div class="spinner-container" *ngIf="usuarios.length == 0" >
+<div class="spinner-container" *ngIf="usuarios.length == 0  && !noexistenUsuarios " >
     <app-spinner></app-spinner>
 </div>
+<div class="container" *ngIf="usuarios.length == 0 && noexistenUsuarios " >
+    <app-no-encontrado  mensaje="No se encontraron usuarios disponibles" ></app-no-encontrado> 
+</div> 
 
 
-<app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
+<ng-container  *ngIf="usuarios.length > 0  " >
+    <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 
-<div class="table-responsive">
-    <table>
-        <thead >
-            <tr>
-                <th>Nombre</th>
-                <th>RFC</th>
-                <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let usuario of usuarios|busqueda:page:busqueda">
-
-                <h1 *ngIf="usuario.error">{{usuario.msg}}</h1>
-                
-                <td data-title="Nombre">{{usuario.nombre | uppercase}}</td>
-                <td data-title="RFC">{{usuario.rfc | uppercase}}</td>
-                <td data-title="Direccion">{{usuario.direccion | uppercase}}</td>
-                <td data-title="Telefono">{{usuario.telefono}}</td>
-                <td data-title="Email">{{usuario.email}}</td>
-                <td data-title="Acciones" *ngIf="!usuario.error">
-                    <div class="btn-group">
-                        <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button>
-                        <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
-                        <button class="btn" (click)="enviarQR(usuario.uid)" ><i class="fa-solid fa-qrcode"></i></button>
+    <div class="table-responsive">
+        <table>
+            <thead >
+                <tr>
+                    <th>Nombre</th>
+                    <th>RFC</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let usuario of usuarios|busqueda:page:busqueda">
+    
+                    
+                    <div class="container" *ngIf="usuario.error">
+                        <app-no-encontrado  mensaje="No se ha encontrado el usuario" ></app-no-encontrado> 
                     </div>
+                    <td data-title="Nombre">{{usuario.nombre | uppercase}}</td>
+                    <td data-title="RFC">{{usuario.rfc | uppercase}}</td>
+                    <td data-title="Direccion">{{usuario.direccion | uppercase}}</td>
+                    <td data-title="Telefono">{{usuario.telefono}}</td>
+                    <td data-title="Email">{{usuario.email}}</td>
+                    <td data-title="Acciones" *ngIf="!usuario.error">
+                        <div class="btn-group">
+                            <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button>
+                            <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
+                            <button class="btn" (click)="enviarQR(usuario.uid)" ><i class="fa-solid fa-qrcode"></i></button>
+                        </div>
+    
+                    </td>
+                </tr>
+                
+                
+                
+                
+                
+                <app-paginacion [longitud]="usuarios.length" (paginaActual)="page = $event" *ngIf="usuarios.length > 10 && ocultarPaginacion "> </app-paginacion>
+            </tbody>
+            
+        </table>
+    
+    
+    </div>
+</ng-container>
 
-                </td>
-            </tr>
-            
-            
-            
-            
-            
-            <app-paginacion [longitud]="usuarios.length" (paginaActual)="page = $event" *ngIf="usuarios.length > 10 && ocultarPaginacion "> </app-paginacion>
-        </tbody>
-        
-    </table>
-
-
-</div>
 
 <app-modal *ngIf="usuarioActual"
     msg="¿Esta seguro que quiere eliminar al usuario {{usuarioActual.email}} ?"
@@ -70,4 +78,5 @@
 (ocultar)="mostrarFormularioEmergente = $event"
 (usuarioActualizado)="actualizandoArregloUsuario($event)"
 > </app-actualizar-usuario>
+
 

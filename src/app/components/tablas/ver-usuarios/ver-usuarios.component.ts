@@ -38,7 +38,7 @@ export class VerUsuariosComponent implements OnInit {
   ocultarPaginacion:boolean = true;
   usuarioActual: any;
 
-
+  noexistenUsuarios:boolean = false;
   constructor(
     private QRUDService: QRUDService,
     private StorageService: StorageService,
@@ -57,6 +57,9 @@ export class VerUsuariosComponent implements OnInit {
     this.QRUDService.ObtenerRegistros("user").then((data:any) => {
       console.log(data)
       this.usuarios = data.usuarios;
+      if(this.usuarios.length == 0){
+        this.noexistenUsuarios =true;
+      }
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout()
@@ -78,6 +81,9 @@ export class VerUsuariosComponent implements OnInit {
 
       setTimeout(() => {
         this.existeMsgExito = false;
+        if(this.usuarios.length == 0){
+          this.noexistenUsuarios =true;
+        }
         }, 1500);
         
     }).catch(err =>{

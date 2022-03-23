@@ -29,6 +29,8 @@ export class VerPersonalComponent implements OnInit {
 
   personalActual:any;
 
+  noexistePersonal:boolean = false;
+
   constructor(
     private QRUDService: QRUDService,
     private StorageService: StorageService,
@@ -47,6 +49,11 @@ export class VerPersonalComponent implements OnInit {
     this.QRUDService.ObtenerRegistros("personal").then((data:any) => {
       console.log(data)
       this.personas = data.personal;
+
+      if(this.personas.length == 0){
+        this.noexistePersonal =true;
+      } 
+
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
@@ -63,6 +70,10 @@ export class VerPersonalComponent implements OnInit {
 
       setTimeout(() => {
         this.existeMsgExito = false;
+
+        if(this.personas.length == 0){
+          this.noexistePersonal =true;
+        } 
         }, 1500);
         
     }).catch(err =>{

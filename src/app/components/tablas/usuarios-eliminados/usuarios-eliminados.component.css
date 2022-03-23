@@ -566,3 +566,10 @@ width: 120%;
   top: 50%;
   left: 50%;
 }
+
+.container{
+  margin: 0 auto;
+  display: block;
+  position: absolute;
+
+}

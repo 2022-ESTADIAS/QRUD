@@ -18,6 +18,7 @@ export class PersonalEliminadoComponent implements OnInit {
   busqueda:string = "";
   ocultarPaginacion:boolean = true; 
 
+  noexistePersonal:boolean = false;
   constructor(
     private QRUDService:QRUDService,
     private router:Router,
@@ -32,6 +33,9 @@ export class PersonalEliminadoComponent implements OnInit {
     this.QRUDService.VerUsuariosEliminados("personal").then((data:any)=>{
       console.log(data);
       this.personas = data.eliminados;
+      if(this.personas.length == 0){
+        this.noexistePersonal =true;
+      } 
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
@@ -47,6 +51,11 @@ export class PersonalEliminadoComponent implements OnInit {
 
       setTimeout(() => {
         this.existeMsgExito = false;
+
+        if(this.personas.length == 0){
+          this.noexistePersonal =true;
+        }
+
         }, 1500);
     }).catch(err =>{
       if(err.error.msgtk){
@@ -67,6 +76,11 @@ export class PersonalEliminadoComponent implements OnInit {
 
       setTimeout(() => {
         this.existeMsgExito = false;
+        
+        if(this.personas.length == 0){
+          this.noexistePersonal =true;
+        }
+
         }, 1500);
         
     }).catch(err =>{

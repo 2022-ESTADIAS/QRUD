@@ -13,6 +13,7 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
 
   form!: FormGroup;
   existeError: boolean = false;
+  msgError: string ='';
 
   //actualizando contrasena exitosamente
   msgExito:string = "";
@@ -41,7 +42,7 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
 
   cambiarContrasena(){
     this.form = this.fb.group({
-      newpwd:["",[Validators.required, Validators.pattern(/^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/)]],
+      newpwd:["",[Validators.required,Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)  ]],
       again:["",[Validators.required]]
     },{validators:this.passwordsIguales("newpwd","again")})
   }
@@ -63,6 +64,13 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
         this.router.navigateByUrl("/login")
       },1500)
 
+    }).catch(err => {
+        console.log(err,"koso");
+        this.msgError = err.error.err; 
+        this.existeError = true;
+        setTimeout(() =>{
+          this.existeError = false;
+        },1500)
     })
 
  

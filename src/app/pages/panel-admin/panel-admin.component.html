@@ -18,11 +18,7 @@
                 <div class="profile">
                     <img src="assets/img/logo.svg" alt="" >
                 </div>
-                <a href="#" class="nav__link active">
-                    
-                    <i class="fa-solid fa-house-chimney" class="nav__icon"></i>
-                    <span class="nav__name">Menú</span>
-                </a>
+               
 
                 <div  class="nav__link collapse" (click)="mostrarOpcionesUsuario()"  *ngIf="esAdmin || esMaster || esAux " >
                     <i class="fa-solid fa-users"></i>
@@ -83,11 +79,11 @@
                 </div>
 
                 <div class="nav__link collapse" (click)="mostrarOpcionesContrasena()"  *ngIf="esAdmin || esMaster || esAux " >
-                    <i class="fa-solid fa-qrcode"></i>
+                    <i class="fa-solid fa-key"></i>
                     <span class="nav__name">Contraseña</span>
 
                     <ion-icon name="chevron-down-outline" class="collapse__link" [ngClass]="{'rotate':mostrarOpcionesMenuContrasena}" ></ion-icon>
-
+                    
                     <ul class="collapse__menu" [ngClass]="{'showCollapse':mostrarOpcionesMenuContrasena}" >
                         <a routerLink="/contrasena" class="collapse__sublink">Cambiar Contraseña</a> 
                     </ul>

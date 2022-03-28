@@ -1,39 +1,13 @@
-/*===== GOOGLE FONTS =====*/
+/* ===== GOOGLE FONTS ===== */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
 /*===== VARIABLES CSS =====*/
-:root{
-  --nav-width: 92px;
-
-  /*===== Colores =====*/
-  --first-color: #838af3;
-  --bg-color: #edeaea;
-  --sub-color: #ffffff;
-  --white-color: #3E3798;
-  
-  /*===== Fuente y tipografia =====*/
-  --body-font: 'Poppins', sans-serif;
-  --normal-font-size: 1rem;
-  --small-font-size: .875rem;
-  
-  /*===== z index =====*/
-  --z-fixed: 100;
-}
 
 
 /*===== BASE =====*/
-*,::before,::after{
-  box-sizing: border-box;
-}
-body{
-  position: relative;
-  margin: 0;
-  padding: 0rem 0 0 5.75rem;
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
-  transition: .5s;
-  background: #f1f5f9;
-}
+
+
+
 h1{
   margin: 0;
 }
@@ -58,6 +32,7 @@ a{
   padding: 0.5rem 1.5rem 2rem;
   transition: .5s;
   z-index: var(--z-fixed);
+  /* z-index: 1; */
 }
 
 /*===== NAV =====*/
@@ -113,8 +88,8 @@ a{
 }
 
 /*Add padding body*/
-.body-pd{
-  padding: 0rem 0 0 15rem;
+body.body-pd{
+  padding: 0rem 0 0 15rem !important;
 }
 
 /*Active links menu*/
@@ -211,7 +186,7 @@ a{
 }
 .profile img{
   margin: 15px 0;
-  width: 100px;
+  width: 29vh;
   height: 100px;
 }
 /*-----------------------------------------*/
@@ -265,7 +240,6 @@ main{
   background: #f1f5f9;
   min-height: 90vh;
   padding: 1rem 3rem;
-  margin-left: 15rem;
 }
 /*-----------titulo (qrud)-----------*/
 .dash-title{

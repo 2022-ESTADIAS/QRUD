@@ -1,5 +1,7 @@
 <app-exito [mensaje]="msgExito"  *ngIf="existeMsgExito" > </app-exito>
 
+<app-errores-backend [mensaje]="msgError" *ngIf="existeError" ></app-errores-backend>
+
 <img class="wave" src="assets/img/wave2.png"> 
 <section class="email">
     <img src="assets/img/logo.svg">
@@ -13,6 +15,7 @@
           <app-errores-frontend mensaje="Debe de ser un correo valido" *ngIf="campoValido('email')" ></app-errores-frontend>
 
         </div>
+        <a routerLink="/login">Recordaste tu contraseña?, Inicia Sesion</a>
        
         <div class="wrapper">
             <button type="submit"  class="btn10">

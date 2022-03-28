@@ -2,12 +2,16 @@
 <app-exito mensaje="Usuario eliminado con Exito" *ngIf="existeMsgExito" ></app-exito>
 
 
-<div class="spinner-container" *ngIf="usuarios.length == 0" >
+<div class="spinner-container" *ngIf="usuarios.length == 0  && !noexistenUsuarios " >
     <app-spinner></app-spinner>
 </div>
 
+<div class="container" *ngIf="usuarios.length == 0 && noexistenUsuarios " >
+    <app-no-encontrado  mensaje="No se encontraron usuarios disponibles" ></app-no-encontrado> 
+</div> 
 
-<app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
+<ng-container  *ngIf="usuarios.length  > 0 " >
+    <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 <section class="recent">
     <div class="activity-grid">
         <div class="activity-card">
@@ -59,6 +63,9 @@
     </div>
     
 </section>
+</ng-container>
+
+
 
 <app-modal
     msg="¿Esta seguro que quiere activar al usuario {{usuarioActual.email}} ?"

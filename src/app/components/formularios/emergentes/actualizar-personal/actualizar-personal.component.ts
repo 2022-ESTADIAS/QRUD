@@ -8,6 +8,7 @@ import { Personal } from 'src/app/interfaces/login.interface';
 import { RegistroPersonal } from 'src/app/interfaces/personal.interface';
 import { DetallePorRol } from 'src/app/interfaces/rol.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -32,7 +33,8 @@ export class ActualizarPersonalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
-    private authService: AuthService
+    private authService: AuthService,
+    private ErrorServidor:ErrorServidorService
   ) { }
 
   ngOnInit(): void {
@@ -92,12 +94,17 @@ export class ActualizarPersonalComponent implements OnInit {
 
     }).catch(err => {
       console.log(err)
-      this.existeError = true
-      this.errores = err.error.errors
+      if(err.error.errors){
+        this.existeError = true;
+        this.errores = err.error.errors;
+        return;
+      }
 
       if(err.error.msgtk){
         this.authService.logout();
       }
+
+      this.ErrorServidor.error();
       
     })
   }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorServidorComponent } from './components/error-servidor/error-servidor.component';
 import { EscannerQRComponent } from './components/escanner-qr/escanner-qr.component';
 import { CambioContrasenaComponent } from './components/formularios/cambio-contrasena/cambio-contrasena.component';
 import { ContrasenaEmailComponent } from './components/formularios/contrasenas/contrasena-email/contrasena-email.component';
@@ -12,6 +13,7 @@ import { UsuariosEliminadosComponent } from './components/tablas/usuarios-elimin
 import { VerPersonalComponent } from './components/tablas/ver-personal/ver-personal.component';
 import { VerRolComponent } from './components/tablas/ver-rol/ver-rol.component';
 import { VerUsuariosComponent } from './components/tablas/ver-usuarios/ver-usuarios.component';
+import { ErrorServidorGuard } from './guards/error-servidor.guard';
 import { LoginGuard } from './guards/login.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
@@ -19,6 +21,7 @@ import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 const routes: Routes = [
   {path:"login", component: LoginComponent},
   {path:"forget-password", component: ContrasenaEmailComponent},
+  {path:"error", component: ErrorServidorComponent,canActivate:[ErrorServidorGuard]},
   {path:"personal/email-pwd", component: RestablecerContrasenaEmailComponent},
   {path:"", component: PanelAdminComponent,canActivate:[LoginGuard],children:[
     {path:"", component:RegistroUsuarioComponent },

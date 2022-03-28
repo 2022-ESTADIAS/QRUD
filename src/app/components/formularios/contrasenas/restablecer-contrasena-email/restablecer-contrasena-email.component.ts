@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
 
   form!: FormGroup;
   existeError: boolean = false;
+  msgError: string ='';
 
   //actualizando contrasena exitosamente
   msgExito:string = "";
@@ -26,6 +28,7 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private ErrorServidor:ErrorServidorService
 
   ) { }
 
@@ -41,7 +44,7 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
 
   cambiarContrasena(){
     this.form = this.fb.group({
-      newpwd:["",[Validators.required, Validators.pattern(/^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/)]],
+      newpwd:["",[Validators.required,Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)  ]],
       again:["",[Validators.required]]
     },{validators:this.passwordsIguales("newpwd","again")})
   }
@@ -63,10 +66,22 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
         this.router.navigateByUrl("/login")
       },1500)
 
+    }).catch(err => {
+        console.log(err,"koso");
+       
+        if(err.error.err){
+          this.msgError = err.error.err; 
+          this.existeError = true;
+          setTimeout(() =>{
+            this.existeError = false;
+          },1500)
+          return;
+        }
+
+        this.ErrorServidor.error();
+
+
     })
-
- 
-
   }
 
   passwordsIguales(pass1:string,pass2:string){

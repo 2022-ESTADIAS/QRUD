@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PersonalLogin } from 'src/app/interfaces/login.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -21,7 +22,9 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private AuthService: AuthService,
     private router: Router,
-    private StorageService: StorageService
+    private StorageService: StorageService,
+    private ErrorServidor:ErrorServidorService
+
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +36,7 @@ export class LoginComponent implements OnInit {
 
       //master
       email:["qrud.app@gmail.com", [Validators.required,Validators.email]],
-      password:["123456",[Validators.required]]
+      password:["T3stkoso!",[Validators.required]]
     })
   }
 
@@ -45,20 +48,30 @@ export class LoginComponent implements OnInit {
 
     const personal:PersonalLogin = this.form.value;
 
+    this.loginExistoso = true;
+    
     this.AuthService.login(personal).then((data) => {
       console.log(data)
       this.existeError = false;
       this.StorageService.encryptar("nombre",data.personal.nombre);
-      this.loginExistoso = true;
       setTimeout(() => {
         this.loginExistoso = false;
         this.router.navigateByUrl("/");
-
+        
       },1000)
     }).catch(err =>{
+      console.log(err)
       console.log(err.error.msg)
-      this.existeError = true;
-      this.msgErrores= err.error.msg
+      if(err.error.msg){
+        this.existeError = true;
+        this.loginExistoso = false;
+        this.msgErrores= err.error.msg
+
+      }else{
+        this.ErrorServidor.error();
+  
+      }
+
     })
   }
 

@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+html,body{
+    font-family: 'PT Sans', sans-serif ;
+}
+
+.container{
+    /* position: absolute;
+    transform: translate(150%,100%); */
+}
+.content{
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  position:relative;
+  align-items: center;
+  display: block;
+}
+
+
+h1{
+  position: absolute;
+  font-size: 220px;
+  text-align:center;
+  width: 300px;
+  color: #3E3798;
+}
+
+h1#five{
+  left: -50px;
+}
+
+h1#zero1{
+    left: 50px;
+    
+  }
+h1#zero2{
+  left: 160px;
+  
+}
+h1#point1{
+  font-size: 230px;
+  top: -100px;
+  left: 50px;
+  animation: moveeye1 7s infinite ease-in;
+}
+h1#point2{
+  font-size: 230px;
+  top: -100px;
+  left: 160px;
+  animation: moveeye2 7s infinite ease-in;
+}
+
+@keyframes moveeye1{
+  0%{
+    top: -70px;
+    left: 50px;
+  }
+  20%{
+    top: -90px;
+    left: 60px;
+  }
+  40%{
+    top: -90px;
+    left: 60px;
+  }
+  60%{
+    top: -60px;
+    left: 40px;
+  }
+  80%{
+    top: -60px;
+    left: 60px;
+  }
+  100%{
+    top: -70px;
+    left: 50px;
+  }
+}
+
+@keyframes moveeye2{
+  0%{
+    top: -70px;
+    left: 160px;
+  }
+  20%{
+    top: -90px;
+    left: 170px;
+  }
+  40%{
+    top: -90px;
+    left: 170px;
+  }
+  60%{
+    top: -60px;
+    left: 150px;
+  }
+  80%{
+    top: -60px;
+    left: 170px;
+  }
+  100%{
+    top: -70px;
+    left: 160px;
+  }
+}
+p {
+    top: 460px;
+    position: absolute;
+    font-size: 30px;
+    text-align:center;
+    width: 300px;
+    color: #3E3798;
+    margin: 0 auto;
+}
+
+p{
+    background-color:#3E3798;
+    padding: 1rem;
+    margin: 0 auto;
+    border-radius: 5px;
+    width: 30%;
+    color: #fff;
+    display: block;
+    font-size:16px;
+    transform: translate(110%,200%);
+}
+
+h3{
+    transform: translate(35%,1700%);
+
+}

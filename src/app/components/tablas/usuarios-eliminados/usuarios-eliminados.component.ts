@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 @Component({
@@ -18,10 +19,12 @@ export class UsuariosEliminadosComponent implements OnInit {
   busqueda:string = "";
   ocultarPaginacion:boolean = true;
 
+  noexistenUsuarios:boolean = false;
+
   constructor(
     private QRUDService:QRUDService,
-    // private router:Router,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private ErrorServidor:ErrorServidorService
     ) { }
 
   ngOnInit(): void {
@@ -32,10 +35,16 @@ export class UsuariosEliminadosComponent implements OnInit {
     this.QRUDService.VerUsuariosEliminados("user").then((data:any)=>{
       console.log(data);
       this.usuarios = data.usuarios;
+
+      if(this.usuarios.length == 0){
+        this.noexistenUsuarios =true;
+      }
+
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
     })
   }
 
@@ -47,11 +56,18 @@ export class UsuariosEliminadosComponent implements OnInit {
 
       setTimeout(() => {
         this.existeMsgExito = false;
+
+        if(this.usuarios.length == 0){
+          this.noexistenUsuarios =true;
+        }
+
         }, 1500);
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
+
     })
   } 
 
@@ -63,16 +79,26 @@ export class UsuariosEliminadosComponent implements OnInit {
     this.QRUDService.EliminarRegistrosPermanentemente('user',id).then((data) => {
       this.usuarios = this.usuarios.filter(usuario => usuario.uid !==id );
       console.log(data);
+
+
+
       this.existeMsgExito = true;
 
       setTimeout(() => {
         this.existeMsgExito = false;
+
+        if(this.usuarios.length == 0){
+          this.noexistenUsuarios =true;
+        }
         }, 1500);
+   
         
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
+
     })
   }
 

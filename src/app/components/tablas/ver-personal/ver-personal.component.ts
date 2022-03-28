@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Personal } from 'src/app/interfaces/personal.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -29,10 +30,13 @@ export class VerPersonalComponent implements OnInit {
 
   personalActual:any;
 
+  noexistePersonal:boolean = false;
+
   constructor(
     private QRUDService: QRUDService,
     private StorageService: StorageService,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private ErrorServidor:ErrorServidorService
   ) { }
 
   ngOnInit(): void {
@@ -47,10 +51,17 @@ export class VerPersonalComponent implements OnInit {
     this.QRUDService.ObtenerRegistros("personal").then((data:any) => {
       console.log(data)
       this.personas = data.personal;
+
+      if(this.personas.length == 0){
+        this.noexistePersonal =true;
+      } 
+
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
+
     })
 
   }
@@ -63,12 +74,18 @@ export class VerPersonalComponent implements OnInit {
 
       setTimeout(() => {
         this.existeMsgExito = false;
+
+        if(this.personas.length == 0){
+          this.noexistePersonal =true;
+        } 
         }, 1500);
         
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
       }
+      this.ErrorServidor.error();
+
     })
   }
   

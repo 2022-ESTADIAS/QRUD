@@ -6,6 +6,7 @@ import { QRUDService } from 'src/app/services/qrud.service';
 import { DetallePorRol } from 'src/app/interfaces/rol.interface';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 @Component({
   selector: 'app-registro-personal',
   templateUrl: './registro-personal.component.html',
@@ -24,7 +25,8 @@ export class RegistroPersonalComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
-    private authService: AuthService
+    private authService: AuthService,
+    private ErrorServidor:ErrorServidorService
   ) { }
 
   ngOnInit(): void {
@@ -75,12 +77,17 @@ export class RegistroPersonalComponent implements OnInit {
 
     }).catch((err) =>{
       console.log(err);
-      this.existeError = true
-      this.errores = err.error.errors
+      if(err.error.erros){
+        this.existeError = true;
+        this.errores = err.error.errors;
+        return;
+      }
 
       if(err.error.msgtk){
         this.authService.logout();
       }
+
+      this.ErrorServidor.error();
     })
 
   }
@@ -91,6 +98,7 @@ export class RegistroPersonalComponent implements OnInit {
       if(err.error.msgtk){
         this.authService.logout();
       }
+      this.ErrorServidor.error();
     })
   }
 

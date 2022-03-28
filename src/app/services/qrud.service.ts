@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { RegistroPersonal } from '../interfaces/personal.interface';
 import { RegistroRol, RolesResponse } from '../interfaces/rol.interface';
@@ -12,10 +13,11 @@ const {url,llaveToken} = environment
   providedIn: 'root'
 })
 export class QRUDService {
+  errorServidor:boolean = false;
 
   constructor(
     private http: HttpClient,
-    private StorageService: StorageService
+    private StorageService: StorageService,
   ) { }
 
     crearRegistro(ruta:"user" | "personal" | "rol", data:RegistroUsuario | RegistroPersonal |RegistroRol ){
@@ -155,6 +157,7 @@ export class QRUDService {
       })
     }) 
   }
+
 
 
 }

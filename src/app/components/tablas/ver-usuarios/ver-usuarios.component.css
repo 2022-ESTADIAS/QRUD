@@ -96,8 +96,10 @@
   .fa-square-pen,
   .fa-user-xmark,
   .fa-user-check,
-  .fa-user-slash{
+  .fa-user-slash,
+  .fa-qrcode{
     color: #6C63FF;
+    padding: 0.7rem;
   }
   .btn-group{
     text-align: center;
@@ -107,7 +109,9 @@
     border: none;
   }
   
-
+td.icons{
+  width: 9rem;
+}
 
 .spinner-container{
     position: absolute;

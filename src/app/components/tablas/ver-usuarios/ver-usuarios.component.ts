@@ -139,9 +139,11 @@ export class VerUsuariosComponent implements OnInit {
         setTimeout(() =>{
           this.existeQRregistrado = false;
         },2000)
+        return;
       }
         if(err.error.msgtk){
           this.AuthService.logout()
+          return;
         }
         this.ErrorServidor.error();
     })

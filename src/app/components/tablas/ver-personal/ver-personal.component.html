@@ -12,47 +12,63 @@
 
 <ng-container *ngIf="personas.length > 0" >
     <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
-<div class="table-responsive">
-    <table>
-        <thead >
-            <tr>
-                <th>Nombre</th>
-                <th>Rol</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th *ngIf="accesoDenegado" >Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let personal of personas|busqueda:page:busqueda:true">
 
-                <div class="container" *ngIf="personal.error">
-                    <app-no-encontrado  mensaje="No se ha encontrado el personal" ></app-no-encontrado> 
-                </div>
 
-                <td data-title="Nombre">{{personal.nombre |uppercase  }}</td>
-                <td data-title="Rol" *ngIf="!personal.error" >{{personal.rol.rol |uppercase }}</td>
-                <td data-title="Telefono">{{personal.telefono}}</td>
-                <td data-title="Email">{{personal.email}}</td> 
-                <td data-title="Acciones" *ngIf="accesoDenegado" >
-                    <div class="btn-group" *ngIf="!personal.error">
-                        <button class="btn" (click)="actualizarPersonal(personal.uid,personal)" ><i class="fa-solid fa-square-pen fa-xl"></i></button>
-                        <label class="btn" for="btn-modal-delete" (click)="referenciaPersonalActual(personal)" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
-                    </div>
 
-                </td>
-            </tr>
+<!----------contenedor de las tablas-------------------->
+<section class="recent">
+    <div class="activity-grid">
+        <div class="activity-card">
+            <h3>Lista de Usuarios</h3>
 
-       
+                        <div class="table-responsive">
+                            <table>
+                                <thead >
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Rol</th>
+                                        <th>Telefono</th>
+                                        <th>Email</th>
+                                        <th *ngIf="accesoDenegado" >Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let personal of personas|busqueda:page:busqueda:true">
 
-    
-            <app-paginacion [longitud]="personas.length" (paginaActual)="page = $event" *ngIf="personas.length > 10 && ocultarPaginacion "> </app-paginacion>
-        </tbody>
+                                        <h1 *ngIf="personal.error">{{personal.msg}}</h1>
 
-    </table>
-</div>
-</ng-container>
+                                        <td data-title="Nombre">{{personal.nombre |uppercase  }}</td>
+                                        <td data-title="Rol" *ngIf="!personal.error" >{{personal.rol.rol |uppercase }}</td>
+                                        <td data-title="Telefono">{{personal.telefono}}</td>
+                                        <td data-title="Email">{{personal.email}}</td> 
+                                        <td data-title="Acciones" *ngIf="accesoDenegado" >
+                                            <div class="btn-group" *ngIf="!personal.error">
+                                                <button class="btn" (click)="actualizarPersonal(personal.uid,personal)" ><i class="fa-solid fa-square-pen fa-xl"></i></button>
+                                                <label class="btn" for="btn-modal-delete" (click)="referenciaPersonalActual(personal)" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
+                                            </div>
 
+                                        </td>
+                                    </tr>
+                            
+                                    <app-paginacion [longitud]="personas.length" (paginaActual)="page = $event" *ngIf="personas.length > 10 && ocultarPaginacion "> </app-paginacion>
+                            
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+            
+         
 
 
 <app-modal *ngIf="personalActual"

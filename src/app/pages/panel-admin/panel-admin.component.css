@@ -64,7 +64,7 @@ a{
   display: grid;
   grid-template-columns: max-content max-content;
   align-items: center;
-  column-gap: .85rem;
+  column-gap: .95rem;
   padding: .75rem;
   color: var(--white-color);
   border-radius: .5rem;
@@ -186,7 +186,7 @@ body.body-pd{
 }
 .profile img{
   margin: 15px 0;
-  width: 100px;
+  width: 29vh;
   height: 100px;
 }
 /*-----------------------------------------*/

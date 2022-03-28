@@ -68,8 +68,12 @@ textarea{
     box-sizing: border-box;*/
   }
 
+  /*body{
+     position: relative; 
+  }*/
+
 body{
-    /* position: relative; */
+    position: relative;
     margin: 0;
     padding: 0rem 0 0 5.75rem;
     font-family: var(--body-font);

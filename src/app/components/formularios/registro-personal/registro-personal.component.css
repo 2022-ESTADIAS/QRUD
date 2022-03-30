@@ -6,6 +6,7 @@
     padding: 25px 30px;
     border-radius: 5px;
     margin-top: 20px;
+    overflow-x: auto;
 }
 .container .title{
     font-size: 25px;
@@ -227,4 +228,15 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+}
+/* responsivoo*/
+@media screen and (min-width: 300px){
+  .wrapper {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px){
+  input{
+    width: 230px;
+  }
 }

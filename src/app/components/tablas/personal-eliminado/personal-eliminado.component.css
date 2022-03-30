@@ -327,6 +327,8 @@ tbody tr:nth-child(even){
 .fa-user-check,
 .fa-user-slash{
   color: #6C63FF;
+  padding: 0.7rem;
+  cursor: pointer;
 }
 .btn-group{
   text-align: center;

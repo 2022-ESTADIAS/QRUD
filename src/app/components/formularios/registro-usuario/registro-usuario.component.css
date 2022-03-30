@@ -7,7 +7,13 @@
     padding: 25px 30px;
     border-radius: 5px;
     margin-top: 20px;
+    overflow-x: auto;
 
+}
+.activity-grid{
+  display: grid;
+  grid-template-columns: 85% 13%;
+  grid-column-gap: 1.5rem;
 }
 .container .title{
     font-size: 25px;
@@ -240,7 +246,14 @@
 
 
 
-/* 
-.mensajes-container:nth-child(n){
-  margin: 20px;
-} */
+/* responsivoo*/
+@media screen and (min-width: 300px){
+  .wrapper {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px){
+  input{
+    width: 230px;
+  }
+}

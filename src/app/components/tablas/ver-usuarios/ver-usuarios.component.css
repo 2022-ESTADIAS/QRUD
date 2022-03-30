@@ -99,7 +99,8 @@
   .fa-user-slash,
   .fa-qrcode{
     color: #6C63FF;
-    padding: 0.7rem;
+    padding: 0.3rem;
+    cursor: pointer;
   }
   .btn-group{
     text-align: center;

@@ -15,9 +15,9 @@ export class UsuariosEliminadosComponent implements OnInit {
   existeMsgExito:boolean = false;
   usuarioActual:any= {};
 
-  page:number = 0;
-  busqueda:string = "";
-  ocultarPaginacion:boolean = true;
+  page:any = 0;
+  busqueda:any = "";
+  ocultarPaginacion:any = true;
 
   noexistenUsuarios:boolean = false;
 

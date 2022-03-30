@@ -15,9 +15,9 @@ export class PersonalEliminadoComponent implements OnInit {
   existeMsgExito:boolean = false;
   personalActual:any= {};
 
-  page:number = 0;
-  busqueda:string = "";
-  ocultarPaginacion:boolean = true; 
+  page:any = 0;
+  busqueda:any = "";
+  ocultarPaginacion:any = true; 
 
   noexistePersonal:boolean = false;
   constructor(

@@ -17,7 +17,7 @@ export class VerRolComponent implements OnInit {
   existeMsgExito:boolean = false;
 
   existeMsgActualizarExito:boolean = false;
-  mostrarFormularioEmergente:boolean = false;
+  mostrarFormularioEmergente:any= false;
   rolparaActualizar:any = {};
   idrolActualizar:any = "";
 

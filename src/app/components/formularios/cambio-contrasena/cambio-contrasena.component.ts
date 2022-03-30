@@ -71,6 +71,7 @@ export class CambioContrasenaComponent implements OnInit {
 
       if(err.error.msgtk){
         this.authService.logout();
+        return;
        }
        
        this.ErrorServidor.error();

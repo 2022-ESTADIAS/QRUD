@@ -73,6 +73,7 @@ export class RegistroRolComponent implements OnInit {
       }
       if(err.error.msgtk){
         this.AuthService.logout();
+        return;
       }
       
       this.ErrorServidor.error();

@@ -85,6 +85,7 @@ export class RegistroPersonalComponent implements OnInit {
 
       if(err.error.msgtk){
         this.authService.logout();
+        return;
       }
 
       this.ErrorServidor.error();
@@ -97,6 +98,7 @@ export class RegistroPersonalComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.authService.logout();
+        return;
       }
       this.ErrorServidor.error();
     })

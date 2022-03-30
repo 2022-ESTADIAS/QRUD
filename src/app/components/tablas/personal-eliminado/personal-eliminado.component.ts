@@ -40,6 +40,7 @@ export class PersonalEliminadoComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
+        return;
       }
       this.ErrorServidor.error();
       
@@ -63,6 +64,7 @@ export class PersonalEliminadoComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
+        return;
       }
       this.ErrorServidor.error();
     })
@@ -90,6 +92,7 @@ export class PersonalEliminadoComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
+        return;
       }
       this.ErrorServidor.error();
     })

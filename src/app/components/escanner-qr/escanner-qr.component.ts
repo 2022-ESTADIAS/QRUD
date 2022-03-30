@@ -47,9 +47,6 @@ export class EscannerQRComponent implements OnInit {
     this.FormularioUsuario();
 
     }
-    console.log(this.usuarioQR)
-
-    // console.log(user.usuario.nombre,"data parseada")
   }
 
   campoValido(campo:string){
@@ -62,7 +59,7 @@ export class EscannerQRComponent implements OnInit {
       this.form.markAllAsTouched();
       return;
     }
-    const usuarioActualizado:RegistroUsuario = this.form.value;
+    const usuario:RegistroUsuario = this.form.value;
   }
 
   camaranoEncontrada(e:any){

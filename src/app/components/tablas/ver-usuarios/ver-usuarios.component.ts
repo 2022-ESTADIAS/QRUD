@@ -65,6 +65,7 @@ export class VerUsuariosComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout()
+        return;
       }
       this.ErrorServidor.error();
 
@@ -93,6 +94,7 @@ export class VerUsuariosComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout()
+        return;
       }
       this.ErrorServidor.error();
     })

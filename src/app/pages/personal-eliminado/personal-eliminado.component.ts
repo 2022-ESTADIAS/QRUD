@@ -15,9 +15,9 @@ export class PersonalEliminadoComponent implements OnInit {
   existeMsgExito:boolean = false;
   personalActual:any= {};
 
-  page:number = 0;
-  busqueda:string = "";
-  ocultarPaginacion:boolean = true; 
+  page:any = 0;
+  busqueda:any = "";
+  ocultarPaginacion:any = true; 
 
   noexistePersonal:boolean = false;
   constructor(
@@ -40,6 +40,7 @@ export class PersonalEliminadoComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
+        return;
       }
       this.ErrorServidor.error();
       
@@ -63,6 +64,7 @@ export class PersonalEliminadoComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
+        return;
       }
       this.ErrorServidor.error();
     })
@@ -90,6 +92,7 @@ export class PersonalEliminadoComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
+        return;
       }
       this.ErrorServidor.error();
     })

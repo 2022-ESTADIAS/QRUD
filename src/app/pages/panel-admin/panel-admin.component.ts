@@ -1,3 +1,4 @@
+import { OnDestroy } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { QRUDService } from 'src/app/services/qrud.service';
@@ -8,7 +9,7 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './panel-admin.component.html',
   styleUrls: ['./panel-admin.component.css']
 })
-export class PanelAdminComponent implements OnInit {
+export class PanelAdminComponent implements OnInit, OnDestroy {
   ocultarForm:boolean = false;
   //controlar las opciones del menu
   mostrarOpcionesMenuUsuario:boolean = false; 
@@ -17,7 +18,7 @@ export class PanelAdminComponent implements OnInit {
   mostrarOpcionesMenuQR:boolean = false; 
   mostrarOpcionesMenuContrasena:boolean = false; 
   expandirMenu:boolean = false;
-
+  sidebar:any;
   //controla las rutas del personal logueado
   esAdmin:boolean = false;
   esMaster:boolean = false;
@@ -59,11 +60,14 @@ export class PanelAdminComponent implements OnInit {
     private AuthService: AuthService,
     private StorageService: StorageService,
   ) { }
+  ngOnDestroy(): void {
+    this.sidebar?.classList.remove("body-pd")
+  }
 
   ngOnInit(): void {
     this.obtenerNombre();
     this.verRol();
- 
+    this.generarColorRandom();
   }
 
   mostrarOpcionesUsuario(){
@@ -85,8 +89,14 @@ export class PanelAdminComponent implements OnInit {
 
   mostrarMenu(){
     this.expandirMenu = !this.expandirMenu;
-    const  bodyP = document.querySelector("body#body-pd");
-    bodyP?.classList.toggle("body-pd")
+    this.sidebar = document.querySelector("body#body-pd");
+    if(this.expandirMenu){
+      this.sidebar?.classList.add("body-pd")
+      
+    }else{
+      this.sidebar?.classList.remove("body-pd")
+      
+    }
   }
 
   verRol(){
@@ -123,6 +133,17 @@ export class PanelAdminComponent implements OnInit {
 
    this.inicial = this.nombrePersonal.split("")[0].toUpperCase();
    console.log(this.inicial);
+  }
+
+  generarColorRandom(){
+    setInterval(() => {
+      const color = Math.floor(Math.random() * 16777215).toString(16);
+      const colorRandom = "#" + ("000000" + color).slice(-6); 
+      console.log(colorRandom);
+      (document.querySelector("#cambioColor") as any).style.backgroundColor = colorRandom;
+
+    },3000)
+    
   }
 
 

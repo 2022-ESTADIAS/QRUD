@@ -87,6 +87,7 @@ export class ActualizarRolComponent implements OnInit {
 
       if(err.error.msgtk){
         this.authService.logout();
+        return;
       }
 
       this.ErrorServidor.error();

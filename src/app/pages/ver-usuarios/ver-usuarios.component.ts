@@ -27,16 +27,16 @@ export class VerUsuariosComponent implements OnInit {
   msgQR:string = "";
 
     //mostrar el formulario emergente cuando le den click al icono de editar
-  mostrarFormularioEmergente:boolean = false;
+  mostrarFormularioEmergente:any = false;
 
   //valores pasados por referencia
   usuarioparaActualizar:any = {};
   idusuarioActualizar:any = "";
 
   //paginacion
-  page:number = 0;
-  busqueda:string = "";
-  ocultarPaginacion:boolean = true;
+  page:any = 0;
+  busqueda:any = "";
+  ocultarPaginacion:any = true;
   usuarioActual: any;
 
   noexistenUsuarios:boolean = false;
@@ -65,6 +65,7 @@ export class VerUsuariosComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout()
+        return;
       }
       this.ErrorServidor.error();
 
@@ -93,6 +94,7 @@ export class VerUsuariosComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout()
+        return;
       }
       this.ErrorServidor.error();
     })

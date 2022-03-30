@@ -17,16 +17,16 @@ export class VerPersonalComponent implements OnInit {
   existeMsgExito:boolean = false;
 
   existeMsgActualizarExito:boolean = false;
-  mostrarFormularioEmergente:boolean = false;
+  mostrarFormularioEmergente:any = false;
   personalparaActualizar:any = {};
   idpersonalActualizar:any = "";
 
   accesoDenegado:boolean = true;
 
 
-  page:number = 0;
-  busqueda:string = "";
-  ocultarPaginacion:boolean = true;
+  page:any = 0;
+  busqueda:any = "";
+  ocultarPaginacion:any = true;
 
   personalActual:any;
 
@@ -59,6 +59,7 @@ export class VerPersonalComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
+        return;
       }
       this.ErrorServidor.error();
 
@@ -83,6 +84,7 @@ export class VerPersonalComponent implements OnInit {
     }).catch(err =>{
       if(err.error.msgtk){
         this.AuthService.logout();
+        return;
       }
       this.ErrorServidor.error();
 

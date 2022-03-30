@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-cambio-contrasena',
@@ -17,17 +18,19 @@ export class CambioContrasenaComponent implements OnInit {
   //actualizando contrasena exitosamente
   msgExito:string = "";
   existemsgExito:boolean = false;
+  nombreUsuario:string = "";
   
   constructor(
     private QRUDService: QRUDService,
     private fb: FormBuilder,
     private authService: AuthService,
-    private ErrorServidor:ErrorServidorService
+    private ErrorServidor:ErrorServidorService,
+    private StorageService: StorageService
   ) { }
 
   ngOnInit(): void {
   this.cambiarContrasena()  
-
+  this.nombre();
 
 
   }
@@ -71,6 +74,7 @@ export class CambioContrasenaComponent implements OnInit {
 
       if(err.error.msgtk){
         this.authService.logout();
+        return;
        }
        
        this.ErrorServidor.error();
@@ -102,6 +106,11 @@ export class CambioContrasenaComponent implements OnInit {
 
   removerAlertas(){
     this.existeError = false;
+  }
+
+  nombre(){
+    this.nombreUsuario = this.StorageService.desencriptar("nombre");
+
   }
 
 }

@@ -6,6 +6,8 @@
     padding: 25px 30px;
     border-radius: 5px;
     margin-top: 20px;
+    overflow-x: auto;
+
 }
 .container .title{
     font-size: 25px;
@@ -221,4 +223,21 @@
 .btn10:hover::after, .btn1O:hover::after{
 	opacity:1;
 	width: 120%;
+}
+/* responsivoo*/
+@media screen and (min-width: 300px){
+  .wrapper {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px){
+  input{
+    width: 230px;
+  }
+  .container{
+    width: 80%;
+  }
+  textarea{
+    min-width: 210px;
+  }
 }

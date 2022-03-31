@@ -256,4 +256,8 @@
   input{
     width: 230px;
   }
+  .container{
+    width: 95%;
+    margin-top: 5;
+  }
 }

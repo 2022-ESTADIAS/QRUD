@@ -239,4 +239,10 @@
   input{
     width: 230px;
   }
+  .container{
+    width: 80%;
+  }
+  .controls{
+    width: 83%;
+  }
 }

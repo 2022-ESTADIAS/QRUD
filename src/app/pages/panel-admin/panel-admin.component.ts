@@ -40,17 +40,17 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
     
     rutasAdmin:any[] = [
       [
-        {ruta:'/ver-usuarios',nombre:'Ver Usuario'},
-        {ruta:'',nombre:'Crear Usuario'},
-        {ruta:'/usuarios-eliminados',nombre:'Ver Usuarios Eliminados'}, //rutas usuario
+        {ruta:'/ver-usuarios',nombre:'Ver'},
+        {ruta:'',nombre:'Crear'},
+        {ruta:'/usuarios-eliminados',nombre:'Eliminados'}, //rutas usuario
       ],
       [
-        {ruta:'/ver-personal',nombre:'Ver Personal'},
+        {ruta:'/ver-personal',nombre:'Ver'},
       ],
   ];
   rutasAux:any[] = [
-    {ruta:'',nombre:'Crear Usuario'},
-    {ruta:'/ver-usuarios',nombre:'Ver Usuario'},
+    {ruta:'',nombre:'Crear'},
+    {ruta:'/ver-usuarios',nombre:'Ver'},
   ];
 
   nombrePersonal:string = '';

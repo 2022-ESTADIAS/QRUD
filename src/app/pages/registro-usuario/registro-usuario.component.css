@@ -259,5 +259,9 @@
   .container{
     width: 95%;
     margin-top: 5;
+    
+  }
+  .container .title{
+    font-size: 18px;
   }
 }

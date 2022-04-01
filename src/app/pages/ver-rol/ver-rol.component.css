@@ -91,6 +91,7 @@
   .btn{
     background: none;
     border: none;
+    cursor: pointer;
   }
   
   .fa-square-pen,

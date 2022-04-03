@@ -10,14 +10,26 @@ body {
     font-family: 'Rosario', sans-serif;
     padding: 0 1.5em;
 }
-.wave{
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	height: 100%;
-	z-index: -1;
+.container{
+  max-width: 380px;
+  width: 100%;
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 5px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+
 }
-.email{
+.container form .user-details{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 35px 0 -20px 0;
+}
+
+/*.email{
     display: block;
     text-align: center; 
     align-items: center;
@@ -29,31 +41,29 @@ body {
     box-shadow: 0 2px 15px rgba(64,64,64,.7); 
     width: 500px; 
     height: 800px;
-  }
-.email img{
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+  }*/
+.container img{  /*email*/
+    margin-bottom: 0rem;
     text-align: center;
     width: 200px;
-    height: 200px;
+    height: 100px;
 }
-.email p{
-    font-size: 25px;
+.container p{
+    font-size: 20px;
     letter-spacing: 1px;
     line-height: 30px;
     font-weight: bold;
     margin-left: 50px;
     margin-right: 50px;
-    margin-bottom: 30px;
     padding: auto;
 }
-/* form email */
+/* form email 
 form{
     margin-left: auto;
     margin-right: auto;
     height: 150px;
     width: 300px;
-}
+}*/
 .group 			  { 
     position:relative; 
     margin-bottom:45px; 
@@ -64,21 +74,19 @@ form{
     display:block;
     width:300px;
     border:none;
-    border-radius: 20px;/* 
-    border-bottom:1px solid #757575; */
-    box-shadow: 0 2px 15px rgba(64,64,64,.7);
+    border-bottom:1px solid #757575;
   }
   input:focus 		{ outline:none; }
   
   /* LABEL ======================================= */
-  label 				 {
+  .group label{
     color:rgb(46, 46, 46); 
-    font-size:18px;
+    font-size:16px;
     font-weight:normal;
     position:absolute;
     pointer-events:none;
-    left:10px;
-    top:13px;
+    left:5px;
+    top:10px;
     transition:0.2s ease all; 
     -moz-transition:0.2s ease all; 
     -webkit-transition:0.2s ease all;
@@ -149,13 +157,14 @@ form{
   }
 /* Boton =================================================================== */
 .wrapper {
-    margin: 30px;
+    top: -25;
+    margin: 10px;
     text-align: center;
-    width: 50%;
+    width: 90%;
    /*  position: relative; */
   }
 .btn10{
-    padding: 15px 100px;
+    padding: 9px 80px;
     margin:10px 4px;
     color: #fff;
     font-family: sans-serif;
@@ -245,4 +254,27 @@ form{
 .btn10:hover::after, .btn1O:hover::after{
 	opacity:1;
 	width: 120%;
+}
+/* responsivoo*/
+@media screen and (min-width: 300px){
+  .wrapper {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 500px){
+  input{
+    width: 230px;
+  }
+  .container{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 600px){
+  .container p{
+    font-size: 15 !important;
+    font-weight: bold;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+  }
 }

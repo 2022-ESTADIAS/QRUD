@@ -31,8 +31,7 @@
                         <tbody>
                             <tr *ngFor="let personal of personas|busqueda:page:busqueda:true">
     
-                                <h1 *ngIf="personal.error">{{personal.msg}}</h1>
-    
+                                <app-no-encontrado *ngIf="personal.error"  [mensaje]="personal.msg"></app-no-encontrado>
                                 <td data-title="Nombre">{{personal.nombre |uppercase  }}</td>
                                 <td data-title="Rol" *ngIf="!personal.error" > {{personal.rol.rol |uppercase }}</td>
                                 <td data-title="Telefono">{{personal.telefono}}</td>

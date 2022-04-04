@@ -32,7 +32,7 @@
                     <tbody>
                         <tr *ngFor="let usuario of usuarios|busqueda:page:busqueda">
 
-                            <h1 *ngIf="usuario.error">{{usuario.msg}}</h1>
+                            <app-no-encontrado *ngIf="usuario.error"  [mensaje]="usuario.msg"></app-no-encontrado>
 
                             <td data-title="Nombre">{{usuario.nombre |uppercase }}</td>
                             <td data-title="RFC">{{usuario.rfc |uppercase }}</td>

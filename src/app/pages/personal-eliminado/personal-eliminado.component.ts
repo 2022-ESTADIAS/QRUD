@@ -31,7 +31,7 @@ export class PersonalEliminadoComponent implements OnInit {
   }
 
   obtenerPersonalEliminado(){
-    this.QRUDService.VerUsuariosEliminados("personal").then((data:any)=>{
+    this.QRUDService.VerEliminados("personal").then((data:any)=>{
       console.log(data);
       this.personas = data.eliminados;
       if(this.personas.length == 0){

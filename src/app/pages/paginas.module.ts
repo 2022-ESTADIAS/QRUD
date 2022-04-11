@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ComponentesModule } from '../components/componentes.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { PaginasRoutingModule } from './paginas-routing.module';
+
+import { BusquedaPipe } from '../pipes/busqueda.pipe';
 
 //paginas
 import { CambioContrasenaComponent } from './cambio-contrasena/cambio-contrasena.component';
@@ -14,11 +19,7 @@ import { RegistroRolComponent } from './registro-rol/registro-rol.component';
 import { VerUsuariosComponent } from './ver-usuarios/ver-usuarios.component';
 import { VerPersonalComponent } from './ver-personal/ver-personal.component';
 import { VerRolComponent } from './ver-rol/ver-rol.component';
-import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { BusquedaPipe } from '../pipes/busqueda.pipe';
-import { ComponentesModule } from '../components/componentes.module';
+import { EscannerUsuarioComponent } from './escanner-usuario/escanner-usuario.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ComponentesModule } from '../components/componentes.module';
     VerPersonalComponent,
     VerRolComponent,
     BusquedaPipe,
+    EscannerUsuarioComponent,
   ],
   imports: [
     CommonModule,

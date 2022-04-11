@@ -1,5 +1,4 @@
 export const busqueda = (value:any[],search:string,page:number,isPersonal:boolean = false) =>{
-
     if(isPersonal == false){
         if(search.trim() !== ''){
             const searchArr = value.filter((usuario:any) =>
@@ -9,12 +8,9 @@ export const busqueda = (value:any[],search:string,page:number,isPersonal:boolea
             usuario.telefono.includes(search.toLowerCase())   ||
             usuario.email.includes(search.toLowerCase())  
             );
-            console.log(searchArr)
-            console.log(search.length)
             if(searchArr.length == 0) {
               return [{error:true,msg:"No se encontro Registro"}]
             }
-      
             return searchArr;
           } else{
       
@@ -27,17 +23,13 @@ export const busqueda = (value:any[],search:string,page:number,isPersonal:boolea
             personal.telefono.includes(search.toLowerCase())   ||
             personal.email.includes(search.toLowerCase())  
             );
-            console.log(searchArr)
-            console.log(search.length)
             if(searchArr.length == 0) {
               return [{error:true,msg:"No se encontro Registro"}]
             }
-      
             return searchArr;
           } else{
       
             return value.slice(page,page+ 10);
           }
     }
-
 }

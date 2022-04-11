@@ -99,7 +99,7 @@ export class QRUDService {
     })
   }
   
-  VerUsuariosEliminados(ruta:"user" | "personal"){
+  VerEliminados(ruta:"user" | "personal"){
     const token = this.StorageService.desencriptar(llaveToken);
 
     return new Promise((resolve,reject)=>{

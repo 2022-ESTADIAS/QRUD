@@ -32,7 +32,7 @@ export class UsuariosEliminadosComponent implements OnInit {
   }
 
   obtenerUsuariosEliminados(){
-    this.QRUDService.VerUsuariosEliminados("user").then((data:any)=>{
+    this.QRUDService.VerEliminados("user").then((data:any)=>{
       console.log(data);
       this.usuarios = data.usuarios;
 

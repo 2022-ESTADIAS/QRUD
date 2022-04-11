@@ -1,0 +1,70 @@
+      <!---------------------header---------------------------->
+      <div class="header">
+            
+        <img src="assets/img/logo.svg" alt="" >
+        <div class="header-right">
+            <a class="logo">Bienvenido! </a>
+        </div>
+      </div>
+    <!-----------------------------------------menu----------------------->
+
+<main> 
+    <img class="wave" src="assets/img/wave2.png">  
+    <div class="activity-grid"><!----------Tarjeta del usuario-------------------->
+        <div class="contenedor">
+            <div class="carta " [ngClass]="{'active':scaneoCompletado}" >
+              
+                <div class="lado frente">
+                    <zxing-scanner
+                    [formats]="allowedFormats" 
+            (scanSuccess)="escanearQR($event)" 
+                    ></zxing-scanner>
+                </div>
+                
+                <div class="lado atras">
+                            <div class="conten-card">
+                                <div class="card">
+                                   <div class="content" *ngIf="usuarioQR">
+                                    <h3 class="titulo">Información Usuario</h3>
+                                    <h5>Nombre</h5>
+                                    <h4 class="controls">{{usuarioQR.nombre}}</h4>
+                                    <h5>RFC</h5>
+                                    <h4 class="controls">{{usuarioQR.rfc}}</h4>
+                                    <h5>Dirección</h5>
+                                    <h4 class="controls">{{usuarioQR.direccion}}</h4>
+                                    <h5>Teléfono</h5>
+                                    <h4 class="controls">{{usuarioQR.telefono}} </h4>
+                                    <h5>Correo</h5>
+                                    <h4 class="controls">{{usuarioQR.email}}</h4>
+                                   </div>
+                                </div>
+                            </div> 
+                            <button (click)="nuevoEscaneo()" > Escanear otro codigo</button>
+                </div>	
+              
+            </div>
+        </div>
+
+        <div class="summary">
+            <div class="summary-card">
+                <div class="summary-single">
+                    <span>Escaner QR</span>
+                </div>
+                <div class="summary-single">
+                    <div>
+                        <small>-Bienvenido a su espacio, en este apartado podrás
+                            escanear tu código QR proporcionado a tu correo electrónico
+                        </small>
+                    </div>
+                </div>
+                <div class="summary-single">
+                    <div>
+                        <small>-Una vez escaneado el código QR se mostrara su información
+                        </small>
+                    </div>
+                </div>
+                
+            </div>     
+        </div>
+    </div>
+</main>

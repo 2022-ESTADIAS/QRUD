@@ -1,13 +1,12 @@
 /*===== GOOGLE FONTS =====*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
-
-
 /*===== BASE =====*/
 *,::before,::after{
   box-sizing: border-box;
 }
 body{
+  padding: 0;
   position: relative;
   margin: 0;
   font-family: var(--body-font);
@@ -26,11 +25,8 @@ ul{
 a{
   text-decoration: none;
 }
-
-
 /*-----------------------header----------------------*/
 * {box-sizing: border-box;}
-
 
 .header {
   overflow: hidden;

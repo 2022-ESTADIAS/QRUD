@@ -31,6 +31,12 @@ body {
     width: 100%;
     height: 100%;
 }
+
+@media screen and (max-width: 1250px){
+  .login-imagen{
+    opacity: 0;
+  }
+}
 /* Contenido de form */
 .content-form{
     margin-top: 70px;
@@ -101,7 +107,12 @@ form{
     -moz-transition:0.2s ease all; 
     -webkit-transition:0.2s ease all;
   }
-  
+  p{
+    text-align: center;
+  }
+  a{
+    text-decoration: none;
+  }
   /* active state */
   input:focus ~ label, input:valid ~ label 		{
     top:-20px;

@@ -3,27 +3,33 @@
 <app-errores-backend [mensaje]="msgError" *ngIf="existeError" ></app-errores-backend>
 
 <img class="wave" src="assets/img/wave2.png"> 
-<section class="email">
-    <img src="assets/img/logo.svg">
-    <p>Ingrese la dirección de correo electrónico verificada de su cuenta de usuario y le enviaremos un enlace para restablecer la contraseña.</p>
-    <form [formGroup]="form" (ngSubmit)="submit()"  >
-        <div class="group">      
-          <input type="email"  formControlName="email"  >
-          <span class="highlight"></span>
-          <span class="bar"></span>
-          <label>Email</label>
-          <app-errores-frontend mensaje="Debe de ser un correo valido" *ngIf="campoValido('email')" ></app-errores-frontend>
 
-        </div>
-        <a routerLink="/login">Recordaste tu contraseña?, Inicia Sesion</a>
-       
-        <div class="wrapper">
-            <button type="submit"  class="btn10">
-                <span>Send</span>
-                <div class="transition"></div>
-            </button>
-        </div>
+<div class="activity-grid">
+  <div class="container">
+    <!--<section class="email">-->
+      <img src="assets/img/logo.svg">
+        <p>Ingrese la dirección de correo electrónico verificada de su cuenta de usuario y le enviaremos un enlace para restablecer la contraseña.</p>
+        <form [formGroup]="form" (ngSubmit)="submit()"  >
+          <div class="user-details">
+          <div class="group">      
+              <input type="email"  formControlName="email"  >
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Email</label>
+              <app-errores-frontend mensaje="Debe de ser un correo valido" *ngIf="campoValido('email')" ></app-errores-frontend>
 
-      </form>
-    
-</section>
+            </div>
+            <a routerLink="/login">Recordaste tu contraseña?, Inicia Sesion</a>
+          
+            <div class="wrapper">
+                <button type="submit"  class="btn10">
+                    <span>Enviar</span>
+                    <div class="transition"></div>
+                </button>
+            </div>
+          </div>
+          </form>
+        
+    <!--</section>-->
+  </div>
+</div>

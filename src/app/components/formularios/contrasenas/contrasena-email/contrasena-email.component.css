@@ -17,7 +17,7 @@ body {
 	height: 100%;
 	z-index: -1;
 }
-.email{
+/*.email{
     display: block;
     text-align: center; 
     align-items: center;
@@ -29,31 +29,53 @@ body {
     box-shadow: 0 2px 15px rgba(64,64,64,.7); 
     width: 500px; 
     height: 800px;
+  }*/
+
+  .container{
+    max-width: 380px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+    margin-top: 20px;
+  
   }
-.email img{
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+  .container form .user-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 35px 0 -20px 0;
+  } 
+  .container img{
+    margin-bottom: 0rem;
     text-align: center;
     width: 200px;
-    height: 200px;
+    height: 100px;
 }
-.email p{
-    font-size: 25px;
-    letter-spacing: 1px;
-    line-height: 30px;
-    font-weight: bold;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 30px;
-    padding: auto;
+.container p{
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 30px;
+  font-weight: bold;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: auto;
+  margin: 11px;
 }
-/* form email */
+.container a{
+  text-decoration: none;
+}
+/* form email 
 form{
     margin-left: auto;
     margin-right: auto;
     height: 150px;
     width: 300px;
-}
+}*/
 .group 			  { 
     position:relative; 
     margin-bottom:45px; 
@@ -64,21 +86,19 @@ form{
     display:block;
     width:300px;
     border:none;
-    border-radius: 20px;/* 
-    border-bottom:1px solid #757575; */
-    box-shadow: 0 2px 15px rgba(64,64,64,.7);
+    border-bottom:1px solid #757575;
   }
   input:focus 		{ outline:none; }
   
   /* LABEL ======================================= */
-  label 				 {
+  .group label{
     color:rgb(46, 46, 46); 
-    font-size:18px;
+    font-size:16px;
     font-weight:normal;
     position:absolute;
     pointer-events:none;
-    left:10px;
-    top:13px;
+    left:5px;
+    top:10px;
     transition:0.2s ease all; 
     -moz-transition:0.2s ease all; 
     -webkit-transition:0.2s ease all;

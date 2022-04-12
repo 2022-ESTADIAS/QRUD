@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BarcodeFormat } from '@zxing/library';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 @Component({
   selector: 'app-escanner-usuario',
   templateUrl: './escanner-usuario.component.html',
-  styleUrls: ['./escanner-usuario.component.css']
+  styleUrls: ['./escanner-usuario.component.css'],
+  encapsulation:ViewEncapsulation.None
 })
 export class EscannerUsuarioComponent implements OnInit {
 

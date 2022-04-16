@@ -33,7 +33,6 @@ export class UsuariosEliminadosComponent implements OnInit {
 
   obtenerUsuariosEliminados(){
     this.QRUDService.VerEliminados("user").then((data:any)=>{
-      console.log(data);
       this.usuarios = data.usuarios;
 
       if(this.usuarios.length == 0){
@@ -52,7 +51,6 @@ export class UsuariosEliminadosComponent implements OnInit {
   activarUsuario(id:any){
     this.QRUDService.activarUsuarios("user",id).then((data:any)=>{
       this.usuarios = this.usuarios.filter(usuario => usuario.uid !==id );
-      console.log(data);
       this.existeMsgExito = true;
 
       setTimeout(() => {
@@ -80,7 +78,6 @@ export class UsuariosEliminadosComponent implements OnInit {
   eliminarUsuarioPermanentemente(id:any){
     this.QRUDService.EliminarRegistrosPermanentemente('user',id).then((data) => {
       this.usuarios = this.usuarios.filter(usuario => usuario.uid !==id );
-      console.log(data);
 
 
 

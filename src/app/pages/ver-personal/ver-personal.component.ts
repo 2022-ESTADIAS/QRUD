@@ -49,7 +49,6 @@ export class VerPersonalComponent implements OnInit {
   obtenerPersonal() {
 
     this.QRUDService.ObtenerRegistros("personal").then((data:any) => {
-      console.log(data)
       this.personas = data.personal;
 
       if(this.personas.length == 0){
@@ -70,7 +69,6 @@ export class VerPersonalComponent implements OnInit {
   eliminarPersonal(id:any) {
     this.QRUDService.EliminarRegistros("personal",id).then((data:any) =>{
       this.personas = this.personas.filter(personal => personal.uid !==id );
-      console.log(data);
       this.existeMsgExito = true;
 
       setTimeout(() => {

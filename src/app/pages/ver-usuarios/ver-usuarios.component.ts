@@ -57,7 +57,6 @@ export class VerUsuariosComponent implements OnInit {
   obtenerUsuarios() {
 
     this.QRUDService.ObtenerRegistros("user").then((data:any) => {
-      console.log(data)
       this.usuarios = data.usuarios;
       if(this.usuarios.length == 0){
         this.noexistenUsuarios =true;
@@ -81,7 +80,6 @@ export class VerUsuariosComponent implements OnInit {
   eliminarUsuario(id:any) {
     this.QRUDService.EliminarRegistros("user",id).then((data:any) =>{
       this.usuarios = this.usuarios.filter(usuario => usuario.uid !==id );
-      console.log(data);
       this.existeMsgExito = true;
 
       setTimeout(() => {
@@ -122,7 +120,6 @@ export class VerUsuariosComponent implements OnInit {
 
   enviarQR(id:any){
     this.QRUDService.GenerarQRUSuario(id).then((data:any) =>{
-      console.log(data);
 
       this.existeMsgQRExito = true;
       this.msgQR = data.msg;
@@ -133,7 +130,6 @@ export class VerUsuariosComponent implements OnInit {
   
 
     }).catch(err => {
-      console.log(err);
       if(err.error.msg){
         this.msgQR = err.error.msg;
         this.existeQRregistrado = true;

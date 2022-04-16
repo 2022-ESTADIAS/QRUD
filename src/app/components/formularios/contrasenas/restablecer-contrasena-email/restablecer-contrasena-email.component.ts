@@ -16,7 +16,6 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
   existeError: boolean = false;
   msgError: string ='';
 
-  //actualizando contrasena exitosamente
   msgExito:string = "";
   existemsgExito:boolean = false;
 
@@ -35,7 +34,6 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
   ngOnInit(): void {
   this.cambiarContrasena()
   this.route.queryParams.subscribe((data:any) =>{
-    console.log(data)
     this.token = data.token;
     this.id = data.id;
   })
@@ -67,7 +65,6 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
       },1500)
 
     }).catch(err => {
-        console.log(err,"koso");
        
         if(err.error.err){
           this.msgError = err.error.err; 

@@ -36,7 +36,6 @@ export class BuscadorComponent implements OnInit {
   }
   
   busquedaRegistros(e:any,search:string){
-    console.log(e.key);
     
     if(e.key =="Backspace" && search.length == 0 ){
       this.busqueda.emit("");

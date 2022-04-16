@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./exito.component.css']
 })
 export class ExitoComponent implements OnInit {
+
   @Input("mensaje") msg: string ="";
+  
   constructor() { }
 
   ngOnInit(): void {

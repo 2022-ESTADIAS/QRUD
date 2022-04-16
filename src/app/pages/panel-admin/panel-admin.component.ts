@@ -27,6 +27,8 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
   //rutas del sistema  
   rutas:any[] = [];
 
+  funcionCambioDecolor:any;
+
   rutasMaster:any[] = [
     [{ruta:'',nombre:'Crear '},
     {ruta:'/ver-usuarios',nombre:'Ver'},
@@ -62,6 +64,8 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
   ) { }
   ngOnDestroy(): void {
     this.sidebar?.classList.remove("body-pd")
+    clearTimeout(this.funcionCambioDecolor);
+    
   }
 
   ngOnInit(): void {
@@ -101,7 +105,6 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
 
   verRol(){
     const rol = this.StorageService.desencriptar("rol");
-    console.log(rol)
     if(rol =='MASTER_ROLE'){
       this.esMaster =  true;
       this.esAdmin = false;
@@ -132,14 +135,12 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
    this.nombrePersonal = this.StorageService.desencriptar("nombre");
 
    this.inicial = this.nombrePersonal.split("")[0].toUpperCase();
-   console.log(this.inicial);
   }
 
   generarColorRandom(){
-    setInterval(() => {
+ this.funcionCambioDecolor = setInterval(() => {
       const color = Math.floor(Math.random() * 16777215).toString(16);
       const colorRandom = "#" + ("000000" + color).slice(-6); 
-      console.log(colorRandom);
       (document.querySelector("#cambioColor") as any).style.backgroundColor = colorRandom;
 
     },3000)

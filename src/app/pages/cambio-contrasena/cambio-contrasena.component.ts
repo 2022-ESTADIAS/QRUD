@@ -61,7 +61,6 @@ export class CambioContrasenaComponent implements OnInit {
 
     }).catch((err) => {
 
-      console.log(err);
       if(err.error.msg){
         this.error = err.error.msg;
         this.existeError = true;

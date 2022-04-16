@@ -32,7 +32,6 @@ export class PersonalEliminadoComponent implements OnInit {
 
   obtenerPersonalEliminado(){
     this.QRUDService.VerEliminados("personal").then((data:any)=>{
-      console.log(data);
       this.personas = data.eliminados;
       if(this.personas.length == 0){
         this.noexistePersonal =true;
@@ -50,7 +49,6 @@ export class PersonalEliminadoComponent implements OnInit {
   activarUsuario(id:any){
     this.QRUDService.activarUsuarios("personal",id).then((data:any)=>{
       this.personas = this.personas.filter(personal => personal.uid !==id );
-      console.log(data);
       this.existeMsgExito = true;
       
       setTimeout(() => {

@@ -16,7 +16,6 @@
         <div class="activity-grid">
             <div class="activity-card">
                 <h3>Lista de Personal Inactivo</h3>
-                <!----------------------tabla-------------------->
                 <div class="table-responsive">
                     <table>
                         <thead >
@@ -53,7 +52,6 @@
                     </table>
                 </div>
                 
-                <!---------------------------paginado-------------------------------->
                 <app-paginacion [longitud]="personas.length" (paginaActual)="page = $event" *ngIf="personas.length > 10 && ocultarPaginacion "> </app-paginacion>
             </div>
            

@@ -6,9 +6,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./no-encontrado.component.css']
 })
 export class NoEncontradoComponent implements OnInit {
-
-  constructor() { }
+  
   @Input() mensaje:string = '';
+ 
+  constructor() { }
+  
 
   ngOnInit(): void {
   }

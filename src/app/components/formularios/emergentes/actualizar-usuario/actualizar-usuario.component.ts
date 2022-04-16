@@ -70,9 +70,7 @@ export class ActualizarUsuarioComponent implements OnInit {
       telefono,
     };
 
-    console.log(this.idUsuario)
     this.QRUDService.ActualizarRegistros("user",this.idUsuario,usuarioActualizado).then((data:any) => {
-      console.log(data);
       this.msgExito ="Usuario Actualizado Exitosamente";
       this.existeMsgExito = true;
       this.form.reset();
@@ -86,7 +84,6 @@ export class ActualizarUsuarioComponent implements OnInit {
 
 
     }).catch(err => {
-      console.log(err)
       if(err.error.errors){
         this.existeError = true;
         this.errores = err.error.errors;

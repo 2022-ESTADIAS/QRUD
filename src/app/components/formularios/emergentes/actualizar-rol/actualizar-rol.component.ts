@@ -78,7 +78,6 @@ export class ActualizarRolComponent implements OnInit {
 
 
     }).catch(err => {
-      console.log(err)
       if(err.error.errors){
         this.existeError = true;
         this.errores = err.error.errors;

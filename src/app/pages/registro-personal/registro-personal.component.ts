@@ -66,7 +66,6 @@ export class RegistroPersonalComponent implements OnInit {
     }
 
     this.QRUDService.crearRegistro("personal",personal).then((data:any) =>{
-        console.log(data);
         this.msgExito = data.msg;
         this.existeMsgExito = true;
         this.form.reset();
@@ -76,7 +75,6 @@ export class RegistroPersonalComponent implements OnInit {
         },2000);
 
     }).catch((err) =>{
-      console.log(err);
       if(err.error.erros){
         this.existeError = true;
         this.errores = err.error.errors;

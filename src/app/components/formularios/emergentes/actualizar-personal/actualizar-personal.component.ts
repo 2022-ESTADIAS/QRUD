@@ -53,7 +53,6 @@ export class ActualizarPersonalComponent implements OnInit {
   obtenerRoles(){
     this.QRUDService.ObtenerRegistros('rol').then((data:any) => {
       this.roles = data.roles
-      console.log(this.roles)
     }).catch(err =>{
       if(err.error.msgtk){
        this.authService.logout();
@@ -80,7 +79,6 @@ export class ActualizarPersonalComponent implements OnInit {
 
 
     this.QRUDService.ActualizarRegistros("personal",this.idPersonal,personalActualizado).then((data:any) => {
-      console.log(data);
       this.msgExito ="Personal Actualizado Exitosamente";
       this.existeMsgExito = true;
       this.form.reset();
@@ -95,7 +93,6 @@ export class ActualizarPersonalComponent implements OnInit {
 
 
     }).catch(err => {
-      console.log(err)
       if(err.error.errors){
         this.existeError = true;
         this.errores = err.error.errors;

@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
     this.loginExistoso = true;
     
     this.AuthService.login(personal).then((data) => {
-      console.log(data)
       this.existeError = false;
       this.StorageService.encryptar("nombre",data.personal.nombre);
       setTimeout(() => {
@@ -60,8 +59,6 @@ export class LoginComponent implements OnInit {
         
       },1000)
     }).catch(err =>{
-      console.log(err)
-      console.log(err.error.msg)
       if(err.error.msg){
         this.existeError = true;
         this.loginExistoso = false;

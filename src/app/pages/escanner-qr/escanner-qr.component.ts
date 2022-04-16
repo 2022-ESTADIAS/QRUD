@@ -37,7 +37,6 @@ export class EscannerQRComponent implements OnInit {
 
   escanearQR(event:any){
     const user = JSON.parse(event);
-    console.log(user)
     this.usuarioQR = user;
     if(user){
       this.ocultarFormulario = true;
@@ -63,7 +62,6 @@ export class EscannerQRComponent implements OnInit {
   }
 
   camaranoEncontrada(e:any){
-    console.log(e)
     this.camara = false;
  
   }

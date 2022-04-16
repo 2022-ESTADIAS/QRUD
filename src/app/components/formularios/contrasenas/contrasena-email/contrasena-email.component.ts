@@ -16,6 +16,7 @@ export class ContrasenaEmailComponent implements OnInit {
   msgError:string = "";
   existeError:boolean = false;
   existeMsgExito:boolean = false;
+  
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -42,7 +43,6 @@ export class ContrasenaEmailComponent implements OnInit {
     const email = this.form.value;
     
     this.QRUDService.olvideContrasena(email).then((data:any) => {
-      console.log(data);
       this.msgExito = data.msg;
       this.form.reset();
       this.existeMsgExito = true;
@@ -53,7 +53,6 @@ export class ContrasenaEmailComponent implements OnInit {
     },1500)
 
     }).catch((err) => {
-      console.log(err);
       if(err.error.msg){
         this.existeError = true;
         this.msgError = err.error.msg;

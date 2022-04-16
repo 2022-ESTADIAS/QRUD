@@ -63,7 +63,6 @@ export class PaginacionComponent implements OnInit {
        this.arregloPaginacion.push(i);
  
      }
-     console.log(this.longitud)
    
    }
  

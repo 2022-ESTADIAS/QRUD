@@ -1,3 +1,6 @@
+/**
+ * variables del entorno de produccion
+ */
 export const environment = {
   production: true,
   url:"https://qrudapp.herokuapp.com",

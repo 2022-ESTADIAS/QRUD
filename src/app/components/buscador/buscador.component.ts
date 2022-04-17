@@ -1,52 +1,63 @@
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
 @Component({
   selector: 'app-buscador',
   templateUrl: './buscador.component.html',
   styleUrls: ['./buscador.component.css']
 })
 export class BuscadorComponent implements OnInit {
+  /**
+   * almacena la busqueda hecha por el personal
+   */
   search:string ='';
-  toggleButtons:any= true;
-  @Input() page:number = 0;
 
+  /**
+   * bandera que permite controlar el momento en el que se muestra el componente de paginacion
+   */
+  togglePaginacion:any= true;
+
+  /**
+   * Evento que se encarga de emitir la busqueda al componente padre
+   */
   @Output() busqueda:EventEmitter<string> = new EventEmitter<string>();
-  @Output("ocultar") mostrarOcultarBotones:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  /**
+   * Evento que se encarga de emitir el valor booleno para controlar la aparicion del componente paginacion al componente padre
+   */
+  @Output("ocultar") mostrarOcultarPaginacion:EventEmitter<boolean> = new EventEmitter<boolean>();
+  /**
+   * @ignore
+   */
   constructor() { }
 
+  /**
+   * @ignore
+   */
   ngOnInit(): void {
   }
 
-  onSearch(search:string){
-    if(search.length == 0){
-      this.toggleButtons = true;
-      this.mostrarOcultarBotones.emit(this.toggleButtons);
-      this.page = 0;
-      return;
-    }
-    
-    this.search = search;
-    this.toggleButtons  = false;
-    this.mostrarOcultarBotones.emit(this.toggleButtons);
-    this.busqueda.emit(this.search);
-  }
-  
+  /**
+   * Metodo encargado de emitir la busqueda al componente padre solo si la busqueda es diferente de vacio de igual forma se encarga de emitir la bandera para ocultar el componente de paginacion caso contrario no se realiza la busqueda y se muestra el componente de paginacion
+   * @param {string} search recibe como parametro el valor de la busqueda
+   * @param {event} e  recibe como parametro el evento que se genera al presionar cualquier tecla
+   */
   busquedaRegistros(e:any,search:string){
     
     if(e.key =="Backspace" && search.length == 0 ){
       this.busqueda.emit("");
-    this.toggleButtons = true;
-      this.mostrarOcultarBotones.emit(this.toggleButtons);
+    this.togglePaginacion = true;
+      this.mostrarOcultarPaginacion.emit(this.togglePaginacion);
       return;
     }
     this.search = search;
-    this.toggleButtons  = false;
+    this.togglePaginacion  = false;
     this.busqueda.emit(this.search);
-    this.mostrarOcultarBotones.emit(this.toggleButtons);
+    this.mostrarOcultarPaginacion.emit(this.togglePaginacion);
 
     
 

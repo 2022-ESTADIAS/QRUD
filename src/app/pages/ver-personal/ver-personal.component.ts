@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Personal } from 'src/app/interfaces/personal.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { StorageService } from 'src/app/services/storage.service';
 
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
 @Component({
   selector: 'app-ver-personal',
   templateUrl: './ver-personal.component.html',
@@ -13,25 +15,62 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class VerPersonalComponent implements OnInit {
 
+  /**
+   * almacena todos los registros del personal activo
+   */
   personas:Personal[] = [];
+  /**
+   * propiedad que muestra el mensaje de exito solo si la accion de eliminar se realizo con exito
+   */
   existeMsgExito:boolean = false;
-
+   /**
+   * propiedad que muestra el mensaje de exito solo si la accion de actualizar se realizo con exito
+   */
   existeMsgActualizarExito:boolean = false;
+  /**
+   * propiedad que muestra el formulario emergente para actualizar el personal
+   */
   mostrarFormularioEmergente:any = false;
+  /**
+   * propiedad que almacena la referencia del personal que se desea actualizar
+   */
   personalparaActualizar:any = {};
+  /**
+   * propiedad que almacena el id del personal que se desea actualizar
+   */
   idpersonalActualizar:any = "";
 
+  /**
+   * propiedad que restringe el acceso a ciertas acciones que esten delimitadas por el rol del personal logueado
+   */
   accesoDenegado:boolean = true;
 
-
+  /**
+   * propiedad que controla la pagina actual del registro
+   */
   page:any = 0;
+  /**
+   * almacena la busqueda realizada por el personal
+   */
   busqueda:any = "";
+  /**
+   * propieda que controla el momento para mostrar la paginacion 
+   */
   ocultarPaginacion:any = true;
 
+  /**
+   * propiedad que almacena la referencia del personal
+   */
   personalActual:any;
-
+  /**
+   * propeidad que controla el momento para mostrar el mensaje de no encontrado cuando la busqueda no arroja resultados
+  */
   noexistePersonal:boolean = false;
 
+
+  /**
+   * inyeccion de servicios
+   */
   constructor(
     private QRUDService: QRUDService,
     private StorageService: StorageService,
@@ -39,13 +78,18 @@ export class VerPersonalComponent implements OnInit {
     private ErrorServidor:ErrorServidorService
   ) { }
 
+  /**
+   * metodo que se ejecuta al iniciar el componente el cual obtiene todos los registros del personal activo y verifica el rol del personal logueado
+   */
   ngOnInit(): void {
     this.obtenerPersonal();
     this.restriccionPorRol();
   }
 
 
-
+  /**
+   * metodo que obtiene todos los registros del personal activo
+   */
   obtenerPersonal() {
 
     this.QRUDService.ObtenerRegistros("personal").then((data:any) => {
@@ -65,7 +109,9 @@ export class VerPersonalComponent implements OnInit {
     })
 
   }
-
+  /**
+   * metodo que elimina el registro del personal
+   */
   eliminarPersonal(id:any) {
     this.QRUDService.EliminarRegistros("personal",id).then((data:any) =>{
       this.personas = this.personas.filter(personal => personal.uid !==id );
@@ -88,19 +134,28 @@ export class VerPersonalComponent implements OnInit {
 
     })
   }
-  
+    /**
+     * metodo que guarda la referencia del personal que se desea eliminar
+     */
   referenciaPersonalActual(personal:any){
     this.personalActual = personal;
 }
 
 
 
+
+  /**
+ *  metodo que muestra el formulario emergente para actualizar el personal y  guarda la referencia del personal que se desea actualizar
+ */
   actualizarPersonal(id:any,personal:any){
     this.mostrarFormularioEmergente = true;
     this.idpersonalActualizar = id; 
     this.personalparaActualizar = personal;
  
   }
+  /**
+   * metodo que actualiza el registro del personal
+   */
   actualizandoArregloPersonal(data:any){
     this.personas= this.personas.map(personal => {
       if(personal.uid == data.uid){
@@ -115,7 +170,9 @@ export class VerPersonalComponent implements OnInit {
     },2000);
 
   }
-
+/**
+ * metodo que verifica la el rol del personal logueado para restringir el acceso a ciertas acciones
+ */
   restriccionPorRol(){
     const rol = this.StorageService.desencriptar("rol");
 

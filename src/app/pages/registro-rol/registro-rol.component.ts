@@ -5,6 +5,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
 @Component({
   selector: 'app-registro-rol',
   templateUrl: './registro-rol.component.html',
@@ -12,35 +15,63 @@ import { QRUDService } from 'src/app/services/qrud.service';
 })
 export class RegistroRolComponent implements OnInit {
 
-
+  /**
+   * propiedad que contiene el formulario reactivo
+   */
   form!: FormGroup;
+  
+  /**
+   * propiedad para mostrar mensajes de error solo si existe 
+   */
   existeError: boolean = false;
+  
+  /**
+   * propiedad que contiene un arreglo con los mensajes de error proveido por las validaciones del backend
+   */
   errores!:[{msg:string}]
-  msgExito:string = "";
+
+  /**
+   * propiedad que muestra el mensaje de exito solo si el registro del rol fue exitoso
+   */
   existeMsgExito:boolean = false;
+  
+  /**
+   * propiedad que contiene el mensaje de exito
+   */
+  msgExito:string = "";
+
+  /**
+   * inyeccion de servicios
+   */
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
     private AuthService: AuthService,
     private ErrorServidor:ErrorServidorService
   ) { }
+
+    /**
+     * Inicializando el formulario reactivo una vez se inicie el componente
+     */
   ngOnInit(): void {
     this.FormularioRol();
   }
 
+  /**
+   * metodo que inicializa el formulario reactivo con sus respectivos campos y validaciones
+   */
   FormularioRol(){
 
     this.form =   this.fb.group({
       rol:["", Validators.required],
       description:["rol", Validators.required],
-  
     })
-
   }
 
+   /**
+   * metodo que registra el nuevo  rol
+   */
   submit(){
-
-    
     if(this.form.invalid){
       this.form.markAllAsTouched();
       return;
@@ -79,11 +110,16 @@ export class RegistroRolComponent implements OnInit {
 
     
   }
-  
+      /**
+   * valida campos vacios del formulario reactivo si existen retorna un valor booleano true
+   * @param campo recibe un campo del formulario para validar si contiene errores de validacion o no
+   */
   campoValido(campo:string){
     return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
   }
-
+    /**
+   * metodo que remueve los mensajes de error solo si existen
+   */
   removerAlertas(){
     this.existeError = false;
   }

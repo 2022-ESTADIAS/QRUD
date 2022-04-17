@@ -1,16 +1,15 @@
-import { EventEmitter } from '@angular/core';
-import { Input } from '@angular/core';
-import { Output } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Personal } from 'src/app/interfaces/login.interface';
+import { Personal } from 'src/app/interfaces/personal.interface';
 import { RegistroPersonal } from 'src/app/interfaces/personal.interface';
-import { DetallePorRol } from 'src/app/interfaces/rol.interface';
+import { Rol } from 'src/app/interfaces/rol.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
 @Component({
   selector: 'app-actualizar-personal',
   templateUrl: './actualizar-personal.component.html',
@@ -18,18 +17,50 @@ import { QRUDService } from 'src/app/services/qrud.service';
 })
 export class ActualizarPersonalComponent implements OnInit {
 
+  /**
+   * propiedad que contiene el formulario reactivo
+   */
   form!: FormGroup;
-  errores!:[{msg:string}]
+
+   /**
+   * propiedad para mostrar mensajes de error solo si existe 
+   */
   existeError:boolean = false;
-  msgExito:string = "";
-  existeMsgExito:boolean = false;
-  roles:DetallePorRol[] = [];
+
+  /**
+   * propiedad que contiene un arreglo con los mensajes de error proveido por las validaciones del backend
+   */
+  errores!:[{msg:string}]
+
+
+  /**
+   * propiedad que contiene los roles del personal
+   */
+  roles:Rol[] = [];
+
+  /**
+   * propiedad que contiene el personal que se va a actualizar
+   */
   @Input() personal!:Personal
+
+  /**
+   * propiedad que contiene el id del personal que se va a actualizar
+   */
   @Input() idPersonal:any = ""
 
+  /**
+   * evento que emite el valor para mostrar/ocultar el modal del formulario reactivo
+   */
   @Output() ocultar:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  /**
+   * evento que retorna el arreglo de personal actualizado
+   */
   @Output() personalActualizado:EventEmitter<Personal[]> = new EventEmitter();
 
+  /**
+   * inyeccion de servicios
+   */
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
@@ -37,11 +68,17 @@ export class ActualizarPersonalComponent implements OnInit {
     private ErrorServidor:ErrorServidorService
   ) { }
 
+   /**
+     * Inicializando el formulario reactivo y obtiene los roles del personal para mostrarlos en el formulario
+     */
   ngOnInit(): void {
     this.FormularioPersonal();
       this.obtenerRoles();
   }
 
+    /**
+   * metodo que inicializa el formulario reactivo con sus respectivos campos y validaciones
+   */
   FormularioPersonal(){
 
     this.form =   this.fb.group({
@@ -50,6 +87,9 @@ export class ActualizarPersonalComponent implements OnInit {
       rol:[this.personal.rol._id, Validators.required],
     })
   }
+  /**
+   * metodo que obtiene los roles del personal 
+   */
   obtenerRoles(){
     this.QRUDService.ObtenerRegistros('rol').then((data:any) => {
       this.roles = data.roles
@@ -61,7 +101,9 @@ export class ActualizarPersonalComponent implements OnInit {
       this.ErrorServidor.error();
     })
   }
-
+  /**
+   * metodo que actualiza el personal
+   */
   submit(){
 
     if(this.form.invalid){
@@ -79,19 +121,12 @@ export class ActualizarPersonalComponent implements OnInit {
 
 
     this.QRUDService.ActualizarRegistros("personal",this.idPersonal,personalActualizado).then((data:any) => {
-      this.msgExito ="Personal Actualizado Exitosamente";
-      this.existeMsgExito = true;
+
       this.form.reset();
 
- 
         this.personalActualizado.emit(data);
         this.ocultar.emit(false);
-
-      setTimeout(() =>{
-        this.existeMsgExito = false;
-      },2000);
-
-
+        
     }).catch(err => {
       if(err.error.errors){
         this.existeError = true;
@@ -109,16 +144,26 @@ export class ActualizarPersonalComponent implements OnInit {
     })
   }
 
-  campoValido(campo:string){
-    return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
+    /**
+   * valida campos vacios del formulario reactivo si existen retorna un valor booleano true
+   * @param campo recibe un campo del formulario para validar si contiene errores de validacion o no
+   */
+     campoValido(campo:string){
+      return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
+    }
+    /**
+   * metodo que remueve los mensajes de error solo si existen
+   */
+    removerAlertas(){
+      this.existeError = false;
+    }
+   /**
+    * metodo que oculta el modal del formulario reactivo
+    */ 
+  ocultarFormulario(){
+    this.ocultar.emit(false);
   }
-
-  removerAlertas(){
-    this.existeError = false;
-  }
-ocultarFormulario(){
-  this.ocultar.emit(false);
-}
+  
 
 
 }

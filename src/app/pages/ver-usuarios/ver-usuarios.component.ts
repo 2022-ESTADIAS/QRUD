@@ -1,45 +1,93 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistroUsuario, Usuario, UsuariosResponse } from 'src/app/interfaces/usuario.interface';
+import {  Usuario } from 'src/app/interfaces/usuario.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { StorageService } from 'src/app/services/storage.service';
 
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
 @Component({
   selector: 'app-ver-usuarios',
   templateUrl: './ver-usuarios.component.html',
   styleUrls: ['./ver-usuarios.component.css']
 })
 export class VerUsuariosComponent implements OnInit {
+  /**
+   * almacena todos los registros de los usuarios activo
+   */
   usuarios:Usuario[] = [];
 
-  //banderas para mostrar los errores de acuerdo a una accion exitosa
+ /**
+   * propiedad que muestra el mensaje de exito solo si la accion de eliminar se realizo con exito
+   */
   existeMsgExito:boolean = false;
+     /**
+   * propiedad que muestra el mensaje de exito solo si la accion de actualizar se realizo con exito
+   */
   existeMsgActualizarExito:boolean = false;
+
+     /**
+   * propiedad que muestra el mensaje de exito solo si la accion de generar el codigo QR se realizo con exito
+   */
   existeMsgQRExito:boolean = false;
 
-  //error cuando qr ya fue generado
+   /**
+   * propiedad que muestra el mensaje de error solo si la accion de generar el codigo QR ya fue realizada
+   */
   existeQRregistrado:boolean = false;
 
-  //por rol
+    /**
+   * propiedad que restringe el acceso a ciertas acciones que esten delimitadas por el rol del personal logueado
+   */
   accesoDenegado:boolean = true;
 
+  /**
+   * propiedad que guarda el mensaje de exito ´proveido por el backend solo si la accion de generar codigo QR se realizo con exito
+   */
   msgQR:string = "";
 
-    //mostrar el formulario emergente cuando le den click al icono de editar
+    /**
+   * propiedad que muestra el formulario emergente para actualizar el usuario
+   */
   mostrarFormularioEmergente:any = false;
 
-  //valores pasados por referencia
+    /**
+   * propiedad que almacena la referencia del usuario que se va actualizar
+   */
   usuarioparaActualizar:any = {};
+    /**
+   * propiedad que almacena el id del personal que se desea actualizar
+   */
   idusuarioActualizar:any = "";
 
-  //paginacion
+    /**
+   * propiedad que controla la pagina actual del registro
+   */
   page:any = 0;
+  
+  /**
+   * almacena la busqueda realizada por el personal
+   */
   busqueda:any = "";
-  ocultarPaginacion:any = true;
-  usuarioActual: any;
 
+   /**
+   * propieda que controla el momento para mostrar la paginacion 
+   */
+  ocultarPaginacion:any = true;
+   /**
+   * propiedad que almacena la referencia del usuario
+   */
+  usuarioActual: any;
+  /**
+   * propeidad que controla el momento para mostrar el mensaje de no encontrado cuando la busqueda no arroja resultados
+  */
   noexistenUsuarios:boolean = false;
+
+    /**
+   * inyeccion de servicios
+   */
   constructor(
     private QRUDService: QRUDService,
     private StorageService: StorageService,
@@ -47,13 +95,18 @@ export class VerUsuariosComponent implements OnInit {
     private ErrorServidor:ErrorServidorService
   ) { }
 
+    /**
+   * metodo que se ejecuta al iniciar el componente el cual obtiene todos los registros de los usuarios activos y verifica el rol del personal logueado
+   */
   ngOnInit(): void {
     this.restriccionPorRol();
     this.obtenerUsuarios(); 
   }
 
 
-
+    /**
+   * metodo que obtiene todos los registros de los usuarios activos
+   */
   obtenerUsuarios() {
 
     this.QRUDService.ObtenerRegistros("user").then((data:any) => {
@@ -71,12 +124,16 @@ export class VerUsuariosComponent implements OnInit {
     })
  
   }
-
+    /**
+     * metodo que guarda la referencia del usuario que se desea eliminar
+     */
   referenciaUsuarioActual(usuario:any){
     this.usuarioActual = usuario;
 }
 
-
+    /**
+   * metodo que elimina el registro del usuario
+   */
   eliminarUsuario(id:any) {
     this.QRUDService.EliminarRegistros("user",id).then((data:any) =>{
       this.usuarios = this.usuarios.filter(usuario => usuario.uid !==id );
@@ -97,12 +154,18 @@ export class VerUsuariosComponent implements OnInit {
       this.ErrorServidor.error();
     })
   }
+  /**
+ *  metodo que muestra el formulario emergente para actualizar el usuario y  guarda la referencia del usuario que se desea actualizar
+ */
   actualizarUsuario(id:any,usuario:any){
     this.mostrarFormularioEmergente = true;
     this.idusuarioActualizar = id; 
     this.usuarioparaActualizar = usuario;
  
   }
+    /**
+   * metodo que actualiza el registro del usuario
+   */
   actualizandoArregloUsuario(data:any){
     this.usuarios= this.usuarios.map(usuario => {
       if(usuario.uid == data.uid){
@@ -117,7 +180,9 @@ export class VerUsuariosComponent implements OnInit {
     },2000);
 
   }
-
+  /**
+   * metodo que genera el codigo QR del usuario
+   */
   enviarQR(id:any){
     this.QRUDService.GenerarQRUSuario(id).then((data:any) =>{
 
@@ -147,7 +212,9 @@ export class VerUsuariosComponent implements OnInit {
     })
 
   }
-
+/**
+ * metodo que verifica la el rol del personal logueado para restringir el acceso a ciertas acciones
+ */
  restriccionPorRol(){
     const rol = this.StorageService.desencriptar("rol");
 

@@ -18,6 +18,7 @@ const routes: Routes = [
   {path:"error", component: ErrorServidorComponent,canActivate:[ErrorServidorGuard]},
   {path:"personal/email-pwd", component: RestablecerContrasenaEmailComponent,canActivate:[EmailGuard]},
   {path:"usuario/scanner", component: EscannerUsuarioComponent},
+  {path:'panel',component:PanelAdminComponent},
 
   {path:"", component: PanelAdminComponent,canActivate:[LoginGuard],loadChildren:()=>import("./pages/paginas.module").then(m => m.PaginasModule)},
   {path:"**", redirectTo: ""},

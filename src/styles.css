@@ -75,7 +75,7 @@ textarea{
 body{
     position: relative;
     margin: 0;
-    padding: 0rem 0 0 5.75rem;
+    /* padding: 0rem 0 0 5.75rem; */
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
     transition: .5s;
@@ -83,6 +83,12 @@ body{
 
   }
 
-.body-pd{
+/* .body-pd{
     padding: 0rem 0 0 15rem !important;
+  } */
+
+  *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }

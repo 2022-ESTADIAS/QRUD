@@ -166,14 +166,7 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
    */
   mostrarMenu(){
     this.expandirMenu = !this.expandirMenu;
-    this.sidebar = document.querySelector("body#body-pd");
-    if(this.expandirMenu){
-      this.sidebar?.classList.add("body-pd")
-      
-    }else{
-      this.sidebar?.classList.remove("body-pd")
-      
-    }
+
   }
   /**
    * obtiene el rol del personal logueado y asigna las rutas a las que tiene acceso

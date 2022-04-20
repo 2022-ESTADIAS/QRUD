@@ -1,104 +1,129 @@
 <div class="header">
-    <a href="#" class="logo">QRUD</a>
+    <a href="#" class="logo"><div class="sidebar-header">
+        <div class="profile">
+            <img src="assets/img/logo.svg">
+        </div>
+    </div></a>
     <div class="header-right">
-      <a class="random" href="#" id="cambioColor">{{inicial}}</a> 
+      <a class="active" href="#">K</a>
       <a>Bienvenido! </a>
-      <a>{{nombrePersonal}}</a>
+      <a>keso@mendoza.com</a>
     </div>
   </div>
-<div class="l-navbar " id="navbar"  [ngClass]="{'expander':expandirMenu}" > 
-    <nav class="nav">
-        <div>
-            <div class="nav__brand">
-                <ion-icon name="menu-outline" class="nav__toggle" id="nav-toggle" (click)="mostrarMenu()" ></ion-icon>
-                
-            </div>
-            <div class="nav__list">
-                <div class="profile">
-                    <img src="assets/img/logo.svg" alt="" >
-                </div>
-               
 
-                <div  class="nav__link collapse" (click)="mostrarOpcionesUsuario()"  *ngIf="esAdmin || esMaster || esAux " >
+  <div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar" [ngClass]="{'active':expandirMenu}" >
+        
+
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a  data-toggle="collapse" aria-expanded="false"  (click)="mostrarOpcionesUsuario()"  *ngIf="esAdmin || esMaster || esAux "  >
                     <i class="fa-solid fa-users"></i>
-                    <span class="nav__name">Usuarios</span>
+                   Usuarios
+                </a>
+                <ul class="collapse list-unstyled " [ngClass]="{'in':mostrarOpcionesMenuUsuario}" id="userSubmenu">
+                    <ng-container *ngIf="esMaster || esAdmin">
+                        <li>
+                            <a routerLink="{{ruta.ruta}}" *ngFor="let ruta of rutas[0]" >{{ruta.nombre}}</a>
 
-                    <ion-icon name="chevron-down-outline" class="collapse__link" [ngClass]="{'rotate':mostrarOpcionesMenuUsuario}" ></ion-icon>
-
-                    <ul class="collapse__menu " [ngClass]="{'showCollapse':mostrarOpcionesMenuUsuario}" >
+                        </li>
                         
-                        <ng-container *ngIf="esMaster || esAdmin">
-                            <a routerLink="{{ruta.ruta}}" class="collapse__sublink" *ngFor="let ruta of rutas[0]" >{{ruta.nombre}}</a>
-                            
-                        </ng-container>
-                        
-                        <ng-container *ngIf="esAux">
-                            <a routerLink="{{ruta.ruta}}" class="collapse__sublink" *ngFor="let ruta of rutas" >{{ruta.nombre}}</a>
-                        </ng-container>
-                        
-                    </ul>
-                </div>
-                <div  class="nav__link collapse" (click)="mostrarOpcionesPersonal()" *ngIf="esMaster || esAdmin" >
-                    <i class="fa-solid fa-users-gear"></i>
-                    <span class="nav__name">Personal</span>
-
-                    <ion-icon name="chevron-down-outline" class="collapse__link" [ngClass]="{'rotate':mostrarOpcionesMenuPersonal}"  ></ion-icon>
-
-                    <ul class="collapse__menu" [ngClass]="{'showCollapse':mostrarOpcionesMenuPersonal}" > 
-                        <ng-container *ngIf="esMaster || esAdmin">
-                            <a routerLink="{{ruta.ruta}}" class="collapse__sublink" *ngFor="let ruta of rutas[1]" >{{ruta.nombre}}</a>
-                            
-                        </ng-container>
+                    </ng-container>
                     
-                    </ul>
-                </div>
-                <div  class="nav__link collapse " (click)="mostrarOpcionesRol()"*ngIf="esMaster" >
-                    <i class="fa-solid fa-user-tag"></i>
-                    <span class="nav__name">Rol</span>
+                    <ng-container *ngIf="esAux">
+                        <li>
+                            <a routerLink="{{ruta.ruta}}" *ngFor="let ruta of rutas" >{{ruta.nombre}}</a>
 
-                    <ion-icon name="chevron-down-outline" class="collapse__link" [ngClass]="{'rotate':mostrarOpcionesMenuRol}" ></ion-icon>
-
-                    <ul class="collapse__menu " [ngClass]="{'showCollapse':mostrarOpcionesMenuRol}" >
-                        <ng-container *ngIf="esMaster || esAdmin">
-                            <a routerLink="{{ruta.ruta}}" class="collapse__sublink" *ngFor="let ruta of rutas[2]" >{{ruta.nombre}}</a>
-                            
-                        </ng-container>
-                    </ul>
-                </div>
-
-                <div class="nav__link collapse" (click)="mostrarOpcionesQR()"  *ngIf="esAdmin || esMaster || esAux " >
-                    <i class="fa-solid fa-qrcode"></i>
-                    <span class="nav__name">QR</span>
-
-                    <ion-icon name="chevron-down-outline" class="collapse__link" [ngClass]="{'rotate':mostrarOpcionesMenuQR}" ></ion-icon>
-
-                    <ul class="collapse__menu" [ngClass]="{'showCollapse':mostrarOpcionesMenuQR}" >
-                        <a routerLink="/qr" class="collapse__sublink">Escanear QR</a>
-                    </ul>
-                </div>
-
-                <div class="nav__link collapse" (click)="mostrarOpcionesContrasena()"  *ngIf="esAdmin || esMaster || esAux " >
-                    <i class="fa-solid fa-key"></i>
-                    <span class="nav__name">Contraseña</span>
-
-                    <ion-icon name="chevron-down-outline" class="collapse__link" [ngClass]="{'rotate':mostrarOpcionesMenuContrasena}" ></ion-icon>
-                    
-                    <ul class="collapse__menu" [ngClass]="{'showCollapse':mostrarOpcionesMenuContrasena}" >
-                        <a routerLink="/contrasena" class="collapse__sublink">Cambiar Contraseña</a> 
-                    </ul>
-                </div>
+                        </li>
+                    </ng-container>
+                </ul>
+            </li>
+            <li>
                 
-            </div>
-        </div>
+                <a data-toggle="collapse" aria-expanded="false" (click)="mostrarOpcionesPersonal()" *ngIf="esMaster || esAdmin" >
+                    <i class="fa-solid fa-users-gear"></i>
+                    Personal
+                </a>
+                <ul class="collapse list-unstyled" id="personSubmenu" [ngClass]="{'in':mostrarOpcionesMenuPersonal}">
 
-        <a class="nav__link" (click)="logout()"> 
+                    <ng-container *ngIf="esMaster || esAdmin">
+                        <li>
+                            <a routerLink="{{ruta.ruta}}" class="collapse__sublink" *ngFor="let ruta of rutas[1]" >{{ruta.nombre}}</a>
+
+                        </li>
+                        
+                    </ng-container>
+
+                </ul>
+            </li>
+            <li>
+                
+                <a  data-toggle="collapse" aria-expanded="false" (click)="mostrarOpcionesRol()"*ngIf="esMaster"  >
+                    <i class="fa-solid fa-user-tag"></i>
+                    Rol
+                </a>
+                <ul class="collapse list-unstyled" id="rolSubmenu"  [ngClass]="{'in':mostrarOpcionesMenuRol}">
+                    <ng-container *ngIf="esMaster || esAdmin">
+                        <li>
+                            <a routerLink="{{ruta.ruta}}" class="collapse__sublink" *ngFor="let ruta of rutas[2]" >{{ruta.nombre}}</a>
+
+                        </li>
+                        
+                    </ng-container>
+
+                </ul>
+            </li>
+            <li>
+                
+                <a  data-toggle="collapse" aria-expanded="false" (click)="mostrarOpcionesQR()"  *ngIf="esAdmin || esMaster || esAux " >
+                    <i class="fa-solid fa-qrcode"></i>
+                    QR
+                </a>
+                <ul class="collapse list-unstyled" id="qrSubmenu"  [ngClass]="{'in':mostrarOpcionesMenuQR}">
+                    <li><a routerLink="/qr">Escanear QR</a></li>
+                </ul>
+            </li>
+            <li>
+                
+                <a class="key2" data-toggle="collapse" aria-expanded="false" (click)="mostrarOpcionesContrasena()"  *ngIf="esAdmin || esMaster || esAux " >
+                    <i class="fa-solid fa-key"></i>
+                    Contraseña
+                </a>
+                <ul class="collapse list-unstyled" id="keySubmenu" [ngClass]="{'in':mostrarOpcionesMenuContrasena}">
+                    <li class="key"><a routerLink="/contrasena" >Cambiar Contraseña</a></li>
+                </ul>
+            </li>
+           
+                                 
+        </ul>
+
+
+        <a href="#" class="nav__link" (click)="logout()" >
             <i class="fa-solid fa-right-from-bracket"></i>
-            <span class="nav__name">Cerrar Sesión</span>
+            <span class="nav__name">Log Out</span>
         </a>
     </nav>
-</div>
 
-    <main>
-        <router-outlet></router-outlet>
+    <div id="content">
+        <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class=" btn-info navbar-btn" (click)="mostrarMenu()">
+                <i class="fa-solid fa-bars"></i><span></span>
+            </button>
+        </div>
+    
+        <!--contenido rutas aqui  -->
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+      </div>
 
-    </main>
+  </div> 
+
+
+
+
+
+    <!-- <div class="col-md-9 col-sm-12 offset-md-4 offset-sm-1 ">
+  
+    </div> -->

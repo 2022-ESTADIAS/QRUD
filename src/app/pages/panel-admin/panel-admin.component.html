@@ -5,9 +5,9 @@
         </div>
     </div></a>
     <div class="header-right">
-      <a class="active" href="#">K</a>
+      <a class="active" href="#" id="cambioColor" >{{inicial}}</a>
       <a>Bienvenido! </a>
-      <a>keso@mendoza.com</a>
+      <a>{{nombrePersonal}}</a>
     </div>
   </div>
 
@@ -33,7 +33,7 @@
                     
                     <ng-container *ngIf="esAux">
                         <li>
-                            <a routerLink="{{ruta.ruta}}" *ngFor="let ruta of rutas" >{{ruta.nombre}}</a>
+                            <a routerLink="{{ruta.ruta}}" *ngFor="let ruta of rutas"  >{{ruta.nombre}}</a>
 
                         </li>
                     </ng-container>
@@ -94,15 +94,18 @@
                     <li class="key"><a routerLink="/contrasena" >Cambiar Contraseña</a></li>
                 </ul>
             </li>
-           
+            
+            <li>
+                <a href="#" class="nav__link" (click)="logout()" >
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </li>
                                  
         </ul>
 
+      
 
-        <a href="#" class="nav__link" (click)="logout()" >
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span class="nav__name">Log Out</span>
-        </a>
     </nav>
 
     <div id="content">
@@ -112,7 +115,6 @@
             </button>
         </div>
     
-        <!--contenido rutas aqui  -->
         <main>
             <router-outlet></router-outlet>
         </main>
@@ -124,6 +126,3 @@
 
 
 
-    <!-- <div class="col-md-9 col-sm-12 offset-md-4 offset-sm-1 ">
-  
-    </div> -->

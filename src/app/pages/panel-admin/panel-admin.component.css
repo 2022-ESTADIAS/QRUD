@@ -1,10 +1,10 @@
 
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+/* @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"; */
 
 
 
 body {
-    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
     background: #fafafa;
 }
 
@@ -61,6 +61,9 @@ i, span {
     align-items: stretch;
     height: 100vh;
 }
+li{
+  cursor: pointer;
+}
 
 #sidebar {
     min-width: 250px;
@@ -85,14 +88,16 @@ i, span {
     
     height: 100px;
   }
-#sidebar ul li a {
+#sidebar ul.components li {
     text-align: left;
+    font-size: 1.4rem;
 }
 
 #sidebar.active ul li a {
     padding: 20px 10px;
     text-align: center;
-    font-size: 0.85em;
+    /* font-size: 0.85em; */
+    font-size: 1rem;
 }
 
 #sidebar.active ul li a i {
@@ -132,17 +137,14 @@ i, span {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
-    background: #fff;
+    color: #fff;
+    /* background: #fff; */
+      background: #6d7fcc;
 }
 #sidebar ul li a i {
     margin-right: 10px;
 }
 
-/*#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
-}*/
 
 
 a[data-toggle="collapse"] {
@@ -165,7 +167,7 @@ a[aria-expanded="true"]::before {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    /* background: #6d7fcc; */
 }
 
 ul.CTAs {
@@ -229,6 +231,7 @@ a.article, a.article:hover {
         display: none;
     }
 
+   
 
     #sidebar ul li a {
         padding: 20px 10px;
@@ -256,101 +259,23 @@ a.article, a.article:hover {
         display: none;
     }
 }
-/*--------contenedor de la tabla-----------*/
-.recent{
-    margin-top: 1rem;
-    margin-bottom: 3rem;
-  }
-  
-  /*-----------sub-contenedor-grid-----------*/
-  .activity-grid{
-    display: grid;
-    grid-template-columns: 85% 13%;
-    grid-column-gap: 1.5rem;
-  }
-/*-------------Tabla----------------*/
-.activity-card {
-    background: #fff;
-    border-radius: 7px;
-  }
-  .activity-card h3{
-    color: var(--text-grey);
-    margin: 1rem;
-  }
-  .activity-card table{
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .activity-card thead{
-    background: #efefef;
-    text-align: left;
-  }
-  
-  th, td{
-    font-size: .9rem;
-    padding: 1rem .5rem;
-    color: #3E3798;
-  }
-  
-  td{
-    font-size: .8rem;
-  }
-  
-  tbody tr:nth-child(even){
-    background: #f9fafc;
-  }
-  /*---------------tabla responsive--------------------*/
-  .table-responsive{
-    overflow-x: auto;
-  }
-  
-  @media only screen and (max-width: 1200px){
-    .sidebar{
-        width: 60px;  
-        z-index: 150;  
-    }
-    
-    .sidebar .sidebar-header h3 span,
-    .sidebar li span:last-child{
-        display: none; 
-    }
-    
-    .sidebar .sidebar-header,
-    .sidebar li{
-        display: flex;
-        justify-content: center; 
-    }
-    
-    .main-content{
-        margin-left: 60px;    
-    }
-  
-    .main-content header{
-        left: 60px;
-        width: calc(100% - 600px);
-    }
-  }
-  /*RESPONSIVE*/
-  @media only screen and (max-width: 860px){
-     
-    .activity-grid{
-        display: block;
-    }
-  }
-  
-  
-  @media only screen and (max-width: 450px){
-    main{
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-  }
+
+
   /*----------botones editar eliminar-----------------*/
   .btn{
     background: none;
     border: none;
   }
   
+  .btn-info{
+    padding: 1rem;
+    background: #6C63FF;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+
+  }
   .fa-square-pen,
   .fa-user-xmark,
   .fa-user-check,
@@ -421,6 +346,10 @@ a.article, a.article:hover {
 }
 
 
+.navbar-header{
+  display: none;
+
+}
 
 .header a.active {
   background-color: dodgerblue;
@@ -437,6 +366,13 @@ a.article, a.article:hover {
     display: block;
     text-align: left;
   }
+
+  .navbar-header{
+    display: block;
+    /* display: flex;
+    justify-content: center;
+    max-width: 100%;  */
+  }
   
   .header-right {
     float: none;
@@ -450,4 +386,11 @@ a.article, a.article:hover {
  }
  .key2{
      overflow: hidden !important;
+ }
+
+ @media (max-width: 768px){
+  .navbar-header{
+    display: block;
+  }
+
  }

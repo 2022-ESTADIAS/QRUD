@@ -29,19 +29,6 @@ body {
   margin: 35px 0 -20px 0;
 }
 
-/*.email{
-    display: block;
-    text-align: center; 
-    align-items: center;
-    border-radius: 20px; 
-    margin-top: 30px;
-    margin-left: auto; 
-    margin-right: auto; 
-    background: #fff; 
-    box-shadow: 0 2px 15px rgba(64,64,64,.7); 
-    width: 500px; 
-    height: 800px;
-  }*/
 .container img{  /*email*/
     margin-bottom: 0rem;
     text-align: center;
@@ -53,21 +40,18 @@ body {
     letter-spacing: 1px;
     line-height: 30px;
     font-weight: bold;
-    margin-left: 50px;
-    margin-right: 50px;
     padding: auto;
     margin: 11px;
+    margin-top:30px;
 }
-/* form email 
-form{
-    margin-left: auto;
-    margin-right: auto;
-    height: 150px;
-    width: 300px;
-}*/
+
 .group 			  { 
     position:relative; 
     margin-bottom:45px; 
+
+  }
+  .group:first-child{
+    margin-top: 30px;
   }
   input 				{
     font-size:18px;

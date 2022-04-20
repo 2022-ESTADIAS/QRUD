@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     this.form = this.fb.group({
 
       email:["qrud.app@gmail.com", [Validators.required,Validators.email]],
-      password:["T3stkoso!",[Validators.required]]
+      password:["Pru3baTest!",[Validators.required]]
     })
   }
 

@@ -15,6 +15,9 @@
     background: #fff;
     border-radius: 7px;
   }
+
+ 
+
   .activity-card h3{
     color: var(--text-grey);
     margin: 1rem;
@@ -104,6 +107,7 @@
   }
   .btn-group{
     text-align: center;
+    width: max-content;
   }
   .btn-action{
     background: none;

@@ -128,13 +128,14 @@ li{
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    border-bottom: 1px solid #dfe4e7;
 }
 
 #sidebar ul li a {
     padding: 10px;
     font-size: 1.1em;
     display: block;
+    border-radius: 10px;
 }
 #sidebar ul li a:hover {
     color: #fff;
@@ -274,8 +275,13 @@ a.article, a.article:hover {
     border-radius: 5px;
     color: #fff;
     display: inline-block;
-
   }
+  @media screen and (min-width: 768px) {
+    .btn-info{
+      margin: 0rem 2rem;
+    }
+  }
+
   .fa-square-pen,
   .fa-user-xmark,
   .fa-user-check,

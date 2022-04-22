@@ -502,9 +502,9 @@ input:focus ~ .bar:before, input:focus ~ .bar:after {
 
 /* active state */
 input:focus ~ .highlight {
-  -webkit-animation:inputHighlighter 0.3s ease;
-  -moz-animation:inputHighlighter 0.3s ease;
-  animation:inputHighlighter 0.3s ease;
+  -webkit-animation:inputHighlighter 0.01s ease-in-out;
+  -moz-animation:inputHighlighter 0.01s ease-in-out;
+  animation:inputHighlighter 0.01s ease-in-out;
 }
 
 /* ANIMATIONS ================ */

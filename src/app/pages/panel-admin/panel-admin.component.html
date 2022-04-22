@@ -6,7 +6,7 @@
       <a>{{nombrePersonal}}</a>
     </div>
   </div>
-<div class="l-navbar " id="navbar"  [ngClass]="{'expander':expandirMenu}" > 
+<div class="l-navbar " id="navbar"  [ngClass]="{'expander':expandirMenu,'movil':!expandirMenu}" > 
     <nav class="nav">
         <div>
             <div class="nav__brand">
@@ -19,7 +19,7 @@
                 </div>
                
 
-                <div  class="nav__link collapse" (click)="mostrarOpcionesUsuario()"  *ngIf="esAdmin || esMaster || esAux " >
+                <div  class="nav__link  collapse" [ngClass]="{'movil-links':!expandirMenu}"  (click)="mostrarOpcionesUsuario()"  *ngIf="esAdmin || esMaster || esAux " >
                     <i class="fa-solid fa-users"></i>
                     <span class="nav__name">Usuarios</span>
 
@@ -38,7 +38,7 @@
                         
                     </ul>
                 </div>
-                <div  class="nav__link collapse" (click)="mostrarOpcionesPersonal()" *ngIf="esMaster || esAdmin" >
+                <div  class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}"  (click)="mostrarOpcionesPersonal()" *ngIf="esMaster || esAdmin" >
                     <i class="fa-solid fa-users-gear"></i>
                     <span class="nav__name">Personal</span>
 
@@ -52,7 +52,7 @@
                     
                     </ul>
                 </div>
-                <div  class="nav__link collapse " (click)="mostrarOpcionesRol()"*ngIf="esMaster" >
+                <div  class="nav__link collapse "[ngClass]="{'movil-links':!expandirMenu}"   (click)="mostrarOpcionesRol()"*ngIf="esMaster" >
                     <i class="fa-solid fa-user-tag"></i>
                     <span class="nav__name">Rol</span>
 
@@ -66,7 +66,7 @@
                     </ul>
                 </div>
 
-                <div class="nav__link collapse" (click)="mostrarOpcionesQR()"  *ngIf="esAdmin || esMaster || esAux " >
+                <div class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}"  (click)="mostrarOpcionesQR()"  *ngIf="esAdmin || esMaster || esAux " >
                     <i class="fa-solid fa-qrcode"></i>
                     <span class="nav__name">QR</span>
 
@@ -77,7 +77,7 @@
                     </ul>
                 </div>
 
-                <div class="nav__link collapse" (click)="mostrarOpcionesContrasena()"  *ngIf="esAdmin || esMaster || esAux " >
+                <div class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}"  (click)="mostrarOpcionesContrasena()"  *ngIf="esAdmin || esMaster || esAux " >
                     <i class="fa-solid fa-key"></i>
                     <span class="nav__name">Contraseña</span>
 

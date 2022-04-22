@@ -130,6 +130,7 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
     this.obtenerNombre();
     this.verRol();
     this.generarColorRandom();
+    this.mostrarMenu(); 
   }
   /**
    * muestra/oculta las acciones del menu lateral cuando se hace click en la opcion de usuarios

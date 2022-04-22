@@ -71,6 +71,10 @@ a{
 .nav__link{
   display: grid;
   grid-template-columns: max-content max-content;
+  /* display: flex;
+  width: 100px;
+  flex-direction: column; */
+  width: 200px;
   align-items: center;
   column-gap: .95rem;
   padding: .75rem;
@@ -840,3 +844,14 @@ transition:0.2s ease all;
   background-color: dodgerblue;
   color: white;
 }
+
+.movil{
+padding: 0;
+}
+.movil-links{
+    display: flex;
+  width: 100px;
+  flex-direction: column;
+
+}
+

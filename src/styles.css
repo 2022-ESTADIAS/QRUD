@@ -86,3 +86,9 @@ body{
 .body-pd{
     padding: 0rem 0 0 15rem !important;
   }
+
+  .resp tbody tr {
+	  
+    border: solid 2px #f0def3;
+    border-radius: 10px;
+	}

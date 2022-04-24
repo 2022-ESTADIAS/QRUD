@@ -37,7 +37,7 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
   /**
    * propiedad que permite expandir el menu lateral
    */
-  expandirMenu:boolean = false;
+  expandirMenu:boolean = true;
   /**
    * guarda la referencia  del body
    */

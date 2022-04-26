@@ -19,7 +19,7 @@ import { RegistroRolComponent } from './registro-rol/registro-rol.component';
 import { VerUsuariosComponent } from './ver-usuarios/ver-usuarios.component';
 import { VerPersonalComponent } from './ver-personal/ver-personal.component';
 import { VerRolComponent } from './ver-rol/ver-rol.component';
-import { EscannerUsuarioComponent } from './escanner-usuario/escanner-usuario.component';
+/* import { EscannerUsuarioComponent } from './escanner-usuario/escanner-usuario.component'; */
 
 
 @NgModule({
@@ -34,8 +34,8 @@ import { EscannerUsuarioComponent } from './escanner-usuario/escanner-usuario.co
     VerUsuariosComponent,
     VerPersonalComponent,
     VerRolComponent,
-    BusquedaPipe,
-    EscannerUsuarioComponent,
+    BusquedaPipe/* ,
+    EscannerUsuarioComponent, */
   ],
   imports: [
     CommonModule,

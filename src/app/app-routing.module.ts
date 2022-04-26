@@ -9,7 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 
 import { ErrorServidorGuard } from './guards/error-servidor.guard';
 import { LoginGuard } from './guards/login.guard';
-import { EscannerUsuarioComponent } from './pages/escanner-usuario/escanner-usuario.component';
+/* import { EscannerUsuarioComponent } from './pages/escanner-usuario/escanner-usuario.component'; */
 import { EmailGuard } from './guards/email.guard';
 
 const routes: Routes = [
@@ -17,7 +17,7 @@ const routes: Routes = [
   {path:"forget-password", component: ContrasenaEmailComponent},
   {path:"error", component: ErrorServidorComponent,canActivate:[ErrorServidorGuard]},
   {path:"personal/email-pwd", component: RestablecerContrasenaEmailComponent,canActivate:[EmailGuard]},
-  {path:"usuario/scanner", component: EscannerUsuarioComponent},
+  {path:"usuario", loadChildren:()=>import("./modulo-cliente/modulo-cliente.module").then(m => m.ModuloClienteModule)},
 
   {path:"", component: PanelAdminComponent,canActivate:[LoginGuard],loadChildren:()=>import("./pages/paginas.module").then(m => m.PaginasModule)},
   {path:"**", redirectTo: ""},

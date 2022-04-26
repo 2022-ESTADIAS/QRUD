@@ -13,6 +13,8 @@ import { ErrorServidorComponent } from './components/error-servidor/error-servid
 import { LoginComponent } from './pages/login/login.component';
 import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 import { RestablecerContrasenaEmailComponent } from './components/formularios/contrasenas/restablecer-contrasena-email/restablecer-contrasena-email.component';
+import { ModuloClienteModule } from './modulo-cliente/modulo-cliente.module';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { RestablecerContrasenaEmailComponent } from './components/formularios/co
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ComponentesModule
+    ComponentesModule,
+    ModuloClienteModule
   ],
   providers: [],
   bootstrap: [AppComponent],

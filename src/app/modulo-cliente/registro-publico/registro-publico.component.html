@@ -1,0 +1,113 @@
+ <!---------------------header---------------------------->
+ <div class="header">
+    <img src="assets/img/logo.svg" alt="" >
+    <div class="header-right">
+        <a class="text0">{{Saludo}}</a>
+    </div>
+  </div>
+<!-----------------------------------------menu----------------------->
+
+<main> 
+<img class="wave" src="assets/img/wave2.png">  
+<ng-container *ngIf="existeError" >
+    <div class="mensajes-container"  >
+      
+        <app-errores-backend [mensaje]="error.msg" *ngFor="let error of errores" 
+        ></app-errores-backend>
+        <app-errores-backend [mensaje]="errorServidor" *ngIf="errorServidor.length > 0" ></app-errores-backend>
+    </div>
+    
+  
+  </ng-container>
+  
+    
+  <app-exito [mensaje]="msgExito" *ngIf="existeMsgExito" ></app-exito>
+<div class="activity-grid"><!----------Tarjeta del usuario-------------------->
+    <div class="container">
+        <div class="title">Formulario de Registro de Usuarios</div>
+        <form  [formGroup]="form" (ngSubmit)="submit()" > 
+            <div class="user-details">
+    
+                  <div class="group">      
+                    <input type="text" formControlName="nombre"  (keyup)="removerAlertas()"  >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Nombre</label>
+                    <app-errores-frontend *ngIf="campoValido('nombre')" mensaje="El campo es requerido" ></app-errores-frontend>
+                  </div>
+                  
+                  <div class="group">      
+                    <input type="text" formControlName="rfc"  (keyup)="removerAlertas()"  >
+                    <!-- <input type="text"  > -->
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>RFC</label>
+                    <app-errores-frontend *ngIf="campoValido('rfc')" mensaje="Tiene que ser un rfc valido" ></app-errores-frontend>
+                  </div>
+                  
+                  <div class="group">      
+                    <input type="text" formControlName="direccion"  (keyup)="removerAlertas()"  >
+                    <!-- <input type="text" > -->
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Direccion</label>
+                    <app-errores-frontend *ngIf="campoValido('direccion')" mensaje="El campo es requerido" ></app-errores-frontend>
+                  </div>
+                  
+                  <div class="group">      
+                    <input type="tel" formControlName="telefono"  (keyup)="removerAlertas()" >
+                    <!-- <input type="tel" > -->
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Telefono</label>
+                    <app-errores-frontend *ngIf="campoValido('telefono')" mensaje="Tiene que ser un numero telefonico valido" ></app-errores-frontend>
+                  </div>
+                  
+                  <div class="group">      
+                    <input type="email" formControlName="email"  (keyup)="removerAlertas()" >
+                    <!-- <input type="email" > -->
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Email</label>
+                    <app-errores-frontend *ngIf="campoValido('email')" mensaje="Tiene que ser un correo valido" ></app-errores-frontend>
+                  </div>
+                
+            </div>
+            <div class="wrapper">
+                <button href="#0" class="btn10">
+                    <span>Send</span>
+                    <div class="transition"></div>
+                </button>
+            </div>
+           <!--
+            <div class="button">
+                <input type="submit" value="registro">
+            </div>-->
+        </form>
+    </div>
+    <div class="summary">
+        <div class="summary-card">
+            <div class="summary-single">
+                <span>Registro de usuario</span>
+            </div>
+            <div class="summary-single">
+                <div>
+                    <small>-Bienvenido a su espacio, en este apartado podrás
+                        registrarte para tener acceso a tu codigo Qr el cual 
+                        te proporcionara la informacion correspondiente a tu registro.
+                    </small>
+                </div>
+            </div>
+            <div class="summary-single">
+                <div>
+                    <small>-Una vez se haya registrado se le enviara un correo 
+                        de validación para darse de alta en el sistema.
+                    </small>
+                </div>
+            </div>
+            
+        </div>     
+    </div>
+</div>
+</main>
+ 

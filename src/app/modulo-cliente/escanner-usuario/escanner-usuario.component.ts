@@ -5,10 +5,12 @@ import { Usuario } from 'src/app/interfaces/usuario.interface';
   selector: 'app-escanner-usuario',
   templateUrl: './escanner-usuario.component.html',
   styleUrls: ['./escanner-usuario.component.css'],
-  encapsulation:ViewEncapsulation.None
+  /* encapsulation:ViewEncapsulation.None */
 })
 export class EscannerUsuarioComponent implements OnInit {
 
+  Tiempo:any
+  Saludo:any
   constructor() { }
 
   scaneoCompletado:boolean = false;
@@ -16,6 +18,15 @@ export class EscannerUsuarioComponent implements OnInit {
   usuarioQR!:Usuario;
 
   ngOnInit(): void {
+    this.Tiempo = new Date().toLocaleString().split(",")[1].split(":")[0]
+    
+    if(this.Tiempo >= 0 && this.Tiempo <= 11){
+      this.Saludo = "Buenos dias" 
+    }else if(this.Tiempo >= 12 && this.Tiempo <= 19){
+      this.Saludo = "Buenas tardes"
+    }else {
+      this.Saludo = "Buenas noches"
+    }
 
   }
 

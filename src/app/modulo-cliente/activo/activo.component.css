@@ -26,11 +26,10 @@ a{
   text-decoration: none;
 }
 /*-----------------------header----------------------*/
-* {box-sizing: border-box;}
+
 
 .header {
   overflow: hidden;
-  background-color: #fff;
   padding: 20px 35px;
 }
 
@@ -45,9 +44,12 @@ a{
   border-radius: 4px;
 }
 
-.header a.logo { /*---texto QRUD--del header*/
+.header a.text0 { /*---texto--del header*/
   font-size: 25px;
   font-weight: bold;
+  left: 10rem;
+  top: 2rem;
+  position: absolute;
 }
 
 .header a:hover {
@@ -101,7 +103,7 @@ main{
 	height: 250px;
 	margin: auto;
 	width: 300px;
-	-webkit-perspective: 700;
+	/* -webkit-perspective: 700; */
 }
 
 .carta {
@@ -212,6 +214,10 @@ main{
   grid-template-columns: 75% 25%;
   grid-column-gap: 1.5rem;
 }
+.summary{
+    width: 500px;
+    margin: 0 auto;
+}
 .summary-card{
     background: #fff;
     border-radius: 7px;
@@ -235,7 +241,7 @@ main{
 
 .summary-single h5{
   color: var(--main-color);
-  font-size: 1.1rem;
+  font-size: 2rem;
   margin-bottom: 0rem !important;
 }
 

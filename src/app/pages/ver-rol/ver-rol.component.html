@@ -5,12 +5,10 @@
     <app-spinner></app-spinner>
 </div>
 
-<section class="recent">
-    <div class="activity-grid">
-        <div class="activity-card">
+
             <h3>Lista de Roles</h3>
-            <div class="table-responsive">
-                <table>
+            
+                <table class="resp">
                     <thead >
                         <tr>
                             <th>Rol</th>
@@ -33,10 +31,7 @@
 
                     </tbody>
                 </table>
-            </div>
-        </div> 
-    </div>
-</section> 
+         
 
 <app-actualizar-rol *ngIf="mostrarFormularioEmergente" 
 [idRol]="idrolActualizar" 

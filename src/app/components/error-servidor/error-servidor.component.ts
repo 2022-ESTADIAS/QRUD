@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+/**
+ * @ignore
+ */
 @Component({
   selector: 'app-error-servidor',
   templateUrl: './error-servidor.component.html',

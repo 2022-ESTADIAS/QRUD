@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
 @Component({
   selector: 'app-restablecer-contrasena-email',
   templateUrl: './restablecer-contrasena-email.component.html',
@@ -12,17 +14,41 @@ import { QRUDService } from 'src/app/services/qrud.service';
 })
 export class RestablecerContrasenaEmailComponent implements OnInit {
 
+  
+  /**
+   * propiedad que contiene el formulario reactivo
+   */
   form!: FormGroup;
+  /**
+   * propiedad para mostrar mensajes de error solo si existe 
+   */
   existeError: boolean = false;
+  /**
+   * propiedad que contiene el mensaje de error proveido por las validaciones del backend
+   */
   msgError: string ='';
 
-  //actualizando contrasena exitosamente
+    /**
+   * propiedad que contiene el mensaje de exito proveido por el backend solo si se realiza el cambio de constraseña exitosamente
+   */
   msgExito:string = "";
+  /**
+   * propiedad para mostrar mensajes de exito solo si se realiza el cambio de constraseña exitosamente
+   */
   existemsgExito:boolean = false;
 
+  /**
+   * proiedad privada que almacena  el token que viene en el url
+   */
   private token:any;
+  /**
+   * propiedad privada  que contiene el id del usuario que se va a restablecer la contraseña el cual se recibe por la url
+   */
   private id:any;
-  
+
+  /**
+   * inyectando servicios
+   */
   constructor(
     private QRUDService: QRUDService,
     private fb: FormBuilder,
@@ -32,23 +58,29 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
 
   ) { }
 
+  /**
+   * cuando se inicializa el componente se obtienen los datos del url para realizar el cambio de contrasena y se inicializa el formulario reactivo 
+   */
   ngOnInit(): void {
   this.cambiarContrasena()
   this.route.queryParams.subscribe((data:any) =>{
-    console.log(data)
     this.token = data.token;
     this.id = data.id;
   })
   
 }
-
+  /**
+   * metodo que inicializa el formulario reactivo con sus respectivos campos y validaciones
+   */
   cambiarContrasena(){
     this.form = this.fb.group({
       newpwd:["",[Validators.required,Validators.pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/)  ]],
       again:["",[Validators.required]]
     },{validators:this.passwordsIguales("newpwd","again")})
   }
-
+  /**
+   * metodo que se encarga de realizar el cambio de contraseña y enviar el mensaje de exito o error al usuario en caso de que se haya realizado o no
+   */
   submit(){
     if(this.form.invalid){
       this.form.markAllAsTouched();
@@ -67,7 +99,6 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
       },1500)
 
     }).catch(err => {
-        console.log(err,"koso");
        
         if(err.error.err){
           this.msgError = err.error.err; 
@@ -83,7 +114,9 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
 
     })
   }
-
+/**
+ * validacion personalizada que se encarga de validar que las contraseñas sean iguales
+ */
   passwordsIguales(pass1:string,pass2:string){
     return (formGroup:FormGroup)=>{
       const pass1Control = formGroup.get(pass1);
@@ -97,12 +130,18 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
     }
   }
   
+  /**
+   * valida campos vacios del formulario reactivo si existen retorna un valor booleano true
+   * @param campo recibe un campo del formulario para validar si contiene errores de validacion o no
+   */
   campoValido(campo:string){
     return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
   }
 
 
-
+/**
+ * metodo que remueve los mensajes de error solo si existen
+ */
   removerAlertas(){
     this.existeError = false;
   }

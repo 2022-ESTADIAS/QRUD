@@ -227,53 +227,122 @@ main{
   color: var(--color-dark);
   margin-bottom: 1rem;
 }
-/*--------contenedor de la tabla-----------*/
-.recent{
-  margin-top: 1rem;
-  margin-bottom: 3rem;
-}
 
-/*-----------sub-contenedor-grid-----------*/
-.activity-grid{
-  display: grid;
-  grid-template-columns: 85% 13%;
-  grid-column-gap: 1.5rem;
-}
 /*-------------Tabla----------------*/
-.activity-card {
-  background: #fff;
-  border-radius: 7px;
-}
-.activity-card h3{
-  color: var(--text-grey);
-  margin: 1rem;
-}
-.activity-card table{
+table {
   width: 100%;
+  background: white;
+  margin-bottom: 1.25em;
+  border: solid 1px #dddddd;
   border-collapse: collapse;
-}
-.activity-card thead{
-  background: #efefef;
-  text-align: left;
+  border-spacing: 0;
+  margin-top: 15px;
+  border-radius: 12px 12px 0 0;
+    overflow: hidden;
 }
 
-th, td{
-  font-size: .9rem;
-  padding: 1rem .5rem;
+table tr th,
+table tr td {
+  padding: 0.5625em 0.625em;
+  font-size: 0.875em;
+  color: #3E3798;
+  border: 1px solid #f9f9f9;
+}
+@media only screen and (max-width: 768px){
+  table tr th,
+  table tr td {
+  padding-left: 28%;
+  width: auto;
   color: #3E3798;
 }
-
-td{
-  font-size: .8rem;
+@media only screen and (max-width: 500px){
+  tbody tr td .right{
+      padding-left: 20%;
+      color: red;
+    } 
 }
+}
+table tr.even,
+table tr.alt,
+table tr:nth-of-type(even) {
+  background: #f9f9f9;
+}
+@media only screen and (max-width: 768px) {
+	table.resp,
+	.resp thead,
+	.resp tbody,
+	.resp tr,
+	.resp th,
+	.resp td,
+	.resp caption {
+	  display: block;
+	}
+	table tr:first-child{
+    margin-top: 0 !important;
+  }
+	table.resp {
+	  border: none
+	}
+	
+	.resp thead tr {
+	  display: none;
+	}
+	
+	.resp tbody tr {
+	  margin: 1em 0;
+	}
+	
+	.resp td {
+	  border: none;
+	  border-bottom: 1px solid #dddddd;
+	  position: relative;
+	  padding-left: 45%;
+	  text-align: right;
+	}
+	
+	.resp tr td:last-child {
+	  border-bottom: 1px double #dddddd;
+	}
+	
+	.resp tr:last-child td:last-child {
+	  border: none;
+	}
+	
+	.resp td:before {
+	  position: absolute;
+	  top: 6px;
+	  left: 6px;
+	  width: 45%;
+	  padding-right: 10px;
+	  white-space: nowrap;
+	  text-align: left;
+	  font-weight: bold;
+	}
+  td:nth-of-type(1):before {
+	  content: "Nombre";
+	}
+	
+	td:nth-of-type(2):before {
+	  content: "Rol";
+	}
 
-tbody tr:nth-child(even){
-  background: #f9fafc;
+	td:nth-of-type(3):before {
+	  content: "Telefono";
+	}
+	
+	td:nth-of-type(4):before {
+	  content: "E-mail";
+	}
+  td:nth-of-type(5):before {
+	  content: "Acciones";
+	}
+}
+@media only screen and (max-width: 768px){
+  td:nth-of-type(6):before {
+	  content: none;
+	}
 }
 /*---------------tabla responsive--------------------*/
-.table-responsive{
-  overflow-x: auto;
-}
 
 @media only screen and (max-width: 1200px){
   .sidebar{
@@ -302,12 +371,6 @@ tbody tr:nth-child(even){
   }
 }
 /*RESPONSIVE*/
-@media only screen and (max-width: 860px){
-   
-  .activity-grid{
-      display: block;
-  }
-}
 
 
 @media only screen and (max-width: 450px){

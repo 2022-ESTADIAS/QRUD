@@ -14,6 +14,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { PanelAdminComponent } from './pages/panel-admin/panel-admin.component';
 import { RestablecerContrasenaEmailComponent } from './components/formularios/contrasenas/restablecer-contrasena-email/restablecer-contrasena-email.component';
 import { ModuloClienteModule } from './modulo-cliente/modulo-cliente.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -31,7 +33,13 @@ import { ModuloClienteModule } from './modulo-cliente/modulo-cliente.module';
     ReactiveFormsModule,
     HttpClientModule,
     ComponentesModule,
-    ModuloClienteModule
+    ModuloClienteModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent],

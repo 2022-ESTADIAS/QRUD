@@ -2,11 +2,11 @@
 
 html,body{
     font-family: 'PT Sans', sans-serif ;
+    overflow: hidden !important;
 }
 
-.container{
-    /* position: absolute;
-    transform: translate(150%,100%); */
+.contenedor-error{
+    margin-top: -5rem;
 }
 .content{
   width: 300px;
@@ -129,4 +129,42 @@ p{
 h3{
     transform: translate(35%,1700%);
 
+}
+
+@media screen and (max-width: 414px){
+  .content{
+    width: 300px !important;
+    margin-left: -23px;
+  }
+  h1 #point1 , h1 #point2{
+    font-size: 196px;
+  }
+  h1{
+    width: 140px;
+  }
+  p{
+    right: 17rem;
+  }
+  h3{
+    transform: translate(-3%,1248%);
+  }
+  .contenedor-error{
+    margin-top: -10rem;
+  }
+}
+@media screen and (min-width: 768px){
+  .content{
+    width: 30rem !important;
+  }
+  h3{
+    transform: translate(9%,1653%);
+  }
+  p{
+    right: 70%;
+  }
+}
+@media screen and (min-width: 1280px){
+  h3{
+    transform: translate(27%,1653%);
+  }
 }

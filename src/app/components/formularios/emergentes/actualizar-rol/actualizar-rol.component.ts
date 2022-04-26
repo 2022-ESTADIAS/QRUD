@@ -1,14 +1,13 @@
-import { Output } from '@angular/core';
-import { Input } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,  EventEmitter,  Output  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { DetallePorRol, RegistroRol } from 'src/app/interfaces/rol.interface';
+import {  RegistroRol, Rol } from 'src/app/interfaces/rol.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
 @Component({
   selector: 'app-actualizar-rol',
   templateUrl: './actualizar-rol.component.html',
@@ -16,29 +15,57 @@ import { QRUDService } from 'src/app/services/qrud.service';
 })
 export class ActualizarRolComponent implements OnInit {
 
-
+  /**
+   * propiedad que contiene el formulario reactivo
+   */
   form!: FormGroup;
+
+  /**
+   * propiedad para mostrar mensajes de error solo si existe 
+   */
   existeError: boolean = false;
+    /**
+   * propiedad que contiene un arreglo con los mensajes de error proveido por las validaciones del backend
+   */
   errores!:[{msg:string}]
-  msgExito:string = "";
-  existeMsgExito:boolean = false;
 
-  @Input() rol!:DetallePorRol 
+  /**
+   * propiedad que contiene el rol que se va a actualizar
+   */
+  @Input() rol!:Rol 
+  /**
+   * propiedad que contiene el id del rol que se va a actualizar
+   */
   @Input() idRol:any = ""
-
+    /**
+   * evento que emite el valor para mostrar/ocultar el modal del formulario reactivo
+   */
   @Output() ocultar:EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() rolActualizado:EventEmitter<DetallePorRol[]> = new EventEmitter();
+    /**
+   * evento que retorna el arreglo de roles actualizado
+   */
+  @Output() rolActualizado:EventEmitter<Rol[]> = new EventEmitter();
 
+  
+  /**
+   * inyeccion de servicios
+   */
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
     private authService: AuthService,
     private ErrorServidor:ErrorServidorService
   ) { }
+   /**
+     * Inicializando el formulario reactivo
+     */
   ngOnInit(): void {
     this.FormularioRol();
   }
 
+     /**
+   * metodo que inicializa el formulario reactivo con sus respectivos campos y validaciones
+   */
   FormularioRol(){
 
     this.form =   this.fb.group({
@@ -48,7 +75,9 @@ export class ActualizarRolComponent implements OnInit {
     })
 
   }
-
+    /**
+   * metodo que actualiza el rol del personal en el backend
+   */
   submit(){
 
     
@@ -66,19 +95,12 @@ export class ActualizarRolComponent implements OnInit {
 
 
     this.QRUDService.ActualizarRegistros("rol",this.idRol,rol).then((data:any) => {
-      this.msgExito = "Rol Actualizado Con exito";
-      this.existeMsgExito = true;
       this.form.reset();
 
       this.rolActualizado.emit(data);
       this.ocultar.emit(false);
-      setTimeout(() =>{
-        this.existeMsgExito = false;
-      },2000);
-
 
     }).catch(err => {
-      console.log(err)
       if(err.error.errors){
         this.existeError = true;
         this.errores = err.error.errors;
@@ -96,17 +118,26 @@ export class ActualizarRolComponent implements OnInit {
     
   }
   
-  campoValido(campo:string){
+  /**
+   * valida campos vacios del formulario reactivo si existen retorna un valor booleano true
+   * @param campo recibe un campo del formulario para validar si contiene errores de validacion o no
+   */
+   campoValido(campo:string){
     return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
   }
-
+  /**
+ * metodo que remueve los mensajes de error solo si existen
+ */
   removerAlertas(){
     this.existeError = false;
   }
-  
-  ocultarFormulario(){
-    this.ocultar.emit(false);
-  }
+ /**
+  * metodo que oculta el modal del formulario reactivo
+  */ 
+ocultarFormulario(){
+  this.ocultar.emit(false);
+}
+
 
 
 } 

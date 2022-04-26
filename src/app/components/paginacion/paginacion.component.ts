@@ -2,7 +2,9 @@ import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
 @Component({
   selector: 'app-paginacion',
   templateUrl: './paginacion.component.html',
@@ -63,7 +65,6 @@ export class PaginacionComponent implements OnInit {
        this.arregloPaginacion.push(i);
  
      }
-     console.log(this.longitud)
    
    }
  

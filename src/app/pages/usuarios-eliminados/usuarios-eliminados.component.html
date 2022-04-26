@@ -12,13 +12,13 @@
 
 <ng-container  *ngIf="usuarios.length  > 0 " >
     <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
-<section class="recent">
+<!--<section class="recent">
     <div class="activity-grid">
         <div class="activity-card">
-            <h3>Lista de Usuarios Inactivos</h3>
-            <!----------------------tabla-------------------->
-            <div class="table-responsive">
-                <table>
+            <div class="table-responsive">-->
+                <h3>Lista de Usuarios Inactivos</h3>
+
+                <table class="resp">
                     <thead >
                         <tr>
                             <th>Nombre</th>
@@ -54,15 +54,14 @@
                     </tbody>
     
                 </table>
-            </div>
+            <!--</div>-->
             
-            <!---------------------------paginado-------------------------------->
             <app-paginacion [longitud]="usuarios.length" (paginaActual)="page = $event" *ngIf="usuarios.length > 10 && ocultarPaginacion "> </app-paginacion>
-        </div>
+        <!--</div>
        
     </div>
     
-</section>
+</section>-->
 </ng-container>
 
 

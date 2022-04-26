@@ -16,13 +16,14 @@
 <ng-container  *ngIf="usuarios.length > 0  " >
     <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
 
- <!----------contenedor de las tablas-------------------->
+ <!----------contenedor de las tablas-------------
     <section class="recent">
         <div class="activity-grid">
             <div class="activity-card">
-                <h3>Lista de Usuarios</h3>
-                <div class="table-responsive">
-                    <table>
+           
+                <div class="table-responsive">------->     
+                    <h3>Lista de Usuarios</h3>
+                    <table class="resp">
                         <thead >
                             <tr>
                                 <th>Nombre</th>
@@ -43,7 +44,7 @@
                                     <td data-title="RFC">{{usuario.rfc | uppercase}}</td>
                                     <td data-title="Direccion">{{usuario.direccion | uppercase}}</td>
                                     <td data-title="Telefono">{{usuario.telefono}}</td>
-                                    <td data-title="Email">{{usuario.email}}</td>
+                                    <td class="right"data-title="Email" >{{usuario.email}}</td>
                                     <td class="icons" data-title="Acciones" *ngIf="!usuario.error">
                                         <div class="btn-group">
                                             <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button>
@@ -58,10 +59,10 @@
                                 <app-paginacion [longitud]="usuarios.length" (paginaActual)="page = $event" *ngIf="usuarios.length > 10 && ocultarPaginacion "> </app-paginacion>
                             </tbody>       
                     </table>
-                </div>
+        <!---        </div>
             </div>       
         </div>
-    </section>
+    </section>-->
 
     
 <app-modal *ngIf="usuarioActual"

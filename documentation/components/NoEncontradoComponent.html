@@ -1,0 +1,478 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>qrud documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">qrud documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  NoEncontradoComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/no-encontrado/no-encontrado.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>nombre, hoja de estilos y archivo html del componente</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-no-encontrado</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./no-encontrado.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./no-encontrado.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#mensaje" >mensaje</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="mensaje"></a>
+                        <b>mensaje</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/components/no-encontrado/no-encontrado.component.ts:16</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Recibe un mensaje personalizado para mostrarlo en el componente</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
+@Component({
+  selector: &#x27;app-no-encontrado&#x27;,
+  templateUrl: &#x27;./no-encontrado.component.html&#x27;,
+  styleUrls: [&#x27;./no-encontrado.component.css&#x27;]
+})
+export class NoEncontradoComponent implements OnInit {
+
+  /**
+   * Recibe un mensaje personalizado para mostrarlo en el componente 
+   */
+  @Input() mensaje:string &#x3D; &#x27;&#x27;;
+
+ /**
+  * @ignore
+  */
+  constructor() { }
+  
+  /**
+  * @ignore
+  */
+  ngOnInit(): void {
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">
+&lt;div id&#x3D;&quot;container&quot;&gt;
+
+    &lt;svg version&#x3D;&quot;1.1&quot; xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink&#x3D;&quot;http://www.w3.org/1999/xlink&quot; x&#x3D;&quot;0px&quot; y&#x3D;&quot;0px&quot;
+         viewBox&#x3D;&quot;0 0 200 82.7&quot; style&#x3D;&quot;enable-background:new 0 0 200 82.7;&quot; xml:space&#x3D;&quot;preserve&quot;&gt;
+    
+    &lt;g id&#x3D;&quot;Calque_1&quot;&gt;
+        &lt;text id&#x3D;&quot;XMLID_3_&quot; transform&#x3D;&quot;matrix(1.2187 0 0 1 13 75.6393)&quot; class&#x3D;&quot;st0 st1&quot;&gt;4&lt;/text&gt;
+        &lt;text id&#x3D;&quot;XMLID_4_&quot; transform&#x3D;&quot;matrix(1.2187 0 0 1 133.0003 73.6393)&quot; class&#x3D;&quot;st0 st1&quot;&gt;4&lt;/text&gt;
+    &lt;/g&gt;
+    &lt;g id&#x3D;&quot;Calque_2&quot;&gt;
+    &lt;g&gt;
+        &lt;path id&#x3D;&quot;XMLID_11_&quot; d&#x3D;&quot;M81.8,29.2c4.1-5.7,10.7-9.4,18.3-9.4c6.3,0,12.1,2.7,16.1,6.9c0.6-0.4,1.1-0.7,1.7-1.1
+            c-4.4-4.8-10.8-7.9-17.8-7.9c-8.3,0-15.6,4.2-20,10.6C80.7,28.5,81.3,28.8,81.8,29.2z&quot;/&gt;
+            &lt;path id&#x3D;&quot;XMLID_2_&quot; d&#x3D;&quot;M118.1,53.7c-4,5.7-10.7,9.5-18.2,9.5c-6.3,0-12.1-2.6-16.2-6.8c-0.6,0.4-1.1,0.7-1.7,1.1
+            c4.4,4.8,10.8,7.8,17.9,7.8c8.3,0,15.6-4.3,19.9-10.7C119.2,54.5,118.6,54.1,118.1,53.7z&quot;/&gt;
+             &lt;animateTransform attributeName&#x3D;&quot;transform&quot; type&#x3D;&quot;rotate&quot; from&#x3D;&quot;360 100 41.3&quot; to&#x3D;&quot;0 100 41.3&quot; dur&#x3D;&quot;10s&quot; repeatCount&#x3D;&quot;indefinite&quot; /&gt;
+      &lt;/g&gt;
+      &lt;g id&#x3D;&quot;XMLID_6_&quot;&gt;
+      &lt;g  id&#x3D;&quot;XMLID_18_&quot;&gt;	
+          
+    
+              
+              &lt;circle class&#x3D;&quot;circle&quot;  cx&#x3D;&quot;100&quot; cy&#x3D;&quot;41&quot; r&#x3D;&quot;1&quot;&gt;&lt;/circle&gt;
+          &lt;/g&gt;
+      &lt;/g&gt;&lt;defs&gt;
+              &lt;filter id&#x3D;&quot;blurFilter4&quot; x&#x3D;&quot;-20&quot; y&#x3D;&quot;-20&quot; width&#x3D;&quot;200&quot; height&#x3D;&quot;200&quot;&gt;
+                  &lt;feGaussianBlur in&#x3D;&quot;SourceGraphic&quot; stdDeviation&#x3D;&quot;2&quot; /&gt;
+              &lt;/filter&gt;
+          &lt;/defs&gt;
+      &lt;path    id&#x3D;&quot;XMLID_5_&quot; class&#x3D;&quot;st2&quot; d&#x3D;&quot;M103.8,16.7c0.1,0.3,0.1,0.6,0.1,0.9c11.6,1.9,20.4,11.9,20.4,24.1c0,13.5-10.9,24.4-24.4,24.4
+      S75.6,55.1,75.6,41.7c0-3.2,0.6-6.3,1.7-9.1c-0.3-0.2-0.5-0.3-0.7-0.5c-1.2,3-1.9,6.2-1.9,9.6c0,14,11.3,25.3,25.3,25.3
+      s25.3-11.3,25.3-25.3C125.3,29,115.9,18.5,103.8,16.7z&quot;/&gt;
+    
+    
+    &lt;/g&gt;
+    &lt;/svg&gt;
+    
+    &lt;div class&#x3D;&quot;message&quot;&gt;
+       {{mensaje}}
+    &lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./no-encontrado.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">*{
+	padding:0px;
+	margin:0px;
+}
+body{
+		background:black;
+	}
+.st0{font-family:&#x27;FootlightMTLight&#x27;;}
+.st1{font-size:83.0285px;}
+.st2{fill:gray;}
+
+svg{
+  width: 500px;
+    height: 400px;
+    text-align: center;
+    fill: var(--white-color);
+}
+path#XMLID_5_ {
+   
+    fill: var(--white-color);
+    filter: url(#blurFilter4);
+}
+path#XMLID_11_ ,path#XMLID_2_ {
+    fill: var(--white-color);
+}
+.circle{
+  animation: out 2s infinite ease-out;
+  fill: var(--white-color);
+}
+
+#container{
+  text-align:center;
+
+}
+.message{
+	color:var(--white-color);
+}
+.message:after{
+	content:&quot;]&quot;;
+}
+.message:before{
+	content:&quot;[&quot;;
+}
+
+.message:after, .message:before {
+  
+  color: var(--white-color);
+  font-size: 20px;
+  -webkit-animation-name: opacity;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: opacity;
+          animation-name: opacity;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+          margin:0 50px;
+}
+
+@-webkit-keyframes opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacity {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes out {
+  0% {r:1;  opacity: 0.9 ;}
+  25%{r:5;  opacity: 0.3 ;}
+  50%{r:10; opacity: 0.2 ;}
+  75%{r:15;opacity:0.1;}
+ 	100% {r:20;opacity:0;}
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div id="container">    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"         viewBox="0 0 200 82.7" style="enable-background:new 0 0 200 82.7;" xml:space="preserve">        <g id="Calque_1">        <text id="XMLID_3_" transform="matrix(1.2187 0 0 1 13 75.6393)" class="st0 st1">4</text>        <text id="XMLID_4_" transform="matrix(1.2187 0 0 1 133.0003 73.6393)" class="st0 st1">4</text>    </g>    <g id="Calque_2">    <g>        <path id="XMLID_11_" d="M81.8,29.2c4.1-5.7,10.7-9.4,18.3-9.4c6.3,0,12.1,2.7,16.1,6.9c0.6-0.4,1.1-0.7,1.7-1.1            c-4.4-4.8-10.8-7.9-17.8-7.9c-8.3,0-15.6,4.2-20,10.6C80.7,28.5,81.3,28.8,81.8,29.2z"/>            <path id="XMLID_2_" d="M118.1,53.7c-4,5.7-10.7,9.5-18.2,9.5c-6.3,0-12.1-2.6-16.2-6.8c-0.6,0.4-1.1,0.7-1.7,1.1            c4.4,4.8,10.8,7.8,17.9,7.8c8.3,0,15.6-4.3,19.9-10.7C119.2,54.5,118.6,54.1,118.1,53.7z"/>             <animateTransform attributeName="transform" type="rotate" from="360 100 41.3" to="0 100 41.3" dur="10s" repeatCount="indefinite" />      </g>      <g id="XMLID_6_">      <g  id="XMLID_18_">	                                          <circle class="circle"  cx="100" cy="41" r="1"></circle>          </g>      </g><defs>              <filter id="blurFilter4" x="-20" y="-20" width="200" height="200">                  <feGaussianBlur in="SourceGraphic" stdDeviation="2" />              </filter>          </defs>      <path    id="XMLID_5_" class="st2" d="M103.8,16.7c0.1,0.3,0.1,0.6,0.1,0.9c11.6,1.9,20.4,11.9,20.4,24.1c0,13.5-10.9,24.4-24.4,24.4      S75.6,55.1,75.6,41.7c0-3.2,0.6-6.3,1.7-9.1c-0.3-0.2-0.5-0.3-0.7-0.5c-1.2,3-1.9,6.2-1.9,9.6c0,14,11.3,25.3,25.3,25.3      s25.3-11.3,25.3-25.3C125.3,29,115.9,18.5,103.8,16.7z"/>            </g>    </svg>        <div class="message">       {{mensaje}}    </div>    </div></div>'
+    var COMPONENTS = [{'name': 'ActualizarPersonalComponent', 'selector': 'app-actualizar-personal'},{'name': 'ActualizarRolComponent', 'selector': 'app-actualizar-rol'},{'name': 'ActualizarUsuarioComponent', 'selector': 'app-actualizar-usuario'},{'name': 'BuscadorComponent', 'selector': 'app-buscador'},{'name': 'CambioContrasenaComponent', 'selector': 'app-cambio-contrasena'},{'name': 'ContrasenaEmailComponent', 'selector': 'app-contrasena-email'},{'name': 'ErroresBackendComponent', 'selector': 'app-errores-backend'},{'name': 'ErroresFrontendComponent', 'selector': 'app-errores-frontend'},{'name': 'EscannerQRComponent', 'selector': 'app-escanner-qr'},{'name': 'ExitoComponent', 'selector': 'app-exito'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'ModalComponent', 'selector': 'app-modal'},{'name': 'NoEncontradoComponent', 'selector': 'app-no-encontrado'},{'name': 'PaginacionComponent', 'selector': 'app-paginacion'},{'name': 'PanelAdminComponent', 'selector': 'app-panel-admin'},{'name': 'PersonalEliminadoComponent', 'selector': 'app-personal-eliminado'},{'name': 'RegistroPersonalComponent', 'selector': 'app-registro-personal'},{'name': 'RegistroRolComponent', 'selector': 'app-registro-rol'},{'name': 'RegistroUsuarioComponent', 'selector': 'app-registro-usuario'},{'name': 'RestablecerContrasenaEmailComponent', 'selector': 'app-restablecer-contrasena-email'},{'name': 'UsuariosEliminadosComponent', 'selector': 'app-usuarios-eliminados'},{'name': 'VerPersonalComponent', 'selector': 'app-ver-personal'},{'name': 'VerRolComponent', 'selector': 'app-ver-rol'},{'name': 'VerUsuariosComponent', 'selector': 'app-ver-usuarios'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'NoEncontradoComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NoEncontradoComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

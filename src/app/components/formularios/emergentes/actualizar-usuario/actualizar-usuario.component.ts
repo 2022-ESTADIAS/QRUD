@@ -1,33 +1,63 @@
-import { Output } from '@angular/core';
-import { Input } from '@angular/core';
-import { EventEmitter } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter , Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { RegistroUsuario, Usuario } from 'src/app/interfaces/usuario.interface';
-import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
+/**
+ * nombre, hoja de estilos y archivo html del componente
+ */
 @Component({
   selector: 'app-actualizar-usuario',
   templateUrl: './actualizar-usuario.component.html',
   styleUrls: ['./actualizar-usuario.component.css']
 })
 export class ActualizarUsuarioComponent implements OnInit {
-
+  /**
+   * propiedad que contiene el formulario reactivo
+   */
   form!: FormGroup;
-  errores!:[{msg:string}]
-  existeError:boolean = false;
-  msgExito:string = "";
-  existeMsgExito:boolean = false;
-  @Input() usuario!:Usuario
-  @Input() idUsuario:any = ""
-  usuarios:Usuario[] = [];
 
+  /**
+   * propiedad para mostrar mensajes de error solo si existe 
+   */
+  existeError:boolean = false;
+  /**
+   * propiedad que contiene un arreglo con los mensajes de error proveido por las validaciones del backend
+   */
+  errores!:[{msg:string}];
+
+
+
+  /**
+   * propiedad que contiene el usuario que se va a actualizar
+   */
+
+  @Input() usuario!:Usuario
+
+  /**
+   * propiedad que contiene el id del usuario que se va a actualizar
+   */
+  @Input() idUsuario:any = ""
+
+  /**
+   * propiedad que contiene el arreglo de usuarios activos que devuelve el backend
+   */
+  usuarios:Usuario[] = [];
+  /**
+   * evento que emite el valor para mostrar/ocultar el modal del formulario reactivo
+   */
   @Output() ocultar:EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  /**
+   * evento que retorna el arreglo de usuarios actualizado
+   */
   @Output() usuarioActualizado:EventEmitter<Usuario[]> = new EventEmitter();
 
+  /**
+   * inyeccion de servicios
+   */
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
@@ -35,14 +65,18 @@ export class ActualizarUsuarioComponent implements OnInit {
     private ErrorServidor:ErrorServidorService
     ) { }
 
+    /**
+     * Inicializando el formulario reactivo
+     */
   ngOnInit(): void {
     this.FormularioUsuario();
     
  
   }
-
+   /**
+   * metodo que inicializa el formulario reactivo con sus respectivos campos y validaciones
+   */
   FormularioUsuario(){
-
     this.form =   this.fb.group({
       nombre:[this.usuario.nombre, Validators.required], 
       rfc:[this.usuario.rfc, [Validators.required,Validators.pattern(/^[ña-z]{3,4}[0-9]{6}[0-9a-z]{3}$/i)]],
@@ -52,7 +86,9 @@ export class ActualizarUsuarioComponent implements OnInit {
     })
 
   }
-
+  /**
+   * metodo que actualiza el usuario en el backend
+   */
   submit(){
 
     if(this.form.invalid){
@@ -70,23 +106,14 @@ export class ActualizarUsuarioComponent implements OnInit {
       telefono,
     };
 
-    console.log(this.idUsuario)
     this.QRUDService.ActualizarRegistros("user",this.idUsuario,usuarioActualizado).then((data:any) => {
-      console.log(data);
-      this.msgExito ="Usuario Actualizado Exitosamente";
-      this.existeMsgExito = true;
+  
       this.form.reset();
 
         this.usuarioActualizado.emit(data);
         this.ocultar.emit(false);
 
-      setTimeout(() =>{
-        this.existeMsgExito = false;
-      },2000);
-
-
     }).catch(err => {
-      console.log(err)
       if(err.error.errors){
         this.existeError = true;
         this.errores = err.error.errors;
@@ -102,13 +129,22 @@ export class ActualizarUsuarioComponent implements OnInit {
     })
   }
 
+  /**
+   * valida campos vacios del formulario reactivo si existen retorna un valor booleano true
+   * @param campo recibe un campo del formulario para validar si contiene errores de validacion o no
+   */
   campoValido(campo:string){
     return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
   }
-
+  /**
+ * metodo que remueve los mensajes de error solo si existen
+ */
   removerAlertas(){
     this.existeError = false;
   }
+ /**
+  * metodo que oculta el modal del formulario reactivo
+  */ 
 ocultarFormulario(){
   this.ocultar.emit(false);
 }

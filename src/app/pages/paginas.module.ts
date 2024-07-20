@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentesModule } from '../components/componentes.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,7 +21,6 @@ import { VerPersonalComponent } from './ver-personal/ver-personal.component';
 import { VerRolComponent } from './ver-rol/ver-rol.component';
 /* import { EscannerUsuarioComponent } from './escanner-usuario/escanner-usuario.component'; */
 
-
 @NgModule({
   declarations: [
     CambioContrasenaComponent,
@@ -34,8 +33,8 @@ import { VerRolComponent } from './ver-rol/ver-rol.component';
     VerUsuariosComponent,
     VerPersonalComponent,
     VerRolComponent,
-    BusquedaPipe/* ,
-    EscannerUsuarioComponent, */
+    BusquedaPipe /* ,
+    EscannerUsuarioComponent, */,
   ],
   imports: [
     CommonModule,
@@ -43,8 +42,7 @@ import { VerRolComponent } from './ver-rol/ver-rol.component';
     ZXingScannerModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ComponentesModule
-
+    ComponentesModule,
   ],
   exports: [
     CambioContrasenaComponent,
@@ -58,6 +56,5 @@ import { VerRolComponent } from './ver-rol/ver-rol.component';
     VerPersonalComponent,
     VerRolComponent,
   ],
-
 })
-export class PaginasModule { }
+export class PaginasModule {}

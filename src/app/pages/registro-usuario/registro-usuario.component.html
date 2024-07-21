@@ -37,79 +37,77 @@
         </div>
 
         <div class="group">
-          <input type="text" formControlName="nombre" (keyup)="removerAlertas()">
+          <input type="text" formControlName="name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Nombre completo *</label>
-          <app-errores-frontend *ngIf="campoValido('nombre')" mensaje="El campo es requerido"></app-errores-frontend>
+          <app-errores-frontend *ngIf="campoValido('name')" mensaje="El campo es requerido"></app-errores-frontend>
         </div>
 
         <div class="group">
-          <input type="text" formControlName="rfc" (keyup)="removerAlertas()">
+          <input type="text" formControlName="visit_company" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Empresa de la que nos visitas</label>
-          <app-errores-frontend *ngIf="campoValido('rfc')" mensaje="Tiene que ser un rfc valido"></app-errores-frontend>
+          <app-errores-frontend *ngIf="campoValido('visit_company')" mensaje="Campo requerido"></app-errores-frontend>
         </div>
 
         <div class="group">
-          <input type="datetime-local" formControlName="direccion" (keyup)="removerAlertas()">
+          <input type="datetime-local" formControlName="visit_date" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>FECHA Y HORA DE TU VISITA A MEXCAL *</label>
-          <app-errores-frontend *ngIf="campoValido('direccion')" mensaje="El campo es requerido"></app-errores-frontend>
+          <app-errores-frontend *ngIf="campoValido('visit_date')"
+            mensaje="El campo es requerido"></app-errores-frontend>
         </div>
 
         <div class="group">
-          <input type="text" formControlName="telefono" (keyup)="removerAlertas()">
+          <input type="text" formControlName="contact_name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>NOMBRE DEL CONTACTO QUE VISITAS *</label>
-          <app-errores-frontend *ngIf="campoValido('telefono')"
-            mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+          <app-errores-frontend *ngIf="campoValido('contact_name')"
+            mensaje="El campo es requerido"></app-errores-frontend>
         </div>
         <div class="group">
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>DEPARTAMENTO AL QUE VISITAS *</label>
-          <select name="" id="" class="controls select-absolute">
+          <select name="" id="" class="controls select-absolute" formControlName="department_id">
             <option value="" disabled selected>--Seleccione departamento--</option>
             <option value="{{department.uid}}" *ngFor="let department of departments">{{department.name}}</option>
           </select>
 
-          <app-errores-frontend *ngIf="campoValido('telefono')"
-            mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+          <app-errores-frontend *ngIf="campoValido('department_id')"
+            mensaje="El campo es requerido"></app-errores-frontend>
         </div>
+
+        <div class="group">
+          <input type="text" formControlName="enter_device" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>INGRESAS ALGO DE LO MENCIONADO? *</label>
+          <app-errores-frontend *ngIf="campoValido('enter_device')"
+            mensaje="El campo es requerido"></app-errores-frontend>
+        </div>
+
+
         <div class="group">
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>tipo usuario *</label>
-          <select name="" id="" class="controls select-absolute">
+          <select name="" id="" class="controls select-absolute" formControlName="visitor_type_id">
             <option value="" disabled selected>--Seleccione tipo--</option>
             <option value="{{visitor.uid}}" *ngFor="let visitor of visitorTypes">{{visitor.name}}</option>
           </select>
 
-          <app-errores-frontend *ngIf="campoValido('telefono')"
-            mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+          <app-errores-frontend *ngIf="campoValido('visitor_type_id')"
+            mensaje="El campo es requerido"></app-errores-frontend>
         </div>
-        <div class="group">
-          <input type="text" formControlName="telefono" (keyup)="removerAlertas()">
-          <span class="highlight"></span>
-          <span class="bar"></span>
-          <label>INGRESAS ALGO DE LO MENCIONADO? *</label>
-          <app-errores-frontend *ngIf="campoValido('telefono')"
-            mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
-        </div>
-        <div class="group">
-          <input type="text" formControlName="telefono" (keyup)="removerAlertas()">
-          <span class="highlight"></span>
-          <span class="bar"></span>
-          <label>NOMBRE DE CONTACTO *</label>
-          <app-errores-frontend *ngIf="campoValido('telefono')"
-            mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
-        </div>
+
+
 
 
 

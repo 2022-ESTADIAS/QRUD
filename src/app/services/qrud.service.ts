@@ -7,6 +7,8 @@ import { RegistroUsuario } from '../interfaces/usuario.interface';
 import { StorageService } from './storage.service';
 import {
   DepartmentResponse,
+  VisitorForm,
+  VisitorFormPostResponse,
   VisitorTypeResponse,
 } from '../interfaces/mexcal/index.interface';
 
@@ -297,6 +299,20 @@ export class QRUDService {
         .subscribe(
           (data) => {
             resolve(data);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
+  }
+  publicRegisterQRCode(data: VisitorForm) {
+    return new Promise<VisitorFormPostResponse>((resolve, reject) => {
+      this.http
+        .post<VisitorFormPostResponse>(`${url}/public/registro`, data)
+        .subscribe(
+          (res) => {
+            resolve(res);
           },
           (err) => {
             reject(err);

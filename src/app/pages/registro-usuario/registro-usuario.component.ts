@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
   Department,
+  VisitorForm,
   VisitorType,
 } from 'src/app/interfaces/mexcal/index.interface';
 import { RegistroUsuario } from 'src/app/interfaces/usuario.interface';
@@ -76,20 +77,14 @@ export class RegistroUsuarioComponent implements OnInit {
    */
   FormularioUsuario() {
     this.form = this.fb.group({
-      nombre: ['', Validators.required],
-      rfc: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[ña-z]{3,4}[0-9]{6}[0-9a-z]{3}$/i),
-        ],
-      ],
-      telefono: [
-        '',
-        [Validators.required, Validators.pattern(/^[0-9]\d{9}$/g)],
-      ],
-      direccion: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      name: ['', Validators.required],
+      visit_company: ['', Validators.required],
+      visit_date: ['', [Validators.required]],
+      contact_name: ['', Validators.required],
+      department_id: ['', Validators.required],
+      enter_device: ['', [Validators.required]],
+      visitor_type_id: ['', Validators.required],
     });
   }
   /**
@@ -101,18 +96,29 @@ export class RegistroUsuarioComponent implements OnInit {
       return;
     }
 
-    const { email, direccion, nombre, rfc, telefono }: RegistroUsuario =
-      this.form.value;
+    const {
+      email,
+      contact_name,
+      department_id,
+      enter_device,
+      name,
+      visit_company,
+      visit_date,
+      visitor_type_id,
+    }: VisitorForm = this.form.value;
 
-    const usuario: RegistroUsuario = {
+    const usuario: VisitorForm = {
       email: email.trim().toLowerCase(),
-      direccion: direccion.trim().toLowerCase(),
-      nombre: nombre.trim().toLowerCase(),
-      rfc: rfc.trim().toLowerCase(),
-      telefono,
+      contact_name: contact_name.trim().toLowerCase(),
+      department_id: department_id.trim().toLowerCase(),
+      enter_device: enter_device.trim().toLowerCase(),
+      name: name.trim().toLowerCase(),
+      visit_company: visit_company.trim().toLowerCase(),
+      visit_date: visit_date.trim().toLowerCase(),
+      visitor_type_id: visitor_type_id.trim().toLowerCase(),
     };
 
-    this.QRUDService.crearRegistro('user', usuario)
+    this.QRUDService.publicRegisterQRCode(usuario)
       .then((data: any) => {
         this.msgExito = data.msg;
         this.existeMsgExito = true;
@@ -163,7 +169,6 @@ export class RegistroUsuarioComponent implements OnInit {
   }
   getVisitorTypes() {
     this.QRUDService.visitorsTypes().then((data) => {
-      console.log(data, 'VISITORS TYPES');
       this.visitorTypes = data.visitorTypes;
     });
   }

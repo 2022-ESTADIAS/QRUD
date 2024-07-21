@@ -7,8 +7,11 @@ import { RegistroUsuario } from '../interfaces/usuario.interface';
 import { StorageService } from './storage.service';
 import {
   DepartmentResponse,
+  QRUser,
+  VisitEntriesResponse,
   VisitorForm,
   VisitorFormPostResponse,
+  VisitorsActiveVerificationResponse,
   VisitorTypeResponse,
 } from '../interfaces/mexcal/index.interface';
 
@@ -319,5 +322,37 @@ export class QRUDService {
           }
         );
     });
+  }
+  visitorsEntries(data: QRUser) {
+    return new Promise<VisitEntriesResponse>((resolve, reject) => {
+      this.http
+        .post<VisitEntriesResponse>(`${url}/public/visitors-entries`, data)
+        .subscribe(
+          (res) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
+  }
+  visitorsActiveVerification(id: string) {
+    return new Promise<VisitorsActiveVerificationResponse>(
+      (resolve, reject) => {
+        this.http
+          .get<VisitorsActiveVerificationResponse>(
+            `${url}/public/visitors-active-verification/${id}`
+          )
+          .subscribe(
+            (res) => {
+              resolve(res);
+            },
+            (err) => {
+              reject(err);
+            }
+          );
+      }
+    );
   }
 }

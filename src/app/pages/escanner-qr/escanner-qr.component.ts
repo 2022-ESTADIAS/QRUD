@@ -36,6 +36,28 @@ export class EscannerQRComponent implements OnInit {
    */
   camara: boolean = true;
 
+  existeError: boolean = false;
+
+  /**
+   * propiedad que contiene un arreglo con los mensajes de error proveido por las validaciones del backend
+   */
+  errores!: [{ msg: string }];
+
+  /**
+   * almacena el mensaje de eror en caso de que el servidor no responda
+   */
+  errorServidor: string = '';
+
+  /**
+   * propiedad que muestra el mensaje de exito solo si el registro del usuario fue exitoso
+   */
+  existeMsgExito: boolean = false;
+
+  /**
+   * propiedad que contiene el mensaje de exito
+   */
+  msgExito: string = '';
+
   /**
    * inyectando servicio de formulario reactivo
    */
@@ -51,16 +73,13 @@ export class EscannerQRComponent implements OnInit {
    * @param event como valor del evento recibe la informacion del usuario contenido en el codigo qr
    */
   escanearQR(event: any) {
-    console.log(event, 'EVENTOS');
     const user = JSON.parse(event) as QRCodeVisitor;
-    console.log(user, 'USERS');
     this.usuarioQR = user;
     this.ocultarDatos = true;
 
     if (this.usuarioQR) {
       const date = new Date().toLocaleString('es-MX');
 
-      console.log(date, 'MOMENTO ACTUAL DEL ESCANEO');
       this.QRUDService.visitorsActiveVerification(this.usuarioQR._id)
         .then((data) => {
           if (data.access) {
@@ -68,10 +87,22 @@ export class EscannerQRComponent implements OnInit {
               scanDate: date,
               visitorQr: this.usuarioQR!,
             });
+            this.existeMsgExito = true;
+            this.msgExito = 'Accesso concedido !';
+
+            setTimeout(() => {
+              this.existeMsgExito = false;
+            }, 4000);
           }
         })
         .catch((err) => {
-          console.log(err);
+          this.existeError = true;
+          this.errorServidor = err.error.err;
+
+          setTimeout(() => {
+            this.existeError = false;
+            this.errorServidor = '';
+          }, 4000);
         });
     }
   }
@@ -85,5 +116,8 @@ export class EscannerQRComponent implements OnInit {
 
   limpiarQr() {
     this.usuarioQR = null;
+  }
+  parseDate(fecha: string) {
+    return fecha.replace('t', ' ');
   }
 }

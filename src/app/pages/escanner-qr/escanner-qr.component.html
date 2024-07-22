@@ -1,3 +1,35 @@
+<ng-container *ngIf="existeError">
+  <div class="mensajes-container">
+    <div class="contenido">
+      <div class="validacion">
+        <div class="content-message">
+          <i class="fa-solid fa-x error"></i>
+          <div class="message">
+            <span class="text text-1">Error</span>
+            <span class="text text-2" *ngIf="errorServidor.length > 0">{{errorServidor}}</span>
+          </div>
+        </div>
+        <i class="fa-solid fa-x close"></i>
+        <div class="progress"></div>
+      </div>
+    </div>
+
+  </div>
+
+
+</ng-container>
+
+<div class="alert show  showAlert" *ngIf="existeMsgExito">
+  <i class="fa-solid fa-thumbs-up"></i>
+  <span class="msg">{{msgExito}}</span>
+  <div class="close-btn">
+    <i class="fa-solid fa-x close"></i>
+  </div>
+</div>
+
+
+
+
 <div class="container" *ngIf="camara">
   <zxing-scanner [formats]="allowedFormats" (scanSuccess)="escanearQR($event)"
     (camerasNotFound)="camaranoEncontrada($event)"> </zxing-scanner>
@@ -22,27 +54,28 @@
 
 <div class="visitor-container">
   <h4>Datos del Visitante</h4>
-  <div class="grid">
-    <div>
-      <p>Nombre del visitante: </p> <span>{{usuarioQR?.name}}</span>
+  <div>
+    <div class="flex">
+      <p>Nombre del visitante: </p> <span class="margin-left">{{usuarioQR?.name}}</span>
     </div>
-    <div>
-      <p>Fecha de la visita: </p> <span>{{usuarioQR?.visit_date}}</span>
+    <div class="flex">
+      <p>Fecha de la visita: </p> <span class="margin-left">{{usuarioQR?.visit_date &&
+        parseDate(usuarioQR?.visit_date!)}}</span>
     </div>
-    <div>
-      <p>Compañia: </p> <span>{{usuarioQR?.visit_company}}</span>
+    <div class="flex">
+      <p>Compañia: </p> <span class="margin-left">{{usuarioQR?.visit_company}}</span>
     </div>
-    <div>
-      <p>Nombre de contacto en la empresa: </p> <span>{{usuarioQR?.contact_name}}</span>
+    <div class="flex">
+      <p>Nombre de contacto en la empresa: </p> <span class="margin-left">{{usuarioQR?.contact_name}}</span>
     </div>
-    <div>
-      <p>Departamento: </p> <span>{{usuarioQR?.department}}</span>
+    <div class="flex">
+      <p>Departamento: </p> <span class="margin-left">{{usuarioQR?.department}}</span>
     </div>
-    <div>
-      <p>Tipo de Visitante: </p> <span>{{usuarioQR?.visitor_type}}</span>
+    <div class="flex">
+      <p>Tipo de Visitante: </p> <span class="margin-left">{{usuarioQR?.visitor_type}}</span>
     </div>
-    <div>
-      <p>Dispositivos del visitante: </p> <span>{{usuarioQR?.enter_device}}</span>
+    <div class="flex">
+      <p>Dispositivos del visitante: </p> <span class="margin-left">{{usuarioQR?.enter_device}}</span>
     </div>
 
 

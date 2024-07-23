@@ -10,6 +10,10 @@ export interface Devices {
   uid: string;
   name: string;
 }
+export interface ReasonsForAdmissions {
+  uid: string;
+  name: string;
+}
 
 export interface VisitorForm {
   email: string;
@@ -20,6 +24,11 @@ export interface VisitorForm {
   department_id: string;
   enter_device: string;
   visitor_type_id: string;
+}
+
+export interface ProviderForm extends VisitorForm {
+  reason_id: string;
+  hasVehicle: boolean;
 }
 
 export interface QRCodeVisitor {
@@ -49,6 +58,10 @@ export interface VisitorTypeResponse {
 export interface DevicesResponse {
   message: string;
   devices: Devices[];
+}
+export interface ReasonsForAdmissionsResponse {
+  message: string;
+  reasons: ReasonsForAdmissions[];
 }
 
 export interface VisitorFormPostResponse {

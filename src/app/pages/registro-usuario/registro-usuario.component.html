@@ -14,7 +14,7 @@
 <div class="flex" *ngIf="!showRegisterForm  &&  visitorTypes.length >0">
   <h1>Selecciona el tipo de usuario</h1>
   <ng-container *ngFor="let type of visitorTypes">
-    <div [ngClass]="getClass(type.name)" (click)="openRegisterModal(type.uid)">
+    <div [ngClass]="getClass(type.name)" (click)="openRegisterModal(type)">
       {{type.name}}
     </div>
 
@@ -113,7 +113,37 @@
           <app-errores-frontend *ngIf="campoValido('enter_device')"
             mensaje="El campo es requerido"></app-errores-frontend>
         </div>
+        <ng-container *ngIf="showProvidersRegisterFormFields">
+          <div class="group">
+            <input type="text" style="visibility: hidden;">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>SELECCIONA EL MOTIVO DE TU INGRESO *</label>
+            <select name="" id="" class="controls select-absolute" formControlName="reason_id">
+              <option value="" disabled selected>--Seleccione motivo--</option>
+              <option value="{{reason.uid}}" *ngFor="let reason of reasons">{{reason.name}}</option>
+            </select>
 
+            <app-errores-frontend *ngIf="campoValido('reason_id')"
+              mensaje="El campo es requerido"></app-errores-frontend>
+          </div>
+
+          <div class="group">
+            <input type="text" style="visibility: hidden;">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>INGRESARAS VEHICULO *</label>
+            <select name="" id="" class="controls select-absolute" formControlName="hasVehicle">
+              <option value="" disabled selected>--Seleccione respuesta--</option>
+              <option [value]="true"> Si </option>
+              <option [value]="false"> No </option>
+
+            </select>
+
+            <app-errores-frontend *ngIf="campoValido('hasVehicle')"
+              mensaje="El campo es requerido"></app-errores-frontend>
+          </div>
+        </ng-container>
 
 
 

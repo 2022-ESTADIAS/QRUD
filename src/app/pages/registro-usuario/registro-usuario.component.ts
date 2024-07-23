@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import {
   Department,
   Devices,
+  ProviderForm,
+  ReasonsForAdmissions,
   VisitorForm,
   VisitorType,
 } from 'src/app/interfaces/mexcal/index.interface';
@@ -46,6 +48,7 @@ export class RegistroUsuarioComponent implements OnInit {
    */
   existeMsgExito: boolean = false;
   showRegisterForm: boolean = false;
+  showProvidersRegisterFormFields = false;
 
   /**
    * propiedad que contiene el mensaje de exito
@@ -55,6 +58,7 @@ export class RegistroUsuarioComponent implements OnInit {
   departments: Department[] = [];
   visitorTypes: VisitorType[] = [];
   devices: Devices[] = [];
+  reasons: ReasonsForAdmissions[] = [];
 
   /**
    * inyeccion de servicios
@@ -75,6 +79,7 @@ export class RegistroUsuarioComponent implements OnInit {
     this.getVisitorTypes();
     this.getDevices();
     this.FormularioUsuario();
+    this.getReasons();
   }
   /**
    * metodo que inicializa el formulario reactivo con sus respectivos campos y validaciones
@@ -91,36 +96,79 @@ export class RegistroUsuarioComponent implements OnInit {
       visitor_type_id: ['', Validators.required],
     });
   }
+
+  ProviderForm() {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      name: ['', Validators.required],
+      visit_company: ['', Validators.required],
+      visit_date: ['', [Validators.required]],
+      contact_name: ['', Validators.required],
+      department_id: ['', Validators.required],
+      enter_device: ['', [Validators.required]],
+      visitor_type_id: ['', Validators.required],
+      reason_id: ['', Validators.required],
+      hasVehicle: ['', Validators.required],
+    });
+  }
+
   /**
    * metodo que registra el nuevo  usuario
    */
   submit() {
+    let usuario: VisitorForm | ProviderForm = this.form.value;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    const {
-      email,
-      contact_name,
-      department_id,
-      enter_device,
-      name,
-      visit_company,
-      visit_date,
-      visitor_type_id,
-    }: VisitorForm = this.form.value;
-
-    const usuario: VisitorForm = {
-      email: email.trim().toLowerCase(),
-      contact_name: contact_name.trim().toLowerCase(),
-      department_id: department_id.trim().toLowerCase(),
-      enter_device: enter_device.trim().toLowerCase(),
-      name: name.trim().toLowerCase(),
-      visit_company: visit_company.trim().toLowerCase(),
-      visit_date: visit_date.trim().toLowerCase(),
-      visitor_type_id: visitor_type_id.trim().toLowerCase(),
-    };
+    if (this.showProvidersRegisterFormFields) {
+      const {
+        email,
+        contact_name,
+        department_id,
+        enter_device,
+        name,
+        visit_company,
+        visit_date,
+        visitor_type_id,
+        hasVehicle,
+        reason_id,
+      }: ProviderForm = this.form.value;
+      usuario = {
+        email: email.trim().toLowerCase(),
+        contact_name: contact_name.trim().toLowerCase(),
+        department_id: department_id.trim().toLowerCase(),
+        enter_device: enter_device.trim().toLowerCase(),
+        name: name.trim().toLowerCase(),
+        visit_company: visit_company.trim().toLowerCase(),
+        visit_date: visit_date.trim().toLowerCase(),
+        visitor_type_id: visitor_type_id.trim().toLowerCase(),
+        hasVehicle,
+        reason_id,
+      };
+    } else {
+      const {
+        email,
+        contact_name,
+        department_id,
+        enter_device,
+        name,
+        visit_company,
+        visit_date,
+        visitor_type_id,
+      }: VisitorForm = this.form.value;
+      usuario = {
+        email: email.trim().toLowerCase(),
+        contact_name: contact_name.trim().toLowerCase(),
+        department_id: department_id.trim().toLowerCase(),
+        enter_device: enter_device.trim().toLowerCase(),
+        name: name.trim().toLowerCase(),
+        visit_company: visit_company.trim().toLowerCase(),
+        visit_date: visit_date.trim().toLowerCase(),
+        visitor_type_id: visitor_type_id.trim().toLowerCase(),
+      };
+    }
 
     this.QRUDService.publicRegisterQRCode(usuario)
       .then((data: any) => {
@@ -181,10 +229,22 @@ export class RegistroUsuarioComponent implements OnInit {
       this.devices = data.devices;
     });
   }
+  getReasons() {
+    this.QRUDService.reasons().then((data) => {
+      this.reasons = data.reasons;
+    });
+  }
 
-  openRegisterModal(uid: string) {
-    this.form.get('visitor_type_id')?.setValue(uid);
+  openRegisterModal(visitor: VisitorType) {
     this.showRegisterForm = true;
+    if (visitor.name == 'Proveedores') {
+      this.showProvidersRegisterFormFields = true;
+      this.ProviderForm();
+    } else {
+      this.showProvidersRegisterFormFields = false;
+      this.FormularioUsuario();
+    }
+    this.form.get('visitor_type_id')?.setValue(visitor.uid);
   }
 
   getClass(type: string) {

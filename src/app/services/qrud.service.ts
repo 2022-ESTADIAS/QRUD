@@ -8,7 +8,9 @@ import { StorageService } from './storage.service';
 import {
   DepartmentResponse,
   DevicesResponse,
+  ProviderForm,
   QRUser,
+  ReasonsForAdmissionsResponse,
   VisitEntriesResponse,
   VisitorForm,
   VisitorFormPostResponse,
@@ -322,7 +324,21 @@ export class QRUDService {
       );
     });
   }
-  publicRegisterQRCode(data: VisitorForm) {
+  reasons() {
+    return new Promise<ReasonsForAdmissionsResponse>((resolve, reject) => {
+      this.http
+        .get<ReasonsForAdmissionsResponse>(`${url}/public/reasons`)
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
+    });
+  }
+  publicRegisterQRCode(data: VisitorForm | ProviderForm) {
     return new Promise<VisitorFormPostResponse>((resolve, reject) => {
       this.http
         .post<VisitorFormPostResponse>(`${url}/public/registro`, data)

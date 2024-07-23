@@ -11,7 +11,22 @@
 
 <app-exito [mensaje]="msgExito" *ngIf="existeMsgExito"></app-exito>
 
-<div class="activity-grid">
+<div class="flex" *ngIf="!showRegisterForm  &&  visitorTypes.length >0">
+  <h1>Selecciona el tipo de usuario</h1>
+  <ng-container *ngFor="let type of visitorTypes">
+    <div [ngClass]="getClass(type.name)" (click)="openRegisterModal(type.uid)">
+      {{type.name}}
+    </div>
+
+  </ng-container>
+
+
+
+
+</div>
+
+
+<div class="activity-grid" *ngIf="showRegisterForm">
   <div class="container">
     <div class="title">
       <h4 class="text-center">
@@ -83,27 +98,19 @@
             mensaje="El campo es requerido"></app-errores-frontend>
         </div>
 
-        <div class="group">
-          <input type="text" formControlName="enter_device" (keyup)="removerAlertas()">
-          <span class="highlight"></span>
-          <span class="bar"></span>
-          <label>INGRESAS ALGO DE LO MENCIONADO? *</label>
-          <app-errores-frontend *ngIf="campoValido('enter_device')"
-            mensaje="El campo es requerido"></app-errores-frontend>
-        </div>
 
 
         <div class="group">
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>tipo usuario *</label>
-          <select name="" id="" class="controls select-absolute" formControlName="visitor_type_id">
+          <label>INGRESAS ALGO DE LO MENCIONADO? *</label>
+          <select name="" id="" class="controls select-absolute" formControlName="enter_device">
             <option value="" disabled selected>--Seleccione tipo--</option>
-            <option value="{{visitor.uid}}" *ngFor="let visitor of visitorTypes">{{visitor.name}}</option>
+            <option value="{{device.name}}" *ngFor="let device of devices">{{device.name}}</option>
           </select>
 
-          <app-errores-frontend *ngIf="campoValido('visitor_type_id')"
+          <app-errores-frontend *ngIf="campoValido('enter_device')"
             mensaje="El campo es requerido"></app-errores-frontend>
         </div>
 

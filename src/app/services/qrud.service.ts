@@ -7,6 +7,7 @@ import { RegistroUsuario } from '../interfaces/usuario.interface';
 import { StorageService } from './storage.service';
 import {
   DepartmentResponse,
+  DevicesResponse,
   QRUser,
   VisitEntriesResponse,
   VisitorForm,
@@ -307,6 +308,18 @@ export class QRUDService {
             reject(err);
           }
         );
+    });
+  }
+  devices() {
+    return new Promise<DevicesResponse>((resolve, reject) => {
+      this.http.get<DevicesResponse>(`${url}/public/devices`).subscribe(
+        (data) => {
+          resolve(data);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
     });
   }
   publicRegisterQRCode(data: VisitorForm) {

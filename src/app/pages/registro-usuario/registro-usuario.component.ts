@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
   Department,
+  Devices,
   VisitorForm,
   VisitorType,
 } from 'src/app/interfaces/mexcal/index.interface';
@@ -44,6 +45,7 @@ export class RegistroUsuarioComponent implements OnInit {
    * propiedad que muestra el mensaje de exito solo si el registro del usuario fue exitoso
    */
   existeMsgExito: boolean = false;
+  showRegisterForm: boolean = false;
 
   /**
    * propiedad que contiene el mensaje de exito
@@ -52,6 +54,7 @@ export class RegistroUsuarioComponent implements OnInit {
 
   departments: Department[] = [];
   visitorTypes: VisitorType[] = [];
+  devices: Devices[] = [];
 
   /**
    * inyeccion de servicios
@@ -70,6 +73,7 @@ export class RegistroUsuarioComponent implements OnInit {
   ngOnInit(): void {
     this.getDepartments();
     this.getVisitorTypes();
+    this.getDevices();
     this.FormularioUsuario();
   }
   /**
@@ -171,5 +175,25 @@ export class RegistroUsuarioComponent implements OnInit {
     this.QRUDService.visitorsTypes().then((data) => {
       this.visitorTypes = data.visitorTypes;
     });
+  }
+  getDevices() {
+    this.QRUDService.devices().then((data) => {
+      this.devices = data.devices;
+    });
+  }
+
+  openRegisterModal(uid: string) {
+    this.form.get('visitor_type_id')?.setValue(uid);
+    this.showRegisterForm = true;
+  }
+
+  getClass(type: string) {
+    if (type === 'Visitantes') {
+      return 'visits';
+    } else if (type === 'Proveedores') {
+      return 'providers';
+    } else {
+      return 'drivers';
+    }
   }
 }

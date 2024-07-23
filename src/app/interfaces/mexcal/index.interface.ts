@@ -6,6 +6,10 @@ export interface VisitorType {
   uid: string;
   name: string;
 }
+export interface Devices {
+  uid: string;
+  name: string;
+}
 
 export interface VisitorForm {
   email: string;
@@ -41,6 +45,10 @@ export interface DepartmentResponse {
 export interface VisitorTypeResponse {
   message: string;
   visitorTypes: VisitorType[];
+}
+export interface DevicesResponse {
+  message: string;
+  devices: Devices[];
 }
 
 export interface VisitorFormPostResponse {

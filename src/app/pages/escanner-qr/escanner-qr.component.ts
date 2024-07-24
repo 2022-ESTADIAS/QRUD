@@ -31,6 +31,7 @@ export class EscannerQRComponent implements OnInit {
    * propiedad que se encarga de mostrar/ocultar el formulario reactivo
    */
   ocultarDatos: boolean = false;
+  showDriver: boolean = false;
   /**
    * propiedad que se encarga de indicar si se encontro una camara en el dispositivo
    */
@@ -72,10 +73,16 @@ export class EscannerQRComponent implements OnInit {
    * metodo que se dispara cuando se escanea un codigo qr
    * @param event como valor del evento recibe la informacion del usuario contenido en el codigo qr
    */
-  escanearQR(event: any) {
+  escanearQR(event: string) {
     const user = JSON.parse(event) as QRCodeVisitor;
+    console.log(user, 'escaner');
+
     this.usuarioQR = user;
-    this.ocultarDatos = true;
+    if (this.usuarioQR.visitor_type) {
+      this.ocultarDatos = true;
+    } else {
+      this.showDriver = true;
+    }
 
     if (this.usuarioQR) {
       const date = new Date().toLocaleString('es-MX');
@@ -116,6 +123,8 @@ export class EscannerQRComponent implements OnInit {
 
   limpiarQr() {
     this.usuarioQR = null;
+    this.showDriver = false;
+    this.ocultarDatos = false;
   }
   parseDate(fecha: string) {
     return fecha.replace('t', ' ');

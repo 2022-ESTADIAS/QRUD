@@ -8,6 +8,7 @@ import { StorageService } from './storage.service';
 import {
   DepartmentResponse,
   DevicesResponse,
+  DriverForm,
   ProviderForm,
   QRUser,
   ReasonsForAdmissionsResponse,
@@ -338,7 +339,7 @@ export class QRUDService {
         );
     });
   }
-  publicRegisterQRCode(data: VisitorForm | ProviderForm) {
+  publicRegisterQRCode(data: VisitorForm | ProviderForm | DriverForm) {
     return new Promise<VisitorFormPostResponse>((resolve, reject) => {
       this.http
         .post<VisitorFormPostResponse>(`${url}/public/registro`, data)

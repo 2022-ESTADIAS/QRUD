@@ -25,6 +25,15 @@ export interface VisitorForm {
   enter_device: string;
   visitor_type_id: string;
 }
+export interface DriverForm {
+  company_name: string;
+  operator_name: string;
+  phone: string;
+  email: string;
+  office_name: string;
+  office_phone: string;
+  visitor_type_id: string;
+}
 
 export interface ProviderForm extends VisitorForm {
   reason_id: string;
@@ -40,6 +49,13 @@ export interface QRCodeVisitor {
   enter_device: string;
   department: string;
   visitor_type: string;
+
+  company_name?: string;
+  operator_name?: string;
+  phone?: string;
+  email?: string;
+  office_name?: string;
+  office_phone?: string;
 }
 
 export interface QRUser {

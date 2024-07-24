@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {
   Department,
   Devices,
+  DriverForm,
   ProviderForm,
   ReasonsForAdmissions,
   VisitorForm,
@@ -49,6 +50,7 @@ export class RegistroUsuarioComponent implements OnInit {
   existeMsgExito: boolean = false;
   showRegisterForm: boolean = false;
   showProvidersRegisterFormFields = false;
+  showDriversRegisterFormFields = false;
 
   /**
    * propiedad que contiene el mensaje de exito
@@ -111,12 +113,23 @@ export class RegistroUsuarioComponent implements OnInit {
       hasVehicle: ['', Validators.required],
     });
   }
+  DriverForm() {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      company_name: ['', Validators.required],
+      operator_name: ['', Validators.required],
+      phone: ['', [Validators.required]],
+      office_name: ['', Validators.required],
+      office_phone: ['', Validators.required],
+      visitor_type_id: ['', Validators.required],
+    });
+  }
 
   /**
    * metodo que registra el nuevo  usuario
    */
   submit() {
-    let usuario: VisitorForm | ProviderForm = this.form.value;
+    let usuario: VisitorForm | ProviderForm | DriverForm = this.form.value;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -146,6 +159,25 @@ export class RegistroUsuarioComponent implements OnInit {
         visitor_type_id: visitor_type_id.trim().toLowerCase(),
         hasVehicle,
         reason_id,
+      };
+    } else if (this.showDriversRegisterFormFields) {
+      const {
+        email,
+        company_name,
+        office_name,
+        office_phone,
+        operator_name,
+        phone,
+        visitor_type_id,
+      }: DriverForm = this.form.value;
+      usuario = {
+        email: email.trim().toLowerCase(),
+        company_name: company_name.trim().toLowerCase(),
+        office_name: office_name.trim().toLowerCase(),
+        office_phone: office_phone.trim().toLowerCase(),
+        operator_name: operator_name.trim().toLowerCase(),
+        phone: phone.trim().toLowerCase(),
+        visitor_type_id: visitor_type_id.trim().toLowerCase(),
       };
     } else {
       const {
@@ -240,8 +272,12 @@ export class RegistroUsuarioComponent implements OnInit {
     if (visitor.name == 'Proveedores') {
       this.showProvidersRegisterFormFields = true;
       this.ProviderForm();
+    } else if (visitor.name == 'Transportistas') {
+      this.showDriversRegisterFormFields = true;
+      this.DriverForm();
     } else {
       this.showProvidersRegisterFormFields = false;
+      this.showDriversRegisterFormFields = false;
       this.FormularioUsuario();
     }
     this.form.get('visitor_type_id')?.setValue(visitor.uid);

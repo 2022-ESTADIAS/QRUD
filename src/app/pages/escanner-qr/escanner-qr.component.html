@@ -46,45 +46,80 @@
 
 <div *ngIf="ocultarDatos">
 
+  <div class="visitor-container">
+    <h4>Datos del Visitante</h4>
+    <div>
+      <div class="flex">
+        <p>Nombre del visitante: </p> <span class="margin-left">{{usuarioQR?.name}}</span>
+      </div>
+      <div class="flex">
+        <p>Fecha de la visita: </p> <span class="margin-left">{{usuarioQR?.visit_date &&
+          parseDate(usuarioQR?.visit_date!)}}</span>
+      </div>
+      <div class="flex">
+        <p>Compañia: </p> <span class="margin-left">{{usuarioQR?.visit_company}}</span>
+      </div>
+      <div class="flex">
+        <p>Nombre de contacto en la empresa: </p> <span class="margin-left">{{usuarioQR?.contact_name}}</span>
+      </div>
+      <div class="flex">
+        <p>Departamento: </p> <span class="margin-left">{{usuarioQR?.department}}</span>
+      </div>
+      <div class="flex">
+        <p>Tipo de Visitante: </p> <span class="margin-left">{{usuarioQR?.visitor_type}}</span>
+      </div>
+      <div class="flex">
+        <p>Dispositivos del visitante: </p> <span class="margin-left">{{usuarioQR?.enter_device}}</span>
+      </div>
 
+
+      <button type="button" class="clear-qr-btn" (click)="limpiarQr()">
+        Limpiar registro
+      </button>
+
+    </div>
+
+
+
+
+  </div>
 
 
 
 </div>
+<div *ngIf="showDriver">
 
-<div class="visitor-container">
-  <h4>Datos del Visitante</h4>
-  <div>
-    <div class="flex">
-      <p>Nombre del visitante: </p> <span class="margin-left">{{usuarioQR?.name}}</span>
-    </div>
-    <div class="flex">
-      <p>Fecha de la visita: </p> <span class="margin-left">{{usuarioQR?.visit_date &&
-        parseDate(usuarioQR?.visit_date!)}}</span>
-    </div>
-    <div class="flex">
-      <p>Compañia: </p> <span class="margin-left">{{usuarioQR?.visit_company}}</span>
-    </div>
-    <div class="flex">
-      <p>Nombre de contacto en la empresa: </p> <span class="margin-left">{{usuarioQR?.contact_name}}</span>
-    </div>
-    <div class="flex">
-      <p>Departamento: </p> <span class="margin-left">{{usuarioQR?.department}}</span>
-    </div>
-    <div class="flex">
-      <p>Tipo de Visitante: </p> <span class="margin-left">{{usuarioQR?.visitor_type}}</span>
-    </div>
-    <div class="flex">
-      <p>Dispositivos del visitante: </p> <span class="margin-left">{{usuarioQR?.enter_device}}</span>
-    </div>
+  <div class="visitor-container">
+    <h4>Datos del Transportista</h4>
+    <div>
+      <div class="flex">
+        <p>Nombre del operador: </p> <span class="margin-left">{{usuarioQR?.operator_name}}</span>
+      </div>
+      <div class="flex">
+        <p>Nombre de su compañia: </p> <span class="margin-left">{{usuarioQR?.company_name}}</span>
+      </div>
+      <div class="flex">
+        <p>Numero telefonico: </p> <span class="margin-left">{{usuarioQR?.phone}}</span>
+      </div>
+      <div class="flex">
+        <p>Nombre de su despacho: </p> <span class="margin-left">{{usuarioQR?.office_name}}</span>
+      </div>
+      <div class="flex">
+        <p>Telefono de su despacho: </p> <span class="margin-left">{{usuarioQR?.office_phone}}</span>
+      </div>
 
 
-    <button type="button" class="clear-qr-btn" (click)="limpiarQr()">
-      Limpiar registro
-    </button>
+
+      <button type="button" class="clear-qr-btn" (click)="limpiarQr()">
+        Limpiar registro
+      </button>
+
+    </div>
+
+
+
 
   </div>
-
 
 
 

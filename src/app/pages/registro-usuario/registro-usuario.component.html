@@ -40,7 +40,7 @@
     <hr>
     <p class="required"> * Indica que la pregunta es obligatoria</p>
     <form [formGroup]="form" (ngSubmit)="submit()">
-      <div class="user-details">
+      <div class="user-details" *ngIf="!showDriversRegisterFormFields">
 
         <div class="group">
           <input type="email" formControlName="email" (keyup)="removerAlertas()">
@@ -149,6 +149,65 @@
 
 
       </div>
+
+      <div class="user-details" *ngIf="showDriversRegisterFormFields">
+        <div class="group">
+          <input type="email" formControlName="email" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Correo electrónico *</label>
+          <app-errores-frontend *ngIf="campoValido('email')"
+            mensaje="Tiene que ser un correo valido"></app-errores-frontend>
+        </div>
+
+
+        <div class="group">
+          <input type="text" formControlName="company_name" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>NOMBRE DE SU COMPAÑIA *</label>
+          <app-errores-frontend *ngIf="campoValido('company_name')"
+            mensaje="El campo es requerido"></app-errores-frontend>
+        </div>
+
+        <div class="group">
+          <input type="text" formControlName="operator_name" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>NOMBRE DEL OPERADOR *</label>
+          <app-errores-frontend *ngIf="campoValido('operator_name')"
+            mensaje="El campo es requerido"></app-errores-frontend>
+        </div>
+
+        <div class="group">
+          <input type="text" formControlName="phone" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>NUMERO TELEFONICO</label>
+          <app-errores-frontend *ngIf="campoValido('phone')" mensaje="El campo es requerido"></app-errores-frontend>
+        </div>
+
+        <div class="group">
+          <input type="text" formControlName="office_name" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>NOMBRE DE SU DESPACHO</label>
+          <app-errores-frontend *ngIf="campoValido('office_name')"
+            mensaje="El campo es requerido"></app-errores-frontend>
+        </div>
+
+        <div class="group">
+          <input type="text" formControlName="office_phone" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>TELEFONO DE SU DESPACHO</label>
+          <app-errores-frontend *ngIf="campoValido('office_phone')"
+            mensaje="El campo es requerido"></app-errores-frontend>
+        </div>
+
+
+      </div>
+
       <div class="wrapper">
         <button href="#0" class="btn10">
           <span>REGISTRAR</span>

@@ -1,45 +1,63 @@
-<app-buscador (busqueda)="search($event)" (ocultar)="ocultarPaginacion = $event"></app-buscador>
+<div class="spinner-container">
+    <app-spinner *ngIf="showSpinner"></app-spinner>
+
+</div>
+
+<ng-container *ngIf="usuarios.length > 0 ">
+    <app-buscador (busqueda)="search($event)" (ocultar)="ocultarPaginacion = $event"></app-buscador>
 
 
-<h3>Lista de Usuarios</h3>
-<table class="resp">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Fecha de visita</th>
-            <th>Compañia</th>
-            <th>Email</th>
-            <!-- <th>Acciones</th> -->
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let usuario of usuarios">
+    <h3>Lista de Usuarios</h3>
+    <table class="resp">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha de visita</th>
+                <th>Compañia</th>
+                <th>Email</th>
+                <!-- <th>Acciones</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <div class="spinner-container">
+                <app-spinner *ngIf="showSpinner"></app-spinner>
 
-            <!-- <app-no-encontrado *ngIf="usuario.error" [mensaje]="usuario.msg"></app-no-encontrado> -->
+            </div>
+
+            <ng-container *ngIf="!showSpinner">
+                <tr *ngFor="let usuario of usuarios">
+
+                    <!-- <app-no-encontrado *ngIf="usuario.error" [mensaje]="usuario.msg"></app-no-encontrado> -->
 
 
-            <td data-title="Nombre">{{usuario.name| uppercase}}</td>
-            <td data-title="Fecha de visita">{{usuario.visit_date }}</td>
-            <td data-title="Compañia">{{usuario.visit_company | uppercase}}</td>
-            <td class="right" data-title="Email">{{usuario.email}}</td>
-            <!-- iconost -->
-            <!-- <td class="icons" data-title="Acciones" *ngIf="!usuario.error">
-                                        <div class="btn-group">
-                                            <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button>
-                                            <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
-                                            <button class="btn" (click)="enviarQR(usuario.uid)" ><i class="fa-solid fa-qrcode fa-lg"></i></button>
-                                        </div>
+                    <td data-title="Nombre">{{usuario.name| uppercase}}</td>
+                    <td data-title="Fecha de visita">{{parseDate(usuario.visit_date) }}</td>
+                    <td data-title="Compañia">{{usuario.visit_company | uppercase}}</td>
+                    <td class="right" data-title="Email">{{usuario.email}}</td>
+                    <!-- iconost -->
+                    <!-- <td class="icons" data-title="Acciones" *ngIf="!usuario.error">
+                                                <div class="btn-group">
+                                                    <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button>
+                                                    <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
+                                                    <button class="btn" (click)="enviarQR(usuario.uid)" ><i class="fa-solid fa-qrcode fa-lg"></i></button>
+                                                </div>
+        
+                                            </td> -->
+                </tr>
 
-                                    </td> -->
-        </tr>
-        <!-- <div class="pagination-container" *ngIf="ocultarPaginacion"> -->
-        <div class="pagination-container">
-            <i class="fa-solid fa-circle-left" (click)="prevPage()"></i>
-            <div> {{page}} </div>
-            <div> de </div>
-            <div> {{pages}} </div>
-            <i class="fa-solid fa-circle-right" (click)="nextPage()"></i>
-        </div>
+                <div class="pagination-container">
+                    <i class="fa-solid fa-circle-left" (click)="prevPage()" *ngIf="page >1"></i>
+                    <div> {{page}} </div>
+                    <div> de </div>
+                    <div> {{pages}} </div>
+                    <i class="fa-solid fa-circle-right" (click)="nextPage()" *ngIf="page < pages"></i>
+                </div>
+            </ng-container>
 
-    </tbody>
-</table>
+            <!-- <div class="pagination-container" *ngIf="ocultarPaginacion"> -->
+
+
+        </tbody>
+    </table>
+
+</ng-container>

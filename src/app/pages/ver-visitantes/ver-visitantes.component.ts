@@ -18,6 +18,7 @@ export class VerVisitantesComponent implements OnInit {
   pages: number = 1;
   busqueda: string = '';
   ocultarPaginacion: boolean = true;
+  showSpinner: boolean = true;
 
   constructor(
     private VisitorsService: VisitorsService,
@@ -32,15 +33,17 @@ export class VerVisitantesComponent implements OnInit {
   }
 
   getVisitors(opt: VisitorSearchParams) {
+    this.showSpinner = true;
     this.VisitorsService.getAllVisitors({
       page: opt.page,
       keyword: opt.keyword,
     })
       .then((data) => {
-        console.log(data, 'VISITANTES ');
         this.usuarios = data.visitors;
         this.page = data.page;
         this.pages = data.pages;
+
+        this.showSpinner = false;
       })
       .catch((err) => {
         if (err.error.msgtk) {
@@ -61,11 +64,12 @@ export class VerVisitantesComponent implements OnInit {
     });
   }
   search(searchParam: string) {
-    console.log(searchParam, 'busqueda');
-    // if (searchParam.length > 3) {
     this.getVisitors({
       keyword: searchParam,
     });
-    // }
+  }
+
+  parseDate(fecha: string) {
+    return fecha.replace('t', ' ');
   }
 }

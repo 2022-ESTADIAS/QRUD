@@ -19,6 +19,7 @@ import { RegistroRolComponent } from './registro-rol/registro-rol.component';
 import { VerUsuariosComponent } from './ver-usuarios/ver-usuarios.component';
 import { VerPersonalComponent } from './ver-personal/ver-personal.component';
 import { VerRolComponent } from './ver-rol/ver-rol.component';
+import { VerVisitantesComponent } from './ver-visitantes/ver-visitantes.component';
 /* import { EscannerUsuarioComponent } from './escanner-usuario/escanner-usuario.component'; */
 
 @NgModule({
@@ -33,7 +34,8 @@ import { VerRolComponent } from './ver-rol/ver-rol.component';
     VerUsuariosComponent,
     VerPersonalComponent,
     VerRolComponent,
-    BusquedaPipe /* ,
+    BusquedaPipe,
+    VerVisitantesComponent /* ,
     EscannerUsuarioComponent, */,
   ],
   imports: [
@@ -55,6 +57,7 @@ import { VerRolComponent } from './ver-rol/ver-rol.component';
     VerUsuariosComponent,
     VerPersonalComponent,
     VerRolComponent,
+    VerVisitantesComponent,
   ],
 })
 export class PaginasModule {}

@@ -11,22 +11,24 @@ import { RegistroRolComponent } from './registro-rol/registro-rol.component';
 import { VerUsuariosComponent } from './ver-usuarios/ver-usuarios.component';
 import { VerPersonalComponent } from './ver-personal/ver-personal.component';
 import { VerRolComponent } from './ver-rol/ver-rol.component';
+import { VerVisitantesComponent } from './ver-visitantes/ver-visitantes.component';
 
 const routes: Routes = [
-  {path:"", component:RegistroUsuarioComponent },
-  {path:"registro-personal", component:RegistroPersonalComponent },
-  {path:"registro-rol", component:RegistroRolComponent },
-  {path:"ver-usuarios", component:VerUsuariosComponent },
-  {path:"ver-personal", component:VerPersonalComponent },
-  {path:"ver-rol", component:VerRolComponent},
-  {path:"usuarios-eliminados", component:UsuariosEliminadosComponent },
-  {path:"personal-eliminado", component:PersonalEliminadoComponent },
-  {path:"qr", component:EscannerQRComponent},
-  {path:"contrasena", component:CambioContrasenaComponent},
+  { path: '', component: RegistroUsuarioComponent },
+  { path: 'registro-personal', component: RegistroPersonalComponent },
+  { path: 'registro-rol', component: RegistroRolComponent },
+  { path: 'ver-usuarios', component: VerUsuariosComponent },
+  { path: 'ver-visitantes', component: VerVisitantesComponent },
+  { path: 'ver-personal', component: VerPersonalComponent },
+  { path: 'ver-rol', component: VerRolComponent },
+  { path: 'usuarios-eliminados', component: UsuariosEliminadosComponent },
+  { path: 'personal-eliminado', component: PersonalEliminadoComponent },
+  { path: 'qr', component: EscannerQRComponent },
+  { path: 'contrasena', component: CambioContrasenaComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PaginasRoutingModule { }
+export class PaginasRoutingModule {}

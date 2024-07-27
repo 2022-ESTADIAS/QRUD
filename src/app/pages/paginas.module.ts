@@ -20,6 +20,7 @@ import { VerUsuariosComponent } from './ver-usuarios/ver-usuarios.component';
 import { VerPersonalComponent } from './ver-personal/ver-personal.component';
 import { VerRolComponent } from './ver-rol/ver-rol.component';
 import { VerVisitantesComponent } from './ver-visitantes/ver-visitantes.component';
+import { VerTransportistasComponent } from './ver-transportistas/ver-transportistas.component';
 /* import { EscannerUsuarioComponent } from './escanner-usuario/escanner-usuario.component'; */
 
 @NgModule({
@@ -35,8 +36,9 @@ import { VerVisitantesComponent } from './ver-visitantes/ver-visitantes.componen
     VerPersonalComponent,
     VerRolComponent,
     BusquedaPipe,
-    VerVisitantesComponent /* ,
-    EscannerUsuarioComponent, */,
+    VerVisitantesComponent,
+    VerTransportistasComponent,
+    /* EscannerUsuarioComponent, */
   ],
   imports: [
     CommonModule,
@@ -58,6 +60,7 @@ import { VerVisitantesComponent } from './ver-visitantes/ver-visitantes.componen
     VerPersonalComponent,
     VerRolComponent,
     VerVisitantesComponent,
+    VerTransportistasComponent,
   ],
 })
 export class PaginasModule {}

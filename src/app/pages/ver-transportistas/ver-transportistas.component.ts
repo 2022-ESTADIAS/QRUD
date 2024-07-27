@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  Visitor,
-  VisitorSearchParams,
+  Driver,
+  DriverSearchParams,
 } from 'src/app/interfaces/mexcal/visitors.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { VisitorsService } from 'src/app/services/visitors.service';
 
 @Component({
-  selector: 'app-ver-visitantes',
-  templateUrl: './ver-visitantes.component.html',
-  styleUrls: ['./ver-visitantes.component.css'],
+  selector: 'app-ver-transportistas',
+  templateUrl: './ver-transportistas.component.html',
+  styleUrls: ['./ver-transportistas.component.css'],
 })
-export class VerVisitantesComponent implements OnInit {
-  usuarios: Visitor[] = [];
+export class VerTransportistasComponent implements OnInit {
+  usuarios: Driver[] = [];
   page: number = 1;
   pages: number = 1;
   busqueda: string = '';
@@ -27,20 +27,20 @@ export class VerVisitantesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getVisitors({
+    this.getDrivers({
       page: this.page,
     });
   }
 
-  getVisitors(opt: VisitorSearchParams) {
+  getDrivers(opt: DriverSearchParams) {
     this.showSpinner = true;
-    this.VisitorsService.getAllVisitors({
+    this.VisitorsService.getAllDrivers({
       page: opt.page,
       keyword: opt.keyword,
     })
       .then((data) => {
-        console.log(data, 'visitantes');
-        this.usuarios = data.visitors;
+        console.log(data, 'DRIVERS');
+        this.usuarios = data.drivers;
         this.page = data.page;
         this.pages = data.pages;
 
@@ -55,22 +55,18 @@ export class VerVisitantesComponent implements OnInit {
       });
   }
   nextPage() {
-    this.getVisitors({
+    this.getDrivers({
       page: this.page + 1,
     });
   }
   prevPage() {
-    this.getVisitors({
+    this.getDrivers({
       page: this.page - 1,
     });
   }
   search(searchParam: string) {
-    this.getVisitors({
+    this.getDrivers({
       keyword: searchParam,
     });
-  }
-
-  parseDate(fecha: string) {
-    return fecha.replace('t', ' ');
   }
 }

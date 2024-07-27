@@ -71,7 +71,8 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
   rutasMaster: any[] = [
     [
       { ruta: '', nombre: 'Crear ' },
-      { ruta: '/ver-visitantes', nombre: 'Ver' },
+      { ruta: '/ver-visitantes', nombre: 'Visitantes' },
+      { ruta: '/ver-transportistas', nombre: 'Transportistas' },
       // { ruta: '/usuarios-eliminados', nombre: 'Eliminados' },
     ],
     [

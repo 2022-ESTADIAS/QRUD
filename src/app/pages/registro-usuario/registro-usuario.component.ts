@@ -52,6 +52,7 @@ export class RegistroUsuarioComponent implements OnInit {
   showRegisterForm: boolean = false;
   showProvidersRegisterFormFields = false;
   showDriversRegisterFormFields = false;
+  disabledForm: boolean = false;
 
   registerFormName: string = 'VISITANTES';
 
@@ -132,6 +133,7 @@ export class RegistroUsuarioComponent implements OnInit {
    * metodo que registra el nuevo  usuario
    */
   submit() {
+    this.disabledForm = true;
     let usuario: VisitorForm | ProviderForm | DriverForm = this.form.value;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -210,20 +212,35 @@ export class RegistroUsuarioComponent implements OnInit {
         this.msgExito = data.msg;
         this.existeMsgExito = true;
         this.form.reset();
-
+        this.disabledForm = false;
         setTimeout(() => {
           this.existeMsgExito = false;
         }, 2000);
       })
       .catch((err) => {
+        this.disabledForm = false;
         if (err.error.errors) {
           this.existeError = true;
           this.errores = err.error.errors;
+          this.disabledForm = false;
+          setTimeout(() => {
+            this.existeError = false;
+          }, 2000);
           return;
         }
 
         if (err.error.err) {
+          this.existeError = true;
           this.errorServidor = err.error?.err;
+          this.disabledForm = false;
+          setTimeout(() => {
+            this.existeError = false;
+          }, 2000);
+          return;
+        }
+        if (err.err.err) {
+          this.errorServidor = err.err?.err;
+          this.disabledForm = false;
           return;
         }
 

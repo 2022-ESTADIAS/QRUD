@@ -41,7 +41,7 @@
       y envíes este formulario</p>
     <hr>
     <p class="required"> * Indica que la pregunta es obligatoria</p>
-    <form [formGroup]="form" (ngSubmit)="submit()">
+    <form [formGroup]="form" (ngSubmit)="submit()" [ngClass]="{'disabled-form':disabledForm}">
       <div class="user-details" *ngIf="!showDriversRegisterFormFields">
 
         <div class="group">
@@ -211,7 +211,7 @@
       </div>
 
       <div class="wrapper">
-        <button href="#0" class="btn10">
+        <button href="#0" class="btn10" [ngClass]="{'disabled-button':disabledForm}" [disabled]="disabledForm">
           <span>REGISTRAR</span>
           <div class="transition"></div>
         </button>

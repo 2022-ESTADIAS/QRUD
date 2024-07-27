@@ -48,9 +48,12 @@ export class RegistroUsuarioComponent implements OnInit {
    * propiedad que muestra el mensaje de exito solo si el registro del usuario fue exitoso
    */
   existeMsgExito: boolean = false;
+
   showRegisterForm: boolean = false;
   showProvidersRegisterFormFields = false;
   showDriversRegisterFormFields = false;
+
+  registerFormName: string = 'VISITANTES';
 
   /**
    * propiedad que contiene el mensaje de exito
@@ -270,12 +273,15 @@ export class RegistroUsuarioComponent implements OnInit {
   openRegisterModal(visitor: VisitorType) {
     this.showRegisterForm = true;
     if (visitor.name == 'Proveedores') {
+      this.registerFormName = 'PROVEEDORES';
       this.showProvidersRegisterFormFields = true;
       this.ProviderForm();
     } else if (visitor.name == 'Transportistas') {
       this.showDriversRegisterFormFields = true;
+      this.registerFormName = 'TRANSPORTISTAS';
       this.DriverForm();
     } else {
+      this.registerFormName = 'VISITANTES';
       this.showProvidersRegisterFormFields = false;
       this.showDriversRegisterFormFields = false;
       this.FormularioUsuario();
@@ -291,5 +297,10 @@ export class RegistroUsuarioComponent implements OnInit {
     } else {
       return 'drivers';
     }
+  }
+  backButton() {
+    this.showRegisterForm = false;
+    this.showDriversRegisterFormFields = false;
+    this.form.get('visitor_type_id')?.setValue('');
   }
 }

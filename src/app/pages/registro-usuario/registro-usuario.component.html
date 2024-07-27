@@ -28,12 +28,14 @@
 
 <div class="activity-grid" *ngIf="showRegisterForm">
   <div class="container">
+    <i class="fa-solid fa-circle-left fa-2xl back-button" (click)="backButton()"></i>
+
     <div class="title">
       <h4 class="text-center">
-        REGISTRO DE VISITANTES MEXCAL
+        REGISTRO DE {{registerFormName}} MEXCAL
       </h4>
     </div>
-    <p>GENERAR UN CODIGO DE ACCESO PARA VISITANTES A GRUPO MEXCAL</p>
+    <p>GENERAR UN CODIGO DE ACCESO PARA {{registerFormName}} A GRUPO MEXCAL</p>
     <hr>
     <p>Se registrarán el nombre, la foto y el correo electrónico asociados con tu Cuenta de Google cuando subas archivos
       y envíes este formulario</p>

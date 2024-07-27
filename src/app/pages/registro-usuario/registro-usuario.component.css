@@ -320,3 +320,8 @@ input:focus ~ .highlight {
   border-radius: 10px;
   cursor: pointer;
 }
+
+.back-button {
+  color: red;
+  cursor: pointer;
+}

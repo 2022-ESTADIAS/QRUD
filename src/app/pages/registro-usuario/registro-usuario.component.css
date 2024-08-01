@@ -335,3 +335,20 @@ input:focus ~ .highlight {
   cursor: not-allowed;
   pointer-events: none;
 }
+
+/* reglamento */
+.flex-child {
+  display: flex;
+  max-width: 1000px;
+  margin: 10px auto;
+  padding-bottom: 20px;
+}
+
+.flex-child span {
+  margin: auto 10px;
+}
+
+.checkbox {
+  width: auto;
+  transform: scale(2);
+}

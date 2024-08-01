@@ -52,7 +52,9 @@ export class RegistroUsuarioComponent implements OnInit {
   showRegisterForm: boolean = false;
   showProvidersRegisterFormFields = false;
   showDriversRegisterFormFields = false;
+  showDriverRegulation = false;
   disabledForm: boolean = false;
+  disabledAcceptButton: boolean = true;
 
   registerFormName: string = 'VISITANTES';
 
@@ -136,6 +138,7 @@ export class RegistroUsuarioComponent implements OnInit {
     this.disabledForm = true;
     let usuario: VisitorForm | ProviderForm | DriverForm = this.form.value;
     if (this.form.invalid) {
+      this.disabledForm = false;
       this.form.markAllAsTouched();
       return;
     }
@@ -294,13 +297,15 @@ export class RegistroUsuarioComponent implements OnInit {
       this.showProvidersRegisterFormFields = true;
       this.ProviderForm();
     } else if (visitor.name == 'Transportistas') {
-      this.showDriversRegisterFormFields = true;
+      // this.showDriversRegisterFormFields = true;
+      this.showDriverRegulation = true;
       this.registerFormName = 'TRANSPORTISTAS';
-      this.DriverForm();
+      // this.DriverForm();
     } else {
       this.registerFormName = 'VISITANTES';
       this.showProvidersRegisterFormFields = false;
-      this.showDriversRegisterFormFields = false;
+      // this.showDriversRegisterFormFields = false;
+      this.showDriverRegulation = false;
       this.FormularioUsuario();
     }
     this.form.get('visitor_type_id')?.setValue(visitor.uid);
@@ -316,8 +321,18 @@ export class RegistroUsuarioComponent implements OnInit {
     }
   }
   backButton() {
+    this.disabledAcceptButton = true;
+    this.showDriverRegulation = false;
     this.showRegisterForm = false;
     this.showDriversRegisterFormFields = false;
     this.form.get('visitor_type_id')?.setValue('');
+  }
+  verifyCheck(e: any) {
+    this.disabledAcceptButton = !this.disabledAcceptButton;
+  }
+  displayDriverForm() {
+    this.showDriversRegisterFormFields = true;
+    this.showDriverRegulation = false;
+    this.DriverForm();
   }
 }

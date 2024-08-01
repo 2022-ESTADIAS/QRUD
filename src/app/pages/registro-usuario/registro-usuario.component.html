@@ -26,7 +26,7 @@
 </div>
 
 
-<div class="activity-grid" *ngIf="showRegisterForm">
+<div class="activity-grid" *ngIf="showRegisterForm && !showDriverRegulation">
   <div class="container">
     <i class="fa-solid fa-circle-left fa-2xl back-button" (click)="backButton()"></i>
 
@@ -211,7 +211,8 @@
       </div>
 
       <div class="wrapper">
-        <button href="#0" class="btn10" [ngClass]="{'disabled-button':disabledForm}" [disabled]="disabledForm">
+        <button href="#0" class="btn10" [ngClass]="{'disabled-button':disabledForm}" [disabled]="disabledForm"
+          (click)="displayDriverForm()">
           <span>REGISTRAR</span>
           <div class="transition"></div>
         </button>
@@ -220,3 +221,19 @@
     </form>
   </div>
 </div>
+
+<ng-container *ngIf="showDriverRegulation">
+  <i class="fa-solid fa-circle-left fa-2xl back-button" (click)="backButton()"></i>
+  <app-driver-regulations></app-driver-regulations>
+  <div class="flex-child">
+    <input type="checkbox" class="checkbox" (click)="verifyCheck($event)"><span>He leido y acepto el reglamento de
+      transportistas</span>
+
+    <button class="btn10" [ngClass]="{'disabled-button':disabledAcceptButton}" [disabled]="disabledAcceptButton"
+      (click)="displayDriverForm()">
+      <span>registrarse</span>
+      <div class="transition"></div>
+    </button>
+  </div>
+
+</ng-container>

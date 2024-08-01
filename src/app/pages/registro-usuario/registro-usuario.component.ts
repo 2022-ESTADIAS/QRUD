@@ -55,7 +55,7 @@ export class RegistroUsuarioComponent implements OnInit {
   disabledForm: boolean = false;
 
   registerFormName: string = 'VISITANTES';
-
+  formData: FormData = new FormData();
   /**
    * propiedad que contiene el mensaje de exito
    */
@@ -100,6 +100,7 @@ export class RegistroUsuarioComponent implements OnInit {
       department_id: ['', Validators.required],
       enter_device: ['', [Validators.required]],
       visitor_type_id: ['', Validators.required],
+      ine_field: ['', Validators.required],
     });
   }
 
@@ -205,9 +206,19 @@ export class RegistroUsuarioComponent implements OnInit {
         visit_date: visit_date.trim().toLowerCase(),
         visitor_type_id: visitor_type_id.trim().toLowerCase(),
       };
+      this.formData.append('email', usuario.email);
+      this.formData.append('contact_name', usuario.contact_name);
+      this.formData.append('department_id', usuario.department_id);
+      this.formData.append('enter_device', usuario.enter_device);
+      this.formData.append('name', usuario.name);
+      this.formData.append('visit_company', usuario.visit_company);
+      this.formData.append('visit_date', usuario.visit_date);
+      this.formData.append('visitor_type_id', usuario.visitor_type_id);
     }
 
-    this.QRUDService.publicRegisterQRCode(usuario)
+    // usuario.ine_field = this.form.get('image')?.value;
+
+    this.QRUDService.publicRegisterQRCode(this.formData)
       .then((data: any) => {
         this.msgExito = data.msg;
         this.existeMsgExito = true;
@@ -319,5 +330,13 @@ export class RegistroUsuarioComponent implements OnInit {
     this.showRegisterForm = false;
     this.showDriversRegisterFormFields = false;
     this.form.get('visitor_type_id')?.setValue('');
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+
+      this.formData.append('ine_field', file);
+    }
   }
 }

@@ -41,7 +41,8 @@
       y envíes este formulario</p>
     <hr>
     <p class="required"> * Indica que la pregunta es obligatoria</p>
-    <form [formGroup]="form" (ngSubmit)="submit()" [ngClass]="{'disabled-form':disabledForm}">
+    <form [formGroup]="form" (ngSubmit)="submit()" [ngClass]="{'disabled-form':disabledForm}"
+      enctype="multipart/form-data">
       <div class="user-details" *ngIf="!showDriversRegisterFormFields">
 
         <div class="group">
@@ -147,7 +148,18 @@
           </div>
         </ng-container>
 
+        <!-- IMAGENES -->
+        <div class="group">
+          <input type="text" style="visibility: hidden;">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>INE</label>
+          <input type="file" formControlName="ine_field" (change)="onFileChange($event)">
 
+
+
+          <app-errores-frontend *ngIf="campoValido('ine_field')" mensaje="El campo es requerido"></app-errores-frontend>
+        </div>
 
 
       </div>

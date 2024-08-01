@@ -339,7 +339,9 @@ export class QRUDService {
         );
     });
   }
-  publicRegisterQRCode(data: VisitorForm | ProviderForm | DriverForm) {
+  publicRegisterQRCode(
+    data: VisitorForm | ProviderForm | DriverForm | FormData
+  ) {
     return new Promise<VisitorFormPostResponse>((resolve, reject) => {
       this.http
         .post<VisitorFormPostResponse>(`${url}/public/registro`, data)

@@ -24,6 +24,7 @@ export interface VisitorForm {
   department_id: string;
   enter_device: string;
   visitor_type_id: string;
+  ine_field?: any;
 }
 export interface DriverForm {
   company_name: string;
@@ -33,6 +34,7 @@ export interface DriverForm {
   office_name: string;
   office_phone: string;
   visitor_type_id: string;
+  ine_field?: any;
 }
 
 export interface ProviderForm extends VisitorForm {

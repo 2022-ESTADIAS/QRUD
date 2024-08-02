@@ -16,7 +16,7 @@
   <h1>{{"pickUserType" | translate }}</h1>
   <ng-container *ngFor="let type of visitorTypes">
     <div [ngClass]="getClass(type.name)" (click)="openRegisterModal(type)">
-      {{type.name}}
+      {{translateHelper.getUserTypes(type.name) }}
     </div>
 
   </ng-container>
@@ -32,16 +32,17 @@
     <i class="fa-solid fa-circle-left fa-2xl back-button" (click)="backButton()"></i>
 
     <div class="title">
-      <h4 class="text-center">
-        REGISTRO DE {{registerFormName}} MEXCAL
+      <h4 class="text-center uppercase">
+        {{"userRegisterType" | translate:{'type':translateHelper.getUserTypes(registerFormName)} }}
       </h4>
     </div>
-    <p>GENERAR UN CODIGO DE ACCESO PARA {{registerFormName}} A GRUPO MEXCAL</p>
+    <p class="uppercase">{{'accessCodeForUserType'| translate:{'type':translateHelper.getUserTypes(registerFormName)} }}
+    </p>
+
     <hr>
-    <p>Se registrarán el nombre, la foto y el correo electrónico asociados con tu Cuenta de Google cuando subas archivos
-      y envíes este formulario</p>
+    <p>{{'formDescription' |translate}}</p>
     <hr>
-    <p class="required"> * Indica que la pregunta es obligatoria</p>
+    <p class="required">{{'formInstructions' | translate}} </p>
     <form [formGroup]="form" (ngSubmit)="submit()" [ngClass]="{'disabled-form':disabledForm}">
       <div class="user-details" *ngIf="!showDriversRegisterFormFields">
 
@@ -49,56 +50,58 @@
           <input type="email" formControlName="email" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>Correo electrónico *</label>
+          <label>{{'formEmailField'|translate}}</label>
           <app-errores-frontend *ngIf="campoValido('email')"
-            mensaje="Tiene que ser un correo valido"></app-errores-frontend>
+            mensaje="{{'formEmailValidationField'|translate}}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>Nombre completo *</label>
-          <app-errores-frontend *ngIf="campoValido('name')" mensaje="El campo es requerido"></app-errores-frontend>
+          <label>{{'formFullNameField' |translate}}</label>
+          <app-errores-frontend *ngIf="campoValido('name')"
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="visit_company" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>Empresa de la que nos visitas</label>
-          <app-errores-frontend *ngIf="campoValido('visit_company')" mensaje="Campo requerido"></app-errores-frontend>
+          <label>{{'formVisitCompanyField'| translate}}</label>
+          <app-errores-frontend *ngIf="campoValido('visit_company')"
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="datetime-local" formControlName="visit_date" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>FECHA Y HORA DE TU VISITA A MEXCAL *</label>
+          <label>{{'formDateTimeField' |translate}}</label>
           <app-errores-frontend *ngIf="campoValido('visit_date')"
-            mensaje="El campo es requerido"></app-errores-frontend>
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="contact_name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>NOMBRE DEL CONTACTO QUE VISITAS *</label>
+          <label>{{'formContactNameField'|translate}}</label>
           <app-errores-frontend *ngIf="campoValido('contact_name')"
-            mensaje="El campo es requerido"></app-errores-frontend>
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
         <div class="group">
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>DEPARTAMENTO AL QUE VISITAS *</label>
+          <label>{{'formDepartmentField'|translate}}</label>
           <select name="" id="" class="controls select-absolute" formControlName="department_id">
-            <option value="" disabled selected>--Seleccione departamento--</option>
+            <option value="" disabled selected>{{'formDeparmentPlaceholderField'|translate}}</option>
             <option value="{{department.uid}}" *ngFor="let department of departments">{{department.name}}</option>
           </select>
 
           <app-errores-frontend *ngIf="campoValido('department_id')"
-            mensaje="El campo es requerido"></app-errores-frontend>
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
 
@@ -107,44 +110,44 @@
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>INGRESAS ALGO DE LO MENCIONADO? *</label>
+          <label>{{'formEnterDeviceField'|translate}}</label>
           <select name="" id="" class="controls select-absolute" formControlName="enter_device">
-            <option value="" disabled selected>--Seleccione tipo--</option>
+            <option value="" disabled selected>{{'formEnterDevicePlaceholderField'|translate}}</option>
             <option value="{{device.name}}" *ngFor="let device of devices">{{device.name}}</option>
           </select>
 
           <app-errores-frontend *ngIf="campoValido('enter_device')"
-            mensaje="El campo es requerido"></app-errores-frontend>
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
         <ng-container *ngIf="showProvidersRegisterFormFields">
           <div class="group">
             <input type="text" style="visibility: hidden;">
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>SELECCIONA EL MOTIVO DE TU INGRESO *</label>
+            <label>{{'formReasonField'|translate}}</label>
             <select name="" id="" class="controls select-absolute" formControlName="reason_id">
-              <option value="" disabled selected>--Seleccione motivo--</option>
+              <option value="" disabled selected>{{'formReasonPlaceholderField'|translate}}</option>
               <option value="{{reason.uid}}" *ngFor="let reason of reasons">{{reason.name}}</option>
             </select>
 
             <app-errores-frontend *ngIf="campoValido('reason_id')"
-              mensaje="El campo es requerido"></app-errores-frontend>
+              mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
           </div>
 
           <div class="group">
             <input type="text" style="visibility: hidden;">
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>INGRESARAS VEHICULO *</label>
+            <label>{{'formHasVehicleField' |translate}}</label>
             <select name="" id="" class="controls select-absolute" formControlName="hasVehicle">
-              <option value="" disabled selected>--Seleccione respuesta--</option>
-              <option [value]="true"> Si </option>
-              <option [value]="false"> No </option>
+              <option value="" disabled selected>{{'formHasVehiclePlaceholderField'|translate}}</option>
+              <option [value]="true"> {{'formHasVehicleFirstOption'|translate}} </option>
+              <option [value]="false"> {{'formHasVehicleSecondOption'|translate}} </option>
 
             </select>
 
             <app-errores-frontend *ngIf="campoValido('hasVehicle')"
-              mensaje="El campo es requerido"></app-errores-frontend>
+              mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
           </div>
         </ng-container>
 
@@ -158,9 +161,9 @@
           <input type="email" formControlName="email" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>Correo electrónico *</label>
+          <label>{{'formEmailField'|translate}}</label>
           <app-errores-frontend *ngIf="campoValido('email')"
-            mensaje="Tiene que ser un correo valido"></app-errores-frontend>
+            mensaje="{{'formEmailValidationField'|translate}}"></app-errores-frontend>
         </div>
 
 
@@ -168,44 +171,45 @@
           <input type="text" formControlName="company_name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>NOMBRE DE SU COMPAÑIA *</label>
+          <label>{{'formCompanyNameField'|translate}}</label>
           <app-errores-frontend *ngIf="campoValido('company_name')"
-            mensaje="El campo es requerido"></app-errores-frontend>
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="operator_name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>NOMBRE DEL OPERADOR *</label>
+          <label>{{'formOperatorNameField'|translate}}</label>
           <app-errores-frontend *ngIf="campoValido('operator_name')"
-            mensaje="El campo es requerido"></app-errores-frontend>
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="phone" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>NUMERO TELEFONICO</label>
-          <app-errores-frontend *ngIf="campoValido('phone')" mensaje="El campo es requerido"></app-errores-frontend>
+          <label>{{'formPhoneField'|translate}}</label>
+          <app-errores-frontend *ngIf="campoValido('phone')"
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="office_name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>NOMBRE DE SU DESPACHO</label>
+          <label>{{'formOfficeNameField'|translate}}</label>
           <app-errores-frontend *ngIf="campoValido('office_name')"
-            mensaje="El campo es requerido"></app-errores-frontend>
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="office_phone" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>TELEFONO DE SU DESPACHO</label>
+          <label>{{'formOfficePhoneField'|translate}}</label>
           <app-errores-frontend *ngIf="campoValido('office_phone')"
-            mensaje="El campo es requerido"></app-errores-frontend>
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
 
@@ -214,7 +218,7 @@
       <div class="wrapper">
         <button href="#0" class="btn10" [ngClass]="{'disabled-button':disabledForm}" [disabled]="disabledForm"
           (click)="displayDriverForm()">
-          <span>REGISTRAR</span>
+          <span>{{'formRegisterButton'|translate}}</span>
           <div class="transition"></div>
         </button>
       </div>
@@ -227,12 +231,11 @@
   <i class="fa-solid fa-circle-left fa-2xl back-button" (click)="backButton()"></i>
   <app-driver-regulations></app-driver-regulations>
   <div class="flex-child">
-    <input type="checkbox" class="checkbox" (click)="verifyCheck($event)"><span>He leido y acepto el reglamento de
-      transportistas</span>
+    <input type="checkbox" class="checkbox" (click)="verifyCheck($event)"><span>{{'formTerms'|translate}}</span>
 
     <button class="btn10" [ngClass]="{'disabled-button':disabledAcceptButton}" [disabled]="disabledAcceptButton"
       (click)="displayDriverForm()">
-      <span>registrarse</span>
+      <span>{{'formRegisterButton'|translate}}</span>
       <div class="transition"></div>
     </button>
   </div>

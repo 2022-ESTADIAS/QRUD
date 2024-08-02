@@ -352,3 +352,7 @@ input:focus ~ .highlight {
   width: auto;
   transform: scale(2);
 }
+
+.uppercase {
+  text-transform: uppercase;
+}

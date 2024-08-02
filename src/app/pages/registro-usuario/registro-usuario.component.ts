@@ -12,6 +12,7 @@ import {
 } from 'src/app/interfaces/mexcal/index.interface';
 import { RegistroUsuario } from 'src/app/interfaces/usuario.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
@@ -56,7 +57,7 @@ export class RegistroUsuarioComponent implements OnInit {
   disabledForm: boolean = false;
   disabledAcceptButton: boolean = true;
 
-  registerFormName: string = 'VISITANTES';
+  registerFormName: string = 'Visitantes';
 
   /**
    * propiedad que contiene el mensaje de exito
@@ -76,7 +77,8 @@ export class RegistroUsuarioComponent implements OnInit {
     private QRUDService: QRUDService,
     private router: Router,
     private AuthService: AuthService,
-    private ErrorServidor: ErrorServidorService
+    private ErrorServidor: ErrorServidorService,
+    public translateHelper: DynamicTranslationsService
   ) {}
 
   /**
@@ -293,16 +295,16 @@ export class RegistroUsuarioComponent implements OnInit {
   openRegisterModal(visitor: VisitorType) {
     this.showRegisterForm = true;
     if (visitor.name == 'Proveedores') {
-      this.registerFormName = 'PROVEEDORES';
+      this.registerFormName = 'Proveedores';
       this.showProvidersRegisterFormFields = true;
       this.ProviderForm();
     } else if (visitor.name == 'Transportistas') {
       // this.showDriversRegisterFormFields = true;
       this.showDriverRegulation = true;
-      this.registerFormName = 'TRANSPORTISTAS';
+      this.registerFormName = 'Transportistas';
       // this.DriverForm();
     } else {
-      this.registerFormName = 'VISITANTES';
+      this.registerFormName = 'Visitantes';
       this.showProvidersRegisterFormFields = false;
       // this.showDriversRegisterFormFields = false;
       this.showDriverRegulation = false;

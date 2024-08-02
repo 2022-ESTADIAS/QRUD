@@ -1,7 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentesModule } from '../components/componentes.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { PaginasRoutingModule } from './paginas-routing.module';
@@ -22,6 +22,9 @@ import { VerRolComponent } from './ver-rol/ver-rol.component';
 import { VerVisitantesComponent } from './ver-visitantes/ver-visitantes.component';
 import { VerTransportistasComponent } from './ver-transportistas/ver-transportistas.component';
 /* import { EscannerUsuarioComponent } from './escanner-usuario/escanner-usuario.component'; */
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { createTranslateLoader } from '../app.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,13 @@ import { VerTransportistasComponent } from './ver-transportistas/ver-transportis
     ReactiveFormsModule,
     HttpClientModule,
     ComponentesModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
   ],
   exports: [
     CambioContrasenaComponent,

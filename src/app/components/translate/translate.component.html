@@ -1,0 +1,7 @@
+<form [formGroup]="form">
+
+    <select (change)="getTranslateOptions($event)" formControlName="translation">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+    </select>
+</form>

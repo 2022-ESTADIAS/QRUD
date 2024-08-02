@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DriverRegulationsComponent } from './driver-regulations/driver-regulations.component';
+import { TranslateComponent } from './translate/translate.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { DriverRegulationsComponent } from './driver-regulations/driver-regulati
     NoEncontradoComponent,
     ModalComponent,
     DriverRegulationsComponent,
+    TranslateComponent,
   ],
   exports: [
     ErroresBackendComponent,
@@ -48,6 +50,7 @@ import { DriverRegulationsComponent } from './driver-regulations/driver-regulati
     NoEncontradoComponent,
     ModalComponent,
     DriverRegulationsComponent,
+    TranslateComponent,
   ],
   imports: [
     CommonModule,

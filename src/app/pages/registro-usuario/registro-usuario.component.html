@@ -7,12 +7,13 @@
 
 
 </ng-container>
-
-
 <app-exito [mensaje]="msgExito" *ngIf="existeMsgExito"></app-exito>
 
+<app-translate></app-translate>
+
+
 <div class="flex" *ngIf="!showRegisterForm  &&  visitorTypes.length >0">
-  <h1>Selecciona el tipo de usuario</h1>
+  <h1>{{"pickUserType" | translate }}</h1>
   <ng-container *ngFor="let type of visitorTypes">
     <div [ngClass]="getClass(type.name)" (click)="openRegisterModal(type)">
       {{type.name}}

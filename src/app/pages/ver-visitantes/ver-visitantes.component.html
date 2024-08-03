@@ -2,13 +2,14 @@
     <app-spinner *ngIf="showSpinner"></app-spinner>
 
 </div>
+<app-exito [mensaje]="msgQR" *ngIf="existeMsgQRExito"></app-exito>
 
 <ng-container *ngIf="usuarios.length > 0 ">
     <app-buscador (busqueda)="search($event)" (ocultar)="ocultarPaginacion = $event"></app-buscador>
 
 
     <h3>Lista de Usuarios</h3>
-    <table class="resp">
+    <table class="resp" [ngClass]="{'disabled-table':waitForAnswer}">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -16,7 +17,7 @@
                 <th>Compañia</th>
                 <th>Email</th>
                 <th>Tipo de usuario</th>
-                <!-- <th>Acciones</th> -->
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -38,14 +39,15 @@
                     <td data-title="tipo de usuario">{{usuario.visitor_type_id?.name ? (usuario.visitor_type_id?.name|
                         uppercase ): "N/A"}}</td>
                     <!-- iconost -->
-                    <!-- <td class="icons" data-title="Acciones" *ngIf="!usuario.error">
-                                                <div class="btn-group">
-                                                    <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button>
-                                                    <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
-                                                    <button class="btn" (click)="enviarQR(usuario.uid)" ><i class="fa-solid fa-qrcode fa-lg"></i></button>
-                                                </div>
-        
-                                            </td> -->
+                    <td class="icons" data-title="Acciones">
+                        <div class="btn-group">
+                            <!-- <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button> -->
+                            <!-- <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label> -->
+                            <button class="btn" (click)="enviarQR(usuario.uid)"><i class="fa-solid fa-qrcode fa-lg"
+                                    [ngClass]="{'disabled-button':waitForAnswer}"></i></button>
+                        </div>
+
+                    </td>
                 </tr>
 
                 <div class="pagination-container">

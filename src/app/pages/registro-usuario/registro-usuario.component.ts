@@ -291,6 +291,7 @@ export class RegistroUsuarioComponent implements OnInit {
   }
 
   openRegisterModal(visitor: VisitorType) {
+    console.log(visitor, 'tipo visitante');
     this.showRegisterForm = true;
     if (visitor.name == 'Proveedores') {
       this.registerFormName = 'PROVEEDORES';
@@ -325,6 +326,7 @@ export class RegistroUsuarioComponent implements OnInit {
     this.showDriverRegulation = false;
     this.showRegisterForm = false;
     this.showDriversRegisterFormFields = false;
+    this.form = this.fb.group({});
     this.form.get('visitor_type_id')?.setValue('');
   }
   verifyCheck(e: any) {

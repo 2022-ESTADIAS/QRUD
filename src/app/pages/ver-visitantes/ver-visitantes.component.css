@@ -213,3 +213,13 @@ td.icons {
   justify-content: center;
   align-items: center;
 }
+
+.disabled-table {
+  opacity: 0.1;
+}
+
+.disabled-button {
+  opacity: 0.1;
+  cursor: not-allowed;
+  pointer-events: none;
+}

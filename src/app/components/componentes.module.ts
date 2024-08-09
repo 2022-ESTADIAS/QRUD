@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ComponentesRoutingModule } from './componentes-routing.module';
 
-
 import { ErroresBackendComponent } from '../components/alertas/errores-backend/errores-backend.component';
 import { ExitoComponent } from '../components/alertas/exito/exito.component';
 import { ErroresFrontendComponent } from '../components/alertas/errores-frontend/errores-frontend.component';
@@ -19,7 +18,7 @@ import { ActualizarRolComponent } from '../components/formularios/emergentes/act
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import { DriverRegulationsComponent } from './driver-regulations/driver-regulations.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +33,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     BuscadorComponent,
     NoEncontradoComponent,
     ModalComponent,
+    DriverRegulationsComponent,
   ],
-  exports:[
+  exports: [
     ErroresBackendComponent,
     ExitoComponent,
     ErroresFrontendComponent,
@@ -47,6 +47,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     BuscadorComponent,
     NoEncontradoComponent,
     ModalComponent,
+    DriverRegulationsComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +55,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class ComponentesModule { }
+export class ComponentesModule {}

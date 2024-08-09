@@ -52,7 +52,9 @@ export class RegistroUsuarioComponent implements OnInit {
   showRegisterForm: boolean = false;
   showProvidersRegisterFormFields = false;
   showDriversRegisterFormFields = false;
+  showDriverRegulation = false;
   disabledForm: boolean = false;
+  disabledAcceptButton: boolean = true;
 
   registerFormName: string = 'VISITANTES';
   formData: FormData = new FormData();
@@ -137,7 +139,10 @@ export class RegistroUsuarioComponent implements OnInit {
   submit() {
     this.disabledForm = true;
     let usuario: VisitorForm | ProviderForm | DriverForm = this.form.value;
+    console.log(usuario, 'user');
+
     if (this.form.invalid) {
+      this.disabledForm = false;
       this.form.markAllAsTouched();
       return;
     }
@@ -167,6 +172,16 @@ export class RegistroUsuarioComponent implements OnInit {
         hasVehicle,
         reason_id,
       };
+      this.formData.append('email', usuario.email);
+      this.formData.append('contact_name', usuario.contact_name);
+      this.formData.append('department_id', usuario.department_id);
+      this.formData.append('enter_device', usuario.enter_device);
+      this.formData.append('name', usuario.name);
+      this.formData.append('visit_company', usuario.visit_company);
+      this.formData.append('visit_date', usuario.visit_date);
+      this.formData.append('visitor_type_id', usuario.visitor_type_id);
+      this.formData.append('hasVehicle', `${usuario.hasVehicle}`);
+      this.formData.append('reason_id', usuario.reason_id);
     } else if (this.showDriversRegisterFormFields) {
       const {
         email,
@@ -300,19 +315,22 @@ export class RegistroUsuarioComponent implements OnInit {
   }
 
   openRegisterModal(visitor: VisitorType) {
+    console.log(visitor, 'tipo visitante');
     this.showRegisterForm = true;
     if (visitor.name == 'Proveedores') {
       this.registerFormName = 'PROVEEDORES';
       this.showProvidersRegisterFormFields = true;
       this.ProviderForm();
     } else if (visitor.name == 'Transportistas') {
-      this.showDriversRegisterFormFields = true;
+      // this.showDriversRegisterFormFields = true;
+      this.showDriverRegulation = true;
       this.registerFormName = 'TRANSPORTISTAS';
-      this.DriverForm();
+      // this.DriverForm();
     } else {
       this.registerFormName = 'VISITANTES';
       this.showProvidersRegisterFormFields = false;
-      this.showDriversRegisterFormFields = false;
+      // this.showDriversRegisterFormFields = false;
+      this.showDriverRegulation = false;
       this.FormularioUsuario();
     }
     this.form.get('visitor_type_id')?.setValue(visitor.uid);
@@ -328,8 +346,11 @@ export class RegistroUsuarioComponent implements OnInit {
     }
   }
   backButton() {
+    this.disabledAcceptButton = true;
+    this.showDriverRegulation = false;
     this.showRegisterForm = false;
     this.showDriversRegisterFormFields = false;
+    this.form = this.fb.group({});
     this.form.get('visitor_type_id')?.setValue('');
   }
 
@@ -339,5 +360,13 @@ export class RegistroUsuarioComponent implements OnInit {
 
       this.formData.append('ine_field', file);
     }
+  }
+  verifyCheck(e: any) {
+    this.disabledAcceptButton = !this.disabledAcceptButton;
+  }
+  displayDriverForm() {
+    this.showDriversRegisterFormFields = true;
+    this.showDriverRegulation = false;
+    this.DriverForm();
   }
 }

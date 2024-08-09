@@ -219,6 +219,33 @@
             mensaje="El campo es requerido"></app-errores-frontend>
         </div>
 
+        <!-- IMAGENES -->
+        <div class="group">
+          <input type="text" style="visibility: hidden;">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>INE</label>
+          <input type="file" formControlName="ine_field" (change)="onFileChange($event)">
+
+          <app-errores-frontend *ngIf="campoValido('ine_field')" mensaje="El campo es requerido"></app-errores-frontend>
+        </div>
+
+        <!-- IMAGENES -->
+        <div class="group">
+          <input type="text" style="visibility: hidden;">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Licencia de conducir</label>
+          <input type="file" formControlName="driver_licence_field" (change)="onFileChangeLicence($event)">
+
+
+
+          <app-errores-frontend *ngIf="campoValido('driver_licence_field')"
+            mensaje="El campo es requerido"></app-errores-frontend>
+        </div>
+
+
+
 
       </div>
 

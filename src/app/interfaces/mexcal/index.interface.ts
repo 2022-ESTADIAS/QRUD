@@ -35,6 +35,7 @@ export interface DriverForm {
   office_phone: string;
   visitor_type_id: string;
   ine_field?: any;
+  driver_licence_field?: any;
 }
 
 export interface ProviderForm extends VisitorForm {

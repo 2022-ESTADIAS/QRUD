@@ -116,6 +116,7 @@ export class RegistroUsuarioComponent implements OnInit {
       visitor_type_id: ['', Validators.required],
       reason_id: ['', Validators.required],
       hasVehicle: ['', Validators.required],
+      ine_field: ['', Validators.required],
     });
   }
   DriverForm() {

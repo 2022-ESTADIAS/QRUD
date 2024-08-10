@@ -3,7 +3,7 @@
     <app-translate></app-translate>
     <div class="header-right">
         <a class="random" href="#" id="cambioColor">{{inicial}}</a>
-        <a>Bienvenido! </a>
+        <a>{{'loginWelcome'|translate}} </a>
         <a>{{nombrePersonal}}</a>
     </div>
 </div>
@@ -23,7 +23,7 @@
                 <div class="nav__link  collapse" [ngClass]="{'movil-links':!expandirMenu}"
                     (click)="mostrarOpcionesUsuario()" *ngIf="esAdmin || esMaster || esAux ">
                     <i class="fa-solid fa-users"></i>
-                    <span class="nav__name">Usuarios</span>
+                    <span class="nav__name">{{'panelAdminUsers'|translate}}</span>
 
                     <ion-icon name="chevron-down-outline" class="collapse__link"
                         [ngClass]="{'rotate':mostrarOpcionesMenuUsuario}"></ion-icon>
@@ -82,20 +82,21 @@
                         [ngClass]="{'rotate':mostrarOpcionesMenuQR}"></ion-icon>
 
                     <ul class="collapse__menu" [ngClass]="{'showCollapse':mostrarOpcionesMenuQR}">
-                        <a routerLink="/qr" class="collapse__sublink">Escanear QR</a>
+                        <a routerLink="/qr" class="collapse__sublink">{{'panelAdminQRScan'|translate}}</a>
                     </ul>
                 </div>
 
                 <div class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}"
                     (click)="mostrarOpcionesContrasena()" *ngIf="esAdmin || esMaster || esAux ">
                     <i class="fa-solid fa-key"></i>
-                    <span class="nav__name">Contraseña</span>
+                    <span class="nav__name">{{'panelAdminPassword'|translate}}</span>
 
                     <ion-icon name="chevron-down-outline" class="collapse__link"
                         [ngClass]="{'rotate':mostrarOpcionesMenuContrasena}"></ion-icon>
 
                     <ul class="collapse__menu" [ngClass]="{'showCollapse':mostrarOpcionesMenuContrasena}">
-                        <a routerLink="/contrasena" class="collapse__sublink">Cambiar Contraseña</a>
+                        <a routerLink="/contrasena"
+                            class="collapse__sublink">{{'panelAdminChangePassword'|translate}}</a>
                     </ul>
                 </div>
 
@@ -104,7 +105,7 @@
 
         <a class="nav__link" (click)="logout()">
             <i class="fa-solid fa-right-from-bracket"></i>
-            <span class="nav__name">Salir</span>
+            <span class="nav__name">{{'panelAdminLogOut'|translate}}</span>
         </a>
     </nav>
 </div>

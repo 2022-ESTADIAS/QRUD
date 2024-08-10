@@ -7,6 +7,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class DynamicTranslationsService {
   constructor(private translate: TranslateService) {}
 
+  gettranslate() {
+    return this.translate;
+  }
+
   getUserTypes(type: string) {
     if (this.translate.currentLang == 'en') {
       switch (type) {

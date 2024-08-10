@@ -1,6 +1,13 @@
-import { OnDestroy } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  NgZone,
+  OnChanges,
+  OnDestroy,
+  SimpleChanges,
+} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 /**
@@ -11,7 +18,7 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './panel-admin.component.html',
   styleUrls: ['./panel-admin.component.css'],
 })
-export class PanelAdminComponent implements OnInit, OnDestroy {
+export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
   /**
    * propiedad que permite expandir el menu con las opciones para realizar el crud de usuarios
    */
@@ -70,9 +77,24 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
    */
   rutasMaster: any[] = [
     [
-      { ruta: '', nombre: 'Crear ' },
-      { ruta: '/ver-visitantes', nombre: 'Visitantes' },
-      { ruta: '/ver-transportistas', nombre: 'Transportistas' },
+      {
+        ruta: '',
+        nombre: this.translationService.instantTranslation(
+          'panelAdminRouteUserCreate'
+        ),
+      },
+      {
+        ruta: '/ver-visitantes',
+        nombre: this.translationService.instantTranslation(
+          'panelAdminRouteVisitors'
+        ),
+      },
+      {
+        ruta: '/ver-transportistas',
+        nombre: this.translationService.instantTranslation(
+          'panelAdminRouteDrivers'
+        ),
+      },
       // { ruta: '/usuarios-eliminados', nombre: 'Eliminados' },
     ],
     [
@@ -117,7 +139,10 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
    */
   constructor(
     private AuthService: AuthService,
-    private StorageService: StorageService
+    private StorageService: StorageService,
+    private translationService: DynamicTranslationsService,
+    private cdr: ChangeDetectorRef,
+    private ngZone: NgZone
   ) {}
   /**
    * cuando el componente se destruye se elimina la funcion de cambio de color y se remueve las clases al body
@@ -126,6 +151,9 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
     this.sidebar?.classList.remove('body-pd');
     clearTimeout(this.funcionCambioDecolor);
   }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes, 'CAMBIOS HECHOS ');
+  }
   /**
    * obtiene el nombre del personal, la letra inicial del nombre y las rutas que le corresponden al rol del personal logueado
    */
@@ -133,8 +161,48 @@ export class PanelAdminComponent implements OnInit, OnDestroy {
     this.obtenerNombre();
     this.verRol();
     this.generarColorRandom();
+    this.asideMenuTranslations();
     this.mostrarMenu();
   }
+
+  asideMenuTranslations() {
+    this.translationService.gettranslate().onLangChange.subscribe((data) => {
+      console.log(data, 'TRADUCCIONES');
+
+      this.rutasMaster = [
+        [
+          {
+            ruta: '',
+            nombre: data.translations['panelAdminRouteUserCreate'],
+          },
+          {
+            ruta: '/ver-visitantes',
+            nombre: data.translations['panelAdminRouteVisitors'],
+          },
+          {
+            ruta: '/ver-transportistas',
+            nombre: data.translations['panelAdminRouteDrivers'],
+          },
+          // { ruta: '/usuarios-eliminados', nombre: 'Eliminados' },
+        ],
+        [
+          { ruta: '/registro-personal', nombre: 'Registrar ' },
+          { ruta: '/ver-personal', nombre: 'Ver' },
+          { ruta: '/personal-eliminado', nombre: 'Eliminados' },
+        ],
+        [
+          { ruta: '/registro-rol', nombre: 'Crear' },
+          { ruta: '/ver-rol', nombre: 'Ver' },
+        ],
+      ];
+      this.rutas = this.rutasMaster;
+      console.log(this.rutasMaster, 'NUEVAS RUTAS 1');
+      console.log(this.rutas, 'NUEVAS RUTAS 1 de rutas');
+      // this.cdr.detectChanges();
+      // console.log(this.rutasMaster, 'NUEVAS RUTAS 2');
+    });
+  }
+
   /**
    * muestra/oculta las acciones del menu lateral cuando se hace click en la opcion de usuarios
    */

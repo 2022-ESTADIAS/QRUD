@@ -34,5 +34,13 @@
   "loginEmail": "Email",
   "loginPassword": "Password",
   "loginLogIn": "Login",
-  "loginForgetPassword": "Forgot your password?"
+  "loginForgetPassword": "Forgot your password?",
+  "panelAdminUsers": "Users",
+  "panelAdminQRScan": "QR Scan",
+  "panelAdminPassword": "Password",
+  "panelAdminChangePassword": "Change Password",
+  "panelAdminLogOut": "Logout",
+  "panelAdminRouteUserCreate": "Create",
+  "panelAdminRouteVisitors": "Visitors",
+  "panelAdminRouteDrivers": "Drivers"
 }

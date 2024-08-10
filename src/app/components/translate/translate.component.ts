@@ -25,5 +25,6 @@ export class TranslateComponent implements OnInit {
   getTranslateOptions(e: any) {
     this.translate.currentLang;
     this.translate.use(e.target.value);
+    this.translate.reloadLang(e.target.value);
   }
 }

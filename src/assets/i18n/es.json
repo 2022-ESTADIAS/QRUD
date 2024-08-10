@@ -34,5 +34,13 @@
   "loginEmail": "Correo electrónico",
   "loginPassword": "Contraseña",
   "loginLogIn": "Ingresar",
-  "loginForgetPassword": "¿Olvidaste tu contraseña?"
+  "loginForgetPassword": "¿Olvidaste tu contraseña?",
+  "panelAdminUsers": "Usuarios",
+  "panelAdminQRScan": "Escanear QR",
+  "panelAdminPassword": "Contraseña",
+  "panelAdminChangePassword": "Cambiar Contraseña",
+  "panelAdminLogOut": "Salir",
+  "panelAdminRouteUserCreate": "Crear",
+  "panelAdminRouteVisitors": "Visitantes",
+  "panelAdminRouteDrivers": "Transportistas"
 }

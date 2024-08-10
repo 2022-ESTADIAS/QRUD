@@ -9,6 +9,7 @@ import {
   DepartmentResponse,
   DevicesResponse,
   DriverForm,
+  ImageResponse,
   ProviderForm,
   QRUser,
   ReasonsForAdmissionsResponse,
@@ -386,5 +387,17 @@ export class QRUDService {
           );
       }
     );
+  }
+  getImageFromAWS(id: string) {
+    return new Promise<ImageResponse>((resolve, reject) => {
+      this.http.get<ImageResponse>(`${url}/public/image/${id}`).subscribe(
+        (res) => {
+          resolve(res);
+        },
+        (err) => {
+          reject(err);
+        }
+      );
+    });
   }
 }

@@ -59,6 +59,8 @@ export interface QRCodeVisitor {
   email?: string;
   office_name?: string;
   office_phone?: string;
+  ine_field?: string;
+  driver_licence_field?: string;
 }
 
 export interface QRUser {
@@ -97,4 +99,15 @@ export interface VisitorsActiveVerificationResponse {
   status: string;
   message: string;
   access: boolean;
+}
+
+export interface ImageResponse {
+  status: string;
+  message: string;
+  images: ImageVisitor;
+}
+
+interface ImageVisitor {
+  ine: string;
+  license?: string;
 }

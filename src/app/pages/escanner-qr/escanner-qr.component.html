@@ -41,44 +41,50 @@
   <app-spinner></app-spinner>
 </div>
 
-<h1 *ngIf="!camara">Para acceder a este componente, debe de tener una camara disponible </h1>
+<h1 *ngIf="!camara">{{instantTranslation('qrScannerWarning')}}</h1>
 
 
 <div *ngIf="ocultarDatos">
 
   <div class="visitor-container">
-    <h4>Datos del Visitante</h4>
+    <h4>{{instantTranslation('qrScannerVisitorData')}}</h4>
     <div>
       <div class="flex">
-        <p>Nombre del visitante: </p> <span class="margin-left">{{usuarioQR?.name}}</span>
+        <p>{{instantTranslation('qrScannerVisitorName')}}: </p> <span class="margin-left">{{usuarioQR?.name}}</span>
       </div>
       <div class="flex">
-        <p>Fecha de la visita: </p> <span class="margin-left">{{usuarioQR?.visit_date &&
+        <p>{{instantTranslation('qrScannerVisitorDate')}}: </p> <span class="margin-left">{{usuarioQR?.visit_date &&
           parseDate(usuarioQR?.visit_date!)}}</span>
       </div>
       <div class="flex">
-        <p>Compañia: </p> <span class="margin-left">{{usuarioQR?.visit_company}}</span>
+        <p>{{instantTranslation('qrScannerVisitorCompany')}}: </p> <span
+          class="margin-left">{{usuarioQR?.visit_company}}</span>
       </div>
       <div class="flex">
-        <p>Nombre de contacto en la empresa: </p> <span class="margin-left">{{usuarioQR?.contact_name}}</span>
+        <p>{{instantTranslation('qrScannerVisitorContactName')}}: </p> <span
+          class="margin-left">{{usuarioQR?.contact_name}}</span>
       </div>
       <div class="flex">
-        <p>Departamento: </p> <span class="margin-left">{{usuarioQR?.department}}</span>
+        <p>{{instantTranslation('qrScannerVisitorDepartment')}}: </p> <span
+          class="margin-left">{{usuarioQR?.department}}</span>
       </div>
       <div class="flex">
-        <p>Tipo de Visitante: </p> <span class="margin-left">{{usuarioQR?.visitor_type}}</span>
+        <p>{{instantTranslation('qrScannerVisitorVisitType')}}: </p> <span
+          class="margin-left">{{usuarioQR?.visitor_type}}</span>
       </div>
       <div class="flex">
-        <p>Dispositivos del visitante: </p> <span class="margin-left">{{usuarioQR?.enter_device}}</span>
+        <p>{{instantTranslation('qrScannerVisitorDevices')}}: </p> <span
+          class="margin-left">{{usuarioQR?.enter_device}}</span>
       </div>
 
       <div class="flex mb-2" *ngIf="usuarioQR?.ine_field">
-        <p>INE: </p> <img class="img-files-responsive" src="{{usuarioQR?.ine_field}}" alt="ine">
+        <p>{{instantTranslation('qrScannerVisitorId')}}: </p> <img class="img-files-responsive"
+          src="{{usuarioQR?.ine_field}}" alt="ine">
       </div>
 
 
       <button type="button" class="clear-qr-btn" (click)="limpiarQr()">
-        Limpiar registro
+        {{instantTranslation('qrScannerVisitorClearRegister')}}
       </button>
 
     </div>
@@ -94,37 +100,42 @@
 <div *ngIf="showDriver">
 
   <div class="visitor-container">
-    <h4>Datos del Transportista</h4>
+    <h4>{{instantTranslation('qrScannerDriverData')}}</h4>
     <div>
       <div class="flex">
-        <p>Nombre del operador: </p> <span class="margin-left">{{usuarioQR?.operator_name}}</span>
+        <p>{{instantTranslation('qrScannerDriverName')}}: </p> <span
+          class="margin-left">{{usuarioQR?.operator_name}}</span>
       </div>
       <div class="flex">
-        <p>Nombre de su compañia: </p> <span class="margin-left">{{usuarioQR?.company_name}}</span>
+        <p>{{instantTranslation('qrScannerDriverCompany')}}: </p> <span
+          class="margin-left">{{usuarioQR?.company_name}}</span>
       </div>
       <div class="flex">
-        <p>Numero telefonico: </p> <span class="margin-left">{{usuarioQR?.phone}}</span>
+        <p>{{instantTranslation('qrScannerDriverPhone')}}: </p> <span class="margin-left">{{usuarioQR?.phone}}</span>
       </div>
       <div class="flex">
-        <p>Nombre de su despacho: </p> <span class="margin-left">{{usuarioQR?.office_name}}</span>
+        <p>{{instantTranslation('qrScannerDriverOffice')}}: </p> <span
+          class="margin-left">{{usuarioQR?.office_name}}</span>
       </div>
       <div class="flex">
-        <p>Telefono de su despacho: </p> <span class="margin-left">{{usuarioQR?.office_phone}}</span>
+        <p>{{instantTranslation('qrScannerDriverOfficePhone')}}: </p> <span
+          class="margin-left">{{usuarioQR?.office_phone}}</span>
       </div>
 
       <div class="flex" *ngIf="usuarioQR?.driver_licence_field">
-        <p>Licencia de conducir: </p> <img class="img-files-responsive" src="{{usuarioQR?.driver_licence_field}}"
-          alt="license">
+        <p>{{instantTranslation('qrScannerDriverLicense')}}: </p> <img class="img-files-responsive"
+          src="{{usuarioQR?.driver_licence_field}}" alt="license">
       </div>
 
       <div class="flex mb-2" *ngIf="usuarioQR?.ine_field">
-        <p>INE: </p> <img class="img-files-responsive" src="{{usuarioQR?.ine_field}}" alt="ine">
+        <p>{{instantTranslation('qrScannerVisitorId')}}: </p> <img class="img-files-responsive"
+          src="{{usuarioQR?.ine_field}}" alt="ine">
       </div>
 
 
 
       <button type="button" class="clear-qr-btn" (click)="limpiarQr()">
-        Limpiar registro
+        {{instantTranslation('qrScannerVisitorClearRegister')}}
       </button>
 
     </div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BarcodeFormat } from '@zxing/library';
 import { QRCodeVisitor } from 'src/app/interfaces/mexcal/index.interface';
 import { RegistroUsuario, Usuario } from 'src/app/interfaces/usuario.interface';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
 /**
@@ -62,7 +63,11 @@ export class EscannerQRComponent implements OnInit {
   /**
    * inyectando servicio de formulario reactivo
    */
-  constructor(private fb: FormBuilder, private QRUDService: QRUDService) {}
+  constructor(
+    private fb: FormBuilder,
+    private QRUDService: QRUDService,
+    public translateHelper: DynamicTranslationsService
+  ) {}
 
   /**
    * @ignore
@@ -149,5 +154,8 @@ export class EscannerQRComponent implements OnInit {
   }
   parseDate(fecha: string) {
     return fecha.replace('t', ' ');
+  }
+  instantTranslation(key: string, params?: any) {
+    return this.translateHelper.instantTranslation(key, params);
   }
 }

@@ -9,17 +9,17 @@
     <app-buscador (busqueda)="search($event)" (ocultar)="ocultarPaginacion = $event"></app-buscador>
 
 
-    <h3>Lista de Transportistas</h3>
+    <h3>{{instantTranslation('driversComponentTitle')}}</h3>
     <table class="resp" [ngClass]="{'disabled-table':waitForAnswer}">
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Compañia</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th>Oficina </th>
-                <th>telefono de oficina </th>
-                <th>Acciones</th>
+                <th>{{instantTranslation('driversComponentTableName')}}</th>
+                <th>{{instantTranslation('driversComponentTableCompany')}}</th>
+                <th>{{instantTranslation('driversComponentTablePhone')}}</th>
+                <th>{{instantTranslation('driversComponentTableEmail')}}</th>
+                <th>{{instantTranslation('driversComponentTableOffice')}} </th>
+                <th>{{instantTranslation('driversComponentTablePhoneOffice')}} </th>
+                <th>{{instantTranslation('visitorsComponentTableActions')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -56,7 +56,7 @@
                 <div class="pagination-container">
                     <i class="fa-solid fa-circle-left" (click)="prevPage()" *ngIf="page >1"></i>
                     <div> {{page}} </div>
-                    <div> de </div>
+                    <div> {{instantTranslation('visitorsComponentTableOf')}} </div>
                     <div> {{pages}} </div>
                     <i class="fa-solid fa-circle-right" (click)="nextPage()" *ngIf="page < pages"></i>
                 </div>

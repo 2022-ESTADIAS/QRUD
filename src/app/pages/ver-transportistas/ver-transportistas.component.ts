@@ -4,6 +4,7 @@ import {
   DriverSearchParams,
 } from 'src/app/interfaces/mexcal/visitors.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { VisitorsService } from 'src/app/services/visitors.service';
@@ -28,7 +29,8 @@ export class VerTransportistasComponent implements OnInit {
     private VisitorsService: VisitorsService,
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService,
-    private QRUDService: QRUDService
+    private QRUDService: QRUDService,
+    public translateHelper: DynamicTranslationsService
   ) {}
 
   ngOnInit(): void {
@@ -103,5 +105,8 @@ export class VerTransportistasComponent implements OnInit {
     this.getDrivers({
       keyword: searchParam,
     });
+  }
+  instantTranslation(key: string, params?: any) {
+    return this.translateHelper.instantTranslation(key, params);
   }
 }

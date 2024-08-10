@@ -50,5 +50,12 @@
   "visitorsComponentTableEmail": "Email",
   "visitorsComponentTableUserType": "Tipo de usuario",
   "visitorsComponentTableOf": "de",
-  "visitorsComponentTableActions": "Acciones"
+  "visitorsComponentTableActions": "Acciones",
+  "driversComponentTitle": "Lista de Transportistas",
+  "driversComponentTableName": "Nombre",
+  "driversComponentTableCompany": "Compañia",
+  "driversComponentTablePhone": "Telefono",
+  "driversComponentTableEmail": "Email",
+  "driversComponentTableOffice": "Oficina",
+  "driversComponentTablePhoneOffice": "telefono de oficina"
 }

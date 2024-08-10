@@ -21,4 +21,15 @@ export class DynamicTranslationsService {
 
     return type;
   }
+
+  instantTranslation(key: string, params?: any) {
+    if (params) {
+      const translate = this.translate.instant(key, {
+        ...params,
+      });
+      return translate;
+    } else {
+      return this.translate.instant(key);
+    }
+  }
 }

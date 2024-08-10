@@ -29,5 +29,10 @@
   "formTerms": "I have read and accept the transport regulations",
   "formRegisterButton": "Sign in",
   "formIneField": "INE",
-  "formDriverLicenseField": "DRIVER LICENSE"
+  "formDriverLicenseField": "DRIVER LICENSE",
+  "loginWelcome": "¡Welcome!",
+  "loginEmail": "Email",
+  "loginPassword": "Password",
+  "loginLogIn": "Login",
+  "loginForgetPassword": "Forgot your password?"
 }

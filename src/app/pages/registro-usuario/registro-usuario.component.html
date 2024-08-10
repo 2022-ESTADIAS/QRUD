@@ -9,11 +9,15 @@
 </ng-container>
 <app-exito [mensaje]="msgExito" *ngIf="existeMsgExito"></app-exito>
 
-<app-translate></app-translate>
+<ng-container *ngIf="this.router.url =='/registro' ">
+  <app-translate></app-translate>
+
+</ng-container>
 
 
 <div class="flex" *ngIf="!showRegisterForm  &&  visitorTypes.length >0">
-  <h1>{{"pickUserType" | translate }}</h1>
+  <!-- <h1>{{'pickUserType' | translate }} </h1> -->
+  <h1>{{instantTranslation('pickUserType')}}</h1>
   <ng-container *ngFor="let type of visitorTypes">
     <div [ngClass]="getClass(type.name)" (click)="openRegisterModal(type)">
       {{translateHelper.getUserTypes(type.name) }}
@@ -33,16 +37,20 @@
 
     <div class="title">
       <h4 class="text-center uppercase">
-        {{"userRegisterType" | translate:{'type':translateHelper.getUserTypes(registerFormName)} }}
+        <!-- {{"userRegisterType" | translate:{'type':translateHelper.getUserTypes(registerFormName)} }} -->
+        {{instantTranslation('userRegisterType', {'type':translateHelper.getUserTypes(registerFormName)})}}
       </h4>
     </div>
-    <p class="uppercase">{{'accessCodeForUserType'| translate:{'type':translateHelper.getUserTypes(registerFormName)} }}
+    <p class="uppercase">
+      <!-- {{'accessCodeForUserType'| translate:{'type':translateHelper.getUserTypes(registerFormName)} }} -->
+      {{instantTranslation('accessCodeForUserType', {'type':translateHelper.getUserTypes(registerFormName)})}}
     </p>
 
     <hr>
-    <p>{{'formDescription' |translate}}</p>
+    <!-- <p>{{'formDescription' }}</p> -->
+    <p>{{instantTranslation('formDescription')}}</p>
     <hr>
-    <p class="required"> {{'formInstructions'| translate}} </p>
+    <p class="required"> {{instantTranslation('formInstructions')}} </p>
     <form [formGroup]="form" (ngSubmit)="submit()" [ngClass]="{'disabled-form':disabledForm}"
       enctype="multipart/form-data">
       <div class="user-details" *ngIf="!showDriversRegisterFormFields">
@@ -51,58 +59,58 @@
           <input type="email" formControlName="email" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formEmailField'|translate}}</label>
+          <label>{{instantTranslation('formEmailField')}}</label>
           <app-errores-frontend *ngIf="campoValido('email')"
-            mensaje="{{'formEmailValidationField'|translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('formEmailValidationField')}}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formFullNameField' |translate}}</label>
+          <label>{{instantTranslation('formFullNameField') }}</label>
           <app-errores-frontend *ngIf="campoValido('name')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="visit_company" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formVisitCompanyField'| translate}}</label>
+          <label>{{instantTranslation('formVisitCompanyField')}}</label>
           <app-errores-frontend *ngIf="campoValido('visit_company')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="datetime-local" formControlName="visit_date" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formDateTimeField' |translate}}</label>
+          <label>{{instantTranslation('formDateTimeField') }}</label>
           <app-errores-frontend *ngIf="campoValido('visit_date')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="contact_name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formContactNameField'|translate}}</label>
+          <label>{{instantTranslation('formContactNameField')}}</label>
           <app-errores-frontend *ngIf="campoValido('contact_name')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
         <div class="group">
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formDepartmentField'|translate}}</label>
+          <label>{{instantTranslation('formDepartmentField')}}</label>
           <select name="" id="" class="controls select-absolute" formControlName="department_id">
-            <option value="" disabled selected>{{'formDeparmentPlaceholderField'|translate}}</option>
+            <option value="" disabled selected>{{instantTranslation('formDeparmentPlaceholderField')}}</option>
             <option value="{{department.uid}}" *ngFor="let department of departments">{{department.name}}</option>
           </select>
 
           <app-errores-frontend *ngIf="campoValido('department_id')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
 
@@ -111,44 +119,44 @@
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formEnterDeviceField'|translate}}</label>
+          <label>{{instantTranslation('formEnterDeviceField')}}</label>
           <select name="" id="" class="controls select-absolute" formControlName="enter_device">
-            <option value="" disabled selected>{{'formEnterDevicePlaceholderField'|translate}}</option>
+            <option value="" disabled selected>{{instantTranslation('formEnterDevicePlaceholderField')}}</option>
             <option value="{{device.name}}" *ngFor="let device of devices">{{device.name}}</option>
           </select>
 
           <app-errores-frontend *ngIf="campoValido('enter_device')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
         <ng-container *ngIf="showProvidersRegisterFormFields">
           <div class="group">
             <input type="text" style="visibility: hidden;">
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>{{'formReasonField'|translate}}</label>
+            <label>{{instantTranslation('formReasonField')}}</label>
             <select name="" id="" class="controls select-absolute" formControlName="reason_id">
-              <option value="" disabled selected>{{'formReasonPlaceholderField'|translate}}</option>
+              <option value="" disabled selected>{{instantTranslation('formReasonPlaceholderField')}}</option>
               <option value="{{reason.uid}}" *ngFor="let reason of reasons">{{reason.name}}</option>
             </select>
 
             <app-errores-frontend *ngIf="campoValido('reason_id')"
-              mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+              mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
           </div>
 
           <div class="group">
             <input type="text" style="visibility: hidden;">
             <span class="highlight"></span>
             <span class="bar"></span>
-            <label>{{'formHasVehicleField' |translate}}</label>
+            <label>{{instantTranslation('formHasVehicleField')}}</label>
             <select name="" id="" class="controls select-absolute" formControlName="hasVehicle">
-              <option value="" disabled selected>{{'formHasVehiclePlaceholderField'|translate}}</option>
-              <option [value]="true"> {{'formHasVehicleFirstOption'|translate}} </option>
-              <option [value]="false"> {{'formHasVehicleSecondOption'|translate}} </option>
+              <option value="" disabled selected>{{instantTranslation('formHasVehiclePlaceholderField')}}</option>
+              <option [value]="true"> {{instantTranslation('formHasVehicleFirstOption')}} </option>
+              <option [value]="false"> {{instantTranslation('formHasVehicleSecondOption')}} </option>
 
             </select>
 
             <app-errores-frontend *ngIf="campoValido('hasVehicle')"
-              mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+              mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
           </div>
         </ng-container>
 
@@ -157,13 +165,13 @@
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formIneField' |translate}}</label>
+          <label>{{instantTranslation('formIneField') }}</label>
           <input type="file" formControlName="ine_field" (change)="onFileChange($event)">
 
 
 
           <app-errores-frontend *ngIf="campoValido('ine_field')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
 
@@ -174,9 +182,9 @@
           <input type="email" formControlName="email" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formEmailField'|translate}}</label>
+          <label>{{instantTranslation('formEmailField')}}</label>
           <app-errores-frontend *ngIf="campoValido('email')"
-            mensaje="{{'formEmailValidationField'|translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('formEmailValidationField')}}"></app-errores-frontend>
         </div>
 
 
@@ -184,45 +192,45 @@
           <input type="text" formControlName="company_name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formCompanyNameField'|translate}}</label>
+          <label>{{instantTranslation('formCompanyNameField')}}</label>
           <app-errores-frontend *ngIf="campoValido('company_name')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="operator_name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formOperatorNameField'|translate}}</label>
+          <label>{{instantTranslation('formOperatorNameField')}}</label>
           <app-errores-frontend *ngIf="campoValido('operator_name')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="phone" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formPhoneField'|translate}}</label>
+          <label>{{instantTranslation('formPhoneField')}}</label>
           <app-errores-frontend *ngIf="campoValido('phone')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="office_name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formOfficeNameField'|translate}}</label>
+          <label>{{instantTranslation('formOfficeNameField')}}</label>
           <app-errores-frontend *ngIf="campoValido('office_name')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <div class="group">
           <input type="text" formControlName="office_phone" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formOfficePhoneField'|translate}}</label>
+          <label>{{instantTranslation('formOfficePhoneField')}}</label>
           <app-errores-frontend *ngIf="campoValido('office_phone')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <!-- IMAGENES -->
@@ -230,11 +238,11 @@
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formIneField' |translate}}</label>
+          <label>{{instantTranslation('formIneField') }}</label>
           <input type="file" formControlName="ine_field" (change)="onFileChange($event)">
 
           <app-errores-frontend *ngIf="campoValido('ine_field')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <!-- IMAGENES -->
@@ -242,13 +250,13 @@
           <input type="text" style="visibility: hidden;">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>{{'formDriverLicenseField'|translate}}</label>
+          <label>{{instantTranslation('formDriverLicenseField')}}</label>
           <input type="file" formControlName="driver_licence_field" (change)="onFileChangeLicence($event)">
 
 
 
           <app-errores-frontend *ngIf="campoValido('driver_licence_field')"
-            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
 
@@ -258,7 +266,7 @@
 
       <div class="wrapper">
         <button href="#0" class="btn10" [ngClass]="{'disabled-button':disabledForm}" [disabled]="disabledForm">
-          <span>{{'formRegisterButton'|translate}}</span>
+          <span>{{instantTranslation('formRegisterButton')}}</span>
           <div class="transition"></div>
         </button>
       </div>
@@ -271,11 +279,12 @@
   <i class="fa-solid fa-circle-left fa-2xl back-button" (click)="backButton()"></i>
   <app-driver-regulations></app-driver-regulations>
   <div class="flex-child">
-    <input type="checkbox" class="checkbox" (click)="verifyCheck($event)"><span>{{'formTerms'|translate}}</span>
+    <input type="checkbox" class="checkbox"
+      (click)="verifyCheck($event)"><span>{{instantTranslation('formTerms')}}</span>
 
     <button class="btn10" [ngClass]="{'disabled-button':disabledAcceptButton}" [disabled]="disabledAcceptButton"
       (click)="displayDriverForm()">
-      <span>{{'formRegisterButton'|translate}}</span>
+      <span>{{instantTranslation('formRegisterButton')}}</span>
       <div class="transition"></div>
     </button>
   </div>

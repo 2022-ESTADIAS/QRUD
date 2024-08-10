@@ -76,7 +76,7 @@ export class RegistroUsuarioComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
-    private router: Router,
+    public router: Router,
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService,
     public translateHelper: DynamicTranslationsService
@@ -91,6 +91,8 @@ export class RegistroUsuarioComponent implements OnInit {
     this.getDevices();
     this.FormularioUsuario();
     this.getReasons();
+
+    // console.log(this.router.url, 'RUTA ACTUAL');
   }
   /**
    * metodo que inicializa el formulario reactivo con sus respectivos campos y validaciones
@@ -399,5 +401,8 @@ export class RegistroUsuarioComponent implements OnInit {
     this.showDriversRegisterFormFields = true;
     this.showDriverRegulation = false;
     this.DriverForm();
+  }
+  instantTranslation(key: string, params?: any) {
+    return this.translateHelper.instantTranslation(key, params);
   }
 }

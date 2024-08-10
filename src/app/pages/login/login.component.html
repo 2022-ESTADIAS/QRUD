@@ -1,52 +1,68 @@
-<app-errores-backend [mensaje]="msgErrores" *ngIf="existeError"  ></app-errores-backend>
+<app-errores-backend [mensaje]="msgErrores" *ngIf="existeError"></app-errores-backend>
 
 <div class="fondo" *ngIf="loginExistoso">
-    <div class="spinner-container" >
-        <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="spinner-container">
+        <div class="lds-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
 </div>
+<app-translate></app-translate>
 
 
 <img class="wave" src="assets/img/wave2.png">
-    <div class="form-img">
-        <div class="content-form">
-            <img src="assets/img/logo.svg">
-            <h1>¡Bienvenido!</h1>
-            <form [formGroup]="form"  (ngSubmit)="login()" >
+<div class="form-img">
+    <div class="content-form">
+        <img src="assets/img/logo.svg">
+        <h1>{{'loginWelcome'|translate}}</h1>
+        <form [formGroup]="form" (ngSubmit)="login()">
 
-                <div class="group">      
-                  <input type="text" formControlName="email" (keyup)="removerAlertas()" >
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                  <label>Email</label>
-                  <div class="contenedor-validacion">
-                      <app-errores-frontend mensaje="Debe de ser un correo valido" *ngIf="campoValido('email')" ></app-errores-frontend>
-                      
-                    </div>
+            <div class="group">
+                <input type="text" formControlName="email" (keyup)="removerAlertas()">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>{{'loginEmail'|translate}}</label>
+                <div class="contenedor-validacion">
+                    <app-errores-frontend mensaje="{{'formEmailValidationField'| translate}}"
+                        *ngIf="campoValido('email')"></app-errores-frontend>
+
                 </div>
-                  
-                <div class="group">      
-                  <input type="password"  formControlName="password"  (keyup)="removerAlertas()"  >
-                  <span class="highlight"></span>
-                  <span class="bar"></span>
-                  <label>Password</label>
-                  <app-errores-frontend mensaje="El campo es obligatorio" *ngIf="campoValido('password')" ></app-errores-frontend>
-                </div>
-                <div class="wrapper">
-                    <button href="#0" class="btn10">
-                        <span>Ingresar</span>
-                        <div class="transition"></div>
-                    </button>
-                </div>
-                <p>
-                    <a routerLink="/forget-password" >¿Olvidaste tu contraseña?</a>
-                </p>
-                
-              </form>
-        </div>
-        <div class="login-imagen">
-            <img src="assets/img/undraw_mobile_interface_wakp.svg" alt="User">
-        </div>
-        
-      
+            </div>
+
+            <div class="group">
+                <input type="password" formControlName="password" (keyup)="removerAlertas()">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>{{'loginPassword'| translate}}</label>
+                <app-errores-frontend mensaje="{{'formEmailValidationField'| translate}}"
+                    *ngIf="campoValido('password')"></app-errores-frontend>
+            </div>
+            <div class="wrapper">
+                <button href="#0" class="btn10">
+                    <span>{{'loginLogIn'|translate}}</span>
+                    <div class="transition"></div>
+                </button>
+            </div>
+            <p>
+                <a routerLink="/forget-password">{{'loginForgetPassword'|translate}}</a>
+            </p>
+
+        </form>
     </div>
+    <div class="login-imagen">
+        <img src="assets/img/undraw_mobile_interface_wakp.svg" alt="User">
+    </div>
+
+
+</div>

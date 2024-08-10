@@ -29,5 +29,10 @@
   "formTerms": "He leido y acepto el reglamento de transportistas",
   "formRegisterButton": "Registrarse",
   "formIneField": "INE",
-  "formDriverLicenseField": "Licencia de conducir"
+  "formDriverLicenseField": "Licencia de conducir",
+  "loginWelcome": "¡Bienvenido!",
+  "loginEmail": "Correo electrónico",
+  "loginPassword": "Contraseña",
+  "loginLogIn": "Ingresar",
+  "loginForgetPassword": "¿Olvidaste tu contraseña?"
 }

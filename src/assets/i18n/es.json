@@ -42,5 +42,13 @@
   "panelAdminLogOut": "Salir",
   "panelAdminRouteUserCreate": "Crear",
   "panelAdminRouteVisitors": "Visitantes",
-  "panelAdminRouteDrivers": "Transportistas"
+  "panelAdminRouteDrivers": "Transportistas",
+  "visitorsComponentTitle": "Lista de Usuarios",
+  "visitorsComponentTableName": "Nombre",
+  "visitorsComponentTableVisitDate": "Fecha de visita",
+  "visitorsComponentTableCompany": "Compañia",
+  "visitorsComponentTableEmail": "Email",
+  "visitorsComponentTableUserType": "Tipo de usuario",
+  "visitorsComponentTableOf": "de",
+  "visitorsComponentTableActions": "Acciones"
 }

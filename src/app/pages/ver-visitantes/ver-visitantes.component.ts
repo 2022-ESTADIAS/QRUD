@@ -4,6 +4,7 @@ import {
   VisitorSearchParams,
 } from 'src/app/interfaces/mexcal/visitors.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { VisitorsService } from 'src/app/services/visitors.service';
@@ -27,7 +28,8 @@ export class VerVisitantesComponent implements OnInit {
     private VisitorsService: VisitorsService,
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService,
-    private QRUDService: QRUDService
+    private QRUDService: QRUDService,
+    public translateHelper: DynamicTranslationsService
   ) {}
 
   ngOnInit(): void {
@@ -105,5 +107,8 @@ export class VerVisitantesComponent implements OnInit {
 
   parseDate(fecha: string) {
     return fecha.replace('t', ' ');
+  }
+  instantTranslation(key: string, params?: any) {
+    return this.translateHelper.instantTranslation(key, params);
   }
 }

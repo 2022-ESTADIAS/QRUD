@@ -36,7 +36,7 @@ export class EscannerQRComponent implements OnInit {
    * propiedad que se encarga de indicar si se encontro una camara en el dispositivo
    */
   camara: boolean = true;
-
+  showQREscaner: boolean = true;
   existeError: boolean = false;
 
   /**
@@ -74,11 +74,31 @@ export class EscannerQRComponent implements OnInit {
    * @param event como valor del evento recibe la informacion del usuario contenido en el codigo qr
    */
   escanearQR(event: string) {
+    this.showQREscaner = false;
     const user = JSON.parse(event) as QRCodeVisitor;
-    console.log(user, 'escaner');
+    // console.log(user, 'escaner');
+    this.QRUDService.getImageFromAWS(user._id)
+      .then((data) => {
+        this.usuarioQR = {
+          ...user,
+          ine_field: data.images.ine,
+          driver_licence_field: data.images.license ? data.images.license : '',
+        };
+        this.showQREscaner = true;
+      })
+      .catch((err) => {
+        this.showQREscaner = true;
+        this.existeError = true;
+        this.errorServidor = err.error.err;
 
-    this.usuarioQR = user;
-    if (this.usuarioQR.visitor_type) {
+        setTimeout(() => {
+          this.existeError = false;
+          this.errorServidor = '';
+        }, 4000);
+      });
+
+    // this.usuarioQR = user;
+    if (user.visitor_type) {
       this.ocultarDatos = true;
     } else {
       this.showDriver = true;
@@ -103,6 +123,7 @@ export class EscannerQRComponent implements OnInit {
           }
         })
         .catch((err) => {
+          this.showQREscaner = true;
           this.existeError = true;
           this.errorServidor = err.error.err;
 

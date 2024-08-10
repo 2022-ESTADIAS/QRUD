@@ -27,5 +27,7 @@
   "formOfficeNameField": "NAME OF YOUR OFFICE",
   "formOfficePhoneField": "OFFICE PHONE",
   "formTerms": "I have read and accept the transport regulations",
-  "formRegisterButton": "Sign in"
+  "formRegisterButton": "Sign in",
+  "formIneField": "INE",
+  "formDriverLicenseField": "DRIVER LICENSE"
 }

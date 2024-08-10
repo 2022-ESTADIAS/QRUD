@@ -42,8 +42,9 @@
     <hr>
     <p>{{'formDescription' |translate}}</p>
     <hr>
-    <p class="required">{{'formInstructions' | translate}} </p>
-    <form [formGroup]="form" (ngSubmit)="submit()" [ngClass]="{'disabled-form':disabledForm}">
+    <p class="required"> {{'formInstructions'| translate}} </p>
+    <form [formGroup]="form" (ngSubmit)="submit()" [ngClass]="{'disabled-form':disabledForm}"
+      enctype="multipart/form-data">
       <div class="user-details" *ngIf="!showDriversRegisterFormFields">
 
         <div class="group">
@@ -151,7 +152,19 @@
           </div>
         </ng-container>
 
+        <!-- IMAGENES -->
+        <div class="group">
+          <input type="text" style="visibility: hidden;">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>{{'formIneField' |translate}}</label>
+          <input type="file" formControlName="ine_field" (change)="onFileChange($event)">
 
+
+
+          <app-errores-frontend *ngIf="campoValido('ine_field')"
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+        </div>
 
 
       </div>
@@ -212,12 +225,39 @@
             mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
         </div>
 
+        <!-- IMAGENES -->
+        <div class="group">
+          <input type="text" style="visibility: hidden;">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>{{'formIneField' |translate}}</label>
+          <input type="file" formControlName="ine_field" (change)="onFileChange($event)">
+
+          <app-errores-frontend *ngIf="campoValido('ine_field')"
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+        </div>
+
+        <!-- IMAGENES -->
+        <div class="group">
+          <input type="text" style="visibility: hidden;">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>{{'formDriverLicenseField'|translate}}</label>
+          <input type="file" formControlName="driver_licence_field" (change)="onFileChangeLicence($event)">
+
+
+
+          <app-errores-frontend *ngIf="campoValido('driver_licence_field')"
+            mensaje="{{'fieldRequired' |translate}}"></app-errores-frontend>
+        </div>
+
+
+
 
       </div>
 
       <div class="wrapper">
-        <button href="#0" class="btn10" [ngClass]="{'disabled-button':disabledForm}" [disabled]="disabledForm"
-          (click)="displayDriverForm()">
+        <button href="#0" class="btn10" [ngClass]="{'disabled-button':disabledForm}" [disabled]="disabledForm">
           <span>{{'formRegisterButton'|translate}}</span>
           <div class="transition"></div>
         </button>

@@ -27,5 +27,7 @@
   "formOfficeNameField": "NOMBRE DE SU DESPACHO",
   "formOfficePhoneField": "TELEFONO DE SU DESPACHO",
   "formTerms": "He leido y acepto el reglamento de transportistas",
-  "formRegisterButton": "Registrarse"
+  "formRegisterButton": "Registrarse",
+  "formIneField": "INE",
+  "formDriverLicenseField": "Licencia de conducir"
 }

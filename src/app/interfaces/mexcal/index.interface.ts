@@ -24,6 +24,7 @@ export interface VisitorForm {
   department_id: string;
   enter_device: string;
   visitor_type_id: string;
+  ine_field?: any;
 }
 export interface DriverForm {
   company_name: string;
@@ -33,6 +34,8 @@ export interface DriverForm {
   office_name: string;
   office_phone: string;
   visitor_type_id: string;
+  ine_field?: any;
+  driver_licence_field?: any;
 }
 
 export interface ProviderForm extends VisitorForm {
@@ -56,6 +59,8 @@ export interface QRCodeVisitor {
   email?: string;
   office_name?: string;
   office_phone?: string;
+  ine_field?: string;
+  driver_licence_field?: string;
 }
 
 export interface QRUser {
@@ -94,4 +99,15 @@ export interface VisitorsActiveVerificationResponse {
   status: string;
   message: string;
   access: boolean;
+}
+
+export interface ImageResponse {
+  status: string;
+  message: string;
+  images: ImageVisitor;
+}
+
+interface ImageVisitor {
+  ine: string;
+  license?: string;
 }

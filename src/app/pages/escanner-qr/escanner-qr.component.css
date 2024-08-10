@@ -448,3 +448,13 @@ input:focus ~ .highlight {
   font-size: 22px;
   line-height: 40px;
 }
+
+.mb-2 {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.img-files-responsive {
+  width: 250px;
+  height: 250px;
+}

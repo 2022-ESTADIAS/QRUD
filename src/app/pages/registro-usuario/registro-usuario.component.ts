@@ -58,7 +58,8 @@ export class RegistroUsuarioComponent implements OnInit {
   disabledAcceptButton: boolean = true;
 
   registerFormName: string = 'Visitantes';
-
+  driverUidReference: string = '';
+  formData: FormData = new FormData();
   /**
    * propiedad que contiene el mensaje de exito
    */
@@ -104,6 +105,7 @@ export class RegistroUsuarioComponent implements OnInit {
       department_id: ['', Validators.required],
       enter_device: ['', [Validators.required]],
       visitor_type_id: ['', Validators.required],
+      ine_field: ['', Validators.required],
     });
   }
 
@@ -119,6 +121,7 @@ export class RegistroUsuarioComponent implements OnInit {
       visitor_type_id: ['', Validators.required],
       reason_id: ['', Validators.required],
       hasVehicle: ['', Validators.required],
+      ine_field: ['', Validators.required],
     });
   }
   DriverForm() {
@@ -130,6 +133,8 @@ export class RegistroUsuarioComponent implements OnInit {
       office_name: ['', Validators.required],
       office_phone: ['', Validators.required],
       visitor_type_id: ['', Validators.required],
+      ine_field: ['', Validators.required],
+      driver_licence_field: ['', Validators.required],
     });
   }
 
@@ -139,11 +144,18 @@ export class RegistroUsuarioComponent implements OnInit {
   submit() {
     this.disabledForm = true;
     let usuario: VisitorForm | ProviderForm | DriverForm = this.form.value;
+    if (this.driverUidReference) {
+      this.form.get('visitor_type_id')?.setValue(this.driverUidReference);
+    }
+
+    console.log(this.form.value);
     if (this.form.invalid) {
       this.disabledForm = false;
       this.form.markAllAsTouched();
       return;
     }
+
+    console.log(this.form.invalid, 'valido');
 
     if (this.showProvidersRegisterFormFields) {
       const {
@@ -170,6 +182,16 @@ export class RegistroUsuarioComponent implements OnInit {
         hasVehicle,
         reason_id,
       };
+      this.formData.append('email', usuario.email);
+      this.formData.append('contact_name', usuario.contact_name);
+      this.formData.append('department_id', usuario.department_id);
+      this.formData.append('enter_device', usuario.enter_device);
+      this.formData.append('name', usuario.name);
+      this.formData.append('visit_company', usuario.visit_company);
+      this.formData.append('visit_date', usuario.visit_date);
+      this.formData.append('visitor_type_id', usuario.visitor_type_id);
+      this.formData.append('hasVehicle', `${usuario.hasVehicle}`);
+      this.formData.append('reason_id', usuario.reason_id);
     } else if (this.showDriversRegisterFormFields) {
       const {
         email,
@@ -179,6 +201,8 @@ export class RegistroUsuarioComponent implements OnInit {
         operator_name,
         phone,
         visitor_type_id,
+        ine_field,
+        driver_licence_field,
       }: DriverForm = this.form.value;
       usuario = {
         email: email.trim().toLowerCase(),
@@ -189,6 +213,13 @@ export class RegistroUsuarioComponent implements OnInit {
         phone: phone.trim().toLowerCase(),
         visitor_type_id: visitor_type_id.trim().toLowerCase(),
       };
+      this.formData.append('email', usuario.email);
+      this.formData.append('company_name', usuario.company_name);
+      this.formData.append('office_name', usuario.office_name);
+      this.formData.append('office_phone', usuario.office_phone);
+      this.formData.append('operator_name', usuario.operator_name);
+      this.formData.append('phone', usuario.phone);
+      this.formData.append('visitor_type_id', usuario.visitor_type_id);
     } else {
       const {
         email,
@@ -210,9 +241,19 @@ export class RegistroUsuarioComponent implements OnInit {
         visit_date: visit_date.trim().toLowerCase(),
         visitor_type_id: visitor_type_id.trim().toLowerCase(),
       };
+      this.formData.append('email', usuario.email);
+      this.formData.append('contact_name', usuario.contact_name);
+      this.formData.append('department_id', usuario.department_id);
+      this.formData.append('enter_device', usuario.enter_device);
+      this.formData.append('name', usuario.name);
+      this.formData.append('visit_company', usuario.visit_company);
+      this.formData.append('visit_date', usuario.visit_date);
+      this.formData.append('visitor_type_id', usuario.visitor_type_id);
     }
 
-    this.QRUDService.publicRegisterQRCode(usuario)
+    // usuario.ine_field = this.form.get('image')?.value;
+
+    this.QRUDService.publicRegisterQRCode(this.formData)
       .then((data: any) => {
         this.msgExito = data.msg;
         this.existeMsgExito = true;
@@ -293,6 +334,7 @@ export class RegistroUsuarioComponent implements OnInit {
   }
 
   openRegisterModal(visitor: VisitorType) {
+    console.log(visitor, 'tipo visitante');
     this.showRegisterForm = true;
     if (visitor.name == 'Proveedores') {
       this.registerFormName = 'Proveedores';
@@ -310,7 +352,10 @@ export class RegistroUsuarioComponent implements OnInit {
       this.showDriverRegulation = false;
       this.FormularioUsuario();
     }
+    this.driverUidReference = visitor.uid;
+
     this.form.get('visitor_type_id')?.setValue(visitor.uid);
+    console.log(this.driverUidReference, 'referencia uid');
   }
 
   getClass(type: string) {
@@ -327,12 +372,30 @@ export class RegistroUsuarioComponent implements OnInit {
     this.showDriverRegulation = false;
     this.showRegisterForm = false;
     this.showDriversRegisterFormFields = false;
+    this.form = this.fb.group({});
     this.form.get('visitor_type_id')?.setValue('');
+  }
+
+  onFileChange(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+
+      this.formData.append('ine_field', file);
+    }
+  }
+  onFileChangeLicence(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+
+      this.formData.append('driver_licence_field', file);
+    }
   }
   verifyCheck(e: any) {
     this.disabledAcceptButton = !this.disabledAcceptButton;
   }
   displayDriverForm() {
+    console.log(this.driverUidReference, 'referencia uid');
+    this.form.get('visitor_type_id')?.setValue(this.driverUidReference);
     this.showDriversRegisterFormFields = true;
     this.showDriverRegulation = false;
     this.DriverForm();

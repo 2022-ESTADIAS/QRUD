@@ -19,6 +19,7 @@ import {
   VisitorsActiveVerificationResponse,
   VisitorTypeResponse,
 } from '../interfaces/mexcal/index.interface';
+import { DynamicTranslationsService } from './dynamic-translations.service';
 
 /**
  * contiene la variable para realizar peticiones al servidor y el nombre de la llave para obtener el valor de sessionStorage
@@ -40,7 +41,8 @@ export class QRUDService {
    */
   constructor(
     private http: HttpClient,
-    private StorageService: StorageService
+    private StorageService: StorageService,
+    private languageService: DynamicTranslationsService
   ) {}
 
   /**
@@ -175,7 +177,10 @@ export class QRUDService {
     return new Promise((resolve, reject) => {
       this.http
         .get(`${url}/user/qr/${id}`, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            lang: this.languageService.gettranslate().currentLang,
+          },
         })
         .subscribe(
           (data) => {
@@ -243,7 +248,10 @@ export class QRUDService {
     return new Promise((resolve, reject) => {
       this.http
         .put(`${url}/personal/changepwd`, data, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            lang: this.languageService.gettranslate().currentLang,
+          },
         })
         .subscribe(
           (data) => {
@@ -290,20 +298,30 @@ export class QRUDService {
 
   getAllDepartments() {
     return new Promise<DepartmentResponse>((resolve, reject) => {
-      this.http.get<DepartmentResponse>(`${url}/public/departments`).subscribe(
-        (data) => {
-          resolve(data);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
+      this.http
+        .get<DepartmentResponse>(`${url}/public/departments`, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
     });
   }
   visitorsTypes() {
     return new Promise<VisitorTypeResponse>((resolve, reject) => {
       this.http
-        .get<VisitorTypeResponse>(`${url}/public/visitors-types`)
+        .get<VisitorTypeResponse>(`${url}/public/visitors-types`, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
         .subscribe(
           (data) => {
             resolve(data);
@@ -316,20 +334,30 @@ export class QRUDService {
   }
   devices() {
     return new Promise<DevicesResponse>((resolve, reject) => {
-      this.http.get<DevicesResponse>(`${url}/public/devices`).subscribe(
-        (data) => {
-          resolve(data);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
+      this.http
+        .get<DevicesResponse>(`${url}/public/devices`, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
     });
   }
   reasons() {
     return new Promise<ReasonsForAdmissionsResponse>((resolve, reject) => {
       this.http
-        .get<ReasonsForAdmissionsResponse>(`${url}/public/reasons`)
+        .get<ReasonsForAdmissionsResponse>(`${url}/public/reasons`, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
         .subscribe(
           (data) => {
             resolve(data);
@@ -345,7 +373,11 @@ export class QRUDService {
   ) {
     return new Promise<VisitorFormPostResponse>((resolve, reject) => {
       this.http
-        .post<VisitorFormPostResponse>(`${url}/public/registro`, data)
+        .post<VisitorFormPostResponse>(`${url}/public/registro`, data, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
         .subscribe(
           (res) => {
             resolve(res);
@@ -359,7 +391,11 @@ export class QRUDService {
   visitorsEntries(data: QRUser) {
     return new Promise<VisitEntriesResponse>((resolve, reject) => {
       this.http
-        .post<VisitEntriesResponse>(`${url}/public/visitors-entries`, data)
+        .post<VisitEntriesResponse>(`${url}/public/visitors-entries`, data, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
         .subscribe(
           (res) => {
             resolve(res);
@@ -375,7 +411,12 @@ export class QRUDService {
       (resolve, reject) => {
         this.http
           .get<VisitorsActiveVerificationResponse>(
-            `${url}/public/visitors-active-verification/${id}`
+            `${url}/public/visitors-active-verification/${id}`,
+            {
+              headers: {
+                lang: this.languageService.gettranslate().currentLang,
+              },
+            }
           )
           .subscribe(
             (res) => {
@@ -390,14 +431,20 @@ export class QRUDService {
   }
   getImageFromAWS(id: string) {
     return new Promise<ImageResponse>((resolve, reject) => {
-      this.http.get<ImageResponse>(`${url}/public/image/${id}`).subscribe(
-        (res) => {
-          resolve(res);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
+      this.http
+        .get<ImageResponse>(`${url}/public/image/${id}`, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
+        .subscribe(
+          (res) => {
+            resolve(res);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
     });
   }
 }

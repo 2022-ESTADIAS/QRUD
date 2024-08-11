@@ -75,5 +75,11 @@
   "qrScannerDriverPhone": "Phone",
   "qrScannerDriverOffice": "Office name",
   "qrScannerDriverOfficePhone": "Phone office",
-  "qrScannerDriverLicense": "Driver license"
+  "qrScannerDriverLicense": "Driver license",
+  "passwordChangeComponentTitle": "Change the password of",
+  "passwordChangeComponentLastPassword": "Previous Password",
+  "passwordChangeComponentPasswordMustMatch": "New passwords do not match",
+  "passwordChangeComponentNewPassword": "New Password",
+  "passwordChangeComponentConfirmNewPassword": "Confirm New Password",
+  "passwordChangeComponentUpdate": "UPDATE"
 }

@@ -1,45 +1,48 @@
-<app-exito [mensaje]="msgExito" *ngIf="existemsgExito" ></app-exito>
+<app-exito [mensaje]="msgExito" *ngIf="existemsgExito"></app-exito>
 
-<app-errores-backend [mensaje]="error" *ngIf="existeError" ></app-errores-backend>
+<app-errores-backend [mensaje]="error" *ngIf="existeError"></app-errores-backend>
 
 <div class="activity-grid">
     <div class="container">
         <img src="assets/img/logo.svg">
-        <p>Cambiar la contraseña de</p>
-        <p>{{nombreUsuario}}</p> 
-        <form [formGroup]="form" (ngSubmit)="submit()" >
+        <p>{{instantTranslation('passwordChangeComponentTitle')}}</p>
+        <p>{{nombreUsuario}}</p>
+        <form [formGroup]="form" (ngSubmit)="submit()">
             <div class="user-details">
-            <div class="group">      
-                <input type="password" formControlName="lastpwd">
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Contraseña Anterior</label>
-                <app-errores-frontend *ngIf="campoValido('lastpwd')" mensaje="Debe tener al entre 8 y 16 caracteres, al menos un dígito, una minúscula, una mayúscula y un caracter no alfanumérico" ></app-errores-frontend>
+                <div class="group">
+                    <input type="password" formControlName="lastpwd">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{instantTranslation('passwordChangeComponentLastPassword')}}</label>
+                    <app-errores-frontend *ngIf="campoValido('lastpwd')"
+                        mensaje="{{instantTranslation('fieldRequired')}}"></app-errores-frontend>
+                </div>
+                <div class="group">
+                    <input type="password" formControlName="newpwd">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{instantTranslation('passwordChangeComponentNewPassword')}}</label>
+                    <app-errores-frontend *ngIf="campoValido('newpwd')"
+                        mensaje="{{instantTranslation('fieldRequired')}}"></app-errores-frontend>
+                </div>
+                <div class="group">
+                    <input type="password" formControlName="newpwd2">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>{{instantTranslation('passwordChangeComponentConfirmNewPassword')}}</label>
+                    <app-errores-frontend *ngIf="campoValido('newpwd2')"
+                        mensaje="{{instantTranslation('passwordChangeComponentPasswordMustMatch')}}"></app-errores-frontend>
+
+                </div>
             </div>
-            <div class="group">      
-                <input type="password" formControlName="newpwd">
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Nueva Contraseña</label>
-                <app-errores-frontend *ngIf="campoValido('newpwd')" mensaje="Debe tener al entre 8 y 16 caracteres, al menos un dígito, una minúscula, una mayúscula y un caracter no alfanumérico" ></app-errores-frontend>
-            </div>
-            <div class="group">      
-                <input type="password" formControlName="newpwd2">
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Confirma Nueva Contraseña </label>
-                <app-errores-frontend *ngIf="campoValido('newpwd2')" mensaje="Las  nuevas contraseñas no coinciden" ></app-errores-frontend>
-                
-            </div>
-        </div>
             <div class="wrapper">
                 <button href="#0" class="btn10">
-                    <span>ACTUALIZAR</span>
+                    <span>{{instantTranslation('passwordChangeComponentUpdate')}}</span>
                     <div class="transition"></div>
                 </button>
             </div>
 
         </form>
-        
-</div>
+
+    </div>
 </div>

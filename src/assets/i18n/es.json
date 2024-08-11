@@ -75,5 +75,11 @@
   "qrScannerDriverPhone": "Numero telefonico",
   "qrScannerDriverOffice": "Nombre de su despacho",
   "qrScannerDriverOfficePhone": "Telefono de su despacho",
-  "qrScannerDriverLicense": "Licencia de conducir"
+  "qrScannerDriverLicense": "Licencia de conducir",
+  "passwordChangeComponentTitle": "Cambiar la contraseña de",
+  "passwordChangeComponentLastPassword": "Contraseña Anterior",
+  "passwordChangeComponentPasswordMustMatch": "Las  nuevas contraseñas no coinciden",
+  "passwordChangeComponentNewPassword": "Nueva Contraseña",
+  "passwordChangeComponentConfirmNewPassword": "Confirma Nueva Contraseña",
+  "passwordChangeComponentUpdate": "ACTUALIZAR"
 }

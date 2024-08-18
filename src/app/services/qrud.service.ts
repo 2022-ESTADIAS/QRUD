@@ -9,10 +9,10 @@ import {
   DepartmentResponse,
   DevicesResponse,
   DriverForm,
-  ImageResponse,
   ProviderForm,
   QRUser,
   ReasonsForAdmissionsResponse,
+  UserFromQRCodeResponse,
   VisitEntriesResponse,
   VisitorForm,
   VisitorFormPostResponse,
@@ -429,10 +429,10 @@ export class QRUDService {
       }
     );
   }
-  getImageFromAWS(id: string) {
-    return new Promise<ImageResponse>((resolve, reject) => {
+  getQRCodeUser(id: string) {
+    return new Promise<UserFromQRCodeResponse>((resolve, reject) => {
       this.http
-        .get<ImageResponse>(`${url}/public/image/${id}`, {
+        .get<UserFromQRCodeResponse>(`${url}/public/qrcode/user/${id}`, {
           headers: {
             lang: this.languageService.gettranslate().currentLang,
           },

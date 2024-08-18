@@ -261,6 +261,7 @@ export class RegistroUsuarioComponent implements OnInit {
         this.existeMsgExito = true;
         this.form.reset();
         this.disabledForm = false;
+        this.formData = new FormData();
         setTimeout(() => {
           this.existeMsgExito = false;
         }, 2000);
@@ -271,6 +272,7 @@ export class RegistroUsuarioComponent implements OnInit {
           this.existeError = true;
           this.errores = err.error.errors;
           this.disabledForm = false;
+          this.formData = new FormData();
           setTimeout(() => {
             this.existeError = false;
           }, 2000);
@@ -281,6 +283,7 @@ export class RegistroUsuarioComponent implements OnInit {
           this.existeError = true;
           this.errorServidor = err.error?.err;
           this.disabledForm = false;
+          this.formData = new FormData();
           setTimeout(() => {
             this.existeError = false;
           }, 2000);
@@ -289,6 +292,7 @@ export class RegistroUsuarioComponent implements OnInit {
         if (err.err.err) {
           this.errorServidor = err.err?.err;
           this.disabledForm = false;
+          this.formData = new FormData();
           return;
         }
 

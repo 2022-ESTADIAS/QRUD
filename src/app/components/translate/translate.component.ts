@@ -9,11 +9,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TranslateComponent implements OnInit {
   form!: FormGroup;
+  currentLanguage: string = localStorage.getItem('lang') || 'es';
 
-  currentLanguage: string = '';
   constructor(private translate: TranslateService, private fb: FormBuilder) {
-    console.log(this.translate.currentLang, 'current language');
-    this.currentLanguage = this.translate.currentLang;
+    const lang = localStorage.getItem('lang') || 'es';
+    this.translate.use(lang);
+    this.currentLanguage = lang;
   }
 
   ngOnInit(): void {
@@ -25,6 +26,7 @@ export class TranslateComponent implements OnInit {
   getTranslateOptions(e: any) {
     this.translate.currentLang;
     this.translate.use(e.target.value);
+    localStorage.setItem('lang', e.target.value);
     this.translate.reloadLang(e.target.value);
   }
 }

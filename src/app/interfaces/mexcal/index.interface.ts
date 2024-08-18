@@ -42,6 +42,9 @@ export interface ProviderForm extends VisitorForm {
   reason_id: string;
   hasVehicle: boolean;
 }
+export interface QRCode {
+  _id: string;
+}
 
 export interface QRCodeVisitor {
   _id: string;
@@ -101,13 +104,8 @@ export interface VisitorsActiveVerificationResponse {
   access: boolean;
 }
 
-export interface ImageResponse {
+export interface UserFromQRCodeResponse {
   status: string;
   message: string;
-  images: ImageVisitor;
-}
-
-interface ImageVisitor {
-  ine: string;
-  license?: string;
+  user: QRCodeVisitor;
 }

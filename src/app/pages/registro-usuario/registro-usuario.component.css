@@ -356,3 +356,6 @@ input:focus ~ .highlight {
 .uppercase {
   text-transform: uppercase;
 }
+.mt-10 {
+  margin-top: 20px;
+}

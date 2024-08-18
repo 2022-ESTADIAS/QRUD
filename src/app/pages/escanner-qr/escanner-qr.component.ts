@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BarcodeFormat } from '@zxing/library';
-import { QRCodeVisitor } from 'src/app/interfaces/mexcal/index.interface';
+import {
+  QRCode,
+  QRCodeVisitor,
+} from 'src/app/interfaces/mexcal/index.interface';
 import { RegistroUsuario, Usuario } from 'src/app/interfaces/usuario.interface';
 import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { QRUDService } from 'src/app/services/qrud.service';
@@ -80,21 +83,48 @@ export class EscannerQRComponent implements OnInit {
    */
   escanearQR(event: string) {
     this.showQREscaner = false;
-    const user = JSON.parse(event) as QRCodeVisitor;
+    const user = JSON.parse(event) as QRCode;
     // console.log(user, 'escaner');
-    this.QRUDService.getImageFromAWS(user._id)
+    this.QRUDService.getQRCodeUser(user._id)
       .then((data) => {
+        console.log(data, 'DATA DE QR');
+
         this.usuarioQR = {
-          ...user,
-          ine_field: data.images.ine,
-          driver_licence_field: data.images.license ? data.images.license : '',
+          ...data.user,
+          ine_field: data.user.ine_field,
+          driver_licence_field: data.user.driver_licence_field
+            ? data.user.driver_licence_field
+            : '',
         };
         this.showQREscaner = true;
+
+        if (this.usuarioQR) {
+          console.log(this.usuarioQR, 'QR CODE ENCONTRADO Y ASIGNADO');
+
+          const date = new Date().toLocaleString('es-MX');
+          if (this.usuarioQR?.visitor_type) {
+            this.ocultarDatos = true;
+          } else {
+            this.showDriver = true;
+          }
+
+          this.QRUDService.visitorsEntries({
+            scanDate: date,
+            visitorQr: this.usuarioQR!,
+          });
+          this.existeMsgExito = true;
+          this.msgExito = 'Accesso concedido !';
+
+          setTimeout(() => {
+            this.existeMsgExito = false;
+          }, 4000);
+        }
       })
       .catch((err) => {
         this.showQREscaner = true;
         this.existeError = true;
         this.errorServidor = err.error.err;
+        this.usuarioQR = null;
 
         setTimeout(() => {
           this.existeError = false;
@@ -103,41 +133,6 @@ export class EscannerQRComponent implements OnInit {
       });
 
     // this.usuarioQR = user;
-    if (user.visitor_type) {
-      this.ocultarDatos = true;
-    } else {
-      this.showDriver = true;
-    }
-
-    if (this.usuarioQR) {
-      const date = new Date().toLocaleString('es-MX');
-
-      this.QRUDService.visitorsActiveVerification(this.usuarioQR._id)
-        .then((data) => {
-          if (data.access) {
-            this.QRUDService.visitorsEntries({
-              scanDate: date,
-              visitorQr: this.usuarioQR!,
-            });
-            this.existeMsgExito = true;
-            this.msgExito = 'Accesso concedido !';
-
-            setTimeout(() => {
-              this.existeMsgExito = false;
-            }, 4000);
-          }
-        })
-        .catch((err) => {
-          this.showQREscaner = true;
-          this.existeError = true;
-          this.errorServidor = err.error.err;
-
-          setTimeout(() => {
-            this.existeError = false;
-            this.errorServidor = '';
-          }, 4000);
-        });
-    }
   }
 
   /**

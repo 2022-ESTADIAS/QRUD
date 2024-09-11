@@ -45,9 +45,13 @@ export class VerVisitantesComponent implements OnInit {
       keyword: opt.keyword,
     })
       .then((data) => {
-        console.log(data, 'visitantes');
         this.usuarios = data.visitors;
-        this.page = data.page;
+        if (data.pages == 0 && data.visitors.length == 0) {
+          this.page = 0;
+        } else {
+          this.page = data.page;
+        }
+
         this.pages = data.pages;
 
         this.showSpinner = false;

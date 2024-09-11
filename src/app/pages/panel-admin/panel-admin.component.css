@@ -164,6 +164,9 @@ body.body-pd {
   overflow: hidden;
   background-color: #fff;
   padding: 20px 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 @media only screen and (max-width: 414px) {
   .header {
@@ -192,6 +195,9 @@ body.body-pd {
   font-size: 25px;
   font-weight: bold;
 }
+.header a.logo img {
+  height: 80px;
+}
 
 .header a:hover {
   background-color: #ddd;
@@ -219,9 +225,12 @@ body.body-pd {
   }
 }
 .profile img {
-  margin: 5px 0;
-  width: 100%;
-  height: 75px;
+  /*margin: 5px 0;
+  */display: block;
+  margin: 5px auto !important;
+  height: 50px;
+  filter: brightness(150%) invert(100%);
+  -webkit-filter: brightness(150%) invert(100%);
 }
 @media only screen and (max-width: 414px) {
   .profile img {
@@ -904,4 +913,8 @@ input:focus ~ .highlight {
   display: flex;
   width: 100px;
   flex-direction: column;
+}
+
+div app-translate::ng-deep form.form-translate-container {
+  margin: 0px !important;
 }

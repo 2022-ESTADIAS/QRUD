@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import {
   Department,
@@ -70,6 +76,8 @@ export class RegistroUsuarioComponent implements OnInit {
   devices: Devices[] = [];
   reasons: ReasonsForAdmissions[] = [];
 
+  fechaMinima!: string;
+
   /**
    * inyeccion de servicios
    */
@@ -91,7 +99,7 @@ export class RegistroUsuarioComponent implements OnInit {
     this.getDevices();
     this.FormularioUsuario();
     this.getReasons();
-
+    this.fechaMinima = this.getFechaActual();
     // console.log(this.router.url, 'RUTA ACTUAL');
   }
   /**
@@ -102,7 +110,7 @@ export class RegistroUsuarioComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       name: ['', Validators.required],
       visit_company: ['', Validators.required],
-      visit_date: ['', [Validators.required]],
+      visit_date: [this.fechaMinima, [Validators.required]],
       contact_name: ['', Validators.required],
       department_id: ['', Validators.required],
       enter_device: ['', [Validators.required]],
@@ -408,5 +416,24 @@ export class RegistroUsuarioComponent implements OnInit {
   }
   instantTranslation(key: string, params?: any) {
     return this.translateHelper.instantTranslation(key, params);
+  }
+
+  getFechaActual(): string {
+    const hoy = new Date();
+    const fecha = hoy.toISOString().slice(0, 16); // Recorta la parte necesaria para el input datetime-local
+    // const fecha = hoy.toLocaleDateString(); // Recorta la parte necesaria para el input datetime-local
+    // const fecha = hoy.toLocaleTimeString().slice(0, 16); // Recorta la parte necesaria para el input datetime-local
+    console.log(hoy, 'hoy');
+    console.log(fecha, 'fecha');
+    return fecha;
+  }
+
+  minFechaValidator(minFecha: string) {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const fechaIngresada = new Date(control.value);
+      const fechaMinima = new Date(minFecha);
+
+      return fechaIngresada >= fechaMinima ? null : { minFecha: true };
+    };
   }
 }

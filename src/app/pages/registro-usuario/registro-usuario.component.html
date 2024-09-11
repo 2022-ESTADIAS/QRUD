@@ -83,7 +83,7 @@
         </div>
 
         <div class="group">
-          <input type="datetime-local" formControlName="visit_date" (keyup)="removerAlertas()">
+          <input type="datetime-local" formControlName="visit_date" (keyup)="removerAlertas()" min="{{fechaMinima}}">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>{{instantTranslation('formDateTimeField') }}</label>

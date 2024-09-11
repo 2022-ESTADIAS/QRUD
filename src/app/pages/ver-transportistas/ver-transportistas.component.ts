@@ -46,9 +46,12 @@ export class VerTransportistasComponent implements OnInit {
       keyword: opt.keyword,
     })
       .then((data) => {
-        console.log(data, 'DRIVERS');
         this.usuarios = data.drivers;
-        this.page = data.page;
+        if (data.pages == 0 && data.drivers.length == 0) {
+          this.page = 0;
+        } else {
+          this.page = data.page;
+        }
         this.pages = data.pages;
 
         this.showSpinner = false;

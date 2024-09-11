@@ -5,7 +5,7 @@
 
 <app-exito [mensaje]="msgQR" *ngIf="existeMsgQRExito"></app-exito>
 
-<ng-container *ngIf="usuarios.length > 0 ">
+<ng-container>
     <app-buscador (busqueda)="search($event)" (ocultar)="ocultarPaginacion = $event"></app-buscador>
 
 

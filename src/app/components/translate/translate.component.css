@@ -1,0 +1,17 @@
+.form-translate-container {
+  margin: 30px;
+}
+.select {
+  display: block;
+  /* margin: 0 auto; */
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid var(--main-color);
+  min-width: 20%;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}

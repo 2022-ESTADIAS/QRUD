@@ -4,6 +4,7 @@ import {
   OnChanges,
   OnDestroy,
   SimpleChanges,
+  ViewEncapsulation,
 } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
@@ -151,9 +152,7 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
     this.sidebar?.classList.remove('body-pd');
     clearTimeout(this.funcionCambioDecolor);
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes, 'CAMBIOS HECHOS ');
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
   /**
    * obtiene el nombre del personal, la letra inicial del nombre y las rutas que le corresponden al rol del personal logueado
    */
@@ -167,8 +166,6 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
 
   asideMenuTranslations() {
     this.translationService.gettranslate().onLangChange.subscribe((data) => {
-      console.log(data, 'TRADUCCIONES');
-
       this.rutasMaster = [
         [
           {
@@ -196,8 +193,6 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
         ],
       ];
       this.rutas = this.rutasMaster;
-      console.log(this.rutasMaster, 'NUEVAS RUTAS 1');
-      console.log(this.rutas, 'NUEVAS RUTAS 1 de rutas');
       // this.cdr.detectChanges();
       // console.log(this.rutasMaster, 'NUEVAS RUTAS 2');
     });

@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/services/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
   /**
@@ -22,16 +22,16 @@ export class LoginComponent implements OnInit {
   /**
    * propiedad para mostrar mensajes de error solo si existe
    */
-  existeError:boolean = false;
+  existeError: boolean = false;
   /**
    * propiedad para mostrar los mensajes de error del servidor cuando la contraseña o usuario son incorrectos
    */
-  msgErrores:string ="";
+  msgErrores: string = '';
 
   /**
    * propiedad para mostrar/ocultar  el spinner de carga
    */
-  loginExistoso:boolean = false;
+  loginExistoso: boolean = false;
 
   /**
    * inyeccion de dependencias
@@ -41,9 +41,8 @@ export class LoginComponent implements OnInit {
     private AuthService: AuthService,
     private router: Router,
     private StorageService: StorageService,
-    private ErrorServidor:ErrorServidorService
-
-  ) { }
+    private ErrorServidor: ErrorServidorService
+  ) {}
 
   /**
    * inicializando el formulario reactivo
@@ -55,63 +54,55 @@ export class LoginComponent implements OnInit {
   /**
    * metodo que inicializa los campos y validaciones del formulario reactivo
    */
-  formularioLogin(){
+  formularioLogin() {
     this.form = this.fb.group({
-
-      email:["qrud.app@gmail.com", [Validators.required,Validators.email]],
-      password:["Pru3baTest!",[Validators.required]]
-    })
+      email: ['test@test.com', [Validators.required, Validators.email]],
+      password: ['123456', [Validators.required]],
+    });
   }
 
   /**
    * metodo que realiza el login del usuario y redirecciona al panel de administracion si el login es exitoso
    */
-  login(){
-
-    if(this.form.invalid){
+  login() {
+    if (this.form.invalid) {
       return;
     }
 
-    const personal:PersonalLogin = this.form.value;
+    const personal: PersonalLogin = this.form.value;
 
     this.loginExistoso = true;
-    
-    this.AuthService.login(personal).then((data:any) => {
-      this.existeError = false;
-      this.StorageService.encryptar("nombre",data.personal.nombre);
-      setTimeout(() => {
-        this.loginExistoso = false;
-        this.router.navigateByUrl("/");
-        
-      },1000)
-    }).catch(err =>{
-      if(err.error.msg){
-        this.existeError = true;
-        this.loginExistoso = false;
-        this.msgErrores= err.error.msg
 
-      }else{
-        this.ErrorServidor.error();
-  
-      }
-
-    })
+    this.AuthService.login(personal)
+      .then((data: any) => {
+        this.existeError = false;
+        this.StorageService.encryptar('nombre', data.personal.nombre);
+        setTimeout(() => {
+          this.loginExistoso = false;
+          this.router.navigateByUrl('/');
+        }, 1000);
+      })
+      .catch((err) => {
+        if (err.error.msg) {
+          this.existeError = true;
+          this.loginExistoso = false;
+          this.msgErrores = err.error.msg;
+        } else {
+          this.ErrorServidor.error();
+        }
+      });
   }
   /**
    * valida campos vacios del formulario reactivo si existen retorna un valor booleano true
    * @param campo recibe un campo del formulario para validar si contiene errores de validacion o no
    */
-  campoValido(campo:string){
-    return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
+  campoValido(campo: string) {
+    return !this.form.get(campo)?.valid && this.form.get(campo)?.touched;
   }
   /**
- * metodo que remueve los mensajes de error solo si existen
- */
-  removerAlertas(){
+   * metodo que remueve los mensajes de error solo si existen
+   */
+  removerAlertas() {
     this.existeError = false;
   }
-
-
-
-
 }

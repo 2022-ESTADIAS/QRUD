@@ -5,7 +5,8 @@
   font-weight: bold;
   letter-spacing: 1px;
   color: #ffffff;
-  background: #e24a4a;
+  /* background: #e24a4a; */
+  background: var(--secondary-color);
   border-radius: 5px;
 
   text-align: center;

@@ -14,7 +14,7 @@ table tr th,
 table tr td {
   padding: 0.5625em 0.625em;
   font-size: 0.875em;
-  color: #3e3798;
+  color: var(--main-color);
   border: 1px solid #f9f9f9;
   text-align: center;
 }
@@ -24,7 +24,7 @@ table tr td {
   table tr td {
     padding-left: 28%;
     width: auto;
-    color: #3e3798;
+    color: var(--main-color);
   }
   @media only screen and (max-width: 500px) {
     table tr:first-child {
@@ -166,7 +166,7 @@ table tr:nth-of-type(even) {
 .fa-user-check,
 .fa-user-slash,
 .fa-qrcode {
-  color: #6c63ff;
+  color: var(--main-color);
   padding: 0.3rem;
   cursor: pointer;
 }

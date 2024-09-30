@@ -7,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { format } from 'date-fns';
+import { enUS } from 'date-fns/locale/en-US';
 import {
   Department,
   Devices,
@@ -110,7 +112,7 @@ export class RegistroUsuarioComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       name: ['', Validators.required],
       visit_company: ['', Validators.required],
-      visit_date: [this.fechaMinima, [Validators.required]],
+      visit_date: ['', [Validators.required]],
       contact_name: ['', Validators.required],
       department_id: ['', Validators.required],
       enter_device: ['', [Validators.required]],
@@ -420,11 +422,8 @@ export class RegistroUsuarioComponent implements OnInit {
 
   getFechaActual(): string {
     const hoy = new Date();
-    const fecha = hoy.toISOString().slice(0, 16); // Recorta la parte necesaria para el input datetime-local
-    // const fecha = hoy.toLocaleDateString(); // Recorta la parte necesaria para el input datetime-local
-    // const fecha = hoy.toLocaleTimeString().slice(0, 16); // Recorta la parte necesaria para el input datetime-local
-    console.log(hoy, 'hoy');
-    console.log(fecha, 'fecha');
+    const fecha = format(hoy, 'yyyy-MM-dd HH:mm'); // Recorta la parte necesaria para el input datetime-local
+
     return fecha;
   }
 

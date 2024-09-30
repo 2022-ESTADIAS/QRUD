@@ -24,6 +24,7 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "@zxing/ngx-scanner": "^3.5.0",
     "crypto-js": "^4.1.1",
+    "date-fns": "^3.6.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

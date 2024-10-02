@@ -8,6 +8,8 @@ import { DynamicTranslationsService } from 'src/app/services/dynamic-translation
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { VisitorsService } from 'src/app/services/visitors.service';
+import html2PDF from 'jspdf-html2canvas';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ver-transportistas',
@@ -30,7 +32,8 @@ export class VerTransportistasComponent implements OnInit {
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService,
     private QRUDService: QRUDService,
-    public translateHelper: DynamicTranslationsService
+    public translateHelper: DynamicTranslationsService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -111,5 +114,63 @@ export class VerTransportistasComponent implements OnInit {
   }
   instantTranslation(key: string, params?: any) {
     return this.translateHelper.instantTranslation(key, params);
+  }
+
+  downloadPDF(user: Driver) {
+    const isCreated = this.generatePDFTemplate(user);
+
+    if (isCreated) {
+      const page = document.querySelector('#page') as HTMLElement;
+      console.log(page, 'pagina');
+
+      html2PDF(page, {
+        jsPDF: {
+          format: 'a4',
+        },
+        imageType: 'image/jpeg',
+        output: './pdf/generate.pdf',
+        margin: {
+          top: 20,
+          left: 10,
+          bottom: 10,
+          right: 10,
+        },
+        // html2canvas: {
+        //   scrollX: 0,
+        //   scrollY: -window.scrollY,
+        // },
+      });
+    }
+  }
+
+  generatePDFTemplate(usuario: Driver): boolean {
+    const div = document.querySelector('#table') as HTMLElement;
+    const signature = document.querySelector(
+      '#signature-container'
+    ) as HTMLElement;
+
+    const dynamicContent = `
+    
+
+
+        <p class="formatField">nombre del transportista: <span>${usuario.operator_name}</span> </p>
+    <p class="formatField">Compañia: <span>${usuario.company_name}</span> </p>
+    <p class="formatField">Telefono: <span>${usuario.phone}</span> </p>
+    <p class="formatField">Email: <span>${usuario.email}</span> </p>
+    <p class="formatField">Oficina: <span>${usuario.office_name}</span> </p>
+    <p class="formatField">Telefono de oficina: <span>${usuario.office_phone}</span> </p>
+    <p class="formatField">Numero economico: <span>1234567891</span></p>
+    <p class="formatField">Placas del camion: <span>ASE1W-1ASD</span> </p>
+
+  
+    `;
+
+    signature.innerHTML = `
+      <div class="signature-placeholder"></div>
+            <p class="signature-name">Personal Autorizado MEXCAL </p>
+    `;
+
+    div.innerHTML = dynamicContent;
+    return true;
   }
 }

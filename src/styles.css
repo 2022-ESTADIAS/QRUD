@@ -90,3 +90,30 @@ body {
   border: solid 2px #f0def3;
   border-radius: 10px;
 }
+
+/* PDF GLOAL STYLE */
+.grid p.formatField {
+  margin: 0;
+  border: 1px solid #ccc;
+  padding: 15px;
+  width: auto;
+}
+
+.grid p.formatField span {
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+.signature-placeholder {
+  border-top: 4px solid #000;
+  width: 30rem;
+  margin: 25rem auto auto auto;
+}
+
+.signature-name {
+  text-align: center;
+}
+
+.invisible {
+  opacity: 0;
+}

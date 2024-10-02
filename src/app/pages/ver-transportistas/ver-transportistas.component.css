@@ -227,3 +227,28 @@ td.icons {
   cursor: not-allowed;
   pointer-events: none;
 }
+
+.download {
+  cursor: pointer;
+  margin-left: 10px;
+}
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 2px solid #ccc;
+  opacity: 1 !important;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: space-between;
+}
+.logo-container img {
+  max-width: 200px;
+}
+
+.pdf-title-text {
+  text-align: center;
+  font-weight: normal;
+  font-size: 18px;
+}

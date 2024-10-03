@@ -5,6 +5,7 @@ import { Rol } from 'src/app/interfaces/rol.interface';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
+import { Router } from '@angular/router';
 
 /**
  * nombre, hoja de estilos y archivo html del componente
@@ -48,13 +49,13 @@ export class RegistroPersonalComponent implements OnInit {
     private fb: FormBuilder,
     private QRUDService: QRUDService,
     private authService: AuthService,
-    private ErrorServidor: ErrorServidorService
+    private ErrorServidor: ErrorServidorService,
+    private router: Router
   ) {}
   /**
    * Inicializando el formulario reactivo y obtiene los roles del personal para mostrarlos en el formulario
    */
   ngOnInit(): void {
-    this.obtenerRoles();
     this.FormularioPersonal();
   }
   /**
@@ -70,7 +71,6 @@ export class RegistroPersonalComponent implements OnInit {
       // password:["", Validators.required,Validators.pattern(/^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/)],
       password: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      rol: ['', Validators.required],
     });
   }
   /**
@@ -82,13 +82,12 @@ export class RegistroPersonalComponent implements OnInit {
       return;
     }
 
-    const { email, nombre, password, rol, telefono }: RegistroPersonal =
+    const { email, nombre, password, telefono }: RegistroPersonal =
       this.form.value;
     const personal = {
       email: email.trim().toLowerCase(),
       nombre: nombre.trim().toLowerCase(),
       password: password.trim(),
-      rol,
       telefono,
     };
 
@@ -100,6 +99,7 @@ export class RegistroPersonalComponent implements OnInit {
 
         setTimeout(() => {
           this.existeMsgExito = false;
+          this.router.navigateByUrl('/login');
         }, 2000);
       })
       .catch((err) => {

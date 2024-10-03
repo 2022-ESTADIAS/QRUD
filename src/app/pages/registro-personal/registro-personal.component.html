@@ -11,7 +11,7 @@
 
 <div class="activity-grid">
   <div class="container">
-    <div class="title">Formulario de Registro del Personal</div>
+    <div class="title">Formulario de Registro de Cliente</div>
     <form action="#" [formGroup]="form" (ngSubmit)="submit()">
       <div class="user-details">
 
@@ -53,7 +53,7 @@
             *ngIf="campoValido('password')"></app-errores-frontend>
         </div>
 
-        <div class="group">
+        <!-- <div class="group">
           <select class="controls" name="" id="" formControlName="rol" (keyup)="removerAlertas()">
             <option value="" disabled selected>--Seleccione Rol--</option>
             <option value="{{rol._id}}" *ngFor="let rol of roles">{{rol.rol}}</option>
@@ -61,7 +61,7 @@
           <span class="highlight"></span>
           <span class="bar"></span>
           <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('rol')"></app-errores-frontend>
-        </div>
+        </div> -->
 
       </div>
       <div class="wrapper">

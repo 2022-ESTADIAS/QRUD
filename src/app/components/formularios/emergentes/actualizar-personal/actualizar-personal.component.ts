@@ -1,4 +1,4 @@
-import { Component, OnInit,Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Personal } from 'src/app/interfaces/personal.interface';
 import { RegistroPersonal } from 'src/app/interfaces/personal.interface';
@@ -13,50 +13,48 @@ import { QRUDService } from 'src/app/services/qrud.service';
 @Component({
   selector: 'app-actualizar-personal',
   templateUrl: './actualizar-personal.component.html',
-  styleUrls: ['./actualizar-personal.component.css']
+  styleUrls: ['./actualizar-personal.component.css'],
 })
 export class ActualizarPersonalComponent implements OnInit {
-
   /**
    * propiedad que contiene el formulario reactivo
    */
   form!: FormGroup;
 
-   /**
-   * propiedad para mostrar mensajes de error solo si existe 
+  /**
+   * propiedad para mostrar mensajes de error solo si existe
    */
-  existeError:boolean = false;
+  existeError: boolean = false;
 
   /**
    * propiedad que contiene un arreglo con los mensajes de error proveido por las validaciones del backend
    */
-  errores!:[{msg:string}]
-
+  errores!: [{ msg: string }];
 
   /**
    * propiedad que contiene los roles del personal
    */
-  roles:Rol[] = [];
+  roles: Rol[] = [];
 
   /**
    * propiedad que contiene el personal que se va a actualizar
    */
-  @Input() personal!:Personal
+  @Input() personal!: Personal;
 
   /**
    * propiedad que contiene el id del personal que se va a actualizar
    */
-  @Input() idPersonal:any = ""
+  @Input() idPersonal: any = '';
 
   /**
    * evento que emite el valor para mostrar/ocultar el modal del formulario reactivo
    */
-  @Output() ocultar:EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() ocultar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   /**
    * evento que retorna el arreglo de personal actualizado
    */
-  @Output() personalActualizado:EventEmitter<Personal[]> = new EventEmitter();
+  @Output() personalActualizado: EventEmitter<Personal[]> = new EventEmitter();
 
   /**
    * inyeccion de servicios
@@ -65,105 +63,107 @@ export class ActualizarPersonalComponent implements OnInit {
     private fb: FormBuilder,
     private QRUDService: QRUDService,
     private authService: AuthService,
-    private ErrorServidor:ErrorServidorService
-  ) { }
+    private ErrorServidor: ErrorServidorService
+  ) {}
 
-   /**
-     * Inicializando el formulario reactivo y obtiene los roles del personal para mostrarlos en el formulario
-     */
+  /**
+   * Inicializando el formulario reactivo y obtiene los roles del personal para mostrarlos en el formulario
+   */
   ngOnInit(): void {
     this.FormularioPersonal();
-      this.obtenerRoles();
+    this.obtenerRoles();
   }
 
-    /**
+  /**
    * metodo que inicializa el formulario reactivo con sus respectivos campos y validaciones
    */
-  FormularioPersonal(){
-
-    this.form =   this.fb.group({
-      nombre:[this.personal.nombre , Validators.required],
-      telefono:[this.personal.telefono, [Validators.required,Validators.pattern(/^[0-9]\d{9}$/g)] ],
-      rol:[this.personal.rol._id, Validators.required],
-    })
+  FormularioPersonal() {
+    this.form = this.fb.group({
+      nombre: [this.personal.nombre, Validators.required],
+      telefono: [
+        this.personal.telefono,
+        [Validators.required, Validators.pattern(/^[0-9]\d{9}$/g)],
+      ],
+      rol: [this.personal.rol._id, Validators.required],
+    });
   }
   /**
-   * metodo que obtiene los roles del personal 
+   * metodo que obtiene los roles del personal
    */
-  obtenerRoles(){
-    this.QRUDService.ObtenerRegistros('rol').then((data:any) => {
-      this.roles = data.roles
-    }).catch(err =>{
-      if(err.error.msgtk){
-       this.authService.logout();
-        return;
-      }
-      this.ErrorServidor.error();
-    })
+  obtenerRoles() {
+    this.QRUDService.ObtenerRegistros('rol')
+      .then((data: any) => {
+        this.roles = data.roles;
+      })
+      .catch((err) => {
+        if (err.error.msgtk) {
+          this.authService.logout();
+          return;
+        }
+        this.ErrorServidor.error();
+      });
   }
   /**
    * metodo que actualiza el personal
    */
-  submit(){
-
-    if(this.form.invalid){
+  submit() {
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    const {nombre,rol,telefono}:RegistroPersonal = this.form.value;
-    
+    // const {nombre,rol,telefono}:RegistroPersonal = this.form.value;
+    const { nombre, telefono }: RegistroPersonal = this.form.value;
+
     const personalActualizado = {
       nombre: nombre.trim().toLowerCase(),
-      rol,
-      telefono
-    }
+      telefono,
+    };
 
-
-    this.QRUDService.ActualizarRegistros("personal",this.idPersonal,personalActualizado).then((data:any) => {
-
-      this.form.reset();
+    this.QRUDService.ActualizarRegistros(
+      'personal',
+      this.idPersonal,
+      personalActualizado
+    )
+      .then((data: any) => {
+        this.form.reset();
 
         this.personalActualizado.emit(data);
         this.ocultar.emit(false);
-        
-    }).catch(err => {
-      if(err.error.errors){
-        this.existeError = true;
-        this.errores = err.error.errors;
-        return;
-      }
+      })
+      .catch((err) => {
+        if (err.error.errors) {
+          this.existeError = true;
+          this.errores = err.error.errors;
+          return;
+        }
 
-      if(err.error.msgtk){
-        this.authService.logout();
-        return;
-      }
+        if (err.error.msgtk) {
+          this.authService.logout();
+          return;
+        }
 
-      this.ErrorServidor.error();
-      
-    })
+        this.ErrorServidor.error();
+      });
   }
 
-    /**
+  /**
    * valida campos vacios del formulario reactivo si existen retorna un valor booleano true
    * @param campo recibe un campo del formulario para validar si contiene errores de validacion o no
    */
-     campoValido(campo:string){
-      return !this.form.get(campo)?.valid && this.form.get(campo)?.touched ;
-    }
-    /**
+  campoValido(campo: string) {
+    return !this.form.get(campo)?.valid && this.form.get(campo)?.touched;
+  }
+  /**
    * metodo que remueve los mensajes de error solo si existen
    */
-    removerAlertas(){
-      this.existeError = false;
-    }
-   /**
-    * metodo que oculta el modal del formulario reactivo
-    */ 
-  ocultarFormulario(){
+  removerAlertas() {
+    this.existeError = false;
+  }
+  /**
+   * metodo que oculta el modal del formulario reactivo
+   */
+  ocultarFormulario() {
     this.ocultar.emit(false);
   }
-  
-
-
 }

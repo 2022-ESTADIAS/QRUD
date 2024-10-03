@@ -27,7 +27,8 @@
 
                 <div class="nav__link  collapse" [ngClass]="{'movil-links':!expandirMenu}"
                     (click)="mostrarOpcionesUsuario()" *ngIf="esAdmin || esMaster || esAux ">
-                    <i class="fa-solid fa-users"></i>
+
+                    <i class="fa-solid fa-truck"></i>
                     <span class="nav__name">{{'panelAdminUsers'|translate}}</span>
 
                     <ion-icon name="chevron-down-outline" class="collapse__link"
@@ -48,20 +49,23 @@
 
                     </ul>
                 </div>
-                <!-- <div  class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}"  (click)="mostrarOpcionesPersonal()" *ngIf="esMaster || esAdmin" >
+                <div class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}"
+                    (click)="mostrarOpcionesPersonal()" *ngIf="esMaster || esAdmin">
                     <i class="fa-solid fa-users-gear"></i>
-                    <span class="nav_-cont_name">Personal</span>
+                    <span class="nav_-cont_name">Clientes</span>
 
-                    <ion-icon name="chevron-down-outline" class="collapse__link" [ngClass]="{'rotate':mostrarOpcionesMenuPersonal}"  ></ion-icon>
+                    <ion-icon name="chevron-down-outline" class="collapse__link"
+                        [ngClass]="{'rotate':mostrarOpcionesMenuPersonal}"></ion-icon>
 
-                    <ul class="collapse__menu" [ngClass]="{'showCollapse':mostrarOpcionesMenuPersonal}" > 
+                    <ul class="collapse__menu" [ngClass]="{'showCollapse':mostrarOpcionesMenuPersonal}">
                         <ng-container *ngIf="esMaster || esAdmin">
-                            <a routerLink="{{ruta.ruta}}" class="collapse__sublink" *ngFor="let ruta of rutas[1]" >{{ruta.nombre}}</a>
-                            
+                            <a routerLink="{{ruta.ruta}}" class="collapse__sublink"
+                                *ngFor="let ruta of rutas[1]">{{ruta.nombre}}</a>
+
                         </ng-container>
-                    
+
                     </ul>
-                </div> -->
+                </div>
 
                 <!-- RUTAS DE ROL -->
                 <!-- <div  class="nav__link collapse "[ngClass]="{'movil-links':!expandirMenu}"   (click)="mostrarOpcionesRol()"*ngIf="esMaster" >

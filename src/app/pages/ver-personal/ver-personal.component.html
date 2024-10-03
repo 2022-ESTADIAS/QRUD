@@ -1,77 +1,73 @@
+<app-exito mensaje="Usuario Eliminado con Exito" *ngIf="existeMsgExito"></app-exito>
+<app-exito mensaje="Usuario Actualizado con Exito" *ngIf="existeMsgActualizarExito"></app-exito>
 
-<app-exito mensaje="Usuario Eliminado con Exito" *ngIf="existeMsgExito" ></app-exito>
-<app-exito mensaje="Usuario Actualizado con Exito" *ngIf="existeMsgActualizarExito" ></app-exito>
-
-<div class="spinner-container" *ngIf="personas.length == 0  && !noexistePersonal " >
+<div class="spinner-container" *ngIf="personas.length == 0  && !noexistePersonal ">
     <app-spinner></app-spinner>
 </div>
 
-<div class="container" *ngIf="personas.length == 0 && noexistePersonal " >
-    <app-no-encontrado  mensaje="No se encontro personal disponible" ></app-no-encontrado> 
-</div> 
+<div class="container" *ngIf="personas.length == 0 && noexistePersonal ">
+    <app-no-encontrado mensaje="No se encontro personal disponible"></app-no-encontrado>
+</div>
 
-<ng-container *ngIf="personas.length > 0" >
-    <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event" ></app-buscador>
-
-
-
-
-            <h3>Lista de Personal</h3>
-
-                            <table class="resp">
-                                <thead >
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Rol</th>
-                                        <th>Telefono</th>
-                                        <th>Email</th>
-                                        <th *ngIf="accesoDenegado" >Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let personal of personas|busqueda:page:busqueda:true">
-
-                                        <app-no-encontrado *ngIf="personal.error"  [mensaje]="personal.msg"></app-no-encontrado>
-                                        <td data-title="Nombre">{{personal.nombre |uppercase  }}</td>
-                                        <td data-title="Rol" *ngIf="!personal.error" >{{personal.rol.rol |uppercase }}</td>
-                                        <td data-title="Telefono">{{personal.telefono}}</td>
-                                        <td data-title="Email">{{personal.email}}</td> 
-                                        <td data-title="Acciones" *ngIf="accesoDenegado" >
-                                            <div class="btn-group" *ngIf="!personal.error">
-                                                <button class="btn" (click)="actualizarPersonal(personal.uid,personal)" ><i class="fa-solid fa-square-pen fa-xl"></i></button>
-                                                <label class="btn" for="btn-modal-delete" (click)="referenciaPersonalActual(personal)" ><i class="fa-solid fa-user-xmark fa-lg"></i></label>
-                                            </div>
-
-                                        </td>
-                                    </tr>
-                            
-                                    <app-paginacion [longitud]="personas.length" (paginaActual)="page = $event" *ngIf="personas.length > 10 && ocultarPaginacion "> </app-paginacion>
-                            
-                    </tbody>
-                </table>
-   
+<ng-container *ngIf="personas.length > 0">
+    <app-buscador (busqueda)="busqueda = $event" (ocultar)="ocultarPaginacion = $event"></app-buscador>
 
 
 
 
+    <h3>Lista de Clientes</h3>
+
+    <table class="resp">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <!-- <th>Rol</th> -->
+                <th>Telefono</th>
+                <th>Email</th>
+                <th *ngIf="accesoDenegado">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let personal of personas|busqueda:page:busqueda:true">
+
+                <app-no-encontrado *ngIf="personal.error" [mensaje]="personal.msg"></app-no-encontrado>
+                <td data-title="Nombre">{{personal.nombre |uppercase }}</td>
+                <!-- <td data-title="Rol" *ngIf="!personal.error">{{personal.rol.rol |uppercase }}</td> -->
+                <td data-title="Telefono">{{personal.telefono}}</td>
+                <td data-title="Email">{{personal.email}}</td>
+                <td data-title="Acciones" *ngIf="accesoDenegado">
+                    <div class="btn-group" *ngIf="!personal.error">
+                        <button class="btn" (click)="actualizarPersonal(personal.uid,personal)"><i
+                                class="fa-solid fa-square-pen fa-xl"></i></button>
+                        <label class="btn" for="btn-modal-delete" (click)="referenciaPersonalActual(personal)"><i
+                                class="fa-solid fa-user-xmark fa-lg"></i></label>
+                    </div>
+
+                </td>
+            </tr>
+
+            <app-paginacion [longitud]="personas.length" (paginaActual)="page = $event"
+                *ngIf="personas.length > 10 && ocultarPaginacion "> </app-paginacion>
+
+        </tbody>
+    </table>
 
 
 
 
-            
-         
 
 
-<app-modal *ngIf="personalActual"
-    msg="¿Esta seguro que quiere eliminar al personal {{personalActual.email}} ?"
-    titulo="Eliminar"
-    [funcion]="eliminarPersonal.bind(this,personalActual.uid)"
-    modal="btn-modal-delete"
-></app-modal>
 
-<app-actualizar-personal *ngIf="mostrarFormularioEmergente" 
-[idPersonal]="idpersonalActualizar" 
-[personal]="personalparaActualizar"
-(ocultar)="mostrarFormularioEmergente = $event"
-(personalActualizado)="actualizandoArregloPersonal($event)"
-> </app-actualizar-personal>
+
+
+
+
+
+
+    <app-modal *ngIf="personalActual" msg="¿Esta seguro que quiere eliminar al personal {{personalActual.email}} ?"
+        titulo="Eliminar" [funcion]="eliminarPersonal.bind(this,personalActual.uid)"
+        modal="btn-modal-delete"></app-modal>
+
+    <app-actualizar-personal *ngIf="mostrarFormularioEmergente" [idPersonal]="idpersonalActualizar"
+        [personal]="personalparaActualizar" (ocultar)="mostrarFormularioEmergente = $event"
+        (personalActualizado)="actualizandoArregloPersonal($event)"> </app-actualizar-personal>

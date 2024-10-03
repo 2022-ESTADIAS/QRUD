@@ -99,9 +99,9 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
       // { ruta: '/usuarios-eliminados', nombre: 'Eliminados' },
     ],
     [
-      { ruta: '/registro-personal', nombre: 'Registrar ' },
+      // { ruta: '/registro-personal', nombre: 'Registrar ' },
       { ruta: '/ver-personal', nombre: 'Ver' },
-      { ruta: '/personal-eliminado', nombre: 'Eliminados' },
+      // { ruta: '/personal-eliminado', nombre: 'Eliminados' },
     ],
     [
       { ruta: '/registro-rol', nombre: 'Crear' },

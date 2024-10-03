@@ -16,6 +16,7 @@ table tr td {
   font-size: 0.875em;
   color: #3e3798;
   border: 1px solid #f9f9f9;
+  text-align: center;
 }
 @media only screen and (max-width: 768px) {
   table tr th,

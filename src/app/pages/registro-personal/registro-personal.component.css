@@ -267,3 +267,10 @@ input:focus ~ .highlight {
     width: 83%;
   }
 }
+
+.activity-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

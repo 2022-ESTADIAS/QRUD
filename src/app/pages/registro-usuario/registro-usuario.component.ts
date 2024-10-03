@@ -118,6 +118,8 @@ export class RegistroUsuarioComponent implements OnInit {
       enter_device: ['', [Validators.required]],
       visitor_type_id: ['', Validators.required],
       ine_field: ['', Validators.required],
+      license_number: ['', Validators.required],
+      license_plates: ['', Validators.required],
     });
   }
 
@@ -134,19 +136,23 @@ export class RegistroUsuarioComponent implements OnInit {
       reason_id: ['', Validators.required],
       hasVehicle: ['', Validators.required],
       ine_field: ['', Validators.required],
+      license_number: ['', Validators.required],
+      license_plates: ['', Validators.required],
     });
   }
   DriverForm() {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      company_name: ['', Validators.required],
-      operator_name: ['', Validators.required],
+      visit_company: ['', Validators.required],
+      name: ['', Validators.required],
       phone: ['', [Validators.required]],
       office_name: ['', Validators.required],
       office_phone: ['', Validators.required],
       visitor_type_id: ['', Validators.required],
       ine_field: ['', Validators.required],
       driver_licence_field: ['', Validators.required],
+      license_number: ['', Validators.required],
+      license_plates: ['', Validators.required],
     });
   }
 
@@ -181,6 +187,8 @@ export class RegistroUsuarioComponent implements OnInit {
         visitor_type_id,
         hasVehicle,
         reason_id,
+        license_number,
+        license_plates,
       }: ProviderForm = this.form.value;
       usuario = {
         email: email.trim().toLowerCase(),
@@ -191,6 +199,8 @@ export class RegistroUsuarioComponent implements OnInit {
         visit_company: visit_company.trim().toLowerCase(),
         visit_date: visit_date.trim().toLowerCase(),
         visitor_type_id: visitor_type_id.trim().toLowerCase(),
+        license_number: license_number.trim().toLocaleLowerCase(),
+        license_plates: license_plates.trim().toLowerCase(),
         hasVehicle,
         reason_id,
       };
@@ -204,34 +214,42 @@ export class RegistroUsuarioComponent implements OnInit {
       this.formData.append('visitor_type_id', usuario.visitor_type_id);
       this.formData.append('hasVehicle', `${usuario.hasVehicle}`);
       this.formData.append('reason_id', usuario.reason_id);
+      this.formData.append('license_number', usuario.license_number);
+      this.formData.append('license_plates', usuario.license_plates);
     } else if (this.showDriversRegisterFormFields) {
       const {
         email,
-        company_name,
+        visit_company,
         office_name,
         office_phone,
-        operator_name,
+        name,
         phone,
         visitor_type_id,
         ine_field,
         driver_licence_field,
+        license_number,
+        license_plates,
       }: DriverForm = this.form.value;
       usuario = {
         email: email.trim().toLowerCase(),
-        company_name: company_name.trim().toLowerCase(),
+        visit_company: visit_company.trim().toLowerCase(),
         office_name: office_name.trim().toLowerCase(),
         office_phone: office_phone.trim().toLowerCase(),
-        operator_name: operator_name.trim().toLowerCase(),
+        name: name.trim().toLowerCase(),
         phone: phone.trim().toLowerCase(),
         visitor_type_id: visitor_type_id.trim().toLowerCase(),
+        license_number: license_number.trim().toLocaleLowerCase(),
+        license_plates: license_plates.trim().toLowerCase(),
       };
       this.formData.append('email', usuario.email);
-      this.formData.append('company_name', usuario.company_name);
+      this.formData.append('visit_company', usuario.visit_company);
       this.formData.append('office_name', usuario.office_name);
       this.formData.append('office_phone', usuario.office_phone);
-      this.formData.append('operator_name', usuario.operator_name);
+      this.formData.append('name', usuario.name);
       this.formData.append('phone', usuario.phone);
       this.formData.append('visitor_type_id', usuario.visitor_type_id);
+      this.formData.append('license_number', usuario.license_number);
+      this.formData.append('license_plates', usuario.license_plates);
     } else {
       const {
         email,
@@ -242,6 +260,8 @@ export class RegistroUsuarioComponent implements OnInit {
         visit_company,
         visit_date,
         visitor_type_id,
+        license_number,
+        license_plates,
       }: VisitorForm = this.form.value;
       usuario = {
         email: email.trim().toLowerCase(),
@@ -252,6 +272,8 @@ export class RegistroUsuarioComponent implements OnInit {
         visit_company: visit_company.trim().toLowerCase(),
         visit_date: visit_date.trim().toLowerCase(),
         visitor_type_id: visitor_type_id.trim().toLowerCase(),
+        license_number: license_number.trim().toLocaleLowerCase(),
+        license_plates: license_plates.trim().toLowerCase(),
       };
       this.formData.append('email', usuario.email);
       this.formData.append('contact_name', usuario.contact_name);
@@ -261,6 +283,8 @@ export class RegistroUsuarioComponent implements OnInit {
       this.formData.append('visit_company', usuario.visit_company);
       this.formData.append('visit_date', usuario.visit_date);
       this.formData.append('visitor_type_id', usuario.visitor_type_id);
+      this.formData.append('license_number', usuario.license_number);
+      this.formData.append('license_plates', usuario.license_plates);
     }
 
     // usuario.ine_field = this.form.get('image')?.value;

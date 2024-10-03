@@ -17,6 +17,13 @@ export interface Visitor {
   visitor_type_id: VisitorTypeID | null;
   isActive: boolean;
   uid: string;
+  office_name?: string;
+  office_phone?: string;
+  phone?: string;
+  image_licence_file_id?: string;
+  ine_file_id?: string;
+  license_number: string;
+  license_plates: string;
 }
 export interface VisitorTypeID {
   _id: string;

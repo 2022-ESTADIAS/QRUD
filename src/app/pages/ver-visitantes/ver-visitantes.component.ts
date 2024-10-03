@@ -8,6 +8,7 @@ import { DynamicTranslationsService } from 'src/app/services/dynamic-translation
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { VisitorsService } from 'src/app/services/visitors.service';
+import html2PDF from 'jspdf-html2canvas';
 
 @Component({
   selector: 'app-ver-visitantes',
@@ -45,6 +46,8 @@ export class VerVisitantesComponent implements OnInit {
       keyword: opt.keyword,
     })
       .then((data) => {
+        console.log(data, 'VISITANTES');
+
         this.usuarios = data.visitors;
         if (data.pages == 0 && data.visitors.length == 0) {
           this.page = 0;
@@ -114,5 +117,72 @@ export class VerVisitantesComponent implements OnInit {
   }
   instantTranslation(key: string, params?: any) {
     return this.translateHelper.instantTranslation(key, params);
+  }
+
+  downloadPDF(user: Visitor) {
+    const isCreated = this.generatePDFTemplate(user);
+
+    if (isCreated) {
+      const page = document.querySelector('#page') as HTMLElement;
+      console.log(page, 'pagina');
+
+      html2PDF(page, {
+        jsPDF: {
+          format: 'a4',
+        },
+        imageType: 'image/jpeg',
+        output: './pdf/generate.pdf',
+        margin: {
+          top: 20,
+          left: 10,
+          bottom: 10,
+          right: 10,
+        },
+        // html2canvas: {
+        //   scrollX: 0,
+        //   scrollY: -window.scrollY,
+        // },
+      });
+      this.resetPDFTemplate();
+    }
+  }
+
+  generatePDFTemplate(usuario: Visitor): boolean {
+    const div = document.querySelector('#table') as HTMLElement;
+    const signature = document.querySelector(
+      '#signature-container'
+    ) as HTMLElement;
+
+    const dynamicContent = `
+    
+
+
+    <p class="formatField">nombre del transportista: <span>${usuario.name}</span> </p>
+    <p class="formatField">Compañia: <span>${usuario.visit_company}</span> </p>
+    <p class="formatField">Email: <span>${usuario.email}</span> </p>
+    <p class="formatField">Telefono: <span>${usuario.phone}</span> </p>
+    <p class="formatField">Numero economico: <span>${usuario.license_number}</span></p>
+    <p class="formatField">Placas del camion: <span>${usuario.license_plates}</span> </p>
+
+  
+    `;
+
+    signature.innerHTML = `
+      <div class="signature-placeholder"></div>
+            <p class="signature-name">Personal Autorizado MEXCAL </p>
+    `;
+
+    div.innerHTML = dynamicContent;
+    return true;
+  }
+
+  resetPDFTemplate() {
+    const div = document.querySelector('#table') as HTMLElement;
+    const signature = document.querySelector(
+      '#signature-container'
+    ) as HTMLElement;
+
+    div.innerHTML = '';
+    signature.innerHTML = '';
   }
 }

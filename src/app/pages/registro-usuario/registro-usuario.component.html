@@ -113,6 +113,24 @@
             mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
+        <div class="group">
+          <input type="text" formControlName="license_number" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>NÚMERO ECONOMICO</label>
+          <app-errores-frontend *ngIf="campoValido('license_number')"
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
+        </div>
+        <div class="group">
+          <input type="text" formControlName="license_plates" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>PLACAS DEL CAMIÓN </label>
+          <app-errores-frontend *ngIf="campoValido('license_plates')"
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
+        </div>
+
+
 
 
         <div class="group">
@@ -189,20 +207,20 @@
 
 
         <div class="group">
-          <input type="text" formControlName="company_name" (keyup)="removerAlertas()">
+          <input type="text" formControlName="visit_company" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>{{instantTranslation('formCompanyNameField')}}</label>
-          <app-errores-frontend *ngIf="campoValido('company_name')"
+          <app-errores-frontend *ngIf="campoValido('visit_company')"
             mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
         <div class="group">
-          <input type="text" formControlName="operator_name" (keyup)="removerAlertas()">
+          <input type="text" formControlName="name" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>{{instantTranslation('formOperatorNameField')}}</label>
-          <app-errores-frontend *ngIf="campoValido('operator_name')"
+          <app-errores-frontend *ngIf="campoValido('name')"
             mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
 
@@ -232,6 +250,23 @@
           <app-errores-frontend *ngIf="campoValido('office_phone')"
             mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
+        <div class="group">
+          <input type="text" formControlName="license_number" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>NÚMERO ECONOMICO</label>
+          <app-errores-frontend *ngIf="campoValido('license_number')"
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
+        </div>
+        <div class="group">
+          <input type="text" formControlName="license_plates" (keyup)="removerAlertas()">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>PLACAS DEL CAMIÓN </label>
+          <app-errores-frontend *ngIf="campoValido('license_plates')"
+            mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
+        </div>
+
 
         <!-- IMAGENES -->
         <div class="group">

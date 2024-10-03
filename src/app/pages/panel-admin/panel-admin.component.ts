@@ -90,12 +90,12 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
           'panelAdminRouteVisitors'
         ),
       },
-      {
-        ruta: '/ver-transportistas',
-        nombre: this.translationService.instantTranslation(
-          'panelAdminRouteDrivers'
-        ),
-      },
+      // {
+      //   ruta: '/ver-transportistas',
+      //   nombre: this.translationService.instantTranslation(
+      //     'panelAdminRouteDrivers'
+      //   ),
+      // },
       // { ruta: '/usuarios-eliminados', nombre: 'Eliminados' },
     ],
     [
@@ -176,10 +176,10 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
             ruta: '/ver-visitantes',
             nombre: data.translations['panelAdminRouteVisitors'],
           },
-          {
-            ruta: '/ver-transportistas',
-            nombre: data.translations['panelAdminRouteDrivers'],
-          },
+          // {
+          //   ruta: '/ver-transportistas',
+          //   nombre: data.translations['panelAdminRouteDrivers'],
+          // },
           // { ruta: '/usuarios-eliminados', nombre: 'Eliminados' },
         ],
         [

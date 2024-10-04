@@ -11,62 +11,65 @@ import { StorageService } from 'src/app/services/storage.service';
 @Component({
   selector: 'app-ver-personal',
   templateUrl: './ver-personal.component.html',
-  styleUrls: ['./ver-personal.component.css']
+  styleUrls: ['./ver-personal.component.css'],
 })
 export class VerPersonalComponent implements OnInit {
-
   /**
    * almacena todos los registros del personal activo
    */
-  personas:Personal[] = [];
+  personas: Personal[] = [];
   /**
    * propiedad que muestra el mensaje de exito solo si la accion de eliminar se realizo con exito
    */
-  existeMsgExito:boolean = false;
-   /**
+  existeMsgExito: boolean = false;
+  /**
    * propiedad que muestra el mensaje de exito solo si la accion de actualizar se realizo con exito
    */
-  existeMsgActualizarExito:boolean = false;
+  existeMsgActualizarExito: boolean = false;
   /**
    * propiedad que muestra el formulario emergente para actualizar el personal
    */
-  mostrarFormularioEmergente:any = false;
+  mostrarFormularioEmergente: any = false;
   /**
    * propiedad que almacena la referencia del personal que se desea actualizar
    */
-  personalparaActualizar:any = {};
+
+  mostrarAsignacionDeCamiones: any = false;
+
+  personalparaActualizar: any = {};
   /**
    * propiedad que almacena el id del personal que se desea actualizar
    */
-  idpersonalActualizar:any = "";
+  idpersonalActualizar: any = '';
+
+  clienteId: any = '';
 
   /**
    * propiedad que restringe el acceso a ciertas acciones que esten delimitadas por el rol del personal logueado
    */
-  accesoDenegado:boolean = true;
+  accesoDenegado: boolean = true;
 
   /**
    * propiedad que controla la pagina actual del registro
    */
-  page:any = 0;
+  page: any = 0;
   /**
    * almacena la busqueda realizada por el personal
    */
-  busqueda:any = "";
+  busqueda: any = '';
   /**
-   * propieda que controla el momento para mostrar la paginacion 
+   * propieda que controla el momento para mostrar la paginacion
    */
-  ocultarPaginacion:any = true;
+  ocultarPaginacion: any = true;
 
   /**
    * propiedad que almacena la referencia del personal
    */
-  personalActual:any;
+  personalActual: any;
   /**
    * propeidad que controla el momento para mostrar el mensaje de no encontrado cuando la busqueda no arroja resultados
-  */
-  noexistePersonal:boolean = false;
-
+   */
+  noexistePersonal: boolean = false;
 
   /**
    * inyeccion de servicios
@@ -75,8 +78,8 @@ export class VerPersonalComponent implements OnInit {
     private QRUDService: QRUDService,
     private StorageService: StorageService,
     private AuthService: AuthService,
-    private ErrorServidor:ErrorServidorService
-  ) { }
+    private ErrorServidor: ErrorServidorService
+  ) {}
 
   /**
    * metodo que se ejecuta al iniciar el componente el cual obtiene todos los registros del personal activo y verifica el rol del personal logueado
@@ -86,100 +89,94 @@ export class VerPersonalComponent implements OnInit {
     this.restriccionPorRol();
   }
 
-
   /**
    * metodo que obtiene todos los registros del personal activo
    */
   obtenerPersonal() {
+    this.QRUDService.ObtenerRegistros('personal')
+      .then((data: any) => {
+        this.personas = data.personal;
 
-    this.QRUDService.ObtenerRegistros("personal").then((data:any) => {
-      this.personas = data.personal;
-
-      if(this.personas.length == 0){
-        this.noexistePersonal =true;
-      } 
-
-    }).catch(err =>{
-      if(err.error.msgtk){
-        this.AuthService.logout();
-        return;
-      }
-      this.ErrorServidor.error();
-
-    })
-
+        if (this.personas.length == 0) {
+          this.noexistePersonal = true;
+        }
+      })
+      .catch((err) => {
+        if (err.error.msgtk) {
+          this.AuthService.logout();
+          return;
+        }
+        this.ErrorServidor.error();
+      });
   }
   /**
    * metodo que elimina el registro del personal
    */
-  eliminarPersonal(id:any) {
-    this.QRUDService.EliminarRegistros("personal",id).then((data:any) =>{
-      this.personas = this.personas.filter(personal => personal.uid !==id );
-      this.existeMsgExito = true;
+  eliminarPersonal(id: any) {
+    this.QRUDService.EliminarRegistros('personal', id)
+      .then((data: any) => {
+        this.personas = this.personas.filter((personal) => personal.uid !== id);
+        this.existeMsgExito = true;
 
-      setTimeout(() => {
-        this.existeMsgExito = false;
+        setTimeout(() => {
+          this.existeMsgExito = false;
 
-        if(this.personas.length == 0){
-          this.noexistePersonal =true;
-        } 
+          if (this.personas.length == 0) {
+            this.noexistePersonal = true;
+          }
         }, 1500);
-        
-    }).catch(err =>{
-      if(err.error.msgtk){
-        this.AuthService.logout();
-        return;
-      }
-      this.ErrorServidor.error();
-
-    })
+      })
+      .catch((err) => {
+        if (err.error.msgtk) {
+          this.AuthService.logout();
+          return;
+        }
+        this.ErrorServidor.error();
+      });
   }
-    /**
-     * metodo que guarda la referencia del personal que se desea eliminar
-     */
-  referenciaPersonalActual(personal:any){
+  /**
+   * metodo que guarda la referencia del personal que se desea eliminar
+   */
+  referenciaPersonalActual(personal: any) {
     this.personalActual = personal;
-}
-
-
-
+  }
 
   /**
- *  metodo que muestra el formulario emergente para actualizar el personal y  guarda la referencia del personal que se desea actualizar
- */
-  actualizarPersonal(id:any,personal:any){
+   *  metodo que muestra el formulario emergente para actualizar el personal y  guarda la referencia del personal que se desea actualizar
+   */
+  actualizarPersonal(id: any, personal: any) {
     this.mostrarFormularioEmergente = true;
-    this.idpersonalActualizar = id; 
+    this.idpersonalActualizar = id;
     this.personalparaActualizar = personal;
- 
   }
   /**
    * metodo que actualiza el registro del personal
    */
-  actualizandoArregloPersonal(data:any){
-    this.personas= this.personas.map(personal => {
-      if(personal.uid == data.uid){
-          personal = data
-          return personal
-      }else return personal;
-    })
+  actualizandoArregloPersonal(data: any) {
+    this.personas = this.personas.map((personal) => {
+      if (personal.uid == data.uid) {
+        personal = data;
+        return personal;
+      } else return personal;
+    });
     this.existeMsgActualizarExito = true;
 
-    setTimeout(() =>{
+    setTimeout(() => {
       this.existeMsgActualizarExito = false;
-    },2000);
-
+    }, 2000);
   }
-/**
- * metodo que verifica la el rol del personal logueado para restringir el acceso a ciertas acciones
- */
-  restriccionPorRol(){
-    const rol = this.StorageService.desencriptar("rol");
+  /**
+   * metodo que verifica la el rol del personal logueado para restringir el acceso a ciertas acciones
+   */
+  restriccionPorRol() {
+    const rol = this.StorageService.desencriptar('rol');
 
-    if(rol == "ADMIN_ROLE" || rol == "AUX_ROLE"){
+    if (rol == 'ADMIN_ROLE' || rol == 'AUX_ROLE') {
       this.accesoDenegado = false;
     }
-
   }
-
-} 
+  asignarCamiones(id: string) {
+    this.mostrarAsignacionDeCamiones = true;
+    this.clienteId = id;
+  }
+}

@@ -25,6 +25,7 @@ import { VerTransportistasComponent } from './ver-transportistas/ver-transportis
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { createTranslateLoader } from '../app.module';
+import { VerCamionesPorClienteComponent } from './ver-camiones-por-cliente/ver-camiones-por-cliente.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { createTranslateLoader } from '../app.module';
     BusquedaPipe,
     VerVisitantesComponent,
     VerTransportistasComponent,
+    VerCamionesPorClienteComponent,
     /* EscannerUsuarioComponent, */
   ],
   imports: [
@@ -71,6 +73,7 @@ import { createTranslateLoader } from '../app.module';
     VerRolComponent,
     VerVisitantesComponent,
     VerTransportistasComponent,
+    VerCamionesPorClienteComponent,
   ],
 })
 export class PaginasModule {}

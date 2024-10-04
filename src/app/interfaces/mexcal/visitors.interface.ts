@@ -34,6 +34,32 @@ export interface VisitorSearchParams {
   page?: number;
   keyword?: string;
 }
+
+export interface TruckDriverSearchParams extends VisitorSearchParams {
+  id?: string;
+}
+
+export interface TruckDriver {
+  uid: string;
+  visitor_id: DriverInfo | null;
+}
+
+interface DriverInfo {
+  name: string;
+  license_number: string;
+  license_plates: string;
+  email: string;
+  visit_company: string;
+  phone: string;
+}
+
+export interface TruckDriverResponse {
+  status: string;
+  drivers: TruckDriver[];
+  page: number;
+  pages: number;
+}
+
 export interface DriverSearchParams extends VisitorSearchParams {}
 
 export interface DriversResponse {

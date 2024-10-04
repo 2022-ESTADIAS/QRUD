@@ -1,0 +1,50 @@
+<ng-container *ngIf="existeError">
+    <div class="mensajes-container">
+
+        <app-errores-backend [mensaje]="error.msg" *ngFor="let error of errores"></app-errores-backend>
+    </div>
+
+
+</ng-container>
+
+<app-exito [mensaje]="msgExito" *ngIf="existeMsgExito"></app-exito>
+
+
+<div id="myModaledit" class="modaledit">
+
+    <!-- Modal content -->
+    <div class="modal-content-edit">
+        <span class="closeedit" (click)="ocultarFormulario()">&times;</span>
+        <h1 class="modal-title">Asignar Camiones </h1>
+
+        <div class="grid">
+            <div class="driver-container" *ngFor="let driver of drivers">
+                <input type="checkbox" class="check" (click)="toggleDriver(driver.uid)">
+                <i class="fa fa-user-circle-o user-icon" aria-hidden="true"></i>
+
+
+                <div>
+                    <p>Nombre: <br> <span class="card-driver-body">{{driver.name}} </span> </p>
+                    <p>Licencia: <br><span class="card-driver-body">{{driver.license_number ? driver.license_number :
+                            "N/A"}} </span> </p>
+                    <p>Placas: <br> <span class="card-driver-body">{{driver.license_plates ? driver.license_plates :
+                            "N/A" }} </span> </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="save-edit">
+            <button type="submit" class="btn10" (click)="TrucksAssignation()">
+                <span>Asignar Camiones</span>
+                <div class="transition"></div>
+            </button>
+        </div>
+
+    </div>
+</div>

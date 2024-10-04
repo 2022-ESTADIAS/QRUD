@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import {
   DriverSearchParams,
   DriversResponse,
+  TruckDriverResponse,
+  TruckDriverSearchParams,
   VisitorSearchParams,
   VisitorsResponse,
 } from '../interfaces/mexcal/visitors.interface';
@@ -49,6 +51,29 @@ export class VisitorsService {
         );
     });
   }
+  AssignationTrucks(id: string, data: string[]) {
+    const token = this.StorageService.desencriptar(llaveToken);
+    return new Promise<{ msg: string }>((resolve, reject) => {
+      this.http
+        .post<{ msg: string }>(
+          `${url}/personal/truck-assignation/${id}`,
+          {
+            drivers: data,
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
   getAllDrivers(opt: DriverSearchParams) {
     const token = this.StorageService.desencriptar(llaveToken);
     const { page, keyword } = opt;
@@ -66,6 +91,36 @@ export class VisitorsService {
     return new Promise<DriversResponse>((resolve, reject) => {
       this.http
         .get<DriversResponse>(visitorUrl, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+
+  getAllTrucks(opt: TruckDriverSearchParams) {
+    const token = this.StorageService.desencriptar(llaveToken);
+    const { page, keyword, id } = opt;
+    let visitorUrl = `${url}/visitors/trucks`;
+    if (page && keyword) {
+      visitorUrl = `${url}/visitors/trucks?pageNumber=${page}&keyword=${keyword}`;
+    } else if (keyword) {
+      visitorUrl = `${url}/visitors/trucks?keyword=${keyword}`;
+    } else if (page) {
+      visitorUrl = `${url}/visitors/trucks?pageNumber=${page}`;
+    } else {
+      visitorUrl = `${url}/visitors/trucks`;
+    }
+
+    return new Promise<TruckDriverResponse>((resolve, reject) => {
+      this.http
+        .get<TruckDriverResponse>(visitorUrl, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .subscribe(

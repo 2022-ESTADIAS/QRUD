@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DriverRegulationsComponent } from './driver-regulations/driver-regulations.component';
 import { TranslateComponent } from './translate/translate.component';
+import { AsignarCamionesComponent } from './formularios/emergentes/asignar-camiones/asignar-camiones.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TranslateComponent } from './translate/translate.component';
     ModalComponent,
     DriverRegulationsComponent,
     TranslateComponent,
+    AsignarCamionesComponent,
   ],
   exports: [
     ErroresBackendComponent,
@@ -51,6 +53,7 @@ import { TranslateComponent } from './translate/translate.component';
     ModalComponent,
     DriverRegulationsComponent,
     TranslateComponent,
+    AsignarCamionesComponent,
   ],
   imports: [
     CommonModule,

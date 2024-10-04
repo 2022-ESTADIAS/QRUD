@@ -41,6 +41,9 @@
                                 class="fa-solid fa-square-pen fa-xl"></i></button>
                         <label class="btn" for="btn-modal-delete" (click)="referenciaPersonalActual(personal)"><i
                                 class="fa-solid fa-user-xmark fa-lg"></i></label>
+
+                        <i class="fa-solid fa-truck fa-lg truck-assignation"
+                            (click)="asignarCamiones(personal.uid)"></i>
                     </div>
 
                 </td>
@@ -71,3 +74,6 @@
     <app-actualizar-personal *ngIf="mostrarFormularioEmergente" [idPersonal]="idpersonalActualizar"
         [personal]="personalparaActualizar" (ocultar)="mostrarFormularioEmergente = $event"
         (personalActualizado)="actualizandoArregloPersonal($event)"> </app-actualizar-personal>
+
+    <app-asignar-camiones *ngIf="mostrarAsignacionDeCamiones" [idCliente]="clienteId"
+        (ocultar)="mostrarAsignacionDeCamiones = $event"></app-asignar-camiones>

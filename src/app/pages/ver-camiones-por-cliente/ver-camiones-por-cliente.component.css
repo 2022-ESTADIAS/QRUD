@@ -14,21 +14,21 @@ table tr th,
 table tr td {
   padding: 0.5625em 0.625em;
   font-size: 0.875em;
-  color: #3e3798;
+  color: var(--main-color);
   border: 1px solid #f9f9f9;
   text-align: center;
 }
+
 @media only screen and (max-width: 768px) {
   table tr th,
   table tr td {
     padding-left: 28%;
     width: auto;
-    color: #3e3798;
+    color: var(--main-color);
   }
   @media only screen and (max-width: 500px) {
-    tbody tr td .right {
-      padding-left: 20%;
-      color: red;
+    table tr:first-child {
+      margin-top: 0;
     }
   }
 }
@@ -50,6 +50,7 @@ table tr:nth-of-type(even) {
   table tr:first-child {
     margin-top: 0 !important;
   }
+
   table.resp {
     border: none;
   }
@@ -59,7 +60,8 @@ table tr:nth-of-type(even) {
   }
 
   .resp tbody tr {
-    margin: 1em 0;
+    margin: 2em 0;
+    background: #fbfbfb;
   }
 
   .resp td {
@@ -93,27 +95,26 @@ table tr:nth-of-type(even) {
   }
 
   td:nth-of-type(2):before {
-    content: "Rol";
+    content: "Fecha de visita";
   }
 
   td:nth-of-type(3):before {
-    content: "Telefono";
+    content: "compañia";
   }
 
   td:nth-of-type(4):before {
     content: "E-mail";
   }
-  td:nth-of-type(5):before {
-    content: "Acciones";
-  }
-}
-@media only screen and (max-width: 768px) {
-  td:nth-of-type(6):before {
-    content: none;
-  }
-}
-/*---------------tabla responsive--------------------*/
 
+  /* td:nth-of-type(5):before {
+      content: "E-mail";
+    }
+    td:nth-of-type(6):before {
+      content: "Acciones";
+    } */
+}
+
+/*-------------Tabla----------------*/
 @media only screen and (max-width: 1200px) {
   .sidebar {
     width: 60px;
@@ -141,6 +142,11 @@ table tr:nth-of-type(even) {
   }
 }
 /*RESPONSIVE*/
+@media only screen and (max-width: 860px) {
+  .activity-grid {
+    display: block;
+  }
+}
 
 @media only screen and (max-width: 450px) {
   main {
@@ -148,19 +154,21 @@ table tr:nth-of-type(even) {
     padding-right: 1rem;
   }
 }
+
 /*----------botones editar eliminar-----------------*/
 .btn {
   background: none;
   border: none;
-  cursor: pointer;
 }
 
 .fa-square-pen,
 .fa-user-xmark,
 .fa-user-check,
-.fa-user-slash {
-  color: #0b4368;
-  padding: 0.5rem;
+.fa-user-slash,
+.fa-qrcode {
+  color: var(--main-color);
+  padding: 0.3rem;
+  cursor: pointer;
 }
 .btn-group {
   text-align: center;
@@ -170,17 +178,74 @@ table tr:nth-of-type(even) {
   border: none;
 }
 
+td.icons {
+  width: 9rem;
+}
+
 .spinner-container {
   position: absolute;
   top: 50%;
   left: 50%;
 }
-
 .container {
   margin: 0 auto;
   display: block;
   position: absolute;
 }
-.truck-assignation {
+
+/* ESTILOS DE PAGINACION */
+.pagination-container {
+  display: flex;
+  max-width: 200px;
+  justify-content: space-evenly;
+  margin: 15px;
+  align-items: center;
+}
+
+.pagination-container i {
   cursor: pointer;
+}
+/* FIN PAGINACION */
+
+/* CONTENEDOR SPINER */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.disabled-table {
+  opacity: 0.1;
+}
+
+.disabled-button {
+  opacity: 0.1;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.download {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 2px solid #ccc;
+  opacity: 1 !important;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: space-between;
+}
+.logo-container img {
+  max-width: 200px;
+}
+
+.pdf-title-text {
+  text-align: center;
+  font-weight: normal;
+  font-size: 18px;
 }

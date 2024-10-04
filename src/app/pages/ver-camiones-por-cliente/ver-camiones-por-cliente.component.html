@@ -1,0 +1,106 @@
+<div class="spinner-container">
+    <app-spinner *ngIf="showSpinner"></app-spinner>
+
+</div>
+<app-exito [mensaje]="msgQR" *ngIf="existeMsgQRExito"></app-exito>
+
+<ng-container>
+    <app-buscador (busqueda)="search($event)" (ocultar)="ocultarPaginacion = $event"></app-buscador>
+
+
+    <h3>{{instantTranslation('visitorsComponentTitle')}}</h3>
+    <table class="resp" [ngClass]="{'disabled-table':waitForAnswer}">
+        <thead>
+            <tr>
+                <th>{{instantTranslation('visitorsComponentTableName')}}</th>
+                <!-- <th>{{instantTranslation('visitorsComponentTableVisitDate')}}</th> -->
+                <th>{{instantTranslation('visitorsComponentTableCompany')}}</th>
+                <th>{{instantTranslation('visitorsComponentTableEmail')}}</th>
+                <!-- <th>{{instantTranslation('visitorsComponentTableUserType')}}</th> -->
+                <th>{{instantTranslation('visitorsComponentTableActions')}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <div class="spinner-container">
+                <app-spinner *ngIf="showSpinner"></app-spinner>
+
+            </div>
+
+            <ng-container *ngIf="!showSpinner">
+                <tr *ngFor="let usuario of usuarios">
+
+                    <!-- <app-no-encontrado *ngIf="usuario.error" [mensaje]="usuario.msg"></app-no-encontrado> -->
+
+
+                    <td data-title="Nombre">{{usuario.visitor_id?.name| uppercase}}</td>
+                    <!-- <td data-title="Fecha de visita">{{parseDate(usuario.visit_date) }}</td> -->
+                    <td data-title="Compañia">{{usuario.visitor_id?.visit_company | uppercase}}</td>
+                    <td class="right" data-title="Email">{{usuario.visitor_id?.email}}</td>
+                    <!-- <td data-title="tipo de usuario">{{usuario.visitor_id?.visitor_type_id?.name ? (usuario.visitor_type_id?.name|
+                        uppercase ): "N/A"}}</td> -->
+                    <!-- iconost -->
+                    <td class="icons" data-title="Acciones">
+                        <div class="btn-group">
+                            <!-- <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button> -->
+                            <!-- <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label> -->
+                            <button class="btn" (click)="enviarQR(usuario.uid)"><i class="fa-solid fa-qrcode fa-lg"
+                                    [ngClass]="{'disabled-button':waitForAnswer}"></i></button>
+                            <i class="fa fa-download fa-lg download" (click)="downloadPDF(usuario)"
+                                aria-hidden="true"></i>
+                        </div>
+
+                    </td>
+                </tr>
+
+                <div class="pagination-container">
+                    <i class="fa-solid fa-circle-left" (click)="prevPage()" *ngIf="page >1"></i>
+                    <div> {{page}} </div>
+                    <div> {{instantTranslation('visitorsComponentTableOf')}} </div>
+                    <div> {{pages}} </div>
+                    <i class="fa-solid fa-circle-right" (click)="nextPage()" *ngIf="page < pages"></i>
+                </div>
+            </ng-container>
+
+            <!-- <div class="pagination-container" *ngIf="ocultarPaginacion"> -->
+
+
+        </tbody>
+    </table>
+
+</ng-container>
+
+
+<div class="invisible">
+    <div id="page">
+        <div class="logo-container">
+            <img src="assets/img/logo.png" alt="mexcal logo">
+            <img src="assets/img/divelopers.png" alt="divelopers logo">
+
+        </div>
+
+        <h4 class="pdf-title-text">Por medio de la presente, comparto la siguiente información del <br> transporte
+            solicitado.
+        </h4>
+
+        <div class="grid" id="table">
+            <!-- <p class="formatField">nombre del transportista: <span>{{usuarios[0]?.operator_name}}</span> </p>
+            <p class="formatField">Compañia: <span>{{usuarios[0]?.company_name}}</span> </p>
+            <p class="formatField">Telefono: <span>{{usuarios[0]?.phone}}</span> </p>
+            <p class="formatField">Email: <span>{{usuarios[0]?.email}}</span> </p>
+            <p class="formatField">Oficina: <span>{{usuarios[0]?.office_name}}</span> </p>
+            <p class="formatField">Telefono de oficina: <span>{{usuarios[0]?.office_phone}}</span> </p>
+            <p class="formatField">Numero economico: <span>1234567891</span></p>
+            <p class="formatField">Placas del camion: <span>ASE1W-1ASD</span> </p> -->
+
+        </div>
+
+        <div class="signature-container" id="signature-container">
+            <!-- <div class="signature-placeholder"></div>
+            <p class="signature-name">Personal Autorizado MEXCAL </p> -->
+        </div>
+
+
+
+
+    </div>
+</div>

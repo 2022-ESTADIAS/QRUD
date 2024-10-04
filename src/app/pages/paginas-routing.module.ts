@@ -13,6 +13,7 @@ import { VerPersonalComponent } from './ver-personal/ver-personal.component';
 import { VerRolComponent } from './ver-rol/ver-rol.component';
 import { VerVisitantesComponent } from './ver-visitantes/ver-visitantes.component';
 import { VerTransportistasComponent } from './ver-transportistas/ver-transportistas.component';
+import { VerCamionesPorClienteComponent } from './ver-camiones-por-cliente/ver-camiones-por-cliente.component';
 
 const routes: Routes = [
   { path: '', component: RegistroUsuarioComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'registro-rol', component: RegistroRolComponent },
   { path: 'ver-usuarios', component: VerUsuariosComponent },
   { path: 'ver-visitantes', component: VerVisitantesComponent },
+  { path: 'ver-camiones', component: VerCamionesPorClienteComponent },
   { path: 'ver-transportistas', component: VerTransportistasComponent },
   { path: 'ver-personal', component: VerPersonalComponent },
   { path: 'ver-rol', component: VerRolComponent },

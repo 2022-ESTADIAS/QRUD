@@ -109,5 +109,21 @@
   "licenseNumber": "Numero economico",
   "licensePlates": "Placas del camion",
   "signaturePlaceholder": "Personal Autorizado MEXCAL",
-  "documentDescription": "Por medio de la presente, comparto la siguiente información del transporte solicitado."
+  "documentDescription": "Por medio de la presente, comparto la siguiente información del transporte solicitado.",
+  "clientList": "Lista de Clientes",
+  "clientName": "Nombre",
+  "clientPhone": "Telefono",
+  "clientEmail": "Email",
+  "clientActions": "Acciones",
+  "editClient": "Editar Cliente",
+  "saveClientButton": "Guardar",
+  "deleteModalClientTitle": "Eliminar",
+  "confirmClientDeleteMessage": "Esta seguro que quiere eliminar al cliente",
+  "cancelModalButton": "Cancelar",
+  "acceptModalButton": "Aceptar",
+  "TruckAssignationModalTitle": "Asignar Camiones",
+  "TruckAssignationModalName": "Nombre",
+  "TruckAssignationModalLicense": "Licencia",
+  "TruckAssignationModalPlates": "Placas",
+  "TruckAssignationModalButton": "Asignar Camiones"
 }

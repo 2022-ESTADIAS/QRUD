@@ -4,6 +4,7 @@ import { Personal } from 'src/app/interfaces/personal.interface';
 import { RegistroPersonal } from 'src/app/interfaces/personal.interface';
 import { Rol } from 'src/app/interfaces/rol.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
@@ -63,7 +64,8 @@ export class ActualizarPersonalComponent implements OnInit {
     private fb: FormBuilder,
     private QRUDService: QRUDService,
     private authService: AuthService,
-    private ErrorServidor: ErrorServidorService
+    private ErrorServidor: ErrorServidorService,
+    private translateHelper: DynamicTranslationsService
   ) {}
 
   /**
@@ -165,5 +167,9 @@ export class ActualizarPersonalComponent implements OnInit {
    */
   ocultarFormulario() {
     this.ocultar.emit(false);
+  }
+
+  instantTranslation(key: string, params?: any) {
+    return this.translateHelper.instantTranslation(key, params);
   }
 }

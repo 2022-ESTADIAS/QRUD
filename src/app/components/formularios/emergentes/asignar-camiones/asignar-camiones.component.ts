@@ -4,6 +4,7 @@ import {
   VisitorSearchParams,
 } from 'src/app/interfaces/mexcal/visitors.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { VisitorsService } from 'src/app/services/visitors.service';
 
@@ -35,7 +36,8 @@ export class AsignarCamionesComponent implements OnInit {
   constructor(
     private VisitorsService: VisitorsService,
     private AuthService: AuthService,
-    private ErrorServidor: ErrorServidorService
+    private ErrorServidor: ErrorServidorService,
+    private translateHelper: DynamicTranslationsService
   ) {}
 
   ngOnInit(): void {
@@ -56,8 +58,6 @@ export class AsignarCamionesComponent implements OnInit {
       keyword: opt.keyword,
     })
       .then((data) => {
-        console.log(data, 'VISITANTES');
-
         this.drivers = data.visitors;
         if (data.pages == 0 && data.visitors.length == 0) {
           this.page = 0;
@@ -117,5 +117,9 @@ export class AsignarCamionesComponent implements OnInit {
 
         this.ErrorServidor.error();
       });
+  }
+
+  instantTranslation(key: string, params?: any) {
+    return this.translateHelper.instantTranslation(key, params);
   }
 }

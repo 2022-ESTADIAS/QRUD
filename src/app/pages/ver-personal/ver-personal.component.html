@@ -15,16 +15,16 @@
 
 
 
-    <h3>Lista de Clientes</h3>
+    <h3>{{instantTranslation('clientList')}}</h3>
 
     <table class="resp">
         <thead>
             <tr>
-                <th>Nombre</th>
+                <th>{{instantTranslation('clientName')}}</th>
                 <!-- <th>Rol</th> -->
-                <th>Telefono</th>
-                <th>Email</th>
-                <th *ngIf="accesoDenegado">Acciones</th>
+                <th>{{instantTranslation('clientPhone')}}</th>
+                <th>{{instantTranslation('clientEmail')}}</th>
+                <th *ngIf="accesoDenegado">{{instantTranslation('clientActions')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -37,8 +37,8 @@
                 <td data-title="Email">{{personal.email}}</td>
                 <td data-title="Acciones" *ngIf="accesoDenegado">
                     <div class="btn-group" *ngIf="!personal.error">
-                        <button class="btn" (click)="actualizarPersonal(personal.uid,personal)"><i
-                                class="fa-solid fa-square-pen fa-xl"></i></button>
+                        <i (click)="actualizarPersonal(personal.uid,personal)"
+                            class="fa-solid fa-square-pen fa-xl btn"></i>
                         <label class="btn" for="btn-modal-delete" (click)="referenciaPersonalActual(personal)"><i
                                 class="fa-solid fa-user-xmark fa-lg"></i></label>
 
@@ -67,9 +67,10 @@
 
 
 
-    <app-modal *ngIf="personalActual" msg="¿Esta seguro que quiere eliminar al personal {{personalActual.email}} ?"
-        titulo="Eliminar" [funcion]="eliminarPersonal.bind(this,personalActual.uid)"
-        modal="btn-modal-delete"></app-modal>
+    <app-modal *ngIf="personalActual"
+        msg="¿{{instantTranslation('confirmClientDeleteMessage')}} {{personalActual.email}} ?"
+        titulo="{{instantTranslation('deleteModalClientTitle')}}"
+        [funcion]="eliminarPersonal.bind(this,personalActual.uid)" modal="btn-modal-delete"></app-modal>
 
     <app-actualizar-personal *ngIf="mostrarFormularioEmergente" [idPersonal]="idpersonalActualizar"
         [personal]="personalparaActualizar" (ocultar)="mostrarFormularioEmergente = $event"

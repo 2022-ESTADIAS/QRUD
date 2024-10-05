@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Personal } from 'src/app/interfaces/personal.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -78,7 +79,8 @@ export class VerPersonalComponent implements OnInit {
     private QRUDService: QRUDService,
     private StorageService: StorageService,
     private AuthService: AuthService,
-    private ErrorServidor: ErrorServidorService
+    private ErrorServidor: ErrorServidorService,
+    private translateHelper: DynamicTranslationsService
   ) {}
 
   /**
@@ -178,5 +180,9 @@ export class VerPersonalComponent implements OnInit {
   asignarCamiones(id: string) {
     this.mostrarAsignacionDeCamiones = true;
     this.clienteId = id;
+  }
+
+  instantTranslation(key: string, params?: any) {
+    return this.translateHelper.instantTranslation(key, params);
   }
 }

@@ -4,8 +4,8 @@
         <h2>{{titulo}}</h2>
         <p>{{msg}}</p>
         <div class="btn-cerrar">
-            <label for="{{modal}}">Cancelar</label>
-            <label for="{{modal}}"(click)="ejecutarAccion()" >Aceptar</label>
+            <label for="{{modal}}">{{instantTranslation('cancelModalButton')}}</label>
+            <label for="{{modal}}" (click)="ejecutarAccion()">{{instantTranslation('acceptModalButton')}}</label>
         </div>
     </div>
     <label for="{{modal}}" class="cerrar-modal"></label>

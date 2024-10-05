@@ -3,14 +3,14 @@
   <!-- Modal content -->
   <div class="modal-content-edit">
     <span class="closeedit" (click)="ocultarFormulario()">&times;</span>
-    <p>Editar Personal</p>
+    <h1 class="modal-title">{{instantTranslation('editClient')}}</h1>
     <form class="form-edit" [formGroup]="form" (ngSubmit)="submit()">
 
       <div class="group-edit">
         <input type="text" formControlName="nombre">
         <span class="highlight"></span>
         <span class="bar"></span>
-        <label>Nombre</label>
+        <label>{{instantTranslation('clientName')}}</label>
         <app-errores-frontend *ngIf="campoValido('nombre')" mensaje="El campo es requerido"></app-errores-frontend>
       </div>
 
@@ -18,7 +18,7 @@
         <input type="tel" formControlName="telefono">
         <span class="highlight"></span>
         <span class="bar"></span>
-        <label>Telefono</label>
+        <label>{{instantTranslation('clientPhone')}}</label>
         <app-errores-frontend *ngIf="campoValido('telefono')"
           mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
       </div>
@@ -37,7 +37,7 @@
 
       <div class="save-edit">
         <button type="submit" class="btn10">
-          <span>Guardar</span>
+          <span>{{instantTranslation('saveClientButton')}}</span>
           <div class="transition"></div>
         </button>
       </div>

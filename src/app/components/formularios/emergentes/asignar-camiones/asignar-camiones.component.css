@@ -27,7 +27,7 @@
   margin-top: 100px;
   border-radius: 4px;
   font-family: "calibri";
-  color: #7971f9;
+  color: var(--main-color);
   box-shadow: 7px 13px 27px rgb(34, 34, 34);
 }
 
@@ -235,4 +235,10 @@
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

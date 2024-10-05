@@ -14,7 +14,7 @@ table tr th,
 table tr td {
   padding: 0.5625em 0.625em;
   font-size: 0.875em;
-  color: #3e3798;
+  color: var(--main-color);
   border: 1px solid #f9f9f9;
   text-align: center;
 }
@@ -23,7 +23,7 @@ table tr td {
   table tr td {
     padding-left: 28%;
     width: auto;
-    color: #3e3798;
+    color: var(--main-color);
   }
   @media only screen and (max-width: 500px) {
     tbody tr td .right {
@@ -160,10 +160,13 @@ table tr:nth-of-type(even) {
 .fa-user-check,
 .fa-user-slash {
   color: #0b4368;
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
 }
 .btn-group {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 .btn-action {
   background: none;
@@ -183,4 +186,5 @@ table tr:nth-of-type(even) {
 }
 .truck-assignation {
   cursor: pointer;
+  /* margin-left: 13px; */
 }

@@ -15,7 +15,11 @@
     <!-- Modal content -->
     <div class="modal-content-edit">
         <span class="closeedit" (click)="ocultarFormulario()">&times;</span>
-        <h1 class="modal-title">Asignar Camiones </h1>
+        <h1 class="modal-title">{{instantTranslation('TruckAssignationModalTitle')}}</h1>
+        <div class="spinner-container" *ngIf="drivers.length === 0">
+            <app-spinner></app-spinner>
+
+        </div>
 
         <div class="grid">
             <div class="driver-container" *ngFor="let driver of drivers">
@@ -24,10 +28,13 @@
 
 
                 <div>
-                    <p>Nombre: <br> <span class="card-driver-body">{{driver.name}} </span> </p>
-                    <p>Licencia: <br><span class="card-driver-body">{{driver.license_number ? driver.license_number :
+                    <p>{{instantTranslation('TruckAssignationModalName')}}: <br> <span
+                            class="card-driver-body">{{driver.name}} </span> </p>
+                    <p>{{instantTranslation('TruckAssignationModalLicense')}}: <br><span
+                            class="card-driver-body">{{driver.license_number ? driver.license_number :
                             "N/A"}} </span> </p>
-                    <p>Placas: <br> <span class="card-driver-body">{{driver.license_plates ? driver.license_plates :
+                    <p>{{instantTranslation('TruckAssignationModalPlates')}}: <br> <span
+                            class="card-driver-body">{{driver.license_plates ? driver.license_plates :
                             "N/A" }} </span> </p>
 
                 </div>
@@ -41,7 +48,7 @@
 
         <div class="save-edit">
             <button type="submit" class="btn10" (click)="TrucksAssignation()">
-                <span>Asignar Camiones</span>
+                <span>{{instantTranslation('TruckAssignationModalButton')}}</span>
                 <div class="transition"></div>
             </button>
         </div>

@@ -21,7 +21,7 @@
   margin-top: 100px;
   border-radius: 4px;
   font-family: "calibri";
-  color: #7971f9;
+  color: var(--main-color);
   box-shadow: 7px 13px 27px rgb(34, 34, 34);
 }
 
@@ -35,7 +35,7 @@
 
 .closeedit:hover,
 .closeedit:focus {
-  color: rgb(146, 104, 245);
+  color: var(--main-color);
   text-decoration: none;
   cursor: pointer;
 }
@@ -43,6 +43,11 @@
 .form-edit {
   position: relative;
   margin-bottom: 19px;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .save-edit {
@@ -286,4 +291,9 @@ input:focus ~ .highlight {
   .modal-content-edit {
     width: 300px;
   }
+}
+
+.modal-title {
+  font-size: 28px;
+  text-align: center;
 }

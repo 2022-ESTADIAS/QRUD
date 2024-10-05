@@ -109,5 +109,21 @@
   "licenseNumber": "License Number",
   "licensePlates": "License plates",
   "signaturePlaceholder": "MEXCAL Authorized Staff",
-  "documentDescription": "I hereby share the following information of the  transportation requested."
+  "documentDescription": "I hereby share the following information of the  transportation requested.",
+  "clientList": "Client List",
+  "clientName": "Name",
+  "clientPhone": "Phone",
+  "clientEmail": "Email",
+  "clientActions": "Actions",
+  "editClient": "Edit Client",
+  "saveClientButton": "Save",
+  "deleteModalClientTitle": "Delete",
+  "confirmClientDeleteMessage": "Are you sure  to eliminate the client",
+  "cancelModalButton": "Cancel",
+  "acceptModalButton": "Accept",
+  "TruckAssignationModalTitle": "Truck Assignment",
+  "TruckAssignationModalName": "Name",
+  "TruckAssignationModalLicense": "License",
+  "TruckAssignationModalPlates": "Plates",
+  "TruckAssignationModalButton": "Assign Trucks"
 }

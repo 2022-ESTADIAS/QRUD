@@ -24,8 +24,30 @@
                     <img src="assets/img/logo.png" alt="mexcal logo">
                 </div>
 
+                <ng-container *ngFor="let module of modules">
+                    <div class="nav__link  collapse" [ngClass]="{'movil-links':!expandirMenu}"
+                        (click)="mostrarLinks(module.uid)">
 
-                <div class="nav__link  collapse" [ngClass]="{'movil-links':!expandirMenu}"
+                        <i class="{{module.icon}}"></i>
+                        <span class="nav__name">{{module.module_name}}</span>
+
+                        <ion-icon name="chevron-down-outline" class="collapse__link"
+                            [ngClass]="{'rotate':mostrarOpcionesMenuUsuario}"></ion-icon>
+
+                        <ul class="collapse__menu" id="{{module.uid}}">
+
+                            <ng-container *ngFor="let route of module.routes">
+                                <a routerLink="{{route.link}}" class="collapse__sublink">{{route.name}}</a>
+
+                            </ng-container>
+
+
+
+                        </ul>
+                    </div>
+                </ng-container>
+
+                <!-- <div class="nav__link  collapse" [ngClass]="{'movil-links':!expandirMenu}"
                     (click)="mostrarOpcionesUsuario()" *ngIf="esAdmin || esMaster || esAux ">
 
                     <i class="fa-solid fa-truck"></i>
@@ -48,8 +70,8 @@
                         </ng-container>
 
                     </ul>
-                </div>
-                <div class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}"
+                </div> -->
+                <!-- <div class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}"
                     (click)="mostrarOpcionesPersonal()" *ngIf="esMaster || esAdmin">
                     <i class="fa-solid fa-users-gear"></i>
                     <span class="nav_-cont_name">Clientes</span>
@@ -65,7 +87,7 @@
                         </ng-container>
 
                     </ul>
-                </div>
+                </div> -->
 
                 <!-- RUTAS DE ROL -->
                 <!-- <div  class="nav__link collapse "[ngClass]="{'movil-links':!expandirMenu}"   (click)="mostrarOpcionesRol()"*ngIf="esMaster" >
@@ -82,7 +104,7 @@
                     </ul>
                 </div> -->
 
-                <div class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}" (click)="mostrarOpcionesQR()"
+                <!-- <div class="nav__link collapse" [ngClass]="{'movil-links':!expandirMenu}" (click)="mostrarOpcionesQR()"
                     *ngIf="esAdmin || esMaster || esAux ">
                     <i class="fa-solid fa-qrcode"></i>
                     <span class="nav__name">QR</span>
@@ -107,7 +129,7 @@
                         <a routerLink="/contrasena"
                             class="collapse__sublink">{{'panelAdminChangePassword'|translate}}</a>
                     </ul>
-                </div>
+                </div> -->
 
             </div>
         </div>

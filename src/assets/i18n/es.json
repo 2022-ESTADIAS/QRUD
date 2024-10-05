@@ -30,6 +30,7 @@
   "formRegisterButton": "Registrarse",
   "formIneField": "INE",
   "formDriverLicenseField": "Licencia de conducir",
+  "searchPlaceholder": "Búsqueda por nombre",
   "loginWelcome": "¡Bienvenido!",
   "loginEmail": "Correo electrónico",
   "loginPassword": "Contraseña",

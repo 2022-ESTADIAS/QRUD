@@ -7,8 +7,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
+import { Module } from 'src/app/interfaces/module.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
+import { ModuleService } from 'src/app/services/module.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 /**
@@ -135,6 +137,8 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
    */
   inicial: string = '';
 
+  modules: Module[] = [];
+
   /**
    * inyeccion de dependencias
    */
@@ -142,8 +146,7 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
     private AuthService: AuthService,
     private StorageService: StorageService,
     private translationService: DynamicTranslationsService,
-    private cdr: ChangeDetectorRef,
-    private ngZone: NgZone
+    private moduleService: ModuleService
   ) {}
   /**
    * cuando el componente se destruye se elimina la funcion de cambio de color y se remueve las clases al body
@@ -162,6 +165,7 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
     this.generarColorRandom();
     this.asideMenuTranslations();
     this.mostrarMenu();
+    this.getModules();
   }
 
   asideMenuTranslations() {
@@ -201,8 +205,23 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
   /**
    * muestra/oculta las acciones del menu lateral cuando se hace click en la opcion de usuarios
    */
-  mostrarOpcionesUsuario() {
-    this.mostrarOpcionesMenuUsuario = !this.mostrarOpcionesMenuUsuario;
+
+  mostrarLinks(id: string) {
+    // const modules = document.querySelectorAll('.collapse__menu');
+    // const arrows = document.querySelectorAll('.collapse__link');
+    const actualModule = document.getElementById(id);
+    const actualArrow = actualModule?.previousElementSibling;
+
+    // modules.forEach((module) => module.classList.remove('showCollapse'));
+    // arrows.forEach((arrow) => arrow.classList.remove('rotate'));
+
+    if (actualModule?.classList.contains('showCollapse')) {
+      actualModule?.classList.remove('showCollapse');
+      actualArrow?.classList.remove('rotate');
+    } else {
+      actualModule?.classList.add('showCollapse');
+      actualArrow?.classList.add('rotate');
+    }
   }
   /**
    * muestra/oculta las acciones del menu lateral cuando se hace click en la opcion de personal
@@ -286,5 +305,20 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
       (document.querySelector('#cambioColor') as any).style.backgroundColor =
         colorRandom;
     }, 3000);
+  }
+
+  getModules() {
+    this.moduleService
+      .getModules()
+      .then((data) => {
+        console.log(data.modules, 'MODULOS');
+        this.modules = data.modules;
+      })
+      .catch((err) => {
+        if (err.error.msgtk) {
+          this.AuthService.logout();
+          return;
+        }
+      });
   }
 }

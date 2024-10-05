@@ -43,8 +43,7 @@
                         <div class="btn-group">
                             <!-- <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button> -->
                             <!-- <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label> -->
-                            <button class="btn" (click)="enviarQR(usuario.uid)"><i class="fa-solid fa-qrcode fa-lg"
-                                    [ngClass]="{'disabled-button':waitForAnswer}"></i></button>
+
                             <i class="fa fa-download fa-lg download" (click)="downloadPDF(usuario)"
                                 aria-hidden="true"></i>
                         </div>

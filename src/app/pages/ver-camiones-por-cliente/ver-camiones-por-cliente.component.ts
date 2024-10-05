@@ -29,7 +29,6 @@ export class VerCamionesPorClienteComponent implements OnInit {
     private VisitorsService: VisitorsService,
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService,
-    private QRUDService: QRUDService,
     public translateHelper: DynamicTranslationsService
   ) {}
 
@@ -60,34 +59,6 @@ export class VerCamionesPorClienteComponent implements OnInit {
         this.showSpinner = false;
       })
       .catch((err) => {
-        if (err.error.msgtk) {
-          this.AuthService.logout();
-          return;
-        }
-        this.ErrorServidor.error();
-      });
-  }
-  enviarQR(id: any) {
-    this.waitForAnswer = true;
-    this.QRUDService.GenerarQRUSuario(id)
-      .then((data: any) => {
-        this.existeMsgQRExito = true;
-        this.msgQR = data.msg;
-        this.waitForAnswer = false;
-        setTimeout(() => {
-          this.existeMsgQRExito = false;
-        }, 2000);
-      })
-      .catch((err) => {
-        if (err.error.msg) {
-          this.msgQR = err.error.msg;
-          // this.existeQRregistrado = true;
-
-          setTimeout(() => {
-            // this.existeQRregistrado = false;
-          }, 2000);
-          return;
-        }
         if (err.error.msgtk) {
           this.AuthService.logout();
           return;

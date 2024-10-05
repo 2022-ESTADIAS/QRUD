@@ -16,11 +16,13 @@ import { ActualizarUsuarioComponent } from '../components/formularios/emergentes
 import { ActualizarPersonalComponent } from '../components/formularios/emergentes/actualizar-personal/actualizar-personal.component';
 import { ActualizarRolComponent } from '../components/formularios/emergentes/actualizar-rol/actualizar-rol.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DriverRegulationsComponent } from './driver-regulations/driver-regulations.component';
 import { TranslateComponent } from './translate/translate.component';
 import { AsignarCamionesComponent } from './formularios/emergentes/asignar-camiones/asignar-camiones.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from '../app.module';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,13 @@ import { AsignarCamionesComponent } from './formularios/emergentes/asignar-camio
     ComponentesRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

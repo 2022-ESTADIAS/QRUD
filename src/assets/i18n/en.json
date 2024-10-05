@@ -101,5 +101,13 @@
   "driverRegulationItem16": "Smoking is prohibited inside the Yard (only in authorized areas).",
   "driverRegulationItem17": "Walking is not allowed inside the Yard, only from the tractor to its hitching or unhitching box.",
   "driverRegulationItem18": "You may not remain parked inside the Yard while waiting for dispatch.",
-  "driverRegulationAgreement": "Failure to comply with any of the guidelines described above may result in a VETO from our facilities."
+  "driverRegulationAgreement": "Failure to comply with any of the guidelines described above may result in a VETO from our facilities.",
+  "driverName": "Driver's Name",
+  "company": "Company",
+  "email": "Email",
+  "phone": "Phone",
+  "licenseNumber": "License Number",
+  "licensePlates": "License plates",
+  "signaturePlaceholder": "MEXCAL Authorized Staff",
+  "documentDescription": "I hereby share the following information of the  transportation requested."
 }

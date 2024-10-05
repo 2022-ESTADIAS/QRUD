@@ -321,4 +321,8 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
         }
       });
   }
+
+  getLanguage() {
+    return this.translationService.getLanguage();
+  }
 }

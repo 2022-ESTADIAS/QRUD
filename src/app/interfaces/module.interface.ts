@@ -2,6 +2,7 @@ interface Routes {
   name: string;
   link: string;
   _id: string;
+  english_name: string;
 }
 
 export interface Module {
@@ -10,6 +11,7 @@ export interface Module {
   routes: Routes[];
   role_id: string;
   uid: string;
+  english_name: string;
 }
 
 export interface ModuleResponse {

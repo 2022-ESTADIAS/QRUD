@@ -117,7 +117,7 @@
           <input type="text" formControlName="license_number" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>NÚMERO ECONOMICO</label>
+          <label>{{instantTranslation('licenseNumber') | uppercase}}</label>
           <app-errores-frontend *ngIf="campoValido('license_number')"
             mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
@@ -125,7 +125,7 @@
           <input type="text" formControlName="license_plates" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>PLACAS DEL CAMIÓN </label>
+          <label>{{instantTranslation('licensePlates') | uppercase}} </label>
           <app-errores-frontend *ngIf="campoValido('license_plates')"
             mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
@@ -254,7 +254,7 @@
           <input type="text" formControlName="license_number" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>NÚMERO ECONOMICO</label>
+          <label>{{instantTranslation('licenseNumber') | uppercase}}</label>
           <app-errores-frontend *ngIf="campoValido('license_number')"
             mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>
@@ -262,7 +262,7 @@
           <input type="text" formControlName="license_plates" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>PLACAS DEL CAMIÓN </label>
+          <label>{{instantTranslation('licensePlates') | uppercase}} </label>
           <app-errores-frontend *ngIf="campoValido('license_plates')"
             mensaje="{{instantTranslation('fieldRequired') }}"></app-errores-frontend>
         </div>

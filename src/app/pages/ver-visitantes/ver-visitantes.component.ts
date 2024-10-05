@@ -157,19 +157,33 @@ export class VerVisitantesComponent implements OnInit {
     
 
 
-    <p class="formatField">nombre del transportista: <span>${usuario.name}</span> </p>
-    <p class="formatField">Compañia: <span>${usuario.visit_company}</span> </p>
-    <p class="formatField">Email: <span>${usuario.email}</span> </p>
-    <p class="formatField">Telefono: <span>${usuario.phone}</span> </p>
-    <p class="formatField">Numero economico: <span>${usuario.license_number}</span></p>
-    <p class="formatField">Placas del camion: <span>${usuario.license_plates}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'driverName'
+    )}: <span>${usuario.name}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'company'
+    )}: <span>${usuario.visit_company}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'email'
+    )}: <span>${usuario.email}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'phone'
+    )}: <span>${usuario.phone}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'licenseNumber'
+    )}: <span>${usuario.license_number}</span></p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'licensePlates'
+    )}: <span>${usuario.license_plates}</span> </p>
 
   
     `;
 
     signature.innerHTML = `
       <div class="signature-placeholder"></div>
-            <p class="signature-name">Personal Autorizado MEXCAL </p>
+            <p class="signature-name">${this.translateHelper.instantTranslation(
+              'signaturePlaceholder'
+            )} </p>
     `;
 
     div.innerHTML = dynamicContent;

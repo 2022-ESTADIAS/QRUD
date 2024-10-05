@@ -101,5 +101,13 @@
   "driverRegulationItem16": "Prohibido fumar dentro de la Yarda (solo en área autorizada)",
   "driverRegulationItem17": "No se permite caminar dentro de la Yarda, solamente del tractor a su caja que engancha o desengancha",
   "driverRegulationItem18": "No se puede permanecer estacionado dentro de la Yarda en espera de despacho",
-  "driverRegulationAgreement": "En caso de incumplir cualquiera de los lineamientos descritos anteriormente, el personal puede ser acreedor a un VETO de nuestras instalaciones."
+  "driverRegulationAgreement": "En caso de incumplir cualquiera de los lineamientos descritos anteriormente, el personal puede ser acreedor a un VETO de nuestras instalaciones.",
+  "driverName": "nombre del transportista",
+  "company": "Compañia",
+  "email": "Email",
+  "phone": "Telefono",
+  "licenseNumber": "Numero economico",
+  "licensePlates": "Placas del camion",
+  "signaturePlaceholder": "Personal Autorizado MEXCAL",
+  "documentDescription": "Por medio de la presente, comparto la siguiente información del transporte solicitado."
 }

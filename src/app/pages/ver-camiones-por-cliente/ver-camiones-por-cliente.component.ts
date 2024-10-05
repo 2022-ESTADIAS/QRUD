@@ -128,19 +128,33 @@ export class VerCamionesPorClienteComponent implements OnInit {
     
 
 
-    <p class="formatField">nombre del transportista: <span>${usuario?.visitor_id?.name}</span> </p>
-    <p class="formatField">Compañia: <span>${usuario.visitor_id?.visit_company}</span> </p>
-    <p class="formatField">Email: <span>${usuario.visitor_id?.email}</span> </p>
-    <p class="formatField">Telefono: <span>${usuario.visitor_id?.phone}</span> </p>
-    <p class="formatField">Numero economico: <span>${usuario.visitor_id?.license_number}</span></p>
-    <p class="formatField">Placas del camion: <span>${usuario.visitor_id?.license_plates}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'driverName'
+    )} : <span>${usuario?.visitor_id?.name}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'company'
+    )}: <span>${usuario.visitor_id?.visit_company}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'email'
+    )}: <span>${usuario.visitor_id?.email}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'phone'
+    )}: <span>${usuario.visitor_id?.phone}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'licenseNumber'
+    )}: <span>${usuario.visitor_id?.license_number}</span></p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'licensePlates'
+    )}: <span>${usuario.visitor_id?.license_plates}</span> </p>
 
   
     `;
 
     signature.innerHTML = `
       <div class="signature-placeholder"></div>
-            <p class="signature-name">Personal Autorizado MEXCAL </p>
+            <p class="signature-name">${this.translateHelper.instantTranslation(
+              'signaturePlaceholder'
+            )} </p>
     `;
 
     div.innerHTML = dynamicContent;

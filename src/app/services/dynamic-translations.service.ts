@@ -36,4 +36,8 @@ export class DynamicTranslationsService {
       return this.translate.instant(key);
     }
   }
+
+  getLanguage() {
+    return this.translate.currentLang;
+  }
 }

@@ -29,7 +29,8 @@
                         (click)="mostrarLinks(module.uid)">
 
                         <i class="{{module.icon}}"></i>
-                        <span class="nav__name">{{module.module_name}}</span>
+                        <span class="nav__name">{{ getLanguage() == "es" ? module.module_name :
+                            module.english_name}}</span>
 
                         <ion-icon name="chevron-down-outline" class="collapse__link"
                             [ngClass]="{'rotate':mostrarOpcionesMenuUsuario}"></ion-icon>
@@ -37,7 +38,8 @@
                         <ul class="collapse__menu" id="{{module.uid}}">
 
                             <ng-container *ngFor="let route of module.routes">
-                                <a routerLink="{{route.link}}" class="collapse__sublink">{{route.name}}</a>
+                                <a routerLink="{{route.link}}" class="collapse__sublink">{{getLanguage() == "es" ?
+                                    route.name: route.english_name}}</a>
 
                             </ng-container>
 

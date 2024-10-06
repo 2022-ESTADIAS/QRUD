@@ -44,6 +44,23 @@ export class AsignarCamionesComponent implements OnInit {
     this.getDrivers({});
   }
 
+  nextPage() {
+    this.getDrivers({
+      page: this.page + 1,
+    });
+  }
+  prevPage() {
+    this.getDrivers({
+      page: this.page - 1,
+    });
+  }
+
+  search(searchParam: string) {
+    this.getDrivers({
+      keyword: searchParam,
+    });
+  }
+
   /**
    * metodo que oculta el modal del formulario reactivo
    */

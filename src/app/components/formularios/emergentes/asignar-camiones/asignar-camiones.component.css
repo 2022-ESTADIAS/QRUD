@@ -214,7 +214,8 @@
 }
 
 .driver-container:has(.check:checked),
-.driver-container:hover {
+.driver-container:hover,
+.active {
   border: 3px solid #0b4368;
   scale: 1.1;
 }

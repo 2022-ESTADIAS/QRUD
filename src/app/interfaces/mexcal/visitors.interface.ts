@@ -79,3 +79,11 @@ export interface Driver {
   isActive: boolean;
   uid: string;
 }
+
+export interface Truck {
+  uid: string;
+  visitor_id: string;
+}
+export interface TrucksAssignedResponse {
+  trucks: Truck[];
+}

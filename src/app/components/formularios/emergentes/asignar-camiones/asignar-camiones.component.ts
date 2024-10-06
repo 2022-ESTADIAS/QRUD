@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
+  Truck,
   Visitor,
   VisitorSearchParams,
 } from 'src/app/interfaces/mexcal/visitors.interface';
@@ -33,6 +34,8 @@ export class AsignarCamionesComponent implements OnInit {
   existeMsgExito: boolean = false;
   msgExito: string = '';
 
+  trucksAlreadySelected: Truck[] = [];
+
   constructor(
     private VisitorsService: VisitorsService,
     private AuthService: AuthService,
@@ -42,6 +45,7 @@ export class AsignarCamionesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDrivers({});
+    this.AssignedTrucks();
   }
 
   nextPage() {
@@ -96,6 +100,9 @@ export class AsignarCamionesComponent implements OnInit {
   }
 
   toggleDriver(id: string) {
+    const checkBox = document.getElementById(id);
+    checkBox?.classList.toggle('active');
+
     const findDriver = this.driversSelectionIds.find((item) => item == id);
     if (findDriver) {
       this.driversSelectionIds = this.driversSelectionIds.filter(
@@ -138,5 +145,27 @@ export class AsignarCamionesComponent implements OnInit {
 
   instantTranslation(key: string, params?: any) {
     return this.translateHelper.instantTranslation(key, params);
+  }
+
+  AssignedTrucks() {
+    this.VisitorsService.trucksAlreadyAssigned(this.idCliente)
+      .then((data) => {
+        this.trucksAlreadySelected = data.trucks;
+      })
+      .catch((err) => {
+        if (err.error.msgtk) {
+          this.AuthService.logout();
+          return;
+        }
+        this.ErrorServidor.error();
+      });
+  }
+
+  isAssignedTruck(id: string) {
+    const isAsssigned = this.trucksAlreadySelected.find(
+      (item) => item.visitor_id == id
+    );
+
+    return isAsssigned ? true : false;
   }
 }

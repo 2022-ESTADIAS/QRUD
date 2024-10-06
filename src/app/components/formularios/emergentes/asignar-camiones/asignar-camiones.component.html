@@ -26,24 +26,28 @@
         </div>
 
         <div class="grid">
-            <div class="driver-container" *ngFor="let driver of drivers">
-                <input type="checkbox" class="check" (click)="toggleDriver(driver.uid)">
-                <i class="fa fa-user-circle-o user-icon" aria-hidden="true"></i>
+            <ng-container *ngFor="let driver of drivers">
+                <div class="driver-container" [ngClass]="{'active':isAssignedTruck(driver.uid)}" id="{{driver.uid}}">
+                    <input type="checkbox" class="check" (click)="toggleDriver(driver.uid)"
+                        [defaultChecked]="isAssignedTruck(driver.uid)">
+                    <i class="fa fa-user-circle-o user-icon" aria-hidden="true"></i>
 
 
-                <div>
-                    <p>{{instantTranslation('TruckAssignationModalName')}}: <br> <span
-                            class="card-driver-body">{{driver.name}} </span> </p>
-                    <p>{{instantTranslation('TruckAssignationModalLicense')}}: <br><span
-                            class="card-driver-body">{{driver.license_number ? driver.license_number :
-                            "N/A"}} </span> </p>
-                    <p>{{instantTranslation('TruckAssignationModalPlates')}}: <br> <span
-                            class="card-driver-body">{{driver.license_plates ? driver.license_plates :
-                            "N/A" }} </span> </p>
+                    <div>
+                        <p>{{instantTranslation('TruckAssignationModalName')}}: <br> <span
+                                class="card-driver-body">{{driver.name}} </span> </p>
+                        <p>{{instantTranslation('TruckAssignationModalLicense')}}: <br><span
+                                class="card-driver-body">{{driver.license_number ? driver.license_number :
+                                "N/A"}} </span> </p>
+                        <p>{{instantTranslation('TruckAssignationModalPlates')}}: <br> <span
+                                class="card-driver-body">{{driver.license_plates ? driver.license_plates :
+                                "N/A" }} </span> </p>
+
+                    </div>
 
                 </div>
+            </ng-container>
 
-            </div>
 
 
         </div>

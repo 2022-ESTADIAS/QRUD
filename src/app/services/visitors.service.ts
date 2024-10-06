@@ -7,6 +7,7 @@ import {
   DriversResponse,
   TruckDriverResponse,
   TruckDriverSearchParams,
+  TrucksAssignedResponse,
   VisitorSearchParams,
   VisitorsResponse,
 } from '../interfaces/mexcal/visitors.interface';
@@ -60,6 +61,27 @@ export class VisitorsService {
           {
             drivers: data,
           },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+  trucksAlreadyAssigned(id: string) {
+    const token = this.StorageService.desencriptar(llaveToken);
+    return new Promise<TrucksAssignedResponse>((resolve, reject) => {
+      this.http
+        .get<TrucksAssignedResponse>(
+          `${url}/visitors/assigned-trucks/${id}`,
+
           {
             headers: { Authorization: `Bearer ${token}` },
           }

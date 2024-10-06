@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { VisitorSearchParams } from 'src/app/interfaces/mexcal/visitors.interface';
 import { Personal } from 'src/app/interfaces/personal.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
@@ -53,7 +54,7 @@ export class VerPersonalComponent implements OnInit {
   /**
    * propiedad que controla la pagina actual del registro
    */
-  page: any = 0;
+  page: any = 1;
   /**
    * almacena la busqueda realizada por el personal
    */
@@ -72,6 +73,8 @@ export class VerPersonalComponent implements OnInit {
    */
   noexistePersonal: boolean = false;
 
+  pages: number = 1;
+
   /**
    * inyeccion de servicios
    */
@@ -87,15 +90,43 @@ export class VerPersonalComponent implements OnInit {
    * metodo que se ejecuta al iniciar el componente el cual obtiene todos los registros del personal activo y verifica el rol del personal logueado
    */
   ngOnInit(): void {
-    this.obtenerPersonal();
+    this.obtenerPersonal({});
     this.restriccionPorRol();
   }
 
+  nextPage() {
+    this.obtenerPersonal({
+      page: this.page + 1,
+    });
+  }
+  prevPage() {
+    this.obtenerPersonal({
+      page: this.page - 1,
+    });
+  }
+
+  search(searchParam: string) {
+    this.obtenerPersonal({
+      keyword: searchParam,
+    });
+  }
   /**
    * metodo que obtiene todos los registros del personal activo
    */
-  obtenerPersonal() {
-    this.QRUDService.ObtenerRegistros('personal')
+  obtenerPersonal(opt: VisitorSearchParams) {
+    const { page, keyword } = opt;
+    let visitorUrl = `personal`;
+    if (page && keyword) {
+      visitorUrl = `personal?pageNumber=${page}&keyword=${keyword}`;
+    } else if (keyword) {
+      visitorUrl = `personal?keyword=${keyword}`;
+    } else if (page) {
+      visitorUrl = `personal?pageNumber=${page}`;
+    } else {
+      visitorUrl = `personal`;
+    }
+
+    this.QRUDService.ObtenerRegistros(visitorUrl)
       .then((data: any) => {
         this.personas = data.personal;
 

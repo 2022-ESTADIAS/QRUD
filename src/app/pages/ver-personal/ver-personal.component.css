@@ -188,3 +188,17 @@ table tr:nth-of-type(even) {
   cursor: pointer;
   /* margin-left: 13px; */
 }
+
+/* ESTILOS DE PAGINACION */
+.pagination-container {
+  display: flex;
+  max-width: 200px;
+  justify-content: space-evenly;
+  margin: 25px auto 0 auto;
+  align-items: center;
+}
+
+.pagination-container i {
+  cursor: pointer;
+}
+/* FIN PAGINACION */

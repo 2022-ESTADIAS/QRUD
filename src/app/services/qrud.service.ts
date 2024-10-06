@@ -75,7 +75,7 @@ export class QRUDService {
    * peticion dinamica para obtener un registro en la aplicacion ya sea usuario, personal o rol, segun la ruta  que se le pase como parametro. el token de autenticacion se obtiene de la variable de sessionStorage el cual es encriptado y almacenado tras haber sido generado en el login.
    * @param ruta recibe como valor user,personal o rol
    */
-  ObtenerRegistros(ruta: 'user' | 'personal' | 'rol') {
+  ObtenerRegistros(ruta: 'user' | 'personal' | 'rol' | any) {
     const token = this.StorageService.desencriptar(llaveToken);
 
     return new Promise((resolve, reject) => {

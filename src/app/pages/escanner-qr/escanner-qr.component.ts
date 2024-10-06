@@ -83,9 +83,10 @@ export class EscannerQRComponent implements OnInit {
    */
   escanearQR(event: string) {
     this.showQREscaner = false;
-    const user = JSON.parse(event) as QRCode;
+    // const user = JSON.parse(event) as QRCode;
+    const userId = JSON.parse(event) as string;
     // console.log(user, 'escaner');
-    this.QRUDService.getQRCodeUser(user._id)
+    this.QRUDService.getQRCodeUser(userId)
       .then((data) => {
         console.log(data, 'DATA DE QR');
 

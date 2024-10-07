@@ -36,6 +36,8 @@ export class AsignarCamionesComponent implements OnInit {
 
   trucksAlreadySelected: Truck[] = [];
 
+  asignInMemory: boolean = false;
+
   constructor(
     private VisitorsService: VisitorsService,
     private AuthService: AuthService,
@@ -111,9 +113,13 @@ export class AsignarCamionesComponent implements OnInit {
     } else {
       this.driversSelectionIds.push(id);
     }
+
+    // this.driversSelectionIds.push(id);
   }
 
   TrucksAssignation() {
+    console.log(this.driversSelectionIds, 'DRIVERS');
+
     this.VisitorsService.AssignationTrucks(
       this.idCliente,
       this.driversSelectionIds
@@ -165,7 +171,10 @@ export class AsignarCamionesComponent implements OnInit {
     const isAsssigned = this.trucksAlreadySelected.find(
       (item) => item.visitor_id == id
     );
+    const itemFound = this.driversSelectionIds.find(
+      (item) => item.toString() == id.toString()
+    );
 
-    return isAsssigned ? true : false;
+    return isAsssigned || itemFound ? true : false;
   }
 }

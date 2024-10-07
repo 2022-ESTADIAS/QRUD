@@ -6,6 +6,7 @@ import { QRUDService } from 'src/app/services/qrud.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { Router } from '@angular/router';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 
 /**
  * nombre, hoja de estilos y archivo html del componente
@@ -50,7 +51,8 @@ export class RegistroPersonalComponent implements OnInit {
     private QRUDService: QRUDService,
     private authService: AuthService,
     private ErrorServidor: ErrorServidorService,
-    private router: Router
+    public router: Router,
+    private translationService: DynamicTranslationsService
   ) {}
   /**
    * Inicializando el formulario reactivo y obtiene los roles del personal para mostrarlos en el formulario
@@ -146,5 +148,9 @@ export class RegistroPersonalComponent implements OnInit {
    */
   removerAlertas() {
     this.existeError = false;
+  }
+
+  instantTranslation(key: string) {
+    return this.translationService.instantTranslation(key);
   }
 }

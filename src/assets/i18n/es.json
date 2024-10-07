@@ -59,6 +59,7 @@
   "driversComponentTableEmail": "Email",
   "driversComponentTableOffice": "Oficina",
   "driversComponentTablePhoneOffice": "telefono de oficina",
+  "qrAccessGranted": "Accesso concedido!",
   "qrScannerWarning": "Para acceder a este componente, debe de tener una camara disponible",
   "qrScannerVisitorData": "Datos del Visitante",
   "qrScannerVisitorName": "Nombre del visitante",
@@ -125,5 +126,11 @@
   "TruckAssignationModalName": "Nombre",
   "TruckAssignationModalLicense": "Licencia",
   "TruckAssignationModalPlates": "Placas",
-  "TruckAssignationModalButton": "Asignar Camiones"
+  "TruckAssignationModalButton": "Asignar Camiones",
+  "ClientRegistrationForm": "Formulario de Registro de Cliente",
+  "ClientRegistrationName": "Nombre",
+  "ClientRegistrationPhone": "Telefono",
+  "ClientRegistrationEmail": "Email",
+  "ClientRegistrationPassword": "Contraseña",
+  "ClientRegistrationButton": "Registrar"
 }

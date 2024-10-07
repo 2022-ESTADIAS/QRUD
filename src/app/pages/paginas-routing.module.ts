@@ -16,7 +16,7 @@ import { VerTransportistasComponent } from './ver-transportistas/ver-transportis
 import { VerCamionesPorClienteComponent } from './ver-camiones-por-cliente/ver-camiones-por-cliente.component';
 
 const routes: Routes = [
-  { path: '', component: RegistroUsuarioComponent },
+  { path: 'registro-camion', component: RegistroUsuarioComponent },
   { path: 'registro-personal', component: RegistroPersonalComponent },
   { path: 'registro-rol', component: RegistroRolComponent },
   { path: 'ver-usuarios', component: VerUsuariosComponent },

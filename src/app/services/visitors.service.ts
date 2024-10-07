@@ -11,6 +11,7 @@ import {
   VisitorSearchParams,
   VisitorsResponse,
 } from '../interfaces/mexcal/visitors.interface';
+import { DynamicTranslationsService } from './dynamic-translations.service';
 
 const { url, llaveToken } = environment;
 
@@ -20,7 +21,8 @@ const { url, llaveToken } = environment;
 export class VisitorsService {
   constructor(
     private http: HttpClient,
-    private StorageService: StorageService
+    private StorageService: StorageService,
+    private languageService: DynamicTranslationsService
   ) {}
 
   getAllVisitors(opt: VisitorSearchParams) {
@@ -40,7 +42,10 @@ export class VisitorsService {
     return new Promise<VisitorsResponse>((resolve, reject) => {
       this.http
         .get<VisitorsResponse>(visitorUrl, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            lang: this.languageService.gettranslate().currentLang,
+          },
         })
         .subscribe(
           (data) => {
@@ -62,7 +67,10 @@ export class VisitorsService {
             drivers: data,
           },
           {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: {
+              Authorization: `Bearer ${token}`,
+              lang: this.languageService.gettranslate().currentLang,
+            },
           }
         )
         .subscribe(
@@ -83,7 +91,10 @@ export class VisitorsService {
           `${url}/visitors/assigned-trucks/${id}`,
 
           {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: {
+              Authorization: `Bearer ${token}`,
+              lang: this.languageService.gettranslate().currentLang,
+            },
           }
         )
         .subscribe(
@@ -113,7 +124,10 @@ export class VisitorsService {
     return new Promise<DriversResponse>((resolve, reject) => {
       this.http
         .get<DriversResponse>(visitorUrl, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            lang: this.languageService.gettranslate().currentLang,
+          },
         })
         .subscribe(
           (data) => {
@@ -143,7 +157,10 @@ export class VisitorsService {
     return new Promise<TruckDriverResponse>((resolve, reject) => {
       this.http
         .get<TruckDriverResponse>(visitorUrl, {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: {
+            Authorization: `Bearer ${token}`,
+            lang: this.languageService.gettranslate().currentLang,
+          },
         })
         .subscribe(
           (data) => {

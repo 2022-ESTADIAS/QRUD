@@ -9,9 +9,16 @@
 
 <app-exito [mensaje]="msgExito" *ngIf="existeMsgExito"></app-exito>
 
+
+<ng-container *ngIf="this.router.url =='/registro-cliente' ">
+  <app-translate></app-translate>
+
+</ng-container>
+
+
 <div class="activity-grid">
   <div class="container">
-    <div class="title">Formulario de Registro de Cliente</div>
+    <div class="title">{{instantTranslation("ClientRegistrationForm")}}</div>
     <form action="#" [formGroup]="form" (ngSubmit)="submit()">
       <div class="user-details">
 
@@ -19,8 +26,9 @@
           <input type="text" formControlName="nombre" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>Nombre</label>
-          <app-errores-frontend mensaje="Campo requerido" *ngIf="campoValido('nombre')"></app-errores-frontend>
+          <label>{{instantTranslation("ClientRegistrationName")}}</label>
+          <app-errores-frontend mensaje="{{instantTranslation('fieldRequired')}}"
+            *ngIf="campoValido('nombre')"></app-errores-frontend>
         </div>
 
 
@@ -29,8 +37,8 @@
           <input type="tel" formControlName="telefono" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>Telefono</label>
-          <app-errores-frontend mensaje="Tiene que ser un numero valido"
+          <label>{{instantTranslation('ClientRegistrationPhone')}}</label>
+          <app-errores-frontend mensaje="{{instantTranslation('fieldRequired')}}"
             *ngIf="campoValido('telefono')"></app-errores-frontend>
         </div>
 
@@ -38,8 +46,8 @@
           <input type="email" formControlName="email" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>Email</label>
-          <app-errores-frontend mensaje="Tiene que ser un correo valido"
+          <label>{{instantTranslation('ClientRegistrationEmail')}}</label>
+          <app-errores-frontend mensaje="{{instantTranslation('formEmailValidationField')}}"
             *ngIf="campoValido('email')"></app-errores-frontend>
         </div>
 
@@ -47,9 +55,9 @@
           <input type="password" formControlName="password" (keyup)="removerAlertas()">
           <span class="highlight"></span>
           <span class="bar"></span>
-          <label>Contraseña</label>
+          <label>{{instantTranslation('ClientRegistrationPassword')}}</label>
           <!-- <app-errores-frontend mensaje="La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula y al menos un caracter no alfanumérico" *ngIf="campoValido('password')"  ></app-errores-frontend> -->
-          <app-errores-frontend mensaje="La contraseña es requerida"
+          <app-errores-frontend mensaje="{{instantTranslation('fieldRequired')}}"
             *ngIf="campoValido('password')"></app-errores-frontend>
         </div>
 
@@ -66,7 +74,7 @@
       </div>
       <div class="wrapper">
         <button href="#0" class="btn10">
-          <span>REGISTRAR</span>
+          <span>{{instantTranslation('ClientRegistrationButton')}}</span>
           <div class="transition"></div>
         </button>
       </div>

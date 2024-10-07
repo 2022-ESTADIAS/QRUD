@@ -100,8 +100,6 @@ export class EscannerQRComponent implements OnInit {
         this.showQREscaner = true;
 
         if (this.usuarioQR) {
-          console.log(this.usuarioQR, 'QR CODE ENCONTRADO Y ASIGNADO');
-
           const date = new Date().toLocaleString('es-MX');
           if (this.usuarioQR?.visitor_type) {
             this.ocultarDatos = true;
@@ -114,7 +112,7 @@ export class EscannerQRComponent implements OnInit {
             visitorQr: this.usuarioQR!,
           });
           this.existeMsgExito = true;
-          this.msgExito = 'Accesso concedido !';
+          this.msgExito = this.instantTranslation('qrAccessGranted');
 
           setTimeout(() => {
             this.existeMsgExito = false;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BarcodeFormat } from '@zxing/library';
 import {
   QRCode,
@@ -69,7 +70,8 @@ export class EscannerQRComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private QRUDService: QRUDService,
-    public translateHelper: DynamicTranslationsService
+    public translateHelper: DynamicTranslationsService,
+    public router: Router
   ) {}
 
   /**
@@ -88,8 +90,6 @@ export class EscannerQRComponent implements OnInit {
     // console.log(user, 'escaner');
     this.QRUDService.getQRCodeUser(userId)
       .then((data) => {
-        console.log(data, 'DATA DE QR');
-
         this.usuarioQR = {
           ...data.user,
           ine_field: data.user.ine_field,
@@ -122,7 +122,8 @@ export class EscannerQRComponent implements OnInit {
       .catch((err) => {
         this.showQREscaner = true;
         this.existeError = true;
-        this.errorServidor = err.error.err;
+        // this.errorServidor = err.error.err;
+        this.errorServidor = this.instantTranslation('invalidQRCode');
         this.usuarioQR = null;
 
         setTimeout(() => {

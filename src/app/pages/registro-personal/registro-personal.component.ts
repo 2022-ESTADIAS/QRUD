@@ -71,7 +71,7 @@ export class RegistroPersonalComponent implements OnInit {
         [Validators.required, Validators.pattern(/^[0-9]\d{9}$/g)],
       ],
       // password:["", Validators.required,Validators.pattern(/^(?=.\d)(?=.[\u0021-\u002b\u003c-\u0040])(?=.[A-Z])(?=.[a-z])\S{8,16}$/)],
-      password: ['', Validators.required],
+      password: ['', [Validators.minLength(8), Validators.required]],
       email: ['', [Validators.required, Validators.email]],
     });
   }
@@ -105,7 +105,7 @@ export class RegistroPersonalComponent implements OnInit {
         }, 2000);
       })
       .catch((err) => {
-        if (err.error.erros) {
+        if (err.error.errors) {
           this.existeError = true;
           this.errores = err.error.errors;
           return;

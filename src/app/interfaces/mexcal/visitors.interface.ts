@@ -1,3 +1,5 @@
+import { Truck } from './trucks.interface';
+
 export interface VisitorsResponse {
   status: string;
   visitors: Visitor[];
@@ -52,10 +54,15 @@ interface DriverInfo {
   visit_company: string;
   phone: string;
 }
+export interface DriverResponse {
+  uid: string;
+  isActive: boolean;
+  truck_id: Truck;
+}
 
 export interface TruckDriverResponse {
   status: string;
-  drivers: TruckDriver[];
+  drivers: DriverResponse[];
   page: number;
   pages: number;
 }
@@ -80,10 +87,10 @@ export interface Driver {
   uid: string;
 }
 
-export interface Truck {
+export interface TruckID {
   uid: string;
-  visitor_id: string;
+  truck_id: string;
 }
 export interface TrucksAssignedResponse {
-  trucks: Truck[];
+  trucks: TruckID[];
 }

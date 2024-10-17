@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import html2PDF from 'jspdf-html2canvas';
 import {
+  SearchParams,
+  Truck,
+} from 'src/app/interfaces/mexcal/trucks.interface';
+import {
+  DriverResponse,
   TruckDriver,
   TruckDriverSearchParams,
 } from 'src/app/interfaces/mexcal/visitors.interface';
@@ -8,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
+import { TruckService } from 'src/app/services/truck.service';
 import { VisitorsService } from 'src/app/services/visitors.service';
 
 @Component({
@@ -16,7 +22,7 @@ import { VisitorsService } from 'src/app/services/visitors.service';
   styleUrls: ['./ver-camiones-por-cliente.component.css'],
 })
 export class VerCamionesPorClienteComponent implements OnInit {
-  usuarios: TruckDriver[] = [];
+  usuarios: DriverResponse[] = [];
   page: number = 1;
   pages: number = 1;
   busqueda: string = '';
@@ -27,6 +33,7 @@ export class VerCamionesPorClienteComponent implements OnInit {
   waitForAnswer: boolean = false;
   constructor(
     private VisitorsService: VisitorsService,
+    private TrucksService: TruckService,
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService,
     public translateHelper: DynamicTranslationsService
@@ -38,7 +45,7 @@ export class VerCamionesPorClienteComponent implements OnInit {
     });
   }
 
-  getVisitors(opt: TruckDriverSearchParams) {
+  getVisitors(opt: SearchParams) {
     this.showSpinner = true;
     this.VisitorsService.getAllTrucks({
       page: opt.page,
@@ -90,7 +97,7 @@ export class VerCamionesPorClienteComponent implements OnInit {
     return this.translateHelper.instantTranslation(key, params);
   }
 
-  downloadPDF(user: TruckDriver) {
+  downloadPDF(user: Truck) {
     const isCreated = this.generatePDFTemplate(user);
 
     if (isCreated) {
@@ -118,7 +125,7 @@ export class VerCamionesPorClienteComponent implements OnInit {
     }
   }
 
-  generatePDFTemplate(usuario: TruckDriver): boolean {
+  generatePDFTemplate(usuario: Truck): boolean {
     const div = document.querySelector('#table') as HTMLElement;
     const signature = document.querySelector(
       '#signature-container'
@@ -130,22 +137,14 @@ export class VerCamionesPorClienteComponent implements OnInit {
 
     <p class="formatField">${this.translateHelper.instantTranslation(
       'driverName'
-    )} : <span>${usuario?.visitor_id?.name}</span> </p>
+    )} : <span>${usuario?.name}</span> </p>
     <p class="formatField">${this.translateHelper.instantTranslation(
       'company'
-    )}: <span>${usuario.visitor_id?.visit_company}</span> </p>
+    )}: <span>${usuario.company}</span> </p>
     <p class="formatField">${this.translateHelper.instantTranslation(
       'email'
-    )}: <span>${usuario.visitor_id?.email}</span> </p>
-    <p class="formatField">${this.translateHelper.instantTranslation(
-      'phone'
-    )}: <span>${usuario.visitor_id?.phone}</span> </p>
-    <p class="formatField">${this.translateHelper.instantTranslation(
-      'licenseNumber'
-    )}: <span>${usuario.visitor_id?.license_number}</span></p>
-    <p class="formatField">${this.translateHelper.instantTranslation(
-      'licensePlates'
-    )}: <span>${usuario.visitor_id?.license_plates}</span> </p>
+    )}: <span>${usuario.email}</span> </p>
+   
 
   
     `;

@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Truck } from 'src/app/interfaces/mexcal/trucks.interface';
 import {
-  Truck,
+  TruckID,
   Visitor,
   VisitorSearchParams,
 } from 'src/app/interfaces/mexcal/visitors.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
+import { TruckService } from 'src/app/services/truck.service';
 import { VisitorsService } from 'src/app/services/visitors.service';
 
 @Component({
@@ -26,7 +28,7 @@ export class AsignarCamionesComponent implements OnInit {
   page: number = 0;
   pages: number = 0;
 
-  drivers: Visitor[] = [];
+  drivers: Truck[] = [];
   driversSelectionIds: string[] = [];
 
   existeError: boolean = false;
@@ -34,12 +36,13 @@ export class AsignarCamionesComponent implements OnInit {
   existeMsgExito: boolean = false;
   msgExito: string = '';
 
-  trucksAlreadySelected: Truck[] = [];
+  trucksAlreadySelected: TruckID[] = [];
 
   asignInMemory: boolean = false;
 
   constructor(
     private VisitorsService: VisitorsService,
+    private TrucksService: TruckService,
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService,
     private translateHelper: DynamicTranslationsService
@@ -76,13 +79,15 @@ export class AsignarCamionesComponent implements OnInit {
 
   getDrivers(opt: VisitorSearchParams) {
     this.showSpinner = true;
-    this.VisitorsService.getAllVisitors({
+    this.TrucksService.getAllTrucks({
       page: opt.page,
       keyword: opt.keyword,
     })
       .then((data) => {
-        this.drivers = data.visitors;
-        if (data.pages == 0 && data.visitors.length == 0) {
+        console.log(data, 'TRUCKS');
+
+        this.drivers = data.trucks;
+        if (data.pages == 0 && data.trucks.length == 0) {
           this.page = 0;
         } else {
           this.page = data.page;
@@ -169,7 +174,7 @@ export class AsignarCamionesComponent implements OnInit {
 
   isAssignedTruck(id: string) {
     const isAsssigned = this.trucksAlreadySelected.find(
-      (item) => item.visitor_id == id
+      (item) => item.truck_id == id
     );
     const itemFound = this.driversSelectionIds.find(
       (item) => item.toString() == id.toString()

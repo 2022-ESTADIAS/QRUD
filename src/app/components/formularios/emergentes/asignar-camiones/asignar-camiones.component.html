@@ -16,7 +16,7 @@
     <div class="modal-content-edit">
         <span class="closeedit" (click)="ocultarFormulario()">&times;</span>
         <h1 class="modal-title">{{instantTranslation('TruckAssignationModalTitle')}}</h1>
-        <div class="spinner-container" *ngIf="drivers.length === 0">
+        <div class="spinner-container" *ngIf="drivers?.length === 0">
             <app-spinner></app-spinner>
 
         </div>
@@ -36,12 +36,9 @@
                     <div>
                         <p>{{instantTranslation('TruckAssignationModalName')}}: <br> <span
                                 class="card-driver-body">{{driver.name}} </span> </p>
-                        <p>{{instantTranslation('TruckAssignationModalLicense')}}: <br><span
-                                class="card-driver-body">{{driver.license_number ? driver.license_number :
-                                "N/A"}} </span> </p>
-                        <p>{{instantTranslation('TruckAssignationModalPlates')}}: <br> <span
-                                class="card-driver-body">{{driver.license_plates ? driver.license_plates :
-                                "N/A" }} </span> </p>
+                        <p>Tracto: <br><span class="card-driver-body">{{driver.tract}} </span> </p>
+                        <p>vin: <br> <span class="card-driver-body"> {{driver.vin}} </span> </p>
+                        <p>Modelo: <br> <span class="card-driver-body"> {{driver.model}} </span> </p>
 
                     </div>
 
@@ -52,7 +49,7 @@
 
         </div>
 
-        <div class="pagination-container" *ngIf="drivers.length !== 0">
+        <div class="pagination-container" *ngIf="drivers?.length !== 0">
             <i class="fa-solid fa-circle-left" (click)="prevPage()" *ngIf="page >1"></i>
             <div> {{page}} </div>
             <div> {{instantTranslation('visitorsComponentTableOf')}} </div>

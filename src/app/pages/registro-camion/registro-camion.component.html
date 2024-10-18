@@ -44,7 +44,7 @@
                             <!-- <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label> -->
                             <button class="btn" (click)="enviarQR(truck.uid)"><i class="fa-solid fa-qrcode fa-lg"
                                     [ngClass]="{'disabled-button':waitForAnswer}"></i></button>
-                            <i class="fa fa-download fa-lg download" (click)="downloadPDF(truck)"
+                            <i class="fa fa-download fa-lg download" (click)="downloadPDF(truck.uid)"
                                 aria-hidden="true"></i>
                         </div>
 
@@ -72,6 +72,11 @@
 
 <div class="invisible">
     <div id="page">
+        <div class="date-container" id="date-container">
+            <!-- <p>Fecha: <span> {{actualDate()}}</span> </p> -->
+        </div>
+
+
         <div class="logo-container">
             <img src="assets/img/logo.png" alt="mexcal logo">
             <img src="assets/img/divelopers.png" alt="divelopers logo">
@@ -98,7 +103,7 @@
             <p class="signature-name">Personal Autorizado MEXCAL </p> -->
         </div>
 
-
+        <div class="qr-image" id="truck-qr"></div>
 
 
     </div>

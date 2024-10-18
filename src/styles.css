@@ -108,7 +108,7 @@ body {
 .signature-placeholder {
   border-top: 4px solid #000;
   width: 30rem;
-  margin: 25rem auto auto auto;
+  margin: 16rem auto auto auto;
 }
 
 .signature-name {
@@ -117,4 +117,13 @@ body {
 
 .invisible {
   opacity: 0;
+}
+
+.qr-pdf-image {
+  width: 200px;
+  height: 200px;
+}
+.date-container {
+  display: flex;
+  justify-content: end;
 }

@@ -69,12 +69,9 @@ export class TruckQrComponent implements OnInit {
 
   escanearQR(event: string) {
     this.showQREscaner = false;
-    // const user = JSON.parse(event) as QRCode;
     const userId = JSON.parse(event) as string;
-    console.log(userId, 'escaner');
     this.TruckService.getTruckByQR(userId)
       .then((data) => {
-        console.log(data, 'DATA');
         this.usuarioQR = data.truck;
         this.showQREscaner = true;
         this.mostrarDatos = true;
@@ -89,7 +86,6 @@ export class TruckQrComponent implements OnInit {
       .catch((err) => {
         this.showQREscaner = true;
         this.existeError = true;
-        // this.errorServidor = err.error.err;
         this.errorServidor = this.instantTranslation('invalidQRCode');
         this.usuarioQR = null;
 

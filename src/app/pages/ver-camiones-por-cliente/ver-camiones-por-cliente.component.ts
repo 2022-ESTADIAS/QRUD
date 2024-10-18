@@ -52,8 +52,6 @@ export class VerCamionesPorClienteComponent implements OnInit {
       keyword: opt.keyword,
     })
       .then((data) => {
-        console.log(data, 'VISITANTES');
-
         this.usuarios = data.drivers;
         if (data.pages == 0 && data.drivers.length == 0) {
           this.page = 0;

@@ -28,4 +28,5 @@ export interface TruckResponse {
 export interface OneTruckResponse {
   message: string;
   truck: Truck;
+  qr: string;
 }

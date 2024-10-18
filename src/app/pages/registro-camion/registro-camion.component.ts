@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { TruckService } from 'src/app/services/truck.service';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-registro-camion',
@@ -112,37 +113,62 @@ export class RegistroCamionComponent implements OnInit {
       });
   }
 
-  downloadPDF(user: Truck) {
-    const isCreated = this.generatePDFTemplate(user);
+  downloadPDF(id: string) {
+    this.TruckService.getTruckByQR(id)
+      .then((data) => {
+        const isCreated = this.generatePDFTemplate(data.truck, data.qr);
 
-    if (isCreated) {
-      const page = document.querySelector('#page') as HTMLElement;
+        if (isCreated) {
+          const page = document.querySelector('#page') as HTMLElement;
 
-      html2PDF(page, {
-        jsPDF: {
-          format: 'a4',
-        },
-        imageType: 'image/jpeg',
-        output: './pdf/generate.pdf',
-        margin: {
-          top: 20,
-          left: 10,
-          bottom: 10,
-          right: 10,
-        },
-        // html2canvas: {
-        //   scrollX: 0,
-        //   scrollY: -window.scrollY,
-        // },
+          html2PDF(page, {
+            jsPDF: {
+              format: 'a4',
+            },
+            imageType: 'image/jpeg',
+            output: './pdf/generate.pdf',
+            margin: {
+              top: 20,
+              left: 10,
+              bottom: 10,
+              right: 10,
+            },
+            // html2canvas: {
+            //   scrollX: 0,
+            //   scrollY: -window.scrollY,
+            // },
+          });
+        }
+      })
+      .catch((err) => {
+        if (err.error.msg) {
+          this.msg = err.error.msg;
+          // this.existeQRregistrado = true;
+
+          setTimeout(() => {
+            // this.existeQRregistrado = false;
+          }, 2000);
+          return;
+        }
+        if (err.error.msgtk) {
+          this.AuthService.logout();
+          return;
+        }
+        this.ErrorServidor.error();
       });
-    }
   }
 
-  generatePDFTemplate(usuario: Truck): boolean {
+  generatePDFTemplate(usuario: Truck, qr: string): boolean {
     const div = document.querySelector('#table') as HTMLElement;
     const signature = document.querySelector(
       '#signature-container'
     ) as HTMLElement;
+    const qrImage = document.querySelector('#truck-qr') as HTMLElement;
+    const date = document.querySelector('#date-container') as HTMLElement;
+
+    date.innerHTML = `
+      <p>Fecha: <span class=""> ${this.actualDate()}</span> </p>
+    `;
 
     const dynamicContent = `
     
@@ -166,7 +192,33 @@ export class RegistroCamionComponent implements OnInit {
      )} </p>
     `;
 
+    qrImage.innerHTML = `
+     <img src="${qr}" class="qr-pdf-image" alt="qr image"
+
+     ></img> 
+    `;
+
     div.innerHTML = dynamicContent;
+
     return true;
+  }
+
+  resetPDFTemplate() {
+    const div = document.querySelector('#table') as HTMLElement;
+    const signature = document.querySelector(
+      '#signature-container'
+    ) as HTMLElement;
+
+    div.innerHTML = '';
+    signature.innerHTML = '';
+  }
+
+  actualDate() {
+    const today = new Date();
+    const date = format(today, 'dd/MM/yyyy HH:mm');
+    // const time = date.split(' ')[1];
+    // const amOrPm = +time >= 12 ? 'pm' : 'am';
+
+    return date;
   }
 }

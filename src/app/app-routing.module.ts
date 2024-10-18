@@ -14,12 +14,14 @@ import { EmailGuard } from './guards/email.guard';
 import { RegistroUsuarioComponent } from './pages/registro-usuario/registro-usuario.component';
 import { EscannerQRComponent } from './pages/escanner-qr/escanner-qr.component';
 import { RegistroPersonalComponent } from './pages/registro-personal/registro-personal.component';
+import { TruckQrComponent } from './pages/truck-qr/truck-qr.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroUsuarioComponent },
   { path: 'registro-cliente', component: RegistroPersonalComponent },
   { path: 'escaner', component: EscannerQRComponent },
+  { path: 'escaner-camion', component: TruckQrComponent },
   { path: 'forget-password', component: ContrasenaEmailComponent },
   {
     path: 'error',

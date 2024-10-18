@@ -14,10 +14,13 @@ import { VerRolComponent } from './ver-rol/ver-rol.component';
 import { VerVisitantesComponent } from './ver-visitantes/ver-visitantes.component';
 import { VerTransportistasComponent } from './ver-transportistas/ver-transportistas.component';
 import { VerCamionesPorClienteComponent } from './ver-camiones-por-cliente/ver-camiones-por-cliente.component';
+import { RegistroCamionComponent } from './registro-camion/registro-camion.component';
+import { TruckQrComponent } from './truck-qr/truck-qr.component';
 
 const routes: Routes = [
   { path: 'registro-visitante', component: RegistroUsuarioComponent },
   { path: 'registro-personal', component: RegistroPersonalComponent },
+  { path: 'registro-camion', component: RegistroCamionComponent },
   { path: 'registro-rol', component: RegistroRolComponent },
   { path: 'ver-usuarios', component: VerUsuariosComponent },
   { path: 'ver-visitantes', component: VerVisitantesComponent },
@@ -28,6 +31,7 @@ const routes: Routes = [
   { path: 'usuarios-eliminados', component: UsuariosEliminadosComponent },
   { path: 'personal-eliminado', component: PersonalEliminadoComponent },
   { path: 'qr', component: EscannerQRComponent },
+  { path: 'truck-qr', component: TruckQrComponent },
   { path: 'contrasena', component: CambioContrasenaComponent },
 ];
 

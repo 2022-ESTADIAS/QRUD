@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { DynamicTranslationsService } from './dynamic-translations.service';
 import {
+  OneTruckResponse,
   SearchParams,
   TruckResponse,
 } from '../interfaces/mexcal/trucks.interface';
@@ -42,6 +43,51 @@ export class TruckService {
             lang: this.languageService.gettranslate().currentLang,
           },
         })
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+
+  getTruckByQR(id: string) {
+    return new Promise<OneTruckResponse>((resolve, reject) => {
+      this.http
+        .get<OneTruckResponse>(`${url}/trucks/qr/${id}`, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+
+  generateTruckQR(id: string) {
+    const token = this.StorageService.desencriptar(llaveToken);
+
+    return new Promise((resolve, reject) => {
+      this.http
+        .post<{ msg: string }>(
+          `${url}/trucks/qr/${id}`,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              lang: this.languageService.gettranslate().currentLang,
+            },
+          }
+        )
         .subscribe(
           (data) => {
             resolve(data);

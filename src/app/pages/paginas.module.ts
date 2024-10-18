@@ -26,6 +26,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { createTranslateLoader } from '../app.module';
 import { VerCamionesPorClienteComponent } from './ver-camiones-por-cliente/ver-camiones-por-cliente.component';
+import { RegistroCamionComponent } from './registro-camion/registro-camion.component';
+import { TruckQrComponent } from './truck-qr/truck-qr.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { VerCamionesPorClienteComponent } from './ver-camiones-por-cliente/ver-c
     VerVisitantesComponent,
     VerTransportistasComponent,
     VerCamionesPorClienteComponent,
+    RegistroCamionComponent,
+    TruckQrComponent,
     /* EscannerUsuarioComponent, */
   ],
   imports: [
@@ -74,6 +78,8 @@ import { VerCamionesPorClienteComponent } from './ver-camiones-por-cliente/ver-c
     VerVisitantesComponent,
     VerTransportistasComponent,
     VerCamionesPorClienteComponent,
+    RegistroCamionComponent,
+    TruckQrComponent,
   ],
 })
 export class PaginasModule {}

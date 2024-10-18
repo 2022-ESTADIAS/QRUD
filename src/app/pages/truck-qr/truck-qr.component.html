@@ -1,0 +1,82 @@
+<ng-container *ngIf="existeError">
+    <div class="mensajes-container">
+        <div class="contenido">
+            <div class="validacion">
+                <div class="content-message">
+                    <i class="fa-solid fa-x error"></i>
+                    <div class="message">
+                        <span class="text text-1">Error</span>
+                        <span class="text text-2" *ngIf="errorServidor.length > 0">{{errorServidor}}</span>
+                    </div>
+                </div>
+                <i class="fa-solid fa-x close"></i>
+                <div class="progress"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+</ng-container>
+
+<div class="alert show  showAlert" *ngIf="existeMsgExito">
+    <i class="fa-solid fa-thumbs-up"></i>
+    <span class="msg">{{msgExito}}</span>
+    <div class="close-btn">
+        <i class="fa-solid fa-x close"></i>
+    </div>
+</div>
+
+<ng-container *ngIf="this.router.url =='/escaner' ">
+    <app-translate></app-translate>
+
+</ng-container>
+
+
+
+
+<div class="container" *ngIf="camara && showQREscaner">
+    <zxing-scanner [formats]="allowedFormats" (scanSuccess)="escanearQR($event)"
+        (camerasNotFound)="camaranoEncontrada($event)"> </zxing-scanner>
+
+</div>
+
+
+<div class="spinner-container" *ngIf="!camara">
+    <app-spinner></app-spinner>
+</div>
+
+<h1 *ngIf="!camara">{{instantTranslation('qrScannerWarning')}}</h1>
+
+
+<div *ngIf="mostrarDatos">
+
+    <div class="visitor-container">
+        <h4>Datos del Camión</h4>
+        <div>
+            <div class="grid">
+                <p class="data-container">Nombre: <span class="bold">{{usuarioQR?.name}}</span> </p>
+                <p class="data-container">Compañia: <span class="bold">{{usuarioQR?.company}}</span> </p>
+                <p class="data-container">VIN: <span class="bold">{{usuarioQR?.vin}}</span> </p>
+                <p class="data-container">Tracto: <span class="bold">{{usuarioQR?.tract}}</span> </p>
+                <p class="data-container">Modelo: <span class="bold">{{usuarioQR?.model}}</span> </p>
+                <p class="data-container">Año: <span class="bold">{{usuarioQR?.year}}</span> </p>
+
+
+            </div>
+
+
+            <button type="button" class="clear-qr-btn" (click)="limpiarQr()">
+                {{instantTranslation('qrScannerVisitorClearRegister')}}
+            </button>
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+</div>

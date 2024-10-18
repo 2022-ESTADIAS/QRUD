@@ -4,63 +4,73 @@ import {
   SearchParams,
   Truck,
 } from 'src/app/interfaces/mexcal/trucks.interface';
-import {
-  DriverResponse,
-  TruckDriver,
-  TruckDriverSearchParams,
-} from 'src/app/interfaces/mexcal/visitors.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
-import { QRUDService } from 'src/app/services/qrud.service';
 import { TruckService } from 'src/app/services/truck.service';
-import { VisitorsService } from 'src/app/services/visitors.service';
 
 @Component({
-  selector: 'app-ver-camiones-por-cliente',
-  templateUrl: './ver-camiones-por-cliente.component.html',
-  styleUrls: ['./ver-camiones-por-cliente.component.css'],
+  selector: 'app-registro-camion',
+  templateUrl: './registro-camion.component.html',
+  styleUrls: ['./registro-camion.component.css'],
 })
-export class VerCamionesPorClienteComponent implements OnInit {
-  usuarios: DriverResponse[] = [];
+export class RegistroCamionComponent implements OnInit {
   page: number = 1;
   pages: number = 1;
   busqueda: string = '';
-  ocultarPaginacion: boolean = true;
   showSpinner: boolean = true;
-  msgQR: string = '';
   existeMsgQRExito: boolean = false;
   waitForAnswer: boolean = false;
+  msg: string = '';
+
+  trucks: Truck[] = [];
+
   constructor(
-    private VisitorsService: VisitorsService,
-    private TrucksService: TruckService,
+    public translateHelper: DynamicTranslationsService,
+    private TruckService: TruckService,
     private AuthService: AuthService,
-    private ErrorServidor: ErrorServidorService,
-    public translateHelper: DynamicTranslationsService
+    private ErrorServidor: ErrorServidorService
   ) {}
 
   ngOnInit(): void {
-    this.getVisitors({
+    this.getTrucks({
       page: this.page,
     });
   }
 
-  getVisitors(opt: SearchParams) {
+  nextPage() {
+    this.getTrucks({
+      page: this.page + 1,
+    });
+  }
+  prevPage() {
+    this.getTrucks({
+      page: this.page - 1,
+    });
+  }
+  search(searchParam: string) {
+    this.getTrucks({
+      keyword: searchParam,
+    });
+  }
+
+  instantTranslation(key: string, params?: any) {
+    return this.translateHelper.instantTranslation(key, params);
+  }
+  getTrucks(opt: SearchParams) {
     this.showSpinner = true;
-    this.VisitorsService.getAllTrucks({
+
+    this.TruckService.getAllTrucks({
       page: opt.page,
       keyword: opt.keyword,
     })
       .then((data) => {
-        console.log(data, 'VISITANTES');
-
-        this.usuarios = data.drivers;
-        if (data.pages == 0 && data.drivers.length == 0) {
+        this.trucks = data.trucks;
+        if (data.pages == 0 && data.trucks.length == 0) {
           this.page = 0;
         } else {
           this.page = data.page;
         }
-
         this.pages = data.pages;
 
         this.showSpinner = false;
@@ -73,32 +83,38 @@ export class VerCamionesPorClienteComponent implements OnInit {
         this.ErrorServidor.error();
       });
   }
+  enviarQR(id: any) {
+    this.waitForAnswer = true;
+    this.TruckService.generateTruckQR(id)
+      .then((data: any) => {
+        this.existeMsgQRExito = true;
+        this.msg = data.msg;
+        this.waitForAnswer = false;
+        setTimeout(() => {
+          this.existeMsgQRExito = false;
+        }, 2000);
+      })
+      .catch((err) => {
+        if (err.error.msg) {
+          this.msg = err.error.msg;
+          // this.existeQRregistrado = true;
 
-  nextPage() {
-    this.getVisitors({
-      page: this.page + 1,
-    });
-  }
-  prevPage() {
-    this.getVisitors({
-      page: this.page - 1,
-    });
-  }
-  search(searchParam: string) {
-    this.getVisitors({
-      keyword: searchParam,
-    });
-  }
-
-  parseDate(fecha: string) {
-    return fecha.replace('t', ' ');
-  }
-  instantTranslation(key: string, params?: any) {
-    return this.translateHelper.instantTranslation(key, params);
+          setTimeout(() => {
+            // this.existeQRregistrado = false;
+          }, 2000);
+          return;
+        }
+        if (err.error.msgtk) {
+          this.AuthService.logout();
+          return;
+        }
+        this.ErrorServidor.error();
+      });
   }
 
   downloadPDF(user: Truck) {
     const isCreated = this.generatePDFTemplate(user);
+
     if (isCreated) {
       const page = document.querySelector('#page') as HTMLElement;
 
@@ -119,7 +135,6 @@ export class VerCamionesPorClienteComponent implements OnInit {
         //   scrollY: -window.scrollY,
         // },
       });
-      this.resetPDFTemplate();
     }
   }
 
@@ -130,36 +145,28 @@ export class VerCamionesPorClienteComponent implements OnInit {
     ) as HTMLElement;
 
     const dynamicContent = `
-       <p class="formatField">Nombre: <span>${usuario.name}</span> </p>
+    
+
+
+        <p class="formatField">Nombre: <span>${usuario.name}</span> </p>
     <p class="formatField">Compañia: <span>${usuario.company}</span> </p>
     <p class="formatField">Modelo: <span>${usuario.model}</span> </p>
     <p class="formatField">Marca: <span>${usuario.brand}</span> </p>
     <p class="formatField">Tracto: <span>${usuario.tract}</span> </p>
     <p class="formatField">VIN: <span>${usuario.vin}</span> </p>
     <p class="formatField">Año: <span>${usuario.year}</span></p>
-   
 
   
     `;
 
     signature.innerHTML = `
       <div class="signature-placeholder"></div>
-            <p class="signature-name">${this.translateHelper.instantTranslation(
-              'signaturePlaceholder'
-            )} </p>
+     <p class="signature-name">${this.translateHelper.instantTranslation(
+       'signaturePlaceholder'
+     )} </p>
     `;
 
     div.innerHTML = dynamicContent;
     return true;
-  }
-
-  resetPDFTemplate() {
-    const div = document.querySelector('#table') as HTMLElement;
-    const signature = document.querySelector(
-      '#signature-container'
-    ) as HTMLElement;
-
-    div.innerHTML = '';
-    signature.innerHTML = '';
   }
 }

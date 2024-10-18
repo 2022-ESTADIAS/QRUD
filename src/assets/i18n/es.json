@@ -45,7 +45,7 @@
   "panelAdminRouteUserCreate": "Crear",
   "panelAdminRouteVisitors": "Ver Camiones",
   "panelAdminRouteDrivers": "Transportistas",
-  "visitorsComponentTitle": "Lista de Camiones",
+  "visitorsComponentTitle": "Lista de Visitantes",
   "visitorsComponentTableName": "Nombre",
   "visitorsComponentTableVisitDate": "Fecha de visita",
   "visitorsComponentTableCompany": "Compañia",

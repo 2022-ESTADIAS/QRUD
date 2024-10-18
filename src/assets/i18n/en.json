@@ -45,7 +45,7 @@
   "panelAdminRouteUserCreate": "Create",
   "panelAdminRouteVisitors": "Show Trucks",
   "panelAdminRouteDrivers": "Drivers",
-  "visitorsComponentTitle": "Truck List",
+  "visitorsComponentTitle": "Visitors List",
   "visitorsComponentTableName": "Name",
   "visitorsComponentTableVisitDate": "Visit Date",
   "visitorsComponentTableCompany": "Company",

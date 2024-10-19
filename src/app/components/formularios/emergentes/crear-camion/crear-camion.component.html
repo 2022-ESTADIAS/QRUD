@@ -1,0 +1,87 @@
+<div id="myModaledit" class="modaledit">
+
+    <div class="modal-content-edit">
+        <span class="closeedit" (click)="ocultarFormulario()">&times;</span>
+        <p>Editar Camión</p>
+        <form class="form-edit" [formGroup]="form" (ngSubmit)="submit()">
+
+            <div class="group-edit">
+                <input type="text" formControlName="name">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Nombre</label>
+                <app-errores-frontend *ngIf="campoValido('name')"
+                    mensaje="El campo es requerido"></app-errores-frontend>
+            </div>
+
+            <div class="group-edit">
+                <input type="email" formControlName="email">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Email</label>
+                <app-errores-frontend *ngIf="campoValido('email')"
+                    mensaje="Tiene que ser un correo valido"></app-errores-frontend>
+            </div>
+
+            <div class="group-edit">
+                <input type="text" formControlName="company">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Compañia</label>
+                <app-errores-frontend *ngIf="campoValido('company')"
+                    mensaje="Tiene que ser un rfc valido"></app-errores-frontend>
+            </div>
+
+            <div class="group-edit">
+                <input type="text" formControlName="tract">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Tracto</label>
+                <app-errores-frontend *ngIf="campoValido('tract')"
+                    mensaje="El campo es requerido"></app-errores-frontend>
+            </div>
+
+            <div class="group-edit">
+                <input type="text" formControlName="brand">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Marca</label>
+                <app-errores-frontend *ngIf="campoValido('brand')"
+                    mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+            </div>
+            <div class="group-edit">
+                <input type="number" formControlName="year">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Año</label>
+                <app-errores-frontend *ngIf="campoValido('year')"
+                    mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+            </div>
+            <div class="group-edit">
+                <input type="text" formControlName="vin">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Vin</label>
+                <app-errores-frontend *ngIf="campoValido('vin')"
+                    mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+            </div>
+            <div class="group-edit">
+                <input type="text" formControlName="model">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Modelo</label>
+                <app-errores-frontend *ngIf="campoValido('model')"
+                    mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+            </div>
+
+
+
+            <div class="save-edit">
+                <button type="submit" class="btn10">
+                    <span>Guardar</span>
+                    <div class="transition"></div>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

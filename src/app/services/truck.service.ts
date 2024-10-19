@@ -4,9 +4,11 @@ import { StorageService } from './storage.service';
 import { DynamicTranslationsService } from './dynamic-translations.service';
 import {
   DeleteTruckResponse,
+  DraftTruck,
   OneTruckResponse,
   SearchParams,
   TruckResponse,
+  UpdateTruckResponse,
 } from '../interfaces/mexcal/trucks.interface';
 import { environment } from 'src/environments/environment';
 
@@ -105,6 +107,27 @@ export class TruckService {
     return new Promise<DeleteTruckResponse>((resolve, reject) => {
       this.http
         .delete<DeleteTruckResponse>(`${url}/trucks/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+  updateTruck(id: string, truck: DraftTruck) {
+    const token = this.StorageService.desencriptar(llaveToken);
+
+    return new Promise<UpdateTruckResponse>((resolve, reject) => {
+      this.http
+        .put<UpdateTruckResponse>(`${url}/trucks/${id}`, truck, {
           headers: {
             Authorization: `Bearer ${token}`,
             lang: this.languageService.gettranslate().currentLang,

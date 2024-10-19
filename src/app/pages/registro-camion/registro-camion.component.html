@@ -40,7 +40,8 @@
                     <!-- iconost -->
                     <td class="icons" data-title="Acciones">
                         <div class="btn-group">
-                            <!-- <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button> -->
+                            <button class="btn" (click)="actualizarCamion(truck.uid,truck)"><i
+                                    class="fa-solid fa-square-pen fa-xl"></i></button>
                             <label class="btn" for="btn-modal-delete" (click)="referenciaCamionActual(truck)"><i
                                     class="fa-solid fa-user-xmark fa-lg"></i></label>
                             <button class="btn" (click)="enviarQR(truck.uid)"><i class="fa-solid fa-qrcode fa-lg"
@@ -68,6 +69,15 @@
     </table>
 
 </ng-container>
+
+
+<app-editar-camion *ngIf="showEditModal" [camion]="updateTruck!" [truckId]="updateTruckId"
+    (ocultar)="showEditModal = $event" [camiones]="trucks" (updateCamiones)="trucks = $event">
+
+
+
+
+</app-editar-camion>
 
 
 <app-modal titulo="Eliminar" *ngIf="camionActual"

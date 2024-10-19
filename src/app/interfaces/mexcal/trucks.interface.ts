@@ -2,6 +2,16 @@ export interface SearchParams {
   page?: number;
   keyword?: string;
 }
+export interface DraftTruck {
+  name: string;
+  email: string;
+  company: string;
+  tract: string;
+  brand: string;
+  year: string;
+  vin: string;
+  model: string;
+}
 
 export interface Truck {
   name: string;
@@ -33,5 +43,8 @@ export interface OneTruckResponse {
 
 export interface DeleteTruckResponse {
   status: string;
+  message: string;
+}
+export interface UpdateTruckResponse {
   message: string;
 }

@@ -23,6 +23,8 @@ import { TranslateComponent } from './translate/translate.component';
 import { AsignarCamionesComponent } from './formularios/emergentes/asignar-camiones/asignar-camiones.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader } from '../app.module';
+import { CrearCamionComponent } from './formularios/emergentes/crear-camion/crear-camion.component';
+import { EditarCamionComponent } from './formularios/emergentes/editar-camion/editar-camion.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { createTranslateLoader } from '../app.module';
     DriverRegulationsComponent,
     TranslateComponent,
     AsignarCamionesComponent,
+    CrearCamionComponent,
+    EditarCamionComponent,
   ],
   exports: [
     ErroresBackendComponent,
@@ -56,6 +60,8 @@ import { createTranslateLoader } from '../app.module';
     DriverRegulationsComponent,
     TranslateComponent,
     AsignarCamionesComponent,
+    CrearCamionComponent,
+    EditarCamionComponent,
   ],
   imports: [
     CommonModule,

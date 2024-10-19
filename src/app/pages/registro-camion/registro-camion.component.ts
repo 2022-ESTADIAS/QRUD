@@ -27,6 +27,10 @@ export class RegistroCamionComponent implements OnInit {
   trucks: Truck[] = [];
   camionActual: Truck | null = null;
 
+  showEditModal: boolean = false;
+  updateTruck: Truck | null = null;
+  updateTruckId: string = '';
+
   constructor(
     public translateHelper: DynamicTranslationsService,
     private TruckService: TruckService,
@@ -38,6 +42,11 @@ export class RegistroCamionComponent implements OnInit {
     this.getTrucks({
       page: this.page,
     });
+  }
+  actualizarCamion(id: string, truck: Truck) {
+    this.updateTruck = truck;
+    this.updateTruckId = id;
+    this.showEditModal = true;
   }
 
   referenciaCamionActual(truck: Truck) {

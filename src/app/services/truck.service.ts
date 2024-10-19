@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { DynamicTranslationsService } from './dynamic-translations.service';
 import {
+  DeleteTruckResponse,
   OneTruckResponse,
   SearchParams,
   TruckResponse,
@@ -88,6 +89,27 @@ export class TruckService {
             },
           }
         )
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+  deleteTruck(id: string) {
+    const token = this.StorageService.desencriptar(llaveToken);
+
+    return new Promise<DeleteTruckResponse>((resolve, reject) => {
+      this.http
+        .delete<DeleteTruckResponse>(`${url}/trucks/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
         .subscribe(
           (data) => {
             resolve(data);

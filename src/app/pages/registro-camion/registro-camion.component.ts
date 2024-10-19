@@ -25,6 +25,7 @@ export class RegistroCamionComponent implements OnInit {
   msg: string = '';
 
   trucks: Truck[] = [];
+  camionActual: Truck | null = null;
 
   constructor(
     public translateHelper: DynamicTranslationsService,
@@ -37,6 +38,31 @@ export class RegistroCamionComponent implements OnInit {
     this.getTrucks({
       page: this.page,
     });
+  }
+
+  referenciaCamionActual(truck: Truck) {
+    this.camionActual = truck;
+  }
+  eliminarCamion(id: string) {
+    this.TruckService.deleteTruck(id)
+      .then((data) => {
+        this.msg = data.message;
+        this.existeMsgQRExito = true;
+        this.getTrucks({
+          page: this.page,
+        });
+
+        setTimeout(() => {
+          this.existeMsgQRExito = false;
+        }, 2000);
+      })
+      .catch((err) => {
+        if (err.error.msgtk) {
+          this.AuthService.logout();
+          return;
+        }
+        this.ErrorServidor.error();
+      });
   }
 
   nextPage() {

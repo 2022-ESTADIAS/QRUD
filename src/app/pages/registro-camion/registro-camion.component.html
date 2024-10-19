@@ -41,7 +41,8 @@
                     <td class="icons" data-title="Acciones">
                         <div class="btn-group">
                             <!-- <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button> -->
-                            <!-- <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label> -->
+                            <label class="btn" for="btn-modal-delete" (click)="referenciaCamionActual(truck)"><i
+                                    class="fa-solid fa-user-xmark fa-lg"></i></label>
                             <button class="btn" (click)="enviarQR(truck.uid)"><i class="fa-solid fa-qrcode fa-lg"
                                     [ngClass]="{'disabled-button':waitForAnswer}"></i></button>
                             <i class="fa fa-download fa-lg download" (click)="downloadPDF(truck.uid)"
@@ -69,7 +70,13 @@
 </ng-container>
 
 
+<app-modal titulo="Eliminar" *ngIf="camionActual"
+    msg="¿Esta seguro que quiere eliminar permanentemente al camión {{camionActual.brand}} - {{camionActual.vin}}?"
+    [funcion]="eliminarCamion.bind(this,this.camionActual.uid)" modal="btn-modal-delete"></app-modal>
 
+
+
+<!-- PDF TEMPLATE -->
 <div class="invisible">
     <div id="page">
         <div class="date-container" id="date-container">

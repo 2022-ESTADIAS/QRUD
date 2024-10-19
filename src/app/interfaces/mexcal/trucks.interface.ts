@@ -30,3 +30,8 @@ export interface OneTruckResponse {
   truck: Truck;
   qr: string;
 }
+
+export interface DeleteTruckResponse {
+  status: string;
+  message: string;
+}

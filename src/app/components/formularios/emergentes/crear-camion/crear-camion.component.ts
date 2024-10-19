@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Truck } from 'src/app/interfaces/mexcal/trucks.interface';
+import { DraftTruck, Truck } from 'src/app/interfaces/mexcal/trucks.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
+import { TruckService } from 'src/app/services/truck.service';
 
 @Component({
   selector: 'app-crear-camion',
@@ -28,17 +29,20 @@ export class CrearCamionComponent implements OnInit {
    * propiedad que contiene el usuario que se va a actualizar
    */
 
-  @Input() camion!: Truck;
+  @Input() camiones: Truck[] = [];
+
+  waitForAnswer: boolean = false;
 
   /**
    * propiedad que contiene el id del usuario que se va a actualizar
    */
-  @Input() idUsuario: any = '';
 
   /**
    * evento que emite el valor para mostrar/ocultar el modal del formulario reactivo
    */
   @Output() ocultar: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() updateCamiones: EventEmitter<Truck[]> = new EventEmitter<Truck[]>();
+  @Output() msgExito: EventEmitter<string> = new EventEmitter<string>();
 
   /**
    * evento que retorna el arreglo de usuarios actualizado
@@ -50,7 +54,9 @@ export class CrearCamionComponent implements OnInit {
    */
   constructor(
     private fb: FormBuilder,
-    private ErrorServidor: ErrorServidorService
+    private ErrorServidor: ErrorServidorService,
+    private truckService: TruckService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -59,14 +65,14 @@ export class CrearCamionComponent implements OnInit {
 
   FormularioCamion() {
     this.form = this.fb.group({
-      name: [this.camion.name, Validators.required],
-      email: [this.camion.email, [Validators.required, Validators.email]],
-      company: [this.camion.company, Validators.required],
-      tract: [this.camion.tract, Validators.required],
-      brand: [this.camion.brand, Validators.required],
-      year: [this.camion.year, Validators.required],
-      vin: [this.camion.vin, Validators.required],
-      model: [this.camion.model, Validators.required],
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      company: ['', Validators.required],
+      tract: ['', Validators.required],
+      brand: ['', Validators.required],
+      year: ['', Validators.required],
+      vin: ['', Validators.required],
+      model: ['', Validators.required],
     });
   }
 
@@ -85,9 +91,43 @@ export class CrearCamionComponent implements OnInit {
   }
 
   submit() {
+    this.waitForAnswer = true;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.waitForAnswer = false;
       return;
     }
+    const { brand, company, email, model, name, tract, vin, year }: DraftTruck =
+      this.form.value;
+
+    const truck: DraftTruck = {
+      brand: brand.trim().toLowerCase(),
+      company: company.trim().toLowerCase(),
+      email: email.trim().toLowerCase(),
+      model: model.trim().toLowerCase(),
+      name: name.trim().toLowerCase(),
+      tract: tract.trim().toLowerCase(),
+      vin: vin.trim().toLowerCase(),
+      year: year,
+    };
+
+    this.truckService
+      .createTruck(truck)
+      .then((data) => {
+        this.camiones.push(data.truck);
+        this.waitForAnswer = false;
+        this.msgExito.emit(data.message);
+        this.updateCamiones.emit(this.camiones);
+        this.ocultarFormulario();
+      })
+      .catch((err) => {
+        this.waitForAnswer = false;
+        if (err.error.msgtk) {
+          this.authService.logout();
+          return;
+        }
+
+        this.ErrorServidor.error();
+      });
   }
 }

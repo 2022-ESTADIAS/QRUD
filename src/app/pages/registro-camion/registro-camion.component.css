@@ -249,3 +249,44 @@ div.grid {
   font-weight: normal;
   font-size: 18px;
 }
+
+/* ADD BUTTON STYLES */
+.search-and-add-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.add-button {
+  background-color: var(--secondary-color);
+  font-size: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  transition: transform ease-in-out 0.3s;
+  -webkit-transition: transform ease-in-out 0.3s;
+  -moz-transition: transform ease-in-out 0.3s;
+  -ms-transition: transform ease-in-out 0.3s;
+  -o-transition: transform ease-in-out 0.3s;
+}
+
+.rotate {
+  transform: rotate(60deg);
+  -webkit-transform: rotate(60deg);
+  -moz-transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
+  -o-transform: rotate(60deg);
+}
+/*  */

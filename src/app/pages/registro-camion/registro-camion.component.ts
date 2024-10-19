@@ -27,9 +27,14 @@ export class RegistroCamionComponent implements OnInit {
   trucks: Truck[] = [];
   camionActual: Truck | null = null;
 
+  // EDIT TRUCK FUNCTIONALITY
   showEditModal: boolean = false;
   updateTruck: Truck | null = null;
   updateTruckId: string = '';
+
+  // ADD TRUCK FUNCTIONALITY
+  showAddModal: boolean = false;
+  createTruck: Truck | null = null;
 
   constructor(
     public translateHelper: DynamicTranslationsService,
@@ -255,5 +260,18 @@ export class RegistroCamionComponent implements OnInit {
     // const amOrPm = +time >= 12 ? 'pm' : 'am';
 
     return date;
+  }
+
+  addModal() {
+    this.showAddModal = true;
+  }
+
+  handleSmgExito(msg: string) {
+    this.msg = msg;
+    this.existeMsgQRExito = true;
+
+    setTimeout(() => {
+      this.existeMsgQRExito = false;
+    }, 2000);
   }
 }

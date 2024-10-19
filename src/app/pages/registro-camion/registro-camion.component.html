@@ -5,7 +5,12 @@
 <app-exito [mensaje]="msg" *ngIf="existeMsgQRExito"></app-exito>
 
 <ng-container>
-    <app-buscador (busqueda)="search($event)"></app-buscador>
+    <div class="search-and-add-container">
+        <app-buscador (busqueda)="search($event)"></app-buscador>
+
+        <i class="fa-solid fa-plus add-button " (click)="addModal()" [ngClass]="{'rotate':showAddModal}"></i>
+
+    </div>
 
 
     <h3>Lista de Camiones</h3>
@@ -17,6 +22,7 @@
                 <th>Vin</th>
                 <th>Marca</th>
                 <th>Tracto</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -69,6 +75,9 @@
     </table>
 
 </ng-container>
+
+<app-crear-camion *ngIf="showAddModal" [camiones]="trucks" (updateCamiones)="trucks = $event"
+    (ocultar)="showAddModal = $event" (msgExito)="handleSmgExito($event)"></app-crear-camion>
 
 
 <app-editar-camion *ngIf="showEditModal" [camion]="updateTruck!" [truckId]="updateTruckId"

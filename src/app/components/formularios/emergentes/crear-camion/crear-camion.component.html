@@ -2,8 +2,8 @@
 
     <div class="modal-content-edit">
         <span class="closeedit" (click)="ocultarFormulario()">&times;</span>
-        <p>Editar Camión</p>
-        <form class="form-edit" [formGroup]="form" (ngSubmit)="submit()">
+        <h1 class="modal-title">Agregar Camión</h1>
+        <form class="form-edit" [ngClass]="{'disabled-form':waitForAnswer}" [formGroup]="form" (ngSubmit)="submit()">
 
             <div class="group-edit">
                 <input type="text" formControlName="name">
@@ -29,7 +29,7 @@
                 <span class="bar"></span>
                 <label>Compañia</label>
                 <app-errores-frontend *ngIf="campoValido('company')"
-                    mensaje="Tiene que ser un rfc valido"></app-errores-frontend>
+                    mensaje="El campo es requerido"></app-errores-frontend>
             </div>
 
             <div class="group-edit">
@@ -47,7 +47,7 @@
                 <span class="bar"></span>
                 <label>Marca</label>
                 <app-errores-frontend *ngIf="campoValido('brand')"
-                    mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+                    mensaje="El campo es requerido"></app-errores-frontend>
             </div>
             <div class="group-edit">
                 <input type="number" formControlName="year">
@@ -55,15 +55,14 @@
                 <span class="bar"></span>
                 <label>Año</label>
                 <app-errores-frontend *ngIf="campoValido('year')"
-                    mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+                    mensaje="El campo es requerido"></app-errores-frontend>
             </div>
             <div class="group-edit">
                 <input type="text" formControlName="vin">
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Vin</label>
-                <app-errores-frontend *ngIf="campoValido('vin')"
-                    mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+                <app-errores-frontend *ngIf="campoValido('vin')" mensaje="El campo es requerido"></app-errores-frontend>
             </div>
             <div class="group-edit">
                 <input type="text" formControlName="model">
@@ -71,17 +70,18 @@
                 <span class="bar"></span>
                 <label>Modelo</label>
                 <app-errores-frontend *ngIf="campoValido('model')"
-                    mensaje="Tiene que ser un numero telefonico valido"></app-errores-frontend>
+                    mensaje="El campo es requerido"></app-errores-frontend>
             </div>
 
 
 
             <div class="save-edit">
-                <button type="submit" class="btn10">
+                <button type="submit" class="btn10" [ngClass]="{'disabled-button':waitForAnswer}">
                     <span>Guardar</span>
                     <div class="transition"></div>
                 </button>
             </div>
         </form>
+
     </div>
 </div>

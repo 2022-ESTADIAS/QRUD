@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { DynamicTranslationsService } from './dynamic-translations.service';
 import {
+  CreateTruckResponse,
   DeleteTruckResponse,
   DraftTruck,
   OneTruckResponse,
@@ -128,6 +129,27 @@ export class TruckService {
     return new Promise<UpdateTruckResponse>((resolve, reject) => {
       this.http
         .put<UpdateTruckResponse>(`${url}/trucks/${id}`, truck, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+  createTruck(truck: DraftTruck) {
+    const token = this.StorageService.desencriptar(llaveToken);
+
+    return new Promise<CreateTruckResponse>((resolve, reject) => {
+      this.http
+        .post<CreateTruckResponse>(`${url}/trucks`, truck, {
           headers: {
             Authorization: `Bearer ${token}`,
             lang: this.languageService.gettranslate().currentLang,

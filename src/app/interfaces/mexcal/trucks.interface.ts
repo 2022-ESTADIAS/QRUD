@@ -48,3 +48,7 @@ export interface DeleteTruckResponse {
 export interface UpdateTruckResponse {
   message: string;
 }
+export interface CreateTruckResponse {
+  message: string;
+  truck: Truck;
+}

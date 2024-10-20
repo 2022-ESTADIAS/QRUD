@@ -2,82 +2,83 @@
 
     <div class="modal-content-edit">
         <span class="closeedit" (click)="ocultarFormulario()">&times;</span>
-        <h1 class="modal-title">Agregar Camión</h1>
+        <h1 class="modal-title">{{translation("TruckRegisterAddModalTitle")}}</h1>
         <form class="form-edit" [ngClass]="{'disabled-form':waitForAnswer}" [formGroup]="form" (ngSubmit)="submit()">
 
             <div class="group-edit">
                 <input type="text" formControlName="name">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Nombre</label>
+                <label>{{translation("TruckRegisterName")}}</label>
                 <app-errores-frontend *ngIf="campoValido('name')"
-                    mensaje="El campo es requerido"></app-errores-frontend>
+                    mensaje="{{translation('fieldRequired')}}"></app-errores-frontend>
             </div>
 
             <div class="group-edit">
                 <input type="email" formControlName="email">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Email</label>
+                <label>{{translation("TruckRegisterEmail")}}</label>
                 <app-errores-frontend *ngIf="campoValido('email')"
-                    mensaje="Tiene que ser un correo valido"></app-errores-frontend>
+                    mensaje="{{translation('formEmailValidationField')}}"></app-errores-frontend>
             </div>
 
             <div class="group-edit">
                 <input type="text" formControlName="company">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Compañia</label>
+                <label>{{translation("TruckRegisterCompany")}}</label>
                 <app-errores-frontend *ngIf="campoValido('company')"
-                    mensaje="El campo es requerido"></app-errores-frontend>
+                    mensaje="{{translation('fieldRequired')}}"></app-errores-frontend>
             </div>
 
             <div class="group-edit">
                 <input type="text" formControlName="tract">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Tracto</label>
+                <label>{{translation("TruckRegisterTract")}}</label>
                 <app-errores-frontend *ngIf="campoValido('tract')"
-                    mensaje="El campo es requerido"></app-errores-frontend>
+                    mensaje="{{translation('fieldRequired')}}"></app-errores-frontend>
             </div>
 
             <div class="group-edit">
                 <input type="text" formControlName="brand">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Marca</label>
+                <label>{{translation("TruckRegisterBrand")}}</label>
                 <app-errores-frontend *ngIf="campoValido('brand')"
-                    mensaje="El campo es requerido"></app-errores-frontend>
+                    mensaje="{{translation('fieldRequired')}}"></app-errores-frontend>
             </div>
             <div class="group-edit">
                 <input type="number" formControlName="year">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Año</label>
+                <label>{{translation("TruckRegisterYear")}}</label>
                 <app-errores-frontend *ngIf="campoValido('year')"
-                    mensaje="El campo es requerido"></app-errores-frontend>
+                    mensaje="{{translation('fieldRequired')}}"></app-errores-frontend>
             </div>
             <div class="group-edit">
                 <input type="text" formControlName="vin">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Vin</label>
-                <app-errores-frontend *ngIf="campoValido('vin')" mensaje="El campo es requerido"></app-errores-frontend>
+                <label>{{translation("TruckRegisterVin")}}</label>
+                <app-errores-frontend *ngIf="campoValido('vin')"
+                    mensaje="{{translation('fieldRequired')}}"></app-errores-frontend>
             </div>
             <div class="group-edit">
                 <input type="text" formControlName="model">
                 <span class="highlight"></span>
                 <span class="bar"></span>
-                <label>Modelo</label>
+                <label>{{translation("TruckRegisterModel")}}</label>
                 <app-errores-frontend *ngIf="campoValido('model')"
-                    mensaje="El campo es requerido"></app-errores-frontend>
+                    mensaje="{{translation('fieldRequired')}}"></app-errores-frontend>
             </div>
 
 
 
             <div class="save-edit">
                 <button type="submit" class="btn10" [ngClass]="{'disabled-button':waitForAnswer}">
-                    <span>Guardar</span>
+                    <span>{{translation("TruckRegisterSave")}}</span>
                     <div class="transition"></div>
                 </button>
             </div>

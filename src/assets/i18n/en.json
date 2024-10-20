@@ -134,5 +134,22 @@
   "ClientRegistrationPhone": "Phone",
   "ClientRegistrationEmail": "Email",
   "ClientRegistrationPassword": "Password",
-  "ClientRegistrationButton": "Register"
+  "ClientRegistrationButton": "Register",
+  "TruckRegisterList": "Truck List",
+  "TruckRegisterModel": "Model",
+  "TruckRegisterYear": "Year",
+  "TruckRegisterVin": "Vin",
+  "TruckRegisterBrand": "Brand",
+  "TruckRegisterTract": "Tract",
+  "TruckRegisterActions": "Actions",
+  "TruckRegisterDeleteModalTitle": "Delete",
+  "TruckRegisterDeleteConfirmation": "Are you sure you want to permanently eliminate the truck",
+  "TruckRegisterAddModalTitle": "Add Truck",
+  "TruckRegisterEditModalTitle": "Edit Truck",
+  "TruckRegisterName": "Name",
+  "TruckRegisterEmail": "Email",
+  "TruckRegisterCompany": "Company",
+  "TruckRegisterSave": "Save",
+  "TruckPdfDate": "Date",
+  "qrTruckScannerTitle": "Truck Data"
 }

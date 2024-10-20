@@ -117,6 +117,7 @@ body {
 
 .invisible {
   opacity: 0;
+  /* visibility: hidden; */
 }
 
 .qr-pdf-image {

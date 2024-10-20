@@ -134,5 +134,22 @@
   "ClientRegistrationPhone": "Telefono",
   "ClientRegistrationEmail": "Email",
   "ClientRegistrationPassword": "Contraseña",
-  "ClientRegistrationButton": "Registrar"
+  "ClientRegistrationButton": "Registrar",
+  "TruckRegisterList": "Lista de Camiones",
+  "TruckRegisterModel": "Modelo",
+  "TruckRegisterYear": "Año",
+  "TruckRegisterVin": "Vin",
+  "TruckRegisterBrand": "Marca",
+  "TruckRegisterTract": "Tracto",
+  "TruckRegisterActions": "Acciones",
+  "TruckRegisterDeleteModalTitle": "Eliminar",
+  "TruckRegisterDeleteConfirmation": "¿Esta seguro que quiere eliminar permanentemente al camión",
+  "TruckRegisterAddModalTitle": "Agregar Camión",
+  "TruckRegisterEditModalTitle": "Editar Camión",
+  "TruckRegisterName": "Nombre",
+  "TruckRegisterEmail": "Email",
+  "TruckRegisterCompany": "Compañia",
+  "TruckRegisterSave": "Guardar",
+  "TruckPdfDate": "Fecha",
+  "qrTruckScannerTitle": "Datos del Camión"
 }

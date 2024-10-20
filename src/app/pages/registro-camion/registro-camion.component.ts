@@ -154,6 +154,7 @@ export class RegistroCamionComponent implements OnInit {
   }
 
   downloadPDF(id: string) {
+    this.waitForAnswer = true;
     this.TruckService.getTruckByQR(id)
       .then((data) => {
         const isCreated = this.generatePDFTemplate(data.truck, data.qr);
@@ -178,9 +179,13 @@ export class RegistroCamionComponent implements OnInit {
             //   scrollY: -window.scrollY,
             // },
           });
+
+          this.waitForAnswer = false;
         }
+        this.resetPDFTemplate();
       })
       .catch((err) => {
+        this.waitForAnswer = false;
         if (err.error.msg) {
           this.msg = err.error.msg;
           // this.existeQRregistrado = true;
@@ -207,20 +212,36 @@ export class RegistroCamionComponent implements OnInit {
     const date = document.querySelector('#date-container') as HTMLElement;
 
     date.innerHTML = `
-      <p>Fecha: <span class=""> ${this.actualDate()}</span> </p>
+      <p>${this.translateHelper.instantTranslation(
+        'TruckPdfDate'
+      )}: <span class=""> ${this.actualDate()}</span> </p>
     `;
 
     const dynamicContent = `
     
 
 
-        <p class="formatField">Nombre: <span>${usuario.name}</span> </p>
-    <p class="formatField">Compañia: <span>${usuario.company}</span> </p>
-    <p class="formatField">Modelo: <span>${usuario.model}</span> </p>
-    <p class="formatField">Marca: <span>${usuario.brand}</span> </p>
-    <p class="formatField">Tracto: <span>${usuario.tract}</span> </p>
-    <p class="formatField">VIN: <span>${usuario.vin}</span> </p>
-    <p class="formatField">Año: <span>${usuario.year}</span></p>
+        <p class="formatField">${this.translateHelper.instantTranslation(
+          'TruckRegisterName'
+        )}: <span>${usuario.name}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterCompany'
+    )}: <span>${usuario.company}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterModel'
+    )}: <span>${usuario.model}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterBrand'
+    )}: <span>${usuario.brand}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterTract'
+    )}: <span>${usuario.tract}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterVin'
+    )}: <span>${usuario.vin}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterYear'
+    )}: <span>${usuario.year}</span></p>
 
   
     `;
@@ -248,9 +269,11 @@ export class RegistroCamionComponent implements OnInit {
     const signature = document.querySelector(
       '#signature-container'
     ) as HTMLElement;
+    const qrImage = document.querySelector('#truck-qr') as HTMLElement;
 
     div.innerHTML = '';
     signature.innerHTML = '';
+    qrImage.innerHTML = '';
   }
 
   actualDate() {

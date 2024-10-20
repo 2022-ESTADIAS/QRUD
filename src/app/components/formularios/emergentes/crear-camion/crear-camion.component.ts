@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DraftTruck, Truck } from 'src/app/interfaces/mexcal/trucks.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { TruckService } from 'src/app/services/truck.service';
 
@@ -56,7 +57,8 @@ export class CrearCamionComponent implements OnInit {
     private fb: FormBuilder,
     private ErrorServidor: ErrorServidorService,
     private truckService: TruckService,
-    private authService: AuthService
+    private authService: AuthService,
+    private translateHelper: DynamicTranslationsService
   ) {}
 
   ngOnInit(): void {
@@ -129,5 +131,9 @@ export class CrearCamionComponent implements OnInit {
 
         this.ErrorServidor.error();
       });
+  }
+
+  translation(name: string) {
+    return this.translateHelper.instantTranslation(name);
   }
 }

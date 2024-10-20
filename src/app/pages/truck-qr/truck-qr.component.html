@@ -27,7 +27,7 @@
     </div>
 </div>
 
-<ng-container *ngIf="this.router.url =='/escaner' ">
+<ng-container *ngIf="this.router.url =='/escaner-camion' ">
     <app-translate></app-translate>
 
 </ng-container>
@@ -52,15 +52,21 @@
 <div *ngIf="mostrarDatos">
 
     <div class="visitor-container">
-        <h4>Datos del Camión</h4>
+        <h4>{{instantTranslation('qrTruckScannerTitle')}}</h4>
         <div>
             <div class="grid">
-                <p class="data-container">Nombre: <span class="bold">{{usuarioQR?.name}}</span> </p>
-                <p class="data-container">Compañia: <span class="bold">{{usuarioQR?.company}}</span> </p>
-                <p class="data-container">VIN: <span class="bold">{{usuarioQR?.vin}}</span> </p>
-                <p class="data-container">Tracto: <span class="bold">{{usuarioQR?.tract}}</span> </p>
-                <p class="data-container">Modelo: <span class="bold">{{usuarioQR?.model}}</span> </p>
-                <p class="data-container">Año: <span class="bold">{{usuarioQR?.year}}</span> </p>
+                <p class="data-container">{{instantTranslation('TruckRegisterName')}}: <span
+                        class="bold">{{usuarioQR?.name}}</span> </p>
+                <p class="data-container">{{instantTranslation('TruckRegisterCompany')}}: <span
+                        class="bold">{{usuarioQR?.company}}</span> </p>
+                <p class="data-container">{{instantTranslation('TruckRegisterVin')}}: <span
+                        class="bold">{{usuarioQR?.vin}}</span> </p>
+                <p class="data-container">{{instantTranslation('TruckRegisterTract')}}: <span
+                        class="bold">{{usuarioQR?.tract}}</span> </p>
+                <p class="data-container">{{instantTranslation('TruckRegisterModel')}}: <span
+                        class="bold">{{usuarioQR?.model}}</span> </p>
+                <p class="data-container">{{instantTranslation('TruckRegisterYear')}}: <span
+                        class="bold">{{usuarioQR?.year}}</span> </p>
 
 
             </div>

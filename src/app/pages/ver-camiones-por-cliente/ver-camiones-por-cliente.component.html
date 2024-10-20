@@ -34,15 +34,20 @@
                     <!-- <app-no-encontrado *ngIf="usuario.error" [mensaje]="usuario.msg"></app-no-encontrado> -->
 
 
-                    <td data-title="Nombre">{{usuario.truck_id.model| uppercase}}</td>
-                    <td data-title="Compañia">{{usuario.truck_id.year | uppercase}}</td>
-                    <td class="right" data-title="Email">{{usuario.truck_id.vin}}</td>
-                    <td class="right" data-title="Email">{{usuario.truck_id.brand}}</td>
-                    <td class="right" data-title="Email">{{usuario.truck_id.tract}}</td>
+                    <td data-title="{{instantTranslation('TruckRegisterModel')}}">{{usuario.truck_id.model| uppercase}}
+                    </td>
+                    <td data-title="{{instantTranslation('TruckRegisterYear')}}">{{usuario.truck_id.year | uppercase}}
+                    </td>
+                    <td class="right" data-title="{{instantTranslation('TruckRegisterVin')}}">{{usuario.truck_id.vin}}
+                    </td>
+                    <td class="right" data-title="{{instantTranslation('TruckRegisterBrand')}}">
+                        {{usuario.truck_id.brand}}</td>
+                    <td class="right" data-title="{{instantTranslation('TruckRegisterTract')}}">
+                        {{usuario.truck_id.tract}}</td>
                     <!-- <td data-title="tipo de usuario">{{usuario.visitor_id?.visitor_type_id?.name ? (usuario.visitor_type_id?.name|
                         uppercase ): "N/A"}}</td> -->
                     <!-- iconost -->
-                    <td class="icons" data-title="Acciones">
+                    <td class="icons" data-title="{{instantTranslation('visitorsComponentTableActions')}}">
                         <div class="btn-group">
                             <!-- <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button> -->
                             <!-- <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label> -->

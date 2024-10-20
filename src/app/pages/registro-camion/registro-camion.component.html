@@ -13,16 +13,16 @@
     </div>
 
 
-    <h3>{{this.translateHelper.instantTranslation('TruckRegisterList')}}</h3>
+    <h3>{{instantTranslation('TruckRegisterList')}}</h3>
     <table class="resp" [ngClass]="{'disabled-table':waitForAnswer}">
         <thead>
             <tr>
-                <th>{{this.translateHelper.instantTranslation('TruckRegisterModel')}}</th>
-                <th>{{this.translateHelper.instantTranslation('TruckRegisterYear')}}</th>
-                <th>{{this.translateHelper.instantTranslation('TruckRegisterVin')}}</th>
-                <th>{{this.translateHelper.instantTranslation('TruckRegisterBrand')}}</th>
-                <th>{{this.translateHelper.instantTranslation('TruckRegisterTract')}}</th>
-                <th>{{this.translateHelper.instantTranslation('TruckRegisterActions')}}</th>
+                <th>{{instantTranslation('TruckRegisterModel')}}</th>
+                <th>{{instantTranslation('TruckRegisterYear')}}</th>
+                <th>{{instantTranslation('TruckRegisterVin')}}</th>
+                <th>{{instantTranslation('TruckRegisterBrand')}}</th>
+                <th>{{instantTranslation('TruckRegisterTract')}}</th>
+                <th>{{instantTranslation('TruckRegisterActions')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -37,14 +37,13 @@
                     <!-- <app-no-encontrado *ngIf="usuario.error" [mensaje]="usuario.msg"></app-no-encontrado> -->
 
 
-                    <td data-title="Modelo">{{truck.model| uppercase}}</td>
-                    <!-- <td data-title="Fecha de visita">{{parseDate(usuario.visit_date) }}</td> -->
-                    <td data-title="Año">{{truck.year| uppercase}}</td>
-                    <td class="right" data-title="Vin">{{truck.vin}}</td>
-                    <td data-title="Marca">{{truck.brand}}</td>
-                    <td data-title="Tracto">{{truck.tract}}</td>
+                    <td data-title="{{instantTranslation('TruckRegisterModel')}}">{{truck.model| uppercase}}</td>
+                    <td data-title="{{instantTranslation('TruckRegisterYear')}}">{{truck.year| uppercase}}</td>
+                    <td class="right" data-title="{{instantTranslation('TruckRegisterVin')}}">{{truck.vin}}</td>
+                    <td data-title="{{instantTranslation('TruckRegisterBrand')}}">{{truck.brand}}</td>
+                    <td data-title="{{instantTranslation('TruckRegisterTract')}}">{{truck.tract}}</td>
                     <!-- iconost -->
-                    <td class="icons" data-title="Acciones">
+                    <td class="icons" data-title="{{instantTranslation('TruckRegisterActions')}}">
                         <div class="btn-group">
                             <button class="btn" (click)="actualizarCamion(truck.uid,truck)"><i
                                     class="fa-solid fa-square-pen fa-xl"></i></button>
@@ -89,8 +88,7 @@
 </app-editar-camion>
 
 
-<app-modal titulo="{{this.translateHelper.instantTranslation('TruckRegisterDeleteModalTitle')}}" *ngIf="camionActual"
-    msg="{{this.translateHelper.instantTranslation('TruckRegisterDeleteConfirmation')}}
+<app-modal titulo="{{instantTranslation('TruckRegisterDeleteModalTitle')}}" *ngIf="camionActual" msg="{{instantTranslation('TruckRegisterDeleteConfirmation')}}
      {{camionActual.brand}} - {{camionActual.vin}}?" [funcion]="eliminarCamion.bind(this,this.camionActual.uid)"
     modal="btn-modal-delete"></app-modal>
 

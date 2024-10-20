@@ -37,7 +37,7 @@ export class RegistroCamionComponent implements OnInit {
   createTruck: Truck | null = null;
 
   constructor(
-    public translateHelper: DynamicTranslationsService,
+    private translateHelper: DynamicTranslationsService,
     private TruckService: TruckService,
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService

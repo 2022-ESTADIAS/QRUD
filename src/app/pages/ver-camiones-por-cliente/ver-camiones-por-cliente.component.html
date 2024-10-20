@@ -8,14 +8,16 @@
     <app-buscador (busqueda)="search($event)" (ocultar)="ocultarPaginacion = $event"></app-buscador>
 
 
-    <h3>{{instantTranslation('visitorsComponentTitle')}}</h3>
+    <h3>{{instantTranslation('TruckRegisterList')}}</h3>
     <table class="resp" [ngClass]="{'disabled-table':waitForAnswer}">
         <thead>
             <tr>
-                <th>{{instantTranslation('visitorsComponentTableName')}}</th>
-                <!-- <th>{{instantTranslation('visitorsComponentTableVisitDate')}}</th> -->
-                <th>{{instantTranslation('visitorsComponentTableCompany')}}</th>
-                <th>{{instantTranslation('visitorsComponentTableEmail')}}</th>
+                <th>{{instantTranslation('TruckRegisterModel')}}</th>
+                <th>{{instantTranslation('TruckRegisterYear')}}</th>
+                <th>{{instantTranslation('TruckRegisterVin')}}</th>
+                <th>{{instantTranslation('TruckRegisterBrand')}}</th>
+                <th>{{instantTranslation('TruckRegisterTract')}}</th>
+
                 <!-- <th>{{instantTranslation('visitorsComponentTableUserType')}}</th> -->
                 <th>{{instantTranslation('visitorsComponentTableActions')}}</th>
             </tr>
@@ -32,9 +34,11 @@
                     <!-- <app-no-encontrado *ngIf="usuario.error" [mensaje]="usuario.msg"></app-no-encontrado> -->
 
 
-                    <td data-title="Nombre">{{usuario.truck_id.name| uppercase}}</td>
-                    <td data-title="Compañia">{{usuario.truck_id.company | uppercase}}</td>
-                    <td class="right" data-title="Email">{{usuario.truck_id.email}}</td>
+                    <td data-title="Nombre">{{usuario.truck_id.model| uppercase}}</td>
+                    <td data-title="Compañia">{{usuario.truck_id.year | uppercase}}</td>
+                    <td class="right" data-title="Email">{{usuario.truck_id.vin}}</td>
+                    <td class="right" data-title="Email">{{usuario.truck_id.brand}}</td>
+                    <td class="right" data-title="Email">{{usuario.truck_id.tract}}</td>
                     <!-- <td data-title="tipo de usuario">{{usuario.visitor_id?.visitor_type_id?.name ? (usuario.visitor_type_id?.name|
                         uppercase ): "N/A"}}</td> -->
                     <!-- iconost -->
@@ -43,7 +47,7 @@
                             <!-- <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button> -->
                             <!-- <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label> -->
 
-                            <i class="fa fa-download fa-lg download" (click)="downloadPDF(usuario.truck_id)"
+                            <i class="fa fa-download fa-lg download" (click)="downloadPDF(usuario.truck_id._id)"
                                 aria-hidden="true"></i>
                         </div>
 
@@ -68,16 +72,21 @@
 </ng-container>
 
 
+<!-- PDF TEMPLATE -->
 <div class="invisible">
     <div id="page">
+        <div class="date-container" id="date-container">
+            <!-- <p>Fecha: <span> {{actualDate()}}</span> </p> -->
+        </div>
+
+
         <div class="logo-container">
             <img src="assets/img/logo.png" alt="mexcal logo">
             <img src="assets/img/divelopers.png" alt="divelopers logo">
 
         </div>
 
-        <h4 class="pdf-title-text">
-            {{instantTranslation('documentDescription') }}
+        <h4 class="pdf-title-text">{{instantTranslation('documentDescription') }}
         </h4>
 
         <div class="grid" id="table">
@@ -97,7 +106,7 @@
             <p class="signature-name">Personal Autorizado MEXCAL </p> -->
         </div>
 
-
+        <div class="qr-image" id="truck-qr"></div>
 
 
     </div>

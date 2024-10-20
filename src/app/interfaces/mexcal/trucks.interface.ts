@@ -26,6 +26,7 @@ export interface Truck {
   createdAt: string;
   updatedAt: string;
   uid: string;
+  _id: string;
 }
 
 export interface TruckResponse {

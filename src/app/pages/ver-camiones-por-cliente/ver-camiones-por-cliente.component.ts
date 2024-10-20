@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { format } from 'date-fns';
 import html2PDF from 'jspdf-html2canvas';
 import {
   SearchParams,
@@ -33,7 +34,7 @@ export class VerCamionesPorClienteComponent implements OnInit {
   waitForAnswer: boolean = false;
   constructor(
     private VisitorsService: VisitorsService,
-    private TrucksService: TruckService,
+    private TruckService: TruckService,
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService,
     public translateHelper: DynamicTranslationsService
@@ -95,59 +96,114 @@ export class VerCamionesPorClienteComponent implements OnInit {
     return this.translateHelper.instantTranslation(key, params);
   }
 
-  downloadPDF(user: Truck) {
-    const isCreated = this.generatePDFTemplate(user);
-    if (isCreated) {
-      const page = document.querySelector('#page') as HTMLElement;
+  downloadPDF(id: string) {
+    this.waitForAnswer = true;
+    this.TruckService.getTruckByQR(id)
+      .then((data) => {
+        const isCreated = this.generatePDFTemplate(data.truck, data.qr);
 
-      html2PDF(page, {
-        jsPDF: {
-          format: 'a4',
-        },
-        imageType: 'image/jpeg',
-        output: './pdf/generate.pdf',
-        margin: {
-          top: 20,
-          left: 10,
-          bottom: 10,
-          right: 10,
-        },
-        // html2canvas: {
-        //   scrollX: 0,
-        //   scrollY: -window.scrollY,
-        // },
+        if (isCreated) {
+          const page = document.querySelector('#page') as HTMLElement;
+
+          html2PDF(page, {
+            jsPDF: {
+              format: 'a4',
+            },
+            imageType: 'image/jpeg',
+            output: './pdf/generate.pdf',
+            margin: {
+              top: 20,
+              left: 10,
+              bottom: 10,
+              right: 10,
+            },
+            // html2canvas: {
+            //   scrollX: 0,
+            //   scrollY: -window.scrollY,
+            // },
+          });
+
+          this.waitForAnswer = false;
+        }
+        this.resetPDFTemplate();
+      })
+      .catch((err) => {
+        this.waitForAnswer = false;
+        if (err.error.msg) {
+          this.msgQR = err.error.msg;
+          // this.existeQRregistrado = true;
+
+          setTimeout(() => {
+            // this.existeQRregistrado = false;
+          }, 2000);
+          return;
+        }
+        if (err.error.msgtk) {
+          this.AuthService.logout();
+          return;
+        }
+        this.ErrorServidor.error();
       });
-      this.resetPDFTemplate();
-    }
   }
 
-  generatePDFTemplate(usuario: Truck): boolean {
+  generatePDFTemplate(usuario: Truck, qr: string): boolean {
     const div = document.querySelector('#table') as HTMLElement;
     const signature = document.querySelector(
       '#signature-container'
     ) as HTMLElement;
+    const qrImage = document.querySelector('#truck-qr') as HTMLElement;
+    const date = document.querySelector('#date-container') as HTMLElement;
+
+    date.innerHTML = `
+      <p>${this.translateHelper.instantTranslation(
+        'TruckPdfDate'
+      )}: <span class=""> ${this.actualDate()}</span> </p>
+    `;
 
     const dynamicContent = `
-       <p class="formatField">Nombre: <span>${usuario.name}</span> </p>
-    <p class="formatField">Compañia: <span>${usuario.company}</span> </p>
-    <p class="formatField">Modelo: <span>${usuario.model}</span> </p>
-    <p class="formatField">Marca: <span>${usuario.brand}</span> </p>
-    <p class="formatField">Tracto: <span>${usuario.tract}</span> </p>
-    <p class="formatField">VIN: <span>${usuario.vin}</span> </p>
-    <p class="formatField">Año: <span>${usuario.year}</span></p>
-   
+    
+
+
+        <p class="formatField">${this.translateHelper.instantTranslation(
+          'TruckRegisterName'
+        )}: <span>${usuario.name}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterCompany'
+    )}: <span>${usuario.company}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterModel'
+    )}: <span>${usuario.model}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterBrand'
+    )}: <span>${usuario.brand}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterTract'
+    )}: <span>${usuario.tract}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterVin'
+    )}: <span>${usuario.vin}</span> </p>
+    <p class="formatField">${this.translateHelper.instantTranslation(
+      'TruckRegisterYear'
+    )}: <span>${usuario.year}</span></p>
 
   
     `;
 
     signature.innerHTML = `
       <div class="signature-placeholder"></div>
-            <p class="signature-name">${this.translateHelper.instantTranslation(
-              'signaturePlaceholder'
-            )} </p>
+     <p class="signature-name">${this.translateHelper.instantTranslation(
+       'signaturePlaceholder'
+     )} </p>
+    `;
+
+    qrImage.innerHTML = `
+     <img src="${qr}" class="qr-pdf-image" alt="qr image"
+
+     ></img> 
     `;
 
     div.innerHTML = dynamicContent;
+
     return true;
   }
 
@@ -156,8 +212,19 @@ export class VerCamionesPorClienteComponent implements OnInit {
     const signature = document.querySelector(
       '#signature-container'
     ) as HTMLElement;
+    const qrImage = document.querySelector('#truck-qr') as HTMLElement;
 
     div.innerHTML = '';
     signature.innerHTML = '';
+    qrImage.innerHTML = '';
+  }
+
+  actualDate() {
+    const today = new Date();
+    const date = format(today, 'dd/MM/yyyy HH:mm');
+    // const time = date.split(' ')[1];
+    // const amOrPm = +time >= 12 ? 'pm' : 'am';
+
+    return date;
   }
 }

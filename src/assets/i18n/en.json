@@ -151,5 +151,8 @@
   "TruckRegisterCompany": "Company",
   "TruckRegisterSave": "Save",
   "TruckPdfDate": "Date",
-  "qrTruckScannerTitle": "Truck Data"
+  "qrTruckScannerTitle": "Truck Data",
+  "forgotPasswordDescription": "Enter the verified email address of your user account and we will send you a link to reset your password.",
+  "forgotPasswordReturnLink": "Remember your password?, log in",
+  "forgotPasswordSentButton": "Send"
 }

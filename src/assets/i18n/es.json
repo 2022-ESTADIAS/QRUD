@@ -151,5 +151,8 @@
   "TruckRegisterCompany": "Compañia",
   "TruckRegisterSave": "Guardar",
   "TruckPdfDate": "Fecha",
-  "qrTruckScannerTitle": "Datos del Camión"
+  "qrTruckScannerTitle": "Datos del Camión",
+  "forgotPasswordDescription": "Ingrese la dirección de correo electrónico verificada de su cuenta de usuario y le enviaremos un enlace para restablecer la contraseña.",
+  "forgotPasswordReturnLink": "Recordaste tu contraseña?, Inicia Sesion",
+  "forgotPasswordSentButton": "Enviar"
 }

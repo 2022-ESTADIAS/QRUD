@@ -30,7 +30,7 @@ export class VerVisitantesComponent implements OnInit {
     private AuthService: AuthService,
     private ErrorServidor: ErrorServidorService,
     private QRUDService: QRUDService,
-    public translateHelper: DynamicTranslationsService
+    private translateHelper: DynamicTranslationsService
   ) {}
 
   ngOnInit(): void {
@@ -166,15 +166,7 @@ export class VerVisitantesComponent implements OnInit {
     <p class="formatField">${this.translateHelper.instantTranslation(
       'email'
     )}: <span>${usuario.email}</span> </p>
-    <p class="formatField">${this.translateHelper.instantTranslation(
-      'phone'
-    )}: <span>${usuario.phone}</span> </p>
-    <p class="formatField">${this.translateHelper.instantTranslation(
-      'licenseNumber'
-    )}: <span>${usuario.license_number}</span></p>
-    <p class="formatField">${this.translateHelper.instantTranslation(
-      'licensePlates'
-    )}: <span>${usuario.license_plates}</span> </p>
+
 
   
     `;

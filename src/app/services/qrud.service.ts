@@ -268,14 +268,20 @@ export class QRUDService {
    */
   olvideContrasena(data: any) {
     return new Promise((resolve, reject) => {
-      this.http.post(`${url}/personal/forgot-pwd`, data).subscribe(
-        (data) => {
-          resolve(data);
-        },
-        (err) => {
-          reject(err);
-        }
-      );
+      this.http
+        .post(`${url}/personal/forgot-pwd`, data, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (err) => {
+            reject(err);
+          }
+        );
     });
   }
   /**

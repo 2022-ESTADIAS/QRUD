@@ -84,8 +84,6 @@ export class AsignarCamionesComponent implements OnInit {
       keyword: opt.keyword,
     })
       .then((data) => {
-        console.log(data, 'TRUCKS');
-
         this.drivers = data.trucks;
         if (data.pages == 0 && data.trucks.length == 0) {
           this.page = 0;
@@ -123,8 +121,6 @@ export class AsignarCamionesComponent implements OnInit {
   }
 
   TrucksAssignation() {
-    console.log(this.driversSelectionIds, 'DRIVERS');
-
     this.VisitorsService.AssignationTrucks(
       this.idCliente,
       this.driversSelectionIds

@@ -197,8 +197,6 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
         ],
       ];
       this.rutas = this.rutasMaster;
-      // this.cdr.detectChanges();
-      // console.log(this.rutasMaster, 'NUEVAS RUTAS 2');
     });
   }
 
@@ -311,7 +309,6 @@ export class PanelAdminComponent implements OnInit, OnDestroy, OnChanges {
     this.moduleService
       .getModules()
       .then((data) => {
-        console.log(data.modules, 'MODULOS');
         this.modules = data.modules;
       })
       .catch((err) => {

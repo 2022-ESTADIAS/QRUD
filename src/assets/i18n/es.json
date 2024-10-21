@@ -6,7 +6,7 @@
   "formInstructions": "* Indica que la pregunta es obligatoria",
   "formEmailField": "Correo electrónico *",
   "formEmailValidationField": "Tiene que ser un correo valido",
-  "formPasswordValidationField": "La contraseña debe tener al entre 8 caracteres",
+  "formPasswordValidationField": "La contraseña debe tener al menos 8 caracteres",
   "formFullNameField": "Nombre completo *",
   "fieldRequired": "El campo es requerido",
   "formVisitCompanyField": "Empresa de la que nos visitas",
@@ -154,5 +154,8 @@
   "qrTruckScannerTitle": "Datos del Camión",
   "forgotPasswordDescription": "Ingrese la dirección de correo electrónico verificada de su cuenta de usuario y le enviaremos un enlace para restablecer la contraseña.",
   "forgotPasswordReturnLink": "Recordaste tu contraseña?, Inicia Sesion",
-  "forgotPasswordSentButton": "Enviar"
+  "forgotPasswordSentButton": "Enviar",
+  "resetPassword": "Cambio de contraseña",
+  "resetPasswordNewField": "Nueva Contraseña",
+  "resetPasswordConfirmField": "Confirma Nueva Contraseña"
 }

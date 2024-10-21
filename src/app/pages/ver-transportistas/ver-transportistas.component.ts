@@ -121,7 +121,6 @@ export class VerTransportistasComponent implements OnInit {
 
     if (isCreated) {
       const page = document.querySelector('#page') as HTMLElement;
-      console.log(page, 'pagina');
 
       html2PDF(page, {
         jsPDF: {

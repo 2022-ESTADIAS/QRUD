@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DynamicTranslationsService } from 'src/app/services/dynamic-translations.service';
 import { ErrorServidorService } from 'src/app/services/error-servidor.service';
 import { QRUDService } from 'src/app/services/qrud.service';
 
@@ -47,14 +48,15 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
   /**
    * inyectando servicios
    */
-  waitAnswer: boolean = false;
+  waitForAnswer: boolean = false;
 
   constructor(
     private QRUDService: QRUDService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private ErrorServidor: ErrorServidorService
+    private ErrorServidor: ErrorServidorService,
+    private translateHelper: DynamicTranslationsService
   ) {}
 
   /**
@@ -83,8 +85,10 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
    * metodo que se encarga de realizar el cambio de contraseña y enviar el mensaje de exito o error al usuario en caso de que se haya realizado o no
    */
   submit() {
+    this.waitForAnswer = true;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.waitForAnswer = false;
       return;
     }
     const actualizarContrasena = this.form.value;
@@ -98,13 +102,14 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
         this.msgExito = data.msg;
         this.form.reset();
         this.existemsgExito = true;
-
+        this.waitForAnswer = false;
         setTimeout(() => {
           this.existemsgExito = false;
           this.router.navigateByUrl('/login');
         }, 1500);
       })
       .catch((err) => {
+        this.waitForAnswer = false;
         if (err.error.err) {
           this.msgError = err.error.err;
           this.existeError = true;
@@ -146,5 +151,8 @@ export class RestablecerContrasenaEmailComponent implements OnInit {
    */
   removerAlertas() {
     this.existeError = false;
+  }
+  instantTranslation(key: string, params?: any) {
+    return this.translateHelper.instantTranslation(key, params);
   }
 }

@@ -102,7 +102,6 @@ export class RegistroUsuarioComponent implements OnInit {
     this.FormularioUsuario();
     this.getReasons();
     this.fechaMinima = this.getFechaActual();
-    // console.log(this.router.url, 'RUTA ACTUAL');
   }
   /**
    * metodo que inicializa el formulario reactivo con sus respectivos campos y validaciones
@@ -160,7 +159,6 @@ export class RegistroUsuarioComponent implements OnInit {
       this.form.get('visitor_type_id')?.setValue(this.driverUidReference);
     }
 
-    console.log(this.form.value);
     if (this.form.invalid) {
       this.disabledForm = false;
       this.form.markAllAsTouched();
@@ -349,7 +347,6 @@ export class RegistroUsuarioComponent implements OnInit {
   }
 
   openRegisterModal(visitor: VisitorType) {
-    console.log(visitor, 'tipo visitante');
     this.showRegisterForm = true;
     if (visitor.name == 'Proveedores') {
       this.registerFormName = 'Proveedores';
@@ -370,7 +367,6 @@ export class RegistroUsuarioComponent implements OnInit {
     this.driverUidReference = visitor.uid;
 
     this.form.get('visitor_type_id')?.setValue(visitor.uid);
-    console.log(this.driverUidReference, 'referencia uid');
   }
 
   getClass(type: string) {
@@ -409,7 +405,6 @@ export class RegistroUsuarioComponent implements OnInit {
     this.disabledAcceptButton = !this.disabledAcceptButton;
   }
   displayDriverForm() {
-    console.log(this.driverUidReference, 'referencia uid');
     this.form.get('visitor_type_id')?.setValue(this.driverUidReference);
     this.showDriversRegisterFormFields = true;
     this.showDriverRegulation = false;

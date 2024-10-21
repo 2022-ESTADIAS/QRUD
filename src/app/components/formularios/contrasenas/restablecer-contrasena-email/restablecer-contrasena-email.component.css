@@ -26,16 +26,16 @@ body {
   margin-left: auto;
   margin-right: auto;
   background: #fff;
-  box-shadow: 0 2px 15px rgba(64, 64, 64, 0.7);
+  box-shadow: 0 5px 10px rgba(64, 64, 64, 0.2);
   width: 500px;
-  height: 800px;
+  padding: 5px;
 }
 .email img {
   margin-top: 3rem;
   margin-bottom: 3rem;
   text-align: center;
   width: 200px;
-  height: 200px;
+  height: 100px;
 }
 .email p {
   font-size: 25px;
@@ -51,12 +51,11 @@ body {
 form {
   margin-left: auto;
   margin-right: auto;
-  height: 150px;
   width: 300px;
 }
 .group {
   position: relative;
-  margin-bottom: 45px;
+  margin-bottom: 70px;
 }
 input {
   font-size: 18px;
@@ -84,6 +83,7 @@ label {
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
+  margin-top: -20px;
 }
 
 /* active state */
@@ -269,6 +269,13 @@ input:focus ~ .highlight {
 .btn1O:hover::after {
   opacity: 1;
   width: 120%;
+}
+
+.form-title {
+  margin-bottom: 30px;
+}
+.form {
+  margin-top: 80px;
 }
 
 .disabled-form {

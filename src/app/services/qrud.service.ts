@@ -290,7 +290,11 @@ export class QRUDService {
   restablecerContrasenaCorreo(data: any, id: any, token: any) {
     return new Promise((resolve, reject) => {
       this.http
-        .put(`${url}/personal/email-pwd?token=${token}&id=${id}`, data)
+        .put(`${url}/personal/email-pwd?token=${token}&id=${id}`, data, {
+          headers: {
+            lang: this.languageService.gettranslate().currentLang,
+          },
+        })
         .subscribe(
           (data) => {
             resolve(data);

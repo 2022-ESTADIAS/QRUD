@@ -46,8 +46,6 @@ export class VerVisitantesComponent implements OnInit {
       keyword: opt.keyword,
     })
       .then((data) => {
-        console.log(data, 'VISITANTES');
-
         this.usuarios = data.visitors;
         if (data.pages == 0 && data.visitors.length == 0) {
           this.page = 0;
@@ -124,7 +122,6 @@ export class VerVisitantesComponent implements OnInit {
 
     if (isCreated) {
       const page = document.querySelector('#page') as HTMLElement;
-      console.log(page, 'pagina');
 
       html2PDF(page, {
         jsPDF: {

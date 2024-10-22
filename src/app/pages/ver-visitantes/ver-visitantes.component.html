@@ -13,7 +13,6 @@
         <thead>
             <tr>
                 <th>{{instantTranslation('visitorsComponentTableName')}}</th>
-                <!-- <th>{{instantTranslation('visitorsComponentTableVisitDate')}}</th> -->
                 <th>{{instantTranslation('visitorsComponentTableCompany')}}</th>
                 <th>{{instantTranslation('visitorsComponentTableEmail')}}</th>
                 <th>{{instantTranslation('visitorsComponentTableUserType')}}</th>
@@ -29,12 +28,12 @@
             <ng-container *ngIf="!showSpinner">
                 <tr *ngFor="let usuario of usuarios">
 
-                    <!-- <app-no-encontrado *ngIf="usuario.error" [mensaje]="usuario.msg"></app-no-encontrado> -->
+
 
 
                     <td data-title="{{instantTranslation('visitorsComponentTableName')}}">{{usuario.name| uppercase}}
                     </td>
-                    <!-- <td data-title="Fecha de visita">{{parseDate(usuario.visit_date) }}</td> -->
+
                     <td data-title="{{instantTranslation('visitorsComponentTableCompany')}}">{{usuario.visit_company |
                         uppercase}}</td>
                     <td class="right" data-title="{{instantTranslation('visitorsComponentTableEmail')}}">
@@ -46,7 +45,8 @@
                     <td class="icons" data-title="{{instantTranslation('visitorsComponentTableActions')}}">
                         <div class="btn-group">
                             <!-- <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button> -->
-                            <!-- <label class="btn" for="btn-modal-delete" (click)="referenciaUsuarioActual(usuario)" *ngIf="accesoDenegado" ><i class="fa-solid fa-user-xmark fa-lg"></i></label> -->
+                            <label class="btn" for="btn-modal-delete" (click)="referenciaVisitanteActual(usuario)"><i
+                                    class="fa-solid fa-user-xmark fa-lg"></i></label>
                             <button class="btn" (click)="enviarQR(usuario.uid)"><i class="fa-solid fa-qrcode fa-lg"
                                     [ngClass]="{'disabled-button':waitForAnswer}"></i></button>
                             <i class="fa fa-download fa-lg download" (click)="downloadPDF(usuario)"
@@ -72,6 +72,14 @@
     </table>
 
 </ng-container>
+
+
+<app-modal *ngIf="actualVisitor" msg="¿{{instantTranslation('confirmClientDeleteMessage')}} {{actualVisitor.email}} ?"
+    titulo="{{instantTranslation('deleteModalClientTitle')}}" [funcion]="deleteVisitor.bind(this,actualVisitor.uid)"
+    modal="btn-modal-delete"></app-modal>
+
+
+
 
 
 <div class="invisible">

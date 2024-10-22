@@ -94,3 +94,7 @@ export interface TruckID {
 export interface TrucksAssignedResponse {
   trucks: TruckID[];
 }
+
+export interface DeleteVisitorResponse {
+  message: string;
+}

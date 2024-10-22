@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { environment } from 'src/environments/environment';
 import {
+  DeleteVisitorResponse,
   DriverSearchParams,
   DriversResponse,
   TruckDriverResponse,
@@ -89,6 +90,30 @@ export class VisitorsService {
       this.http
         .get<TrucksAssignedResponse>(
           `${url}/visitors/assigned-trucks/${id}`,
+
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              lang: this.languageService.gettranslate().currentLang,
+            },
+          }
+        )
+        .subscribe(
+          (data) => {
+            resolve(data);
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+    });
+  }
+  deleteVisitor(id: string) {
+    const token = this.StorageService.desencriptar(llaveToken);
+    return new Promise<DeleteVisitorResponse>((resolve, reject) => {
+      this.http
+        .delete<DeleteVisitorResponse>(
+          `${url}/visitors/${id}`,
 
           {
             headers: {

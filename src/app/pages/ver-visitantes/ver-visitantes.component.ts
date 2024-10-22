@@ -25,6 +25,9 @@ export class VerVisitantesComponent implements OnInit {
   msgQR: string = '';
   existeMsgQRExito: boolean = false;
   waitForAnswer: boolean = false;
+
+  actualVisitor: Visitor | null = null;
+
   constructor(
     private VisitorsService: VisitorsService,
     private AuthService: AuthService,
@@ -115,6 +118,28 @@ export class VerVisitantesComponent implements OnInit {
   }
   instantTranslation(key: string, params?: any) {
     return this.translateHelper.instantTranslation(key, params);
+  }
+  referenciaVisitanteActual(visitor: Visitor) {
+    this.actualVisitor = visitor;
+  }
+  deleteVisitor(id: string) {
+    this.VisitorsService.deleteVisitor(id)
+      .then((data) => {
+        this.msgQR = data.message;
+        this.existeMsgQRExito = true;
+        this.getVisitors({});
+
+        setTimeout(() => {
+          this.existeMsgQRExito = false;
+        }, 2000);
+      })
+      .catch((err) => {
+        if (err.error.msgtk) {
+          this.AuthService.logout();
+          return;
+        }
+        this.ErrorServidor.error();
+      });
   }
 
   downloadPDF(user: Visitor) {

@@ -4,7 +4,7 @@
   <div class="modal-content-edit">
     <span class="closeedit" (click)="ocultarFormulario()">&times;</span>
     <h1 class="modal-title">{{instantTranslation('editClient')}}</h1>
-    <form class="form-edit" [formGroup]="form" (ngSubmit)="submit()">
+    <form class="form-edit" [formGroup]="form" (ngSubmit)="submit()" [ngClass]="{'disabled-form':waitForAnswer}">
 
       <div class="group-edit">
         <input type="text" formControlName="nombre">
@@ -36,7 +36,7 @@
               </div> -->
 
       <div class="save-edit">
-        <button type="submit" class="btn10">
+        <button type="submit" class="btn10" [ngClass]="{'disabled-button':waitForAnswer}">
           <span>{{instantTranslation('saveClientButton')}}</span>
           <div class="transition"></div>
         </button>

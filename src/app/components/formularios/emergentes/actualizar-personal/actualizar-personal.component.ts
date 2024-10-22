@@ -57,6 +57,8 @@ export class ActualizarPersonalComponent implements OnInit {
    */
   @Output() personalActualizado: EventEmitter<Personal[]> = new EventEmitter();
 
+  waitForAnswer: boolean = false;
+
   /**
    * inyeccion de servicios
    */
@@ -109,8 +111,10 @@ export class ActualizarPersonalComponent implements OnInit {
    * metodo que actualiza el personal
    */
   submit() {
+    this.waitForAnswer = true;
     if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.waitForAnswer = false;
       return;
     }
 
@@ -128,12 +132,13 @@ export class ActualizarPersonalComponent implements OnInit {
       personalActualizado
     )
       .then((data: any) => {
+        this.waitForAnswer = false;
         this.form.reset();
-
         this.personalActualizado.emit(data);
         this.ocultar.emit(false);
       })
       .catch((err) => {
+        this.waitForAnswer = false;
         if (err.error.errors) {
           this.existeError = true;
           this.errores = err.error.errors;

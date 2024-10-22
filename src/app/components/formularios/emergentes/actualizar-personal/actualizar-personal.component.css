@@ -297,3 +297,13 @@ input:focus ~ .highlight {
   font-size: 28px;
   text-align: center;
 }
+
+.disabled-form {
+  opacity: 0.1;
+}
+
+.disabled-button {
+  opacity: 0.1;
+  cursor: not-allowed;
+  pointer-events: none;
+}

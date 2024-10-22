@@ -39,6 +39,7 @@ export class AsignarCamionesComponent implements OnInit {
   trucksAlreadySelected: TruckID[] = [];
 
   asignInMemory: boolean = false;
+  waitForAnswer: boolean = false;
 
   constructor(
     private VisitorsService: VisitorsService,
@@ -121,6 +122,7 @@ export class AsignarCamionesComponent implements OnInit {
   }
 
   TrucksAssignation() {
+    this.waitForAnswer = true;
     this.VisitorsService.AssignationTrucks(
       this.idCliente,
       this.driversSelectionIds
@@ -128,13 +130,14 @@ export class AsignarCamionesComponent implements OnInit {
       .then((data) => {
         this.msgExito = data.msg;
         this.existeMsgExito = true;
-
+        this.waitForAnswer = false;
         setTimeout(() => {
           this.existeMsgExito = false;
           this.ocultarFormulario();
         }, 2000);
       })
       .catch((err) => {
+        this.waitForAnswer = false;
         if (err.error.erros) {
           this.existeError = true;
           this.errores = err.error.errors;

@@ -25,7 +25,7 @@
 
         </div>
 
-        <div class="grid">
+        <div class="grid" [ngClass]="{'disabled-form':waitForAnswer}">
             <ng-container *ngFor="let driver of drivers">
                 <div class="driver-container" [ngClass]="{'active':isAssignedTruck(driver.uid)}" id="{{driver.uid}}">
                     <input type="checkbox" class="check" (click)="toggleDriver(driver.uid)"
@@ -60,7 +60,8 @@
 
 
         <div class="save-edit">
-            <button type="submit" class="btn10" (click)="TrucksAssignation()">
+            <button type="submit" class="btn10" (click)="TrucksAssignation()"
+                [ngClass]="{'disabled-button':waitForAnswer}">
                 <span>{{instantTranslation('TruckAssignationModalButton')}}</span>
                 <div class="transition"></div>
             </button>

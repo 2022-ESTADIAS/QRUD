@@ -122,6 +122,7 @@
   "saveClientButton": "Save",
   "deleteModalClientTitle": "Delete",
   "confirmClientDeleteMessage": "Are you sure  to eliminate the client",
+  "confirmVisitorDeleteMessage": "Are you sure you want to eliminate the visitor",
   "cancelModalButton": "Cancel",
   "acceptModalButton": "Accept",
   "TruckAssignationModalTitle": "Truck Assignment",

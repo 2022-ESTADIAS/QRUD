@@ -74,7 +74,7 @@
 </ng-container>
 
 
-<app-modal *ngIf="actualVisitor" msg="¿{{instantTranslation('confirmClientDeleteMessage')}} {{actualVisitor.email}} ?"
+<app-modal *ngIf="actualVisitor" msg="¿{{instantTranslation('confirmVisitorDeleteMessage')}} {{actualVisitor.email}} ?"
     titulo="{{instantTranslation('deleteModalClientTitle')}}" [funcion]="deleteVisitor.bind(this,actualVisitor.uid)"
     modal="btn-modal-delete"></app-modal>
 

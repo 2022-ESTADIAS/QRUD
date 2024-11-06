@@ -79,9 +79,9 @@ export class TruckQrComponent implements OnInit {
         this.existeMsgExito = true;
         this.msgExito = this.instantTranslation('qrAccessGranted');
 
-        setTimeout(() => {
-          this.existeMsgExito = false;
-        }, 4000);
+        // setTimeout(() => {
+        //   this.existeMsgExito = false;
+        // }, 4000);
       })
       .catch((err) => {
         this.showQREscaner = true;
@@ -89,10 +89,10 @@ export class TruckQrComponent implements OnInit {
         this.errorServidor = this.instantTranslation('invalidQRCode');
         this.usuarioQR = null;
 
-        setTimeout(() => {
-          this.existeError = false;
-          this.errorServidor = '';
-        }, 4000);
+        // setTimeout(() => {
+        //   this.existeError = false;
+        //   this.errorServidor = '';
+        // }, 4000);
       });
 
     // this.usuarioQR = user;
@@ -108,11 +108,20 @@ export class TruckQrComponent implements OnInit {
   limpiarQr() {
     this.usuarioQR = null;
     this.mostrarDatos = false;
+    this.existeMsgExito = false;
   }
   parseDate(fecha: string) {
     return fecha.replace('t', ' ');
   }
   instantTranslation(key: string, params?: any) {
     return this.translateHelper.instantTranslation(key, params);
+  }
+
+  closeError() {
+    this.existeError = false;
+    this.errorServidor = '';
+  }
+  closeExito() {
+    this.existeMsgExito = false;
   }
 }

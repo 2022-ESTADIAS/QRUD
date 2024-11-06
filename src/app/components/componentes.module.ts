@@ -25,6 +25,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { createTranslateLoader } from '../app.module';
 import { CrearCamionComponent } from './formularios/emergentes/crear-camion/crear-camion.component';
 import { EditarCamionComponent } from './formularios/emergentes/editar-camion/editar-camion.component';
+import { VisitantesModalInfoComponent } from './modales/visitantes-modal-info/visitantes-modal-info.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { EditarCamionComponent } from './formularios/emergentes/editar-camion/ed
     AsignarCamionesComponent,
     CrearCamionComponent,
     EditarCamionComponent,
+    VisitantesModalInfoComponent,
   ],
   exports: [
     ErroresBackendComponent,
@@ -62,6 +64,7 @@ import { EditarCamionComponent } from './formularios/emergentes/editar-camion/ed
     AsignarCamionesComponent,
     CrearCamionComponent,
     EditarCamionComponent,
+    VisitantesModalInfoComponent,
   ],
   imports: [
     CommonModule,

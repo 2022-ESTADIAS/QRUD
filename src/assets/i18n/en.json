@@ -158,5 +158,6 @@
   "forgotPasswordSentButton": "Send",
   "resetPassword": "Password change",
   "resetPasswordNewField": "New password",
-  "resetPasswordConfirmField": "Confirm New Password"
+  "resetPasswordConfirmField": "Confirm New Password",
+  "visitorsDetails": "Details"
 }

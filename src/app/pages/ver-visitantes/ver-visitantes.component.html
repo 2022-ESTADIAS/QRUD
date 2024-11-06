@@ -45,6 +45,9 @@
                     <td class="icons" data-title="{{instantTranslation('visitorsComponentTableActions')}}">
                         <div class="btn-group">
                             <!-- <button class="btn"  (click)="actualizarUsuario(usuario.uid,usuario)" *ngIf="accesoDenegado"  ><i class="fa-solid fa-square-pen fa-xl"></i></button> -->
+
+                            <i class="fas fa-info-circle fa-lg info-icon"
+                                (click)="referenciaVisitanteDetalles(usuario)"></i>
                             <label class="btn" for="btn-modal-delete" (click)="referenciaVisitanteActual(usuario)"><i
                                     class="fa-solid fa-user-xmark fa-lg"></i></label>
                             <button class="btn" (click)="enviarQR(usuario.uid)"><i class="fa-solid fa-qrcode fa-lg"
@@ -72,6 +75,9 @@
     </table>
 
 </ng-container>
+
+<app-visitantes-modal-info *ngIf=" hideDetailsVisitorModal" [visitor]="detailsVisitor"
+    (ocultar)="toggleVisitorDetailsModal($event)"></app-visitantes-modal-info>
 
 
 <app-modal *ngIf="actualVisitor" msg="¿{{instantTranslation('confirmVisitorDeleteMessage')}} {{actualVisitor.email}} ?"

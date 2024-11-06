@@ -246,3 +246,8 @@ div.grid {
   font-weight: normal;
   font-size: 18px;
 }
+
+.info-icon {
+  margin-right: 9px;
+  cursor: pointer;
+}

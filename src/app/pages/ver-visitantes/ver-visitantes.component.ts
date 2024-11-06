@@ -28,6 +28,9 @@ export class VerVisitantesComponent implements OnInit {
 
   actualVisitor: Visitor | null = null;
 
+  detailsVisitor!: Visitor;
+  hideDetailsVisitorModal: boolean = false;
+
   constructor(
     private VisitorsService: VisitorsService,
     private AuthService: AuthService,
@@ -75,6 +78,8 @@ export class VerVisitantesComponent implements OnInit {
         this.existeMsgQRExito = true;
         this.msgQR = data.msg;
         this.waitForAnswer = false;
+        this.getVisitors({});
+
         setTimeout(() => {
           this.existeMsgQRExito = false;
         }, 2000);
@@ -122,6 +127,15 @@ export class VerVisitantesComponent implements OnInit {
   referenciaVisitanteActual(visitor: Visitor) {
     this.actualVisitor = visitor;
   }
+  referenciaVisitanteDetalles(visitor: Visitor) {
+    console.log(visitor, 'DETAILS');
+    this.hideDetailsVisitorModal = true;
+    this.detailsVisitor = visitor;
+  }
+  toggleVisitorDetailsModal(value: boolean) {
+    this.hideDetailsVisitorModal = value;
+  }
+
   deleteVisitor(id: string) {
     this.VisitorsService.deleteVisitor(id)
       .then((data) => {

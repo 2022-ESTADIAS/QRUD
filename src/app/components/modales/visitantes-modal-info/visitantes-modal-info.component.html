@@ -1,0 +1,45 @@
+<div id="myModaledit" class="modaledit">
+
+    <!-- Modal content -->
+    <div class="modal-content-edit">
+        <span class="closeedit" (click)="ocultarModal()">&times;</span>
+        <h1 class="modal-title">{{instantTranslation('visitorsDetails')}}</h1>
+
+        <div class="flex">
+            <p>{{instantTranslation('qrScannerVisitorName')}}: {{visitor.name}} </p>
+            <p *ngIf="visitor.visit_date">{{instantTranslation('qrScannerVisitorDate')}}: {{visitor.visit_date
+                &&parseDate(visitor?.visit_date!) }}
+            </p>
+            <p>{{instantTranslation('qrScannerVisitorCompany')}}:
+                {{visitor.visit_company}} </p>
+            <p *ngIf="visitor.contact_name">{{instantTranslation('qrScannerVisitorContactName')}}:
+                {{visitor.contact_name}} </p>
+            <p *ngIf=" visitor.department">{{instantTranslation('qrScannerVisitorDepartment')}}:
+                {{visitor.department_id?.name}} </p>
+            <p>{{instantTranslation('qrScannerVisitorVisitType')}}: {{visitor.visitor_type_id?.name}} </p>
+            <p *ngIf="visitor.enter_device">{{instantTranslation('qrScannerVisitorDevices')}}: {{visitor.enter_device}}
+            </p>
+
+
+            <p *ngIf="visitor.phone">{{instantTranslation('qrScannerDriverPhone')}}: {{visitor?.phone}} </p>
+            <p *ngIf="visitor.office_name">{{instantTranslation('qrScannerDriverOffice')}}: {{visitor?.office_name}}
+            </p>
+            <p *ngIf="visitor.office_phone">{{instantTranslation('qrScannerDriverOfficePhone')}}:
+                {{visitor?.office_phone}} </p>
+
+
+
+
+        </div>
+
+
+
+
+        <div class="save-edit">
+            <button type="submit" class="btn10" (click)="ocultarModal()">
+                <span>{{instantTranslation('acceptModalButton')}}</span>
+                <div class="transition"></div>
+            </button>
+        </div>
+    </div>
+</div>

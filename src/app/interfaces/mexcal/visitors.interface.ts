@@ -18,6 +18,7 @@ export interface Visitor {
   enter_device: string;
   visitor_type_id: VisitorTypeID | null;
   isActive: boolean;
+  isQrGenerated: boolean;
   uid: string;
   office_name?: string;
   office_phone?: string;

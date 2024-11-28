@@ -1,8 +1,10 @@
 <ng-container *ngIf="existeError">
   <div class="mensajes-container">
 
-    <app-errores-backend [mensaje]="error.msg" *ngFor="let error of errores"></app-errores-backend>
-    <app-errores-backend [mensaje]="errorServidor" *ngIf="errorServidor.length > 0"></app-errores-backend>
+    <app-errores-backend (ocultar)="this.existeError = false" [mensaje]="error.msg"
+      *ngFor="let error of errores"></app-errores-backend>
+    <app-errores-backend [mensaje]="errorServidor" *ngIf="errorServidor.length > 0"
+      (ocultar)="this.existeError = false"></app-errores-backend>
   </div>
 
 

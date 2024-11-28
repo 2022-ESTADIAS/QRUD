@@ -152,6 +152,7 @@ export class RegistroUsuarioComponent implements OnInit {
   /**
    * metodo que registra el nuevo  usuario
    */
+
   submit() {
     this.disabledForm = true;
     let usuario: VisitorForm | ProviderForm | DriverForm = this.form.value;
@@ -261,7 +262,6 @@ export class RegistroUsuarioComponent implements OnInit {
     }
 
     // usuario.ine_field = this.form.get('image')?.value;
-
     this.QRUDService.publicRegisterQRCode(this.formData)
       .then((data: any) => {
         this.msgExito = data.msg;
@@ -275,11 +275,12 @@ export class RegistroUsuarioComponent implements OnInit {
       })
       .catch((err) => {
         this.disabledForm = false;
+        this.form.reset();
+        this.formData = new FormData();
         if (err.error.errors) {
           this.existeError = true;
           this.errores = err.error.errors;
           this.disabledForm = false;
-          this.formData = new FormData();
           setTimeout(() => {
             this.existeError = false;
           }, 2000);
@@ -290,16 +291,14 @@ export class RegistroUsuarioComponent implements OnInit {
           this.existeError = true;
           this.errorServidor = err.error?.err;
           this.disabledForm = false;
-          this.formData = new FormData();
-          setTimeout(() => {
-            this.existeError = false;
-          }, 2000);
+          // setTimeout(() => {
+          //   this.existeError = false;
+          // }, 2000);
           return;
         }
         if (err.err.err) {
           this.errorServidor = err.err?.err;
           this.disabledForm = false;
-          this.formData = new FormData();
           return;
         }
 
